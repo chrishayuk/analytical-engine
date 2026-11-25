@@ -26,6 +26,25 @@ impl Poly {
         }
         Poly(m)
     }
+    /// The derivative by a letter.
+    pub fn derive(&self, letter: &str) -> Poly {
+        let mut out = BTreeMap::new();
+        for (m, c) in &self.0 {
+            if let Some(&p) = m.get(letter) {
+                let mut m2 = m.clone();
+                if p == 1 {
+                    m2.remove(letter);
+                } else {
+                    m2.insert(letter.to_string(), p - 1);
+                }
+                let k = *c * Rat::new(p as i128, 1);
+                if !k.is_zero() {
+                    out.insert(m2, k);
+                }
+            }
+        }
+        Poly(out)
+    }
     pub fn letter(name: &str) -> Poly {
         let mut mono = Monomial::new();
         mono.insert(name.to_string(), 1);
@@ -159,6 +178,17 @@ impl Value {
     }
     pub fn is_zero(&self) -> bool {
         self.num.is_zero()
+    }
+    /// Whether the value depends on the letter: whether its derivative by
+    /// the letter, N′D − ND′, is not zero. (Numerator and denominator are not
+    /// kept in lowest terms, so the letter can appear in both and cancel.)
+    pub fn depends_on(&self, letter: &str) -> bool {
+        !self
+            .num
+            .derive(letter)
+            .mul(&self.den)
+            .sub(&self.num.mul(&self.den.derive(letter)))
+            .is_zero()
     }
     pub fn same(&self, o: &Value) -> bool {
         self.num.mul(&o.den) == o.num.mul(&self.den)

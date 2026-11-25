@@ -1,0 +1,86 @@
+% BAB/L/006, Science Museum Group Collection, document aa110001614.
+% The opened sheet (image 222/642), one table of 18 operations. The cover
+% (222/640) is marked "No 6" and is not dated; nor is the table. Rojas
+% (2017, Table 3) dates program 6 "8.1837". Read from the zoom images at
+% full resolution.
+
+Sheet BAB/L/006
+No. 6
+Title "Notation For the reduction of the three Equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 To two Equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0"
+Image 222/640 cover: the equations, the "Mode of operating used in this Notation", and a paragraph beginning "The Notation fails"
+Image 222/642 the table
+Image 222/644 back: "No 6" only
+
+% The sheet writes d as a round-backed ∂; here d.
+Letters a b c d a' b' c' d' a'' b'' c'' d''
+
+% The cover: "c'/c and c''/c are calculated", "whence (c'/c a - a')x +
+% (c'/c b - b')y + (c'/c d - d'')= 0 or Hx + Ky + M = 0" (the cover writes
+% d'' in the first and c''/c before by in the line above it, where the
+% working needs d' and c'/c; the table has neither slip), "also ... whence
+% (c''/c a - a'')x + (c''/c b - b'')y + (c''/c d - d'')= 0 or H'x + K'y + M' = 0".
+Find H = (c'/c)a-a'
+Find K = (c'/c)b-b'
+Find M = (c'/c)d-d'
+Find H' = (c''/c)a-a''
+Find K' = (c''/c)b-b''
+Find M' = (c''/c)d-d''
+
+% The store is headed with the three equations, ax +by +cz +d = 0 over
+% v1 to v4, a'x +b'y +c'z +d' = 0 over v5 to v8, a''x +b''y +c''z +d'' = 0
+% over v9 to v12; then v13 to v18.
+Store v1 = a, v2 = b, v3 = c, v4 = d, v5 = a', v6 = b', v7 = c', v8 = d', v9 = a'', v10 = b'', v11 = c'', v12 = d''
+Working v13 v14 v15 v16 v17 v18
+
+% The right-hand column is headed "Composition". The sheet writes each row
+% with the formula first and the variable written last ("v7/v3 = v13",
+% "v13·v1 = v7/v3 v1 = v7'"); here the variable written comes first, as the
+% notation requires, and the rest follows in the sheet's order.
+% "Comp. c", "Comp a", "Comp. b", "Comp. ∂" are written in words; here Cc,
+% Ca, Cb, Cd. The mill writes c'/c a as a fraction followed by a; here (c'/c)a.
+Op 1     ÷  | c'/c          | v3 0, v7 0, v13 c'/c, v14 Cc        | v13 = v7/v3
+Op 2     ×  | (c'/c)a       | v1 0, v7 (c'/c)a, v13 0, v15 Ca     | v7' = v13·v1 = v7/v3·v1
+Op 3     ×  | (c'/c)b       | v2 0, v13 (c'/c)b, v16 Cb           | v13' = v13·v2 = v7/v3·v2
+Op 4     ×  | (c'/c)d       | v4 0, v17 Cd, v18 (c'/c)d           | v18 = v13·v4 = v7/v3·v4
+% Rows 5 and 7 to 9: no operation and nothing in the mill. The sheet writes
+% "v14 = v3' = v3", "v15 = v1' = v1", "v16 = v2' = v2", "v17 = v4' = v4".
+Op 5        |               | v3 c, v14 0                         | v3' = v3
+% Row 6's middle member is written v1?/v3 with the second digit of 11
+% blotted, perhaps 14 corrected to 11 or the reverse; the same blot is in
+% row 11's v1?/v3. Read as v11, which the other rows (v11/v3 in rows 10 and
+% 12) have.
+Op 6     ÷  | c''/c         | v3 0, v11 0, v14 c''/c              | v14' = v11/v3' = v11/v3
+Op 7        |               | v1 a, v15 0                         | v1' = v1
+Op 8        |               | v2 b, v16 0                         | v2' = v2
+Op 9        |               | v4 d, v17 0                         | v4' = v4
+% Rows 10 to 12 name v1, v2, v4 without accents, though each now holds its
+% second number (the same a, b, d brought back).
+Op 10    ×  | (c''/c)a      | v1 0, v14 0, v15 (c''/c)a           | v15' = v14'·v1 = v11/v3·v1
+Op 11    ×  | (c''/c)b      | v2 0, v16 (c''/c)b                  | v16' = v14'·v2 = v11/v3·v2
+Op 12    ×  | (c''/c)d      | v4 0, v17 (c''/c)d                  | v17' = v14'·v4 = v11/v3·v4
+% Rows 13 to 18: the mill column ends with "=", and the store cell holds the
+% letter (H, K, M, H', K', M'); the right-hand column runs on, "= v1'' = H =
+% c'/c a - a'".
+Op 13    −  | (c'/c)a-a'    | v1 =H, v5 0, v7 0                   | v1'' = v7'-v5 = v7/v3·v1-v5 = H = (c'/c)a-a'
+Op 14    −  | (c'/c)b-b'    | v2 =K, v6 0, v13 0                  | v2'' = v13'-v6 = v7/v3·v2-v6 = K = (c'/c)b-b'
+Op 15    −  | (c'/c)d-d'    | v4 =M, v8 0, v18 0                  | v4'' = v18-v8 = v7/v3·v4-v8 = M = (c'/c)d-d'
+% Row 16's mill: the second letter's first accent touches its bowl, so that
+% it could be taken for d''; the sheet's d is always the round-backed ∂, and
+% the right-hand column has c''/c a - a''. Read as a''.
+Op 16    −  | (c''/c)a-a''  | v5 =H', v9 0, v15 0                 | v5' = v15'-v9 = v11/v3·v1-v9 = H' = (c''/c)a-a''
+Op 17    −  | (c''/c)b-b''  | v6 =K', v10 0, v16 0                | v6' = v16'-v10 = v11/v3·v2-v10 = K' = (c''/c)b-b''
+Op 18    −  | (c''/c)d-d''  | v8 =M', v12 0, v17 0                | v8' = v17'-v12 = v11/v3·v4-v12 = M' = (c''/c)d-d''
+
+% The cover, in a paler hand (pencil or faded ink): "This requires 18
+% variables - 10 small & 8 large operations = 18 Operations There are 8
+% multiplications & 2 divisions - See Not. 5".
+States great 8, small 10, total 18, occupied 18
+
+Remark "When H/H' = K/K' = G then G = M/M' or when H/H' = K/K' = M/M'"
+Remark "The Notation fails - The failure is not a necessary consequence of the method made use of in the Not - but the fault lies in the given equations"
+Remark "In the method, the coeffts. of z in the 2nd & 3rd equations are divided by that of z in the 1st - the former quot. multiplied into the 1st equation equalizes the coeffts of z in the 2nd & the resulting eqn"
+% The table has 6 multiplications and 2 divisions: 8 great operations, as
+% "8 large operations" says, but not "8 multiplications & 2 divisions".
+Unrun "cover: 'There are 8 multiplications & 2 divisions - See Not. 5'"
+Unrun "cover, pencil, left margin beside the second 'whence': 'also'"
+Unrun "table, faint pencil in the empty column after the mill, row 7: perhaps 'ca - ch' (not read)"

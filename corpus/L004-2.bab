@@ -1,0 +1,48 @@
+% BAB/L/004, Science Museum Group Collection, document aa110001607.
+% The second of three tables on the opened sheet (image 222/630, middle
+% left), and the "Composition" to the right of it. Numbered 2 on the cover.
+% Read from the zoom images at full resolution.
+
+Sheet BAB/L/004
+No. 4.2
+Date 16 Aug 1837          "16 Aug 1837 No 4"   % cover
+Title "Reduction of the two equations ax + by + c = 0, a'x + b'y + c' = 0 to a single equation of the form Hx - M = 0"
+Image 222/628 cover: "2. Reduction of the two Equations ax + by + c = 0 & a'x + b'y + c' = 0 to a single one of the form Hx - M = 0"
+Image 222/630 the second table and the composition
+
+Letters a b c a' b' c' x
+Unknowns x y
+Equation a x + b y + c = 0
+Equation a' x + b' y + c' = 0
+
+Store v1 = a, v2 = b, v3 = c, v4 = a', v5 = b', v6 = c'
+Working v7
+
+% No right-hand column of formulas. The mill column writes "b'/b = A",
+% "Aa - a' = H", "c' - Ac = M"; the cells "A", "H", "M". =A, =H, =M mark
+% where the sheet first writes each.
+% In pencil, fainter than the ink: "v8" at the head of a column after v7,
+% "A" in it at row 1 and "0" at row 3; and "M" in v7 at row 5. Not run.
+Op 1     ÷  | b'/b      | v2 0, v5 0, v7 =A |
+Op 2     ×  | Aa        | v1 0, v2 Aa, v7 0 |
+Op 3     ×  | Ac        | v3 0, v5 Ac |             % nothing else in the row: A is in no column (v7 was left at zero by row 2)
+Op 4     −  | Aa-a'     | v1 =H, v2 0, v4 0 |       % the species "−" has a pencil mark beside it
+Op 5     −  | c'-Ac     | v2 =M, v5 0, v6 0 |
+
+% "Composition", to the right of the table:
+%   v1 = a  v2 = b  v3 = c  v4 = a'  v5 = b'  v6 = c'
+%   v7 = v5/v2;  v2' = v7 v1;  v3' = v7 v3;  v1' = v2' - v4;  v2'' = v6 - v5'
+% (the table writes Ac in v5, not v3: the composition calls it v3' here and
+% v5' in the next line). Then "result = v1'x + v2'' = …"; the word
+% "result" is left out here, so that the chain starts at v1'x + v2''.
+Composition v1'x + v2'' = (v2'-v4)x - (v6-v3') = (v7v1-a')x - (c'-v7v3) = ((v5/v2)a-a')x - (c'-(v5/v2)v3) = ((b'/b)a-a')x - (c'-(b'/b)c) = (ab'-a'b)x - (bc'-b'c) = 0
+% Each member after the first is written "= 0" on the sheet, so the chain is
+% of equations (the last, b times the one before it, agrees as one).
+
+% Cover, right of 2: "variables = 6 / working do = 1 / Total do = 7";
+% "great op. = 3 / small do = 2 / Total operations = 5".
+States great 3, small 2, total 5, variables 6, working 1, occupied 7
+
+Remark "The reduction is effected by making the coeffecient of one of the unknowns in one of the equations equal to the coeffecient of the same unknown in the other equation and subtracting the results as ax + by + c = 0, a'x + b'y + c' = 0; (b'/b).ax + (b'/b).by + (b'/b).c = 0, a'x + b'y + c' = 0 whence ((b'/b)a - a')x - (c' - (b'/b)c) = 0 or Hx - M = 0"
+Remark "Had H = b'a - ba' M = bc' - b'c 4 Multns must have been made instead of 2 —— and 1 Division"
+Unrun "cover, pencil, faint: a ruled grid, columns headed 1 to 5 and a total; four labelled rows of 0s and 1s with totals 2, 2, 2 and 0 (labels perhaps Division, Multiplication, Subtraction and a fourth); not read with certainty"

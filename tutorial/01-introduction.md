@@ -55,10 +55,10 @@ Store  v1 = a, v2 = b, v3 = c, v4 = a', v5 = b', v6 = c'   working v7
 ✓ x = (bc′-b′c)/(b′a-ba′)
 ✓ x solves the equations
 ✓ composition: x = v3″
-✓ composition: x = v4′/v1″
-✓ composition: x = (v2′-v1′)/(v7-v3′)
-✓ composition: x = (v2·v6-v5·v3)/(v5·v1-v2·v4)
-✓ composition: x = (bc′-b′c)/(b′a-ba′)
+✓ composition: v3″ = v4′/v1″
+✓ composition: v4′/v1″ = (v2′-v1′)/(v7-v3′)
+✓ composition: (v2′-v1′)/(v7-v3′) = (v2·v6-v5·v3)/(v5·v1-v2·v4)
+✓ composition: (v2·v6-v5·v3)/(v5·v1-v2·v4) = (bc′-b′c)/(b′a-ba′)
 ✓ great = 5
 ✓ small = 2
 ✓ total = 7

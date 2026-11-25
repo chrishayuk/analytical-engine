@@ -21,6 +21,12 @@ $ babbage list
 L001-1   BAB/L/001  No. 1, 4 Aug 1837  Elimination between two equations of the first degree ax + by + c = 0  a'x + b'y + c' = 0 which is equivalent to calculating the value of x from the eqn x = (bc'-b'c)/(b'a-ba')
 L001-2   BAB/L/001  No. 2, 5 Aug 1837  Elimination between two equations of the first degree ax + by + c = 0 & a'x + b'y + c' = 0 which is equivalent to calculating x & y from the equations x = (bc'-b'c)/(b'a-ba') & y = (a'c-ac')/(b'a-ba')
 L002     BAB/L/002  No. 2, 14 Aug 1837  Computation of λ0, λ1, λ2, &c from (A0 + A1x + A2x² + &c)/(a + bx) = λ0 + λ1x + λ2x² + &c by Means of the relation λm = (Am - bλm-1)/a = Nm/a & λ0 = A0/a
+L004-1   BAB/L/004  No. 4.1, 16 Aug 1837  Determination of x from the Equation ax - b = 0
+L004-2   BAB/L/004  No. 4.2, 16 Aug 1837  Reduction of the two equations ax + by + c = 0, a'x + b'y + c' = 0 to a single equation of the form Hx - M = 0
+L004-3   BAB/L/004  No. 4.3, 16 Aug 1837  Reduction of the same two equations ax + by + c = 0, a'x + b'y + c' = 0 to a single equation of the form Ky - M = 0
+L005     BAB/L/005  No. 5, 16 Aug 1837  Reductions of the three equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 to two equations of the form Hx + Ky + M = 0 and H'x + K'y + M' = 0
+L006     BAB/L/006  No. 6,   Notation For the reduction of the three Equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 To two Equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0
+L007     BAB/L/007  No. 7, before 22 Aug 1837  Notation of the Reduction of the four equations ax + by + cz + du + e = 0, a'x + b'y + c'z + d'u + e' = 0, a''x + … = 0, a'''x + … = 0 (A) To three equations of the following form Hx + Ky + Lz + M = 0, H'x + K'y + L'z + M' = 0, H''x + K''y + L''z + M'' = 0 (B)
 ```
 
 ```console
@@ -29,9 +35,19 @@ L001-1    42 statements,  42 agree
 L001-2    81 statements,  80 agree
          ✗ line 37: − on v3 (c) and v5 ((abc′ - ab′c)/(ab′ - a′b)) gives -v3″-v5″: the operation gives v3″ − v5″, but the sheet writes -v3″-v5″: neither order of the two operands gives that. The run goes on with the value on the sheet
 L002      68 statements,  68 agree
+L004-1     7 statements,   7 agree
+L004-2    21 statements,  19 agree
+         ✗ line 38: composition: v1′x + v2″ = (v2′-v4)x - (v6-v3′): v3′ would be v3 after 1 change, but v3 has changed 0 times so far
+         ✗ line 38: composition: v1′x + v2″ = (v7v1-a′)x - (c′-v7v3): v1′x + v2″ is (abb′x - a′b^2x - bb′c + b^2c′)/b^2, but this is (abb′x - a′b^2x + bb′c - b^2c′)/b^2
+L004-3    16 statements,  16 agree
+L005     199 statements, 199 agree
+L006     107 statements, 107 agree
+L007      79 statements,  77 agree
+         ✗ line 48: where v22″ comes from: v22″ (d′′′/d) is not in a column this row leaves at zero, nor the table standing in the mill
+         ✗ line 61: mill: (d′/d)b-b″: the operation gives (-bd′′ + b′′d)/d
 
-3 pages; 191 statements of the sheets checked, 190 agree.
-1 page(s) with statements that do not agree.
+9 pages; 620 statements of the sheets checked, 615 agree.
+3 page(s) with statements that do not agree.
 ```
 
 ## The rules of the machine
@@ -68,10 +84,16 @@ $ babbage decisions
 10. Where a sheet has no right-hand column, a subtraction or division takes its operands in the order the mill column writes.
    BAB/L/002 writes each row as the operation, the mill's result (A₁ − bλ₀, N₁/a) and the cells, with no formula in the variables. The run then has no other statement of the order, so on such a sheet the mill column is checked for what is taken and made, not for which way round.
 
-11. Great operations are multiplication and division; small are addition, subtraction and transfers.
+11. Where a sheet has no right-hand column, the first factor the mill column writes is the multiplicand.
+   BAB/L/004 No. 2 writes Aa and then Ac, with A = b′/b in no column at the second: the table of A is still standing. BAB/L/007 does the same four times over (d′/d times a, b, c, e), reading one column in each row after the first.
+
+12. A composition written as equations agrees up to a factor free of the unknowns.
+   BAB/L/004 No. 2 writes each member of its composition "= 0", and its last member is b times the one before. Each = is checked against the member before it.
+
+13. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-12. Values are compared as algebra.
+14. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 

@@ -1,0 +1,30 @@
+% BAB/L/004, Science Museum Group Collection, document aa110001607.
+% The third of three tables on the opened sheet (image 222/630, lower
+% left). Numbered 3 on the cover. Read from the zoom images at full
+% resolution.
+
+Sheet BAB/L/004
+No. 4.3
+Date 16 Aug 1837          "16 Aug 1837 No 4"   % cover
+Title "Reduction of the same two equations ax + by + c = 0, a'x + b'y + c' = 0 to a single equation of the form Ky - M = 0"
+Image 222/628 cover: "3 Reduction of the same two Equations, viz ax + by + c = 0 & a'x + b'y + c' = 0 to a single one of the form Ky - M = 0" (K written over H)
+Image 222/630 the third table
+
+Letters a b c a' b' c'
+Unknowns x y
+Equation a x + b y + c = 0
+Equation a' x + b' y + c' = 0
+
+Store v1 = a, v2 = b, v3 = c, v4 = a', v5 = b', v6 = c'
+Working v7
+
+% No right-hand column, no composition. The mill column writes "a'/a = A",
+% "Ab - b' = K", "c' - Ac = -M"; the cells "A", "K", "-M".
+Op 1     ÷  | a'/a      | v1 0, v4 0, v7 =A |
+Op 2     ×  | Ab        | v1 Ab, v2 0, v7 0 |
+Op 3     ×  | Ac        | v3 0, v4 Ac |             % nothing else in the row: A is in no column (v7 was left at zero by row 2)
+Op 4     −  | Ab-b'     | v1 0, v2 =K, v5 0 |
+Op 5     −  | c'-Ac     | v3 c'-Ac, v4 0, v6 0 |    % the mill writes "c' - Ac = -M", the cell "-M"
+
+% Cover, right of 3: "var. and opns as in 2", that is:
+States great 3, small 2, total 5, variables 6, working 1, occupied 7

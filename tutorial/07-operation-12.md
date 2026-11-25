@@ -28,18 +28,18 @@ Store  v1 = a, v2 = b, v3 = c, v4 = a', v5 = b', v6 = c'   working v7 v8 v9
 ✓ x solves the equations
 ✓ y solves the equations
 ✓ composition: x = v4′
-✓ composition: x = v6′/v2″
-✓ composition: x = (v2′-v1′)/(v7-v3′)
-✓ composition: x = (v2·v6-v5·v3)/(v5·v1-v2·v4)
-✓ composition: x = (bc′-b′c)/(b′a-ba′)
+✓ composition: v4′ = v6′/v2″
+✓ composition: v6′/v2″ = (v2′-v1′)/(v7-v3′)
+✓ composition: (v2′-v1′)/(v7-v3′) = (v2·v6-v5·v3)/(v5·v1-v2·v4)
+✓ composition: (v2·v6-v5·v3)/(v5·v1-v2·v4) = (bc′-b′c)/(b′a-ba′)
 ✓ composition: y = v5‴
-✓ composition: y = v1‴/v2‴
-✓ composition: y = (-v3″-v5″)/b
-✓ composition: y = (-c-v1″·v4′)/b
-✓ composition: y = (-c-ax)/b
-✓ composition: y = (-c-a(bc′-b′c)/(b′a-ba′))/b
-✓ composition: y = (-cb′a+cba′-c′ba+cb′a)/(b(b′a-ba′))
-✓ composition: y = (a′c-ac′)/(b′a-ba′)
+✓ composition: v5‴ = v1‴/v2‴
+✓ composition: v1‴/v2‴ = (-v3″-v5″)/b
+✓ composition: (-v3″-v5″)/b = (-c-v1″·v4′)/b
+✓ composition: (-c-v1″·v4′)/b = (-c-ax)/b
+✓ composition: (-c-ax)/b = (-c-a(bc′-b′c)/(b′a-ba′))/b
+✓ composition: (-c-a(bc′-b′c)/(b′a-ba′))/b = (-cb′a+cba′-c′ba+cb′a)/(b(b′a-ba′))
+✓ composition: (-cb′a+cba′-c′ba+cb′a)/(b(b′a-ba′)) = (a′c-ac′)/(b′a-ba′)
 ✓ great = 7
 ✓ small = 6
 ✓ total = 13

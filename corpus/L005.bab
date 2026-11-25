@@ -1,0 +1,95 @@
+% BAB/L/005, Science Museum Group Collection, document aa110001611.
+% The opened sheet (image 222/636), one table of 34 operations. The cover
+% (222/634) is dated "16 Aug 1837 No 5"; the table "16 Aug 1837" at its top
+% right; the back (222/638) "No 5 16 Aug 1837". Read from the zoom images at
+% full resolution. ∂ on the sheet is written d here.
+
+Sheet BAB/L/005
+No. 5
+Date 16 Aug 1837          "16 Aug 1837 No 5"   % cover
+Title "Reductions of the three equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 to two equations of the form Hx + Ky + M = 0 and H'x + K'y + M' = 0"
+Image 222/634 cover: "Notation For the Reduction of the Three Equations ... To Two equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0. Mode of operation made use of in this Notation: (c'+c'')/c and (c+c'')/c' are calculated"
+Image 222/636 the table
+Image 222/638 back: "No 5 16 Aug 1837"
+
+Letters a b c d a' b' c' d' a'' b'' c'' d''
+
+% The cover: "whence ((c'+c'')/c a - a' - a'')x + ((c'+c'')/c b - b' - b'')y
+% + ((c'+c'')/c d - d' - d'') = 0 or Hx + Ky + M = 0", and the same with
+% (c+c'')/c' for H', K', M'.
+Find H = (c'+c'')/c·a-a'-a''
+Find K = (c'+c'')/c·b-b'-b''
+Find M = (c'+c'')/c·d-d'-d''
+Find H' = (c+c'')/c'·a'-a-a''
+Find K' = (c+c'')/c'·b'-b-b''
+Find M' = (c+c'')/c'·d'-d-d''
+
+% The store is headed +ax +by +cz +d over v1-v4, +a'x +b'y +c'z +d' over
+% v5-v8, +a''x +b''y +c''z +d'' over v9-v12, and, above the right-hand
+% column, "v1 = a v2 = b ... v12 = d''". v13-v15 have no heading.
+Store v1 = a, v2 = b, v3 = c, v4 = d, v5 = a', v6 = b', v7 = c', v8 = d', v9 = a'', v10 = b'', v11 = c'', v12 = d''
+Working v13 v14 v15
+
+% "Com. c'" and the like are written in words; here Cc'. Rows with no
+% species and nothing in the mill column are transfers. The mill column
+% writes "= A", "= B", "= H" and so on under rows 6, 7, 14, 16, 18, 30, 32,
+% 34; the store cells write "= A", "= B" in rows 6 and 7 and H, K, M, M',
+% K', H' in rows 14 to 34; the column before the right-hand one writes
+% "H =", "K =", "M =", "M' =", "K' =", "H' =".
+Op 1     +  | c'+c''      | v7 0, v11 0, v13 c'+c'', v14 Cc', v15 Cc''   | v13 = v7+v11
+Op 2        |             | v7 c', v14 0                                 | v7' = c'
+Op 3        |             | v11 c'', v15 0                               | v11' = c''
+Op 4     +  | c+c''       | v3 0, v11 0, v14 Cc, v15 c+c''               | v15' = v3+v11'
+Op 5        |             | v3 c, v14 0                                  | v3' = c
+Op 6     ÷  | (c'+c'')/c  | v3 0, v11 =A, v13 0                          | v11'' = v13/v3'
+Op 7     ÷  | (c+c'')/c'  | v7 0, v13 =B, v15 0                          | v13' = v15'/v7'
+Op 8     ×  | Aa          | v1 0, v7 Ca, v11 0, v15 Aa                   | v15'' = v11''·v1
+Op 9     ×  | Ab          | v2 0, v3 Cb, v14 Ab                          | v14'' = v11''·v2
+Op 10    ×  | Ad          | v1 Ad, v4 0, v11 Cd                          | v1' = v11''·v4
+Op 11    −  | Aa-a'       | v2 Aa-a', v4 Ca', v5 0, v15 0                | v2' = v15''-v5
+Op 12    −  | Ab-b'       | v5 Cb', v6 0, v14 0, v15 Ab-b'               | v15''' = v14''-v6
+Op 13    −  | Ad-d'       | v1 0, v6 Cd', v8 0, v14 Ad-d'                | v14''' = v1'-v8
+Op 14    −  | Aa-a'-a''   | v1 =H, v2 0, v8 Ca'', v9 0                   | H = v1'' = v2'-v9
+Op 15       |             | v3 0, v9 b                                   | v9' = b
+Op 16    −  | Ab-b'-b''   | v2 =K, v3 Cb'', v10 0, v15 0                 | K = v2'' = v15'''-v10
+Op 17       |             | v3 0, v10 b''                                | v10' = b''
+Op 18    −  | Ad-d'-d''   | v3 =M, v12 0, v14 0, v15 Cd''                | M = v3'''' = v14'''-v12   % the species looks like "="
+Op 19       |             | v14 d'', v15 0                               | v14'''' = d''
+Op 20       |             | v8 0, v12 a''                                | v12' = a''
+Op 21       |             | v6 0, v8 d'                                  | v8'' = d'
+Op 22       |             | v5 0, v6 b'                                  | v6'' = b'
+Op 23       |             | v4 0, v5 a'                                  | v5'' = a'
+Op 24       |             | v4 a, v7 0                                   | v4'' = a
+Op 25       |             | v7 d, v11 0                                  | v7''' = d
+Op 26    ×  | Ba'         | v5 0, v11 Ba', v13 0                         | v11'''' = v13'·v5''
+Op 27    ×  | Bb'         | v6 0, v15 Bb'                                | v15''''' = v13'·v6''
+Op 28    ×  | Bd'         | v5 Bd', v8 0                                 | v5''' = v13'·v8''
+Op 29    −  | Bd'-d       | v5 0, v7 0, v8 Bd'-d                         | v8''' = v5'''-v7'''       % a small mark above the −
+Op 30    −  | Bd'-d-d''   | v7 =M', v8 0, v14 0                          | M' = v7'''' = v8'''-v14''''
+Op 31    −  | Bb'-b       | v5 Bb'-b, v9 0, v15 0                        | v5'''' = v15'''''-v9'
+Op 32    −  | Bb'-b-b''   | v5 0, v6 =K', v10 0                          | K' = v6''' = v5''''-v10'
+Op 33    −  | Ba'-a       | v4 0, v8 Ba'-a, v11 0                        | v8'''' = v11''''-v4''
+Op 34    −  | Ba'-a-a''   | v5 =H', v8 0, v12 0                          | H' = v5''''' = v8''''-v12'
+
+% The right-hand column continues on rows 14, 16, 18, 30, 32 and 34. The
+% sheet writes accents iv and v as roman numerals; here as primes.
+Composition H = v1'' = v2'-v9 = (v15''-v5)-a'' = v11''·v1-a'-a'' = v13/v3'·a-a'-a'' = (v7+v11)/c·a-a'-a'' = (c'+c'')/c·a-a'-a'' = (a(c'+c'')-c(a'+a''))/c
+Composition K = v2'' = v15'''-v10 = (v14''-v6)-b'' = v11''·v2-b'-b'' = v13/v3'·b-b'-b'' = (v7+v11)/c·b-b'-b'' = (c'+c'')/c·b-b'-b'' = (b(c'+c'')-c(b'+b''))/c
+Composition M = v3'''' = v14'''-v12 = (v1'-v8)-d'' = v11''·v4-d'-d'' = v13/v3'·d-d'-d'' = (v7+v11)/c·d-d'-d'' = (c'+c'')/c·d-d'-d'' = (d(c'+c'')-c(d'+d''))/c
+Composition M' = v7'''' = v8'''-v14'''' = v5'''-v7'''-d'' = v13'·v8''-d-d'' = v15'/v7'·d'-d-d'' = (v3+v11')/c'·d'-d-d'' = (c+c'')/c'·d'-d-d'' = (d'(c+c'')-c'(d+d''))/c'
+Composition K' = v6''' = v5''''-v10' = v15'''''-v9'-b'' = v13'·v6''-b-b'' = v15'/v7'·b'-b-b'' = (v3+v11')/c'·b'-b-b'' = (c+c'')/c'·b'-b-b'' = (b'(c+c'')-c'(b+b''))/c'
+% Row 34: after v13'·v5''-a-a'' the sheet writes v15'/v7' a'-a-a'' (the
+% accented a' written so that it looks like d) with a slanting stroke through
+% it; that member is left out here.
+Composition H' = v5''''' = v8''''-v12' = v11''''-v4''-a'' = v13'·v5''-a-a'' = (v3+v11')/c'·a'-a-a'' = (c+c'')/c'·a'-a-a'' = (a'(c+c'')-c'(a+a''))/c'
+
+% Pencil on the cover, in a hand unlike Babbage's ink: "15 variables are
+% required & 26 small operations & 8 large = 34 operations - There are 6
+% Multiplications & 2 divisions".
+States great 8, small 26, total 34, occupied 15
+
+Remark "resulting equation equivalent to 1/c {a(c'+c'')-c(a'+a'')}x + {b(c'+c'')-c(b'+b'')}y + d(c'+c'')-c(d'+d'') = 0"
+Remark "resulting equation equivalent to 1/c' {a'(c+c'')-c'(a+a'')}x + {b'(c+c'')-c'(b+b'')}y + d'(c+c'')-c'(d+d'') = 0"
+Unrun "cover, pencil, in another hand: 'In this method, which is by adding the coefficients of z in the 2nd & 3rd eqns & dividing by the coefficient of z in the 1st, thus obtaining a multiplier for the first eqn which equalizes the coeff of z in the 1st with the sum of those of the 2nd & 3rd & eliminates z, 15 variables are required & 26 small operations & 8 large = 34 operations - There are 6 Multiplications & 2 divisions - see Not. 5'"
+Unrun "a column of numbers 1 to 34 between v12 and v13, repeating the numbers of the operations"
+Unrun "back, top right: faint writing, not read"

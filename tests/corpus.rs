@@ -180,3 +180,42 @@ fn l002_a_subtraction_the_wrong_way_round_is_caught_by_the_series() {
     assert_eq!(failures(&t), Vec::<String>::new());
     assert!(!l002_against_the_series(&t).is_empty());
 }
+
+// The sheets of 16 August 1837 and after.
+
+#[test]
+fn every_other_page_agrees_throughout() {
+    for (name, text) in PAGES {
+        if ["L001-2", "L004-2", "L007"].contains(name) {
+            continue;
+        }
+        assert_eq!(failures(text), Vec::<String>::new(), "{name}");
+    }
+}
+
+#[test]
+fn l004_2_disagrees_only_in_its_composition() {
+    // Babbage's composition beside No. 4.2 writes v3′ for the Ac the table
+    // lays in v5 (and calls v5′ in its next line), and begins v1′x + v2″
+    // where every later member is Hx − M.
+    let f = failures(&page("L004-2"));
+    assert_eq!(f.len(), 2, "{f:#?}");
+    assert!(f[0].contains("v3′") && f[1].contains("(v7v1-a′)x"), "{f:#?}");
+}
+
+#[test]
+fn l004_the_table_of_a_quotient_serves_two_products() {
+    // No. 4.2: A = b′/b is made at operation 1; operation 2 multiplies by it
+    // and operation 3 again, with A in no column.
+    let r = run(&read("", &page("L004-2")).unwrap());
+    assert_eq!(r.tally.tables, 1);
+}
+
+#[test]
+fn l007_disagrees_at_operations_22_and_35() {
+    // 22: the sheet does not write 0 in v22, from which d‴/d is taken.
+    // 35: the mill column writes (∂′/∂)b − b″ where the row makes (∂″/∂)b − b″.
+    let f = failures(&page("L007"));
+    assert_eq!(f.len(), 2, "{f:#?}");
+    assert!(f[0].contains("v22″") && f[1].starts_with("mill: (d′/d)b-b″"), "{f:#?}");
+}

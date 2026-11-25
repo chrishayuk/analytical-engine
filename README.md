@@ -34,14 +34,16 @@ right.
 
 ## Status
 
-Two sheets so far. **BAB/L/001**: its two programs, No. 1 (4 August 1837)
-and No. 2 (5 August 1837). **BAB/L/002**: one program of 30 operations,
-14 August 1837, dividing a polynomial of degree 6 by a + bx. (BAB/L/003 has
-no images in the Museum's catalogue; Rojas 2017 lists its program as not in
-the archive.) The transcriptions were made by a coding agent from the scans;
-no person has checked them. Two readings by Rojas (2017, 2023) have been
-read and a short search made, so nothing here is claimed as new. See
-[`docs/literature.md`](docs/literature.md).
+Six sheets, nine programs, 4 to about 22 August 1837: **BAB/L/001** (Nos. 1
+and 2, 4 and 5 August), **BAB/L/002** (14 August), **BAB/L/004** (three
+programs, 16 August), **BAB/L/005** (16 August), **BAB/L/006** and
+**BAB/L/007** (undated; L/007 is marked "before 22 Aug 1837" in pencil).
+BAB/L/003 has no images in the Museum's catalogue; Rojas 2017 lists its
+program as not in the archive. 620 statements of the sheets are checked and
+615 agree (`babbage verify`). The transcriptions were made by coding agents
+from the scans; no person has checked them. Two readings by Rojas (2017,
+2023) have been read and a short search made, so nothing here is claimed as
+new. See [`docs/literature.md`](docs/literature.md).
 
 ## What running BAB/L/001 found
 
@@ -103,6 +105,26 @@ read and a short search made, so nothing here is claimed as new. See
   complement of a and writes λ6 in one column only; operation 27's "Com b"
   is faint.
 
+## What running BAB/L/004 to BAB/L/007 found
+
+- **They run.** No. 4.1, 4.3, 5 and 6 agree throughout (7, 16, 199 and 107
+  statements), including every accent of No. 5's 34 rows (written up to
+  roman v) and its six compositions, and the counts on each cover.
+- **The table of multiples is used more and more.** In No. 4 the quotient
+  A = b′/b is made once and multiplies twice, with A in no column the second
+  time; in No. 5 two tables serve three products each; in No. 7 each of
+  d′/d, d″/d, d‴/d serves four. Babbage's remark on No. 4: "Had H = b′a −
+  ba′, M = bc′ − b′c, 4 Multns must have been made instead of 2".
+- **Five disagreements, all slips of the pen.** No. 4.2's composition writes
+  v₃′ where the table puts Ac in v5 (and the next line calls it v₅′), and
+  begins v₁′x + v₂″ where every later member is Hx − M. No. 7 does not write
+  the 0 in v22 from which d‴/d is taken at row 22 (rows 2 and 12 write it
+  for the same step), and its mill column at row 35 writes ∂′ for ∂″.
+- **Complements and transfers become routine.** No. 7 lays each operand's
+  complement in the column the one before it vacated, and five transfers
+  after each round put a, b, c, d, e back; the last round keeps none.
+- See `sources/notes/` for each sheet's cover, pencil and uncertain cells.
+
 ## The machine
 
 The engine's rules, as BAB/L/001 and BAB/L/002 show them (`babbage decisions` gives each
@@ -125,6 +147,10 @@ with what it rests on):
     BAB/L/001 and BAB/L/002 obeys it; not stated on a sheet.)
 12. Where a sheet has no right-hand column, a subtraction or division takes
     its operands in the order the mill column writes. (BAB/L/002.)
+13. Where a sheet has no right-hand column, the first factor the mill column
+    writes is the multiplicand. (BAB/L/004, BAB/L/007.)
+14. A composition written as equations ("= 0") agrees up to a factor free of
+    the unknowns, member by member. (BAB/L/004.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
 sheet needs that the sheets before it do not show will be a new, dated

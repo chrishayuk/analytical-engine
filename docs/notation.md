@@ -73,7 +73,11 @@ Composition x = v3'' = v4'/v1'' = (v2'-v1')/(v7-v3') = … = (bc'-b'c)/(b'a-ba')
 States great 5, small 2, total 7, variables 6, working 1, occupied 7
 ```
 
-Every member of a `Composition` must equal the first. `States` are the counts
+Each `=` of a `Composition` says the members either side of it are equal, so
+each member is checked against the one before it (one slip in a chain is one
+disagreement). A composition ending `= 0` is a chain of equations, as on
+BAB/L/004: members then agree if one is a multiple of the other by a factor
+free of the `Unknowns`. `States` are the counts
 the sheet gives: `great` (× and ÷), `small` (+, − and transfers), `total`,
 `variables` (the store's starting variables), `working`, `occupied`.
 

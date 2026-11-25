@@ -1,0 +1,74 @@
+% BAB/L/007, Science Museum Group Collection, document aa110001618.
+% The opened sheet (image 222/653), one table of 37 operations. The cover
+% (222/650) is marked "No 7" in ink and "before 22 Aug 1837" in pencil, in
+% what looks like another hand. Read from the zoom images at full resolution.
+
+Sheet BAB/L/007
+No. 7
+Date before 22 Aug 1837          "before 22 Aug 1837"   % cover, pencil, perhaps a later hand
+Title "Notation of the Reduction of the four equations ax + by + cz + du + e = 0, a'x + b'y + c'z + d'u + e' = 0, a''x + … = 0, a'''x + … = 0 (A) To three equations of the following form Hx + Ky + Lz + M = 0, H'x + K'y + L'z + M' = 0, H''x + K''y + L''z + M'' = 0 (B)"
+Image 222/650 cover: "Mode of operating. The first of the equations A being multiplied by d'/d and the second subtracted from the result gives the first equation B. The first of the equations A being multiplied by d''/d and the third subtracted from the result gives the second equation B. The first of the equations A being multiplied by d'''/d and the fourth subtracted from the result gives the third equation B"
+Image 222/653 the table
+Image 222/648 a second ruled sheet, the same layout in faint pencil
+Image 222/646 back
+
+Letters a b c d e a' b' c' d' e' a'' b'' c'' d'' e'' a''' b''' c''' d''' e'''
+
+% The sheet heads the store with the four equations, a coefficient over
+% each column; d is written ∂ throughout.
+Store v1 = a, v2 = b, v3 = c, v4 = d, v5 = e, v6 = a', v7 = b', v8 = c', v9 = d', v10 = e', v11 = a'', v12 = b'', v13 = c'', v14 = d'', v15 = e'', v16 = a''', v17 = b''', v18 = c''', v19 = d''', v20 = e'''
+Working v21 v22 v23 v24 v25 v26 v27
+
+% No right-hand column of formulas: each row is the operation, the mill's
+% result and the cells. The operation numbers are repeated in a narrow
+% column between v13 and v14. "Comp a" and the like are written in words;
+% here Ca. H, K, L, M and their accents are the sheet's; =H marks where the
+% sheet writes H.
+Op 1     ÷  | d'/d            | v4 0, v9 0, v21 d'/d, v22 Cd |
+Op 2     ×  | (d'/d)a         | v1 0, v4 Ca, v21 0, v23 (d'/d)a |
+Op 3     ×  | (d'/d)b         | v1 Cb, v2 0, v24 (d'/d)b |
+Op 4     ×  | (d'/d)c         | v2 Cc, v3 0, v25 (d'/d)c |
+Op 5     ×  | (d'/d)e         | v3 Ce, v5 0, v26 (d'/d)e |
+Op 6        |                 | v3 0, v5 e |
+Op 7        |                 | v2 0, v3 c |
+Op 8        |                 | v1 0, v2 b |
+Op 9        |                 | v1 a, v4 0 |
+Op 10       |                 | v4 d, v22 0 |
+Op 11    ÷  | d''/d           | v4 0, v14 0, v21 d''/d, v22 Cd |
+Op 12    ×  | (d''/d)a        | v1 0, v4 Ca, v9 (d''/d)a, v21 0 |
+Op 13    ×  | (d''/d)b        | v1 Cb, v2 0, v14 (d''/d)b |
+Op 14    ×  | (d''/d)c        | v2 Cc, v3 0, v21 (d''/d)c |
+Op 15    ×  | (d''/d)e        | v3 Ce, v5 0, v27 (d''/d)e |
+Op 16       |                 | v3 0, v5 e |
+Op 17       |                 | v2 0, v3 c |
+Op 18       |                 | v1 0, v2 b |
+Op 19       |                 | v1 a, v4 0 |
+Op 20       |                 | v4 d, v22 0 |
+Op 21    ÷  | d'''/d          | v4 0, v19 0, v22 d'''/d |       % no complement of d: d is not needed again
+Op 22    ×  | (d'''/d)a       | v1 0, v19 (d'''/d)a |           % nothing in v22: the sheet does not write the 0 for d'''/d taken from it
+Op 23    ×  | (d'''/d)b       | v2 0, v4 (d'''/d)b |
+Op 24    ×  | (d'''/d)c       | v2 (d'''/d)c, v3 0 |
+Op 25    ×  | (d'''/d)e       | v3 (d'''/d)e, v5 0 |
+Op 26    −  | (d'''/d)e-e'''  | v3 0, v5 =M'', v20 0 |
+Op 27    −  | (d'''/d)c-c'''  | v2 0, v3 =L'', v18 0 |           % the c after d'''/d is written over an e
+Op 28    −  | (d'''/d)b-b'''  | v2 =K'', v4 0, v17 0 |
+Op 29    −  | (d'''/d)a-a'''  | v1 =H'', v16 0, v19 0 |
+Op 30    −  | (d'/d)a-a'      | v6 0, v16 =H, v23 0 |
+Op 31    −  | (d'/d)b-b'      | v7 0, v17 =K, v24 0 |
+Op 32    −  | (d'/d)c-c'      | v8 0, v18 =L, v25 0 |
+Op 33    −  | (d'/d)e-e'      | v10 0, v20 =M, v26 0 |
+Op 34    −  | (d''/d)a-a''    | v6 =H', v9 0, v11 0 |
+Op 35    −  | (d'/d)b-b''     | v7 =K', v12 0, v14 0 |           % the mill column has one accent on the d of the numerator, ∂′, plainly
+Op 36    −  | (d''/d)c-c''    | v8 =L', v13 0, v21 0 |
+Op 37    −  | (d''/d)e-e''    | v10 =M', v15 0, v27 0 |
+
+% Cover, pencil, faint: "Variables 20", "working 7", "Total 27"; beside it a
+% column of operations, perhaps "Division 3", "Mult 12", "Sub 12", and a
+% fourth of 10, with "37" beside. The variables and the total are read with
+% some confidence, the operations not.
+States variables 20, working 7, occupied 27, total 37
+
+Unrun "a column of numbers 1 to 37 between v13 and v14, repeating the numbers of the operations; a 38 below it, smudged"
+Unrun "pencil, faint, in the columns v19 to v27 beside rows 13 to 32: letters such as Ca, Cb, Cd, Ce and 0, as if working out where complements could go"
+Unrun "cover, pencil, faint: beside the counts, the numbers of operations by kind (perhaps Division 3, Mult 12, Sub 12, and 10), not read with confidence"
+Unrun "image 222/648: a second ruled sheet with the same headings and layout in faint pencil, a draft or copy of the table; not read"

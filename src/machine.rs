@@ -116,6 +116,14 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
             "BAB/L/002 writes each row as the operation, the mill's result (A₁ − bλ₀, N₁/a) and the cells, with no formula in the variables. The run then has no other statement of the order, so on such a sheet the mill column is checked for what is taken and made, not for which way round.",
         ),
         (
+            "Where a sheet has no right-hand column, the first factor the mill column writes is the multiplicand.",
+            "BAB/L/004 No. 2 writes Aa and then Ac, with A = b′/b in no column at the second: the table of A is still standing. BAB/L/007 does the same four times over (d′/d times a, b, c, e), reading one column in each row after the first.",
+        ),
+        (
+            "A composition written as equations agrees up to a factor free of the unknowns.",
+            "BAB/L/004 No. 2 writes each member of its composition \"= 0\", and its last member is b times the one before. Each = is checked against the member before it.",
+        ),
+        (
             "Great operations are multiplication and division; small are addition, subtraction and transfers.",
             "BAB/L/001 No. 2: \"great 7 small 6\" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.",
         ),
@@ -263,15 +271,45 @@ pub fn run(page: &Page) -> Run {
                 Err(e) => checks.push(check(at("Equation"), "the equations", Err(e))),
             }
         }
+        // Each "=" of a composition says that the members either side of it
+        // are equal: so each member is checked against the one before it
+        // (or the last before it that could be worked out), and one slip
+        // in a chain is one disagreement.
         for c in &page.compositions {
-            let first = st.eval(&c.parts[0].0);
-            for (e, t) in &c.parts[1..] {
-                let r = match (first.as_ref(), st.eval(e).as_ref()) {
-                    (Ok(a), Ok(b)) if a.same(b) => Ok(()),
-                    (Ok(a), Ok(b)) => Err(format!("{} is {a}, but this is {b}", c.parts[0].1)),
-                    (Err(e), _) | (_, Err(e)) => Err(e.to_string()),
+            let mut prev: Option<(Value, &str)> = None;
+            for (k, (e, t)) in c.parts.iter().enumerate() {
+                let here = st
+                    .eval(e)
+                    .and_then(|h| h.plain().cloned().ok_or_else(|| "a complement".to_string()));
+                if k == 0 {
+                    match here {
+                        Ok(v) => prev = Some((v, t)),
+                        Err(e) => checks.push(check(c.line, format!("composition: {t}"), Err(e))),
+                    }
+                    continue;
+                }
+                let r = match (&prev, &here) {
+                    (Some((a, _)), Ok(b)) if a.same(b) => Ok(()),
+                    (Some((a, at)), Ok(b)) => {
+                        let ratio = b.div(a);
+                        let scaled = c.equation
+                            && ratio
+                                .as_ref()
+                                .is_some_and(|r| !r.is_zero() && !page.unknowns.iter().any(|u| r.depends_on(u)));
+                        if scaled {
+                            Ok(())
+                        } else {
+                            Err(format!("{} is {a}, but this is {b}", pretty(at)))
+                        }
+                    }
+                    (None, Ok(_)) => Err("nothing before it could be worked out".into()),
+                    (_, Err(e)) => Err(e.to_string()),
                 };
-                checks.push(check(c.line, format!("composition: {} = {t}", c.parts[0].1), r));
+                let before = prev.as_ref().map_or(c.parts[0].1.as_str(), |p| p.1);
+                checks.push(check(c.line, format!("composition: {before} = {t}"), r));
+                if let Ok(v) = here {
+                    prev = Some((v, t));
+                }
             }
         }
         let touched: std::collections::BTreeSet<usize> = st.history.keys().copied().collect();
@@ -366,6 +404,41 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                     let same = |r: Result<Value, String>| r.is_ok_and(|r| Held::Plain(r).same(&Held::Plain(m.clone())));
                     if !same(apply(op, &a, &b)) && same(apply(op, &b, &a)) {
                         v.swap(0, 1);
+                    }
+                }
+            }
+            // And the first factor of a multiplication is the one the mill
+            // column writes first (BAB/L/004 writes Aa, then Ac with A no
+            // longer in the store: the table of A still standing).
+            if let (Some(Op::Mul), Some((Expr::Mul(first, _), _))) = (row.op, &row.mill) {
+                if let Ok(Held::Plain(f)) = st.eval(first) {
+                    let is_f = |(n, p): &(usize, usize)| {
+                        st.version(*n, *p).ok().is_some_and(|h| h.same(&Held::Plain(f.clone())))
+                    };
+                    if let Some(k) = v.iter().position(is_f) {
+                        let x = v.remove(k);
+                        v.insert(0, x);
+                    } else if v.len() == 1 && st.table.as_ref().is_some_and(|t| t.same(&f)) {
+                        // The multiplicand is in the mill only: name it by the
+                        // column and number it was taken from.
+                        let from = st
+                            .history
+                            .iter()
+                            .find_map(|(n, h)| h.iter().position(|x| x.same(&Held::Plain(f.clone()))).map(|p| (*n, p)));
+                        if let Some(x) = from {
+                            v.insert(0, x);
+                        }
+                    } else if v.len() == 1 {
+                        // Neither read nor in the mill, but standing in a
+                        // column the row does not leave at zero: name it, so
+                        // that the run says so and goes on (BAB/L/007, row 22).
+                        let standing = st.store.iter().find_map(|(n, h)| {
+                            (h.same(&Held::Plain(f.clone())) && !reads.contains(n))
+                                .then(|| (*n, st.history.get(n).map_or(0, |h| h.len().saturating_sub(1))))
+                        });
+                        if let Some(x) = standing {
+                            v.insert(0, x);
+                        }
                     }
                 }
             }

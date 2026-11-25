@@ -62,6 +62,9 @@ pub struct Row {
 pub struct Chain {
     pub line: usize,
     pub parts: Vec<(Expr, String)>,
+    /// Each member is an equation, "= 0": members agree up to a factor
+    /// free of the unknowns.
+    pub equation: bool,
 }
 
 #[derive(Clone, Debug, Default)]
@@ -140,6 +143,7 @@ fn is_name(s: &str) -> bool {
         && s.chars().next().is_some_and(|c| c.is_alphabetic())
         && s.chars().all(|c| {
             c.is_alphabetic()
+                || matches!(c, '\'' | '′' | '″' | '‴')
                 || crate::expr::plain_name(&c.to_string())
                     .chars()
                     .all(|d| d.is_ascii_digit())
@@ -152,7 +156,9 @@ fn parse_card(s: &str) -> Result<Card, String> {
     let mut i = 0;
     let mut names = vec![];
     while i < parts.len() && is_name(parts[i]) {
-        names.push(parts[i].to_string());
+        names.push(crate::expr::plain_name(
+            &parts[i].replace('′', "'").replace('″', "''").replace('‴', "'''"),
+        ));
         i += 1;
     }
     let dest = match parse(parts.get(i).ok_or("a card with no variable")?)? {
@@ -302,12 +308,22 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                     }
                 }
                 "Composition" => {
-                    let parts = body
-                        .split('=')
-                        .map(|t| Ok((parse(t.trim())?, t.trim().to_string())))
+                    let mut texts: Vec<&str> = body.split('=').map(str::trim).collect();
+                    // Ending "= 0", each member is an equation: BAB/L/004.
+                    let equation = texts.len() > 2 && texts.last() == Some(&"0");
+                    if equation {
+                        texts.pop();
+                    }
+                    let parts = texts
+                        .iter()
+                        .map(|t| Ok((parse(t)?, t.to_string())))
                         .collect::<Result<_, String>>()
                         .map_err(err)?;
-                    p.compositions.push(Chain { line: n, parts });
+                    p.compositions.push(Chain {
+                        line: n,
+                        parts,
+                        equation,
+                    });
                 }
                 "Remark" => p.remarks.push(quote.unwrap_or(body)),
                 "Unrun" => p.unrun.push(quote.unwrap_or(body)),

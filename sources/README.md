@@ -48,6 +48,12 @@ Document `aa110000067`, "Computation of the coefficients of a polynomial
 from those of another divided by a quadratic term". The catalogue record has
 no images. Rojas (2017, Table 3) lists program 3 as not in the archive.
 
+### BAB/L/004 to BAB/L/007
+
+See [`notes/L004.md`](notes/L004.md), [`notes/L005.md`](notes/L005.md),
+[`notes/L006.md`](notes/L006.md) and [`notes/L007.md`](notes/L007.md) for
+each sheet's images, cover and readings.
+
 ## Secondary literature
 
 - R. Rojas, "The first computer program", arXiv:2303.13740 (March 2023);
