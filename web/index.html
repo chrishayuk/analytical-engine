@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Babbage's programs of August 1837, run as he wrote them</title>
+<meta name="description" content="Charles Babbage's notations of calculations for the Analytical Engine (Science Museum, BAB/L/001), run in the page: every operation done on the store and the mill, and every cell of the sheet checked.">
+<style>
+  body { margin: 0; background: #f2efe8; color: #1c1a17; font: 16px/1.5 "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif; }
+  @media (prefers-color-scheme: dark) { body { background: #14120f; color: #eee6d6; } }
+  header, main, footer { max-width: 1240px; margin: 0 auto; padding: 0 16px; }
+  header { padding-top: 26px; }
+  .kicker { font: 12px/1 "JetBrains Mono", "SF Mono", Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; color: #a8822e; }
+  h1 { font-size: clamp(26px, 4vw, 38px); margin: 8px 0 6px; font-weight: 600; }
+  .dek, .about, footer { color: #8a8070; max-width: 82ch; }
+  .about { font-size: 15px; margin-top: 22px; }
+  .about h2 { font: 12px "JetBrains Mono", Menlo, monospace; letter-spacing: .08em; text-transform: uppercase; font-weight: 500; }
+  code { font: 13px "JetBrains Mono", Menlo, monospace; }
+  footer { font-size: 13px; padding: 24px 16px 40px; }
+  a { color: #a8822e; }
+</style>
+</head>
+<body>
+<header>
+  <div class="kicker">The Babbage Papers · BAB/L · Notations of calculations for the Analytical Engine</div>
+  <h1>Babbage's programs of August 1837, run as he wrote them</h1>
+  <p class="dek">Two programs on one sheet, BAB/L/001: No. 1 of 4 August 1837 eliminates x between two equations; No. 2 of
+    5 August finds x and y. Each operation is done on the store and the mill as the sheet sets it out, and every cell
+    Babbage wrote is checked against what the operation does. <code>babbage</code>, compiled to WebAssembly, runs in this page.</p>
+</header>
+<main>
+  <div id="playground"></div>
+  <section class="about">
+    <h2>What running it found</h2>
+    <p>123 statements of the sheet are checked: every store cell, mill entry and formula, every accent on a variable, both
+      compositions, x and y as stated, and every count of operations and variables. 122 agree.</p>
+    <p>The one that does not is No. 2's operation 12. It is a subtraction, and the sheet writes its result as
+      −v₃″ − v₅″, that is −c − ax. Neither order of subtracting the two numbers gives that; the mill would have to take
+      both negatively, which no other row asks of it.</p>
+    <p>Operation 2 of both programs multiplies by b′ although operation 1 has left v5, which held b′, at zero. The mill
+      keeps the <i>table of multiples</i> of b′ it made, and Babbage ordered the products to use it again; his remark under
+      No. 1 rejects a saving of variables because the table "must have been recomputed … thus causing the loss of about
+      ten turns of the hand".</p>
+    <p>The accents count the numbers a variable has held, and name numbers, not columns: No. 2's
+      v₁″ = v₁ = a is the a that comes back into v1 from its complement in v8.</p>
+  </section>
+</main>
+<footer>The manuscript is BAB/L/001 in the Babbage Papers, Science Museum Group
+  (<a href="https://collection.sciencemuseumgroup.org.uk/documents/aa110000065">catalogue and scans</a>), read from the scans.
+  The transcription has not been checked by a person, and nothing here is claimed as new. Source:
+  <a href="https://github.com/chrishayuk/analytical-engine">analytical-engine</a>.</footer>
+
+<script type="module">
+import { mountPlayground } from "./playground.js";
+const params = new URL(location.href).searchParams;
+const host = document.getElementById("playground");
+mountPlayground(host, { page: params.get("page"), step: params.get("step") });
+host.addEventListener("bab-page", (e) => {
+  const url = new URL(location.href);
+  url.searchParams.set("page", e.detail);
+  history.replaceState(null, "", url);
+});
+</script>
+</body>
+</html>

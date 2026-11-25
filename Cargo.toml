@@ -1,0 +1,19 @@
+[package]
+name = "babbage"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Babbage's notations of calculations for the Analytical Engine (Science Museum, BAB/L), run as he wrote them: every operation done, every cell of the sheet checked"
+
+[lib]
+name = "babbage"
+path = "src/lib.rs"
+
+[[bin]]
+name = "babbage"
+path = "src/main.rs"
+
+[dependencies]
+
+[profile.dev]
+opt-level = 2

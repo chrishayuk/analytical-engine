@@ -1,0 +1,41 @@
+% BAB/L/001, Science Museum Group Collection, document aa110000065.
+% The cover (image 222/593) lists the sheet's two programs; this is the first,
+% the upper table of the opened sheet (image 222/594, top half).
+% Read from the zoom images at full resolution. Accents are written ': b' is b′.
+
+Sheet BAB/L/001
+No. 1
+Date 4 Aug 1837          "No 1. 4 Aug 1837."   % cover; also "4 Aug 1837" at the top right of the table
+Title "Elimination between two equations of the first degree ax + by + c = 0  a'x + b'y + c' = 0 which is equivalent to calculating the value of x from the eqn x = (bc'-b'c)/(b'a-ba')"
+Image 222/593 cover
+Image 222/594 upper table
+
+Letters a b c a' b' c'
+Unknowns x y
+Equation a x + b y + c = 0
+Equation a' x + b' y + c' = 0
+Find x = (bc'-b'c)/(b'a-ba')    "x = bc'-b'c / b'a-ba'"   % the heading, and the cover
+
+% "The number of variables = 6 viz v1=a, v2=b, v3=c; v4=a', v5=b', v6=c'"  (cover)
+Store v1 = a, v2 = b, v3 = c, v4 = a', v5 = b', v6 = c'
+Working v7
+
+% Columns: Numbers of Operations | Nature of oper. | variables in Mill | Store v1..v7 | right-hand column.
+% Store columns are headed +ax +by +c (v1 v2 v3), +a'x +b'y +c' (v4 v5 v6), v7.
+% A store cell is written only where the sheet writes one.
+Op 1     ×  | b'a                 | v1 0, v5 0, v7 b'a        | v7 = v5·v1
+Op 2     ×  | b'c                 | v1 b'c, v3 0              | v1' = v5·v3
+Op 3     ×  | ba'                 | v2 0, v3 ba', v4 0        | v3' = v2·v4
+Op 4     ×  | bc'                 | v2 bc', v6 0              | v2' = v2·v6
+Op 5     −  | bc'-b'c             | v1 0, v2 0, v4 bc'-b'c    | v4' = v2'-v1'
+Op 6     −  | b'a-ba'             | v1 b'a-ba', v3 0, v7 0    | v1'' = v7-v3'
+Op 7  *  ÷  | (bc'-b'c)/(b'a-ba') | v1 0, v3 =x, v4 0         | x = v3'' = v4'/v1''
+
+Composition x = v3'' = v4'/v1'' = (v2'-v1')/(v7-v3') = (v2·v6-v5·v3)/(v5·v1-v2·v4) = (bc'-b'c)/(b'a-ba')
+
+% "Number of operations great = 5 small = 2 Total number of operations = 7
+%  Number of variables = 6 No of working variables = 1 Total number of variables occupied = 7"
+% The same figures are on the cover.
+States great 5, small 2, total 7, variables 6, working 1, occupied 7
+
+Remark "It at first appeared that variables v7 and v3' might have been saved by making b'a-ba' at the fourth operation but this would have caused the table of b' made in the third operation to be destroyed and it must have been recomputed in the operation for b'c thus causing the loss of about ten turns of the hand."

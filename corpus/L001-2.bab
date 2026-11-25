@@ -1,0 +1,52 @@
+% BAB/L/001, Science Museum Group Collection, document aa110000065.
+% The second program of the sheet: the lower table of the opened sheet
+% (image 222/594, bottom half). The cover dates it "No 2. Aug. 5"; the table
+% itself is not dated. Read from the zoom images at full resolution.
+
+Sheet BAB/L/001
+No. 2
+Date 5 Aug 1837          "No 2. Aug. 5"   % cover
+Title "Elimination between two equations of the first degree ax + by + c = 0 & a'x + b'y + c' = 0 which is equivalent to calculating x & y from the equations x = (bc'-b'c)/(b'a-ba') & y = (a'c-ac')/(b'a-ba')"
+Image 222/593 cover
+Image 222/594 lower table
+Image 222/595 back: "C, C or C before any number signifies the Complement of that number as Ca means complement of a"
+
+Letters a b c a' b' c'
+Unknowns x y
+Equation a x + b y + c = 0
+Equation a' x + b' y + c' = 0
+Find x = (bc'-b'c)/(b'a-ba')
+Find y = (a'c-ac')/(b'a-ba')
+
+Store v1 = a, v2 = b, v3 = c, v4 = a', v5 = b', v6 = c'
+Working v7 v8 v9
+
+% Ca, Cc, Cb: written with a looped capital C, which the back of the sheet defines.
+% Rows 8-10 have no operation and nothing in the mill column.
+Op 1     ×  | b'a                 | v1 0, v5 0, v7 b'a, v8 Ca          | v7 = v5·v1
+Op 2     ×  | b'c                 | v1 b'c, v3 0, v5 Cc                | v1' = v5·v3
+Op 3     ×  | ba'                 | v2 0, v3 ba', v4 0, v9 Cb          | v3' = v2·v4
+Op 4     ×  | bc'                 | v2 bc', v6 0                       | v2' = v2·v6
+Op 5     −  | bc'-b'c             | v1 0, v2 0, v6 bc'-b'c             | v6' = v2'-v1'
+Op 6     −  | b'a-ba'             | v2 b'a-ba', v3 0, v7 0             | v2'' = v7-v3'
+Op 7  *  ÷  | (bc'-b'c)/(b'a-ba') | v2 0, v4 =x, v6 0, v7 =x           | x = v4' = v6'/v2''
+Op 8        |                     | v1 a, v8 0                         | v1'' = v1 = a
+Op 9        |                     | v2 b, v9 0                         | v2''' = v2 = b
+Op 10       |                     | v3 c, v5 0                         | v3'' = v3 = c
+Op 11    ×  | ax                  | v1 0, v4 0, v5 ax                  | v5'' = v1''·v4'
+Op 12    −  | -c-ax               | v1 -c-ax, v3 0, v5 0               | v1''' = -v3''-v5''
+Op 13 *  ÷  | (-c-ax)/b           | v1 0, v2 0, v5 =y                  | y = v5''' = v1'''/v2'''
+
+% "Composition"
+Composition x = v4' = v6'/v2'' = (v2'-v1')/(v7-v3') = (v2·v6-v5·v3)/(v5·v1-v2·v4) = (bc'-b'c)/(b'a-ba')
+Composition y = v5''' = v1'''/v2''' = (-v3''-v5'')/b = (-c-v1''·v4')/b = (-c-ax)/b = (-c-a(bc'-b'c)/(b'a-ba'))/b = (-cb'a+cba'-c'ba+cb'a)/(b(b'a-ba')) = (a'c-ac')/(b'a-ba')
+
+% "Number of operations great = 7 small = 6 Total number of operations = 13
+%  Number of variables = 6 No of working variables = 3 Total no of variables occupied = 9"
+% The same figures are on the cover.
+States great 7, small 6, total 13, variables 6, working 3, occupied 9
+
+Unrun "pencil, right of the counts: '6 Mult = 18 / 1 Div = 5 / 6 add = 1', ruled off, '24'; a word above the column of figures, perhaps 'Mov'"
+Unrun "pencil, beside the right-hand column: the value of each operation in letters (= b'a, = b'c, ...)"
+Unrun "pencil, faint, centre: 'ε^(a + bx + cx² + ...) = A + Bx + Cx² + ...'"
+Unrun "pencil, foot of the sheet: '085', '075 035', '6 66', 'a fa fa·a' (unclear)"

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Babbage notation (babbage)",
+  "scopeName": "source.bab",
+  "fileTypes": ["bab"],
+  "patterns": [
+    { "include": "#note-line" },
+    { "include": "#heading" },
+    { "include": "#free" },
+    { "include": "#line" }
+  ],
+  "repository": {
+    "note-line": {
+      "comment": "% at the start of a line: the whole line is a note.",
+      "name": "comment.line.percentage.babbage",
+      "match": "^\\s*%.*$"
+    },
+    "note": {
+      "comment": "% after a space: a note to the end of the line.",
+      "name": "comment.line.percentage.babbage",
+      "match": "(?<=\\s)%.*$"
+    },
+    "words": {
+      "comment": "The sheet's words, quoted. Not computed.",
+      "name": "string.quoted.double.babbage",
+      "begin": "\"",
+      "end": "\"|$",
+      "beginCaptures": { "0": { "name": "punctuation.definition.string.begin.babbage" } },
+      "endCaptures": { "0": { "name": "punctuation.definition.string.end.babbage" } }
+    },
+    "heading": {
+      "comment": "Sheet BAB/L/001, No. 1: what the page is.",
+      "begin": "^\\s*(Sheet|No\\.)(?=\\s|$)",
+      "beginCaptures": { "1": { "name": "keyword.control.heading.babbage" } },
+      "end": "$",
+      "patterns": [
+        { "include": "#note" },
+        { "include": "#words" },
+        { "match": "[^\"%\\s][^\"%]*?(?=\\s+%|\\s*\"|\\s*$)", "name": "entity.name.section.babbage" }
+      ]
+    },
+    "free": {
+      "comment": "Lines of words, not of algebra: the date, the title, the image, a remark, something not run.",
+      "begin": "^\\s*(Date|Title|Image|Remark|Unrun)(?=\\s|$)",
+      "beginCaptures": { "1": { "name": "keyword.control.directive.babbage" } },
+      "end": "$",
+      "patterns": [
+        { "include": "#note" },
+        { "include": "#words" },
+        { "match": "[^\"%\\s][^\"%]*?(?=\\s+%|\\s*\"|\\s*$)", "name": "string.unquoted.babbage" }
+      ]
+    },
+    "line": {
+      "patterns": [
+        { "include": "#note" },
+        { "include": "#words" },
+        { "include": "#directive" },
+        { "include": "#not-a-directive" },
+        { "include": "#count" },
+        { "include": "#variable" },
+        { "include": "#complement" },
+        { "include": "#number" },
+        { "include": "#letter" },
+        { "include": "#star" },
+        { "include": "#field" },
+        { "include": "#operator" },
+        { "include": "#paren" },
+        { "include": "#comma" }
+      ]
+    },
+    "directive": {
+      "match": "^\\s*(Letters|Unknowns|Equation|Find|Store|Working|Op|Composition|States)(?=\\s|$)",
+      "captures": { "1": { "name": "keyword.control.directive.babbage" } }
+    },
+    "not-a-directive": {
+      "comment": "A word at the start of a line that is not in the notation.",
+      "match": "^\\s*([^\\s%]+)",
+      "captures": { "1": { "name": "invalid.illegal.babbage" } }
+    },
+    "count": {
+      "comment": "The counts a sheet gives, on a States line.",
+      "match": "\\b(great|small|total|variables|working|occupied)\\b",
+      "name": "support.constant.count.babbage"
+    },
+    "variable": {
+      "comment": "A variable of the store, with its accents: v1, v3''.",
+      "match": "\\bv[0-9]+['′″‴]*",
+      "name": "variable.other.store.babbage"
+    },
+    "complement": {
+      "comment": "C before a number: its complement (the back of BAB/L/001).",
+      "match": "C(?=[a-z(])",
+      "name": "keyword.operator.complement.babbage"
+    },
+    "number": {
+      "match": "\\b[0-9]+\\b",
+      "name": "constant.numeric.babbage"
+    },
+    "letter": {
+      "comment": "The sheet's letters, with their accents, and the names of results: a, b', x.",
+      "match": "[a-z]['′]*",
+      "name": "variable.parameter.letter.babbage"
+    },
+    "star": {
+      "comment": "The star Babbage puts before some operations.",
+      "match": "[*✱]",
+      "name": "keyword.other.star.babbage"
+    },
+    "field": {
+      "comment": "| between the fields of an operation.",
+      "match": "\\|",
+      "name": "punctuation.separator.field.babbage"
+    },
+    "operator": {
+      "match": "[×÷+\\-−–·./=]",
+      "name": "keyword.operator.babbage"
+    },
+    "paren": {
+      "match": "[()]",
+      "name": "punctuation.parenthesis.babbage"
+    },
+    "comma": {
+      "match": ",",
+      "name": "punctuation.separator.comma.babbage"
+    }
+  }
+}

@@ -1,0 +1,58 @@
+{
+  "A page": {
+    "prefix": "page",
+    "description": "A page: one table of a sheet, with its letters, store and counts",
+    "body": [
+      "% ${1:BAB/L/001}, Science Museum Group Collection. Read from image ${2:222/594}.",
+      "",
+      "Sheet ${1}",
+      "No. ${3:1}",
+      "Date ${4:4 Aug 1837}",
+      "Title \"${5:the heading of the table}\"",
+      "Image ${2} ${6:upper table}",
+      "",
+      "Letters ${7:a b c a' b' c'}",
+      "Store ${8:v1 = a, v2 = b, v3 = c}",
+      "Working ${9:v7}",
+      "",
+      "$0",
+      "",
+      "States great ${10:0}, small ${11:0}, total ${12:0}, variables ${13:0}, working ${14:0}, occupied ${15:0}"
+    ]
+  },
+  "An operation": {
+    "prefix": "op",
+    "description": "An operation: number, operation, mill, store cells, right-hand column",
+    "body": "Op ${1:1}     ${2|×,÷,+,−|}  | ${3:b'a} | ${4:v1 0, v5 0, v7 b'a} | ${5:v7 = v5·v1}"
+  },
+  "A transfer": {
+    "prefix": "transfer",
+    "description": "A row with no operation: a number moved from one column to another",
+    "body": "Op ${1:8}        |  | ${2:v1 a, v8 0} | ${3:v1'' = v1 = a}"
+  },
+  "The equations": {
+    "prefix": "equations",
+    "description": "The unknowns, the equations the sheet solves, and what it says they give",
+    "body": [
+      "Unknowns ${1:x y}",
+      "Equation ${2:a x + b y + c = 0}",
+      "Equation ${3:a' x + b' y + c' = 0}",
+      "Find ${4:x = (bc'-b'c)/(b'a-ba')}"
+    ]
+  },
+  "A composition": {
+    "prefix": "composition",
+    "description": "The sheet's composition of a result: every member must be equal",
+    "body": "Composition ${1:x} = ${2:v3''} = ${3:v4'/v1''}"
+  },
+  "The counts": {
+    "prefix": "states",
+    "description": "The counts the sheet gives",
+    "body": "States great ${1:5}, small ${2:2}, total ${3:7}, variables ${4:6}, working ${5:1}, occupied ${6:7}"
+  },
+  "A remark": {
+    "prefix": "remark",
+    "description": "The sheet's remark, quoted, not run",
+    "body": "Remark \"${1}\""
+  }
+}
