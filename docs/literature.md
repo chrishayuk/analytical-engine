@@ -1,9 +1,41 @@
 # The literature, against the run
 
-Only one reading of BAB/L/001 has been read for this project: Rojas,
-"The first computer program" (arXiv:2303.13740, 2023; *CACM* 2024). No
-wider search has been made yet. Nothing found here is claimed as new until
-one has.
+Read for this project: R. Rojas, "The first computer program"
+(arXiv:2303.13740, 2023; *CACM* 2024), and R. Rojas, "Die Computerprogramme
+von C. Babbage", *Informatik-Spektrum* 40(3), 2017, pp. 284-290. A short web
+search (25 November 2026) found nothing else on BAB/L/001 in particular.
+Bromley (2000), "Babbage's Analytical Engine Plans 28 and 28a: The
+Programmer's Interface", *IEEE Annals* 22(4), and Rojas (2021) were found and
+not read. Nothing here is claimed as new.
+
+## Already published: the machine the run uses
+
+Rojas (2017) describes, from the notations of Series L, the rules the run
+relies on: reading a column is destructive; a number sent to the mill can be
+laid at the same time in another column as its digit-wise ten's complement,
+and moved back to restore it ((v1, v8) … (v8, v1)); a result cannot be
+written to a column that is one of the operation's own arguments ("v1 = v1 +
+v3 [war] aus unbekannten Gründen mechanisch nicht möglich"); operations and
+addresses are on separate strings of cards. Rojas (2023) adds the reuse of
+the multiplicand in the mill for b′a and b′c. The run's decisions 1, 2 (its
+first half), 4 and 5 are therefore his readings too, reached here from the
+sheet and the remark.
+
+Rojas (2017, Table 3) lists BAB/L/001 as one program, "4.8.1837, Zwei
+Simultangleichungen, Lösung für x und y", and BAB/L/026 as "Zwei Methoden für
+die Lösung von zwei Simultangleichungen", 8.1837.
+
+## Not found in what was read
+
+These may be in Bromley (2000) or Rojas (2021), which were not read:
+
+- that the cover dates No. 2 to 5 August, a day after No. 1;
+- that operation 12 of No. 2 is a subtraction whose result is written
+  −c − ax, which no order of its operands gives;
+- that every cell, accent and count of both tables agrees with what the
+  operations do (a check, rather than a historical claim);
+- the pencil "6 Mult = 18 / 1 Div = 5 / 6 add = 1" against the table's five
+  multiplications and two divisions.
 
 ## Where Rojas and this transcription agree
 
