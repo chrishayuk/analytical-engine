@@ -1,0 +1,65 @@
+% BAB/L/002, Science Museum Group Collection, document aa110000066.
+% The opened sheet (image 222/624), one table of 30 operations. The cover
+% (222/622) is dated "14 Aug 1837 No 2". Read from the zoom images at full
+% resolution.
+
+Sheet BAB/L/002
+No. 2
+Date 14 Aug 1837          "14 Aug 1837 No 2"   % cover
+Title "Computation of λ0, λ1, λ2, &c from (A0 + A1x + A2x² + &c)/(a + bx) = λ0 + λ1x + λ2x² + &c by Means of the relation λm = (Am - bλm-1)/a = Nm/a & λ0 = A0/a"
+Image 222/622 cover: "Notation for the coeffecients of the powers of x in (A0 + A1x + A2x² + .... Aix^i)/(a + bx) = λ0 + λ1x + λ2x² .... λmx^m, where λ0 = A0/a and λm = (Am - bλm-1)/a"
+Image 222/624 the table
+Image 222/626 back
+
+Letters a b A0 A1 A2 A3 A4 A5 A6
+Find λ0 = A0/a
+
+% The sheet heads v1 "a", v2 "b", and v8 to v14 "A0" to "A6"; v3 to v7 have
+% no heading.
+Store v1 = a, v2 = b, v8 = A0, v9 = A1, v10 = A2, v11 = A3, v12 = A4, v13 = A5, v14 = A6
+Working v3 v4 v5 v6 v7
+
+% The table has no right-hand column of formulas: each row is the operation,
+% the mill's result and the cells. "Com a" and "Com b" are written so, not
+% with the looped C of BAB/L/001; here Ca and Cb. λ and N are the sheet's;
+% =λ1 marks where the sheet first writes λ1, so that later rows can use it.
+% A mark like > stands left of the operation column between operations 1
+% and 2, 5 and 6, 10 and 11, 15 and 16, 20 and 21, 25 and 26: before each
+% bringing in of b, where each cycle begins.
+Op 1     ÷  | A0/a      | v1 0, v3 Ca, v6 =λ0, v7 λ0, v8 0 |
+Op 2     ×  | bλ0       | v1 Cb, v2 0, v4 bλ0, v6 0 |
+Op 3     −  | A1-bλ0    | v4 0, v5 =N1, v9 0 |
+Op 4        |           | v2 a, v3 0 |
+Op 5     ÷  | N1/a      | v2 0, v3 Ca, v5 0, v6 =λ1, v8 λ1 |   % the mill's N has no legible subscript
+Op 6        |           | v1 0, v2 b |
+Op 7     ×  | bλ1       | v1 Cb, v2 0, v4 bλ1, v6 0 |
+Op 8     −  | A2-bλ1    | v4 0, v5 =N2, v10 0 |
+Op 9        |           | v2 a, v3 0 |
+Op 10    ÷  | N2/a      | v2 0, v3 Ca, v5 0, v6 =λ2, v9 λ2 |
+Op 11       |           | v1 0, v2 b |
+Op 12    ×  | bλ2       | v1 Cb, v2 0, v4 bλ2, v6 0 |
+Op 13    −  | A3-bλ2    | v4 0, v5 =N3, v11 0 |   % the sign is − with a pencil stroke through it, which makes it look like +
+Op 14       |           | v2 a, v3 0 |
+Op 15    ÷  | N3/a      | v2 0, v3 Ca, v5 0, v6 =λ3, v10 λ3 |
+Op 16       |           | v1 0, v2 b |
+Op 17    ×  | bλ3       | v1 Cb, v2 0, v4 bλ3, v6 0 |
+Op 18    −  | A4-bλ3    | v4 0, v5 =N4, v12 0 |
+Op 19       |           | v2 a, v3 0 |
+Op 20    ÷  | N4/a      | v2 0, v3 Ca, v5 0, v6 =λ4, v11 λ4 |
+Op 21       |           | v1 0, v2 b |
+Op 22    ×  | bλ4       | v1 Cb, v2 0, v4 bλ4, v6 0 |
+Op 23    −  | A5-bλ4    | v4 0, v5 =N5, v13 0 |
+Op 24       |           | v2 a, v3 0 |
+Op 25    ÷  | N5/a      | v2 0, v3 Ca, v5 0, v6 =λ5, v12 λ5 |
+Op 26       |           | v1 0, v2 b |
+Op 27    ×  | bλ5       | v1 Cb, v2 0, v4 bλ5, v6 0 |   % "Com b" in v1 is faint, lighter than the rest
+Op 28    −  | A6-bλ5    | v4 0, v5 =N6, v14 0 |
+Op 29       |           | v2 a, v3 0 |
+Op 30    ÷  | N6/a      | v2 0, v5 0, v13 =λ6 |   % no Com a, and nothing in v6: a and λ6 are not needed again
+
+% Not on the sheet, an observation: the last division lays no complement of
+% a and writes λ6 only in v13, and operation 27's Com b is faint; a and b are
+% kept only while a later operation needs them.
+Unrun "a column of numbers 1 to 30 between v13 and v14, repeating the numbers of the operations"
+Unrun "cover, pencil, faint, read in part: '1 Division gets λ0'; '1 Multiplication {2} Subtraction {3} Bring in a number 4 Division gets λ1 = 2 large & 2 small = 4 operations'; '1 Bring in a number 2 Multiplication {3} Subtraction {4} Bring in a number 5 Division gets λm = 2 large & 3 small = 5 operations' (the counts not certain)"
+Unrun "cover, pencil, faint: a ruled grid of four labelled rows of 0s and 1s, the first label perhaps 'Division', the last perhaps 'General'; not read"

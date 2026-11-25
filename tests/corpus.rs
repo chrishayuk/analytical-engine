@@ -118,3 +118,65 @@ fn every_page_reads() {
         read(n, t).unwrap_or_else(|e| panic!("{e}"));
     }
 }
+
+// BAB/L/002, 14 August 1837: the quotient of A0 + A1x + … + A6x⁶ by a + bx.
+
+#[test]
+fn l002_agrees_throughout() {
+    assert_eq!(failures(&page("L002")), Vec::<String>::new());
+}
+
+#[test]
+fn l002_counts_two_great_and_three_small_to_each_coefficient() {
+    // The pencil on the cover, as far as it can be read: λ0 by one division,
+    // λ1 by 2 great and 2 small, each later λm by 2 great and 3 small.
+    let r = run(&read("", &page("L002")).unwrap());
+    assert_eq!((r.tally.great, r.tally.small), (1 + 2 + 5 * 2, 2 + 5 * 3));
+}
+
+/// Where the run's λ0 … λ6 differ from the coefficients of the quotient,
+/// worked out independently of the sheet's recurrence: 1/(a + bx) is the sum
+/// of (-b)^j x^j / a^(j+1), so λm is the sum over k ≤ m of A_k (-b)^(m-k) / a^(m-k+1).
+fn l002_against_the_series(text: &str) -> Vec<String> {
+    use babbage::algebra::Value;
+    let r = run(&read("", text).unwrap());
+    let (a, b) = (Value::letter("a"), Value::letter("b"));
+    let mut out = vec![];
+    for m in 0..=6 {
+        let mut want = Value::zero();
+        for k in 0..=m {
+            let mut t = Value::letter(&format!("A{k}"));
+            for _ in 0..m - k {
+                t = t.mul(&b.neg()).div(&a).unwrap();
+            }
+            want = want.add(&t.div(&a).unwrap());
+        }
+        match r.results.get(&format!("λ{m}")) {
+            Some(got) if got.same(&want) => {}
+            Some(got) => out.push(format!("λ{m} = {got}, the series gives {want}")),
+            None => out.push(format!("no λ{m}")),
+        }
+    }
+    out
+}
+
+#[test]
+fn l002_finds_the_coefficients_of_the_quotient() {
+    assert_eq!(l002_against_the_series(&page("L002")), Vec::<String>::new());
+}
+
+#[test]
+fn l002_a_number_laid_over_another_is_caught() {
+    // λ2 laid in v8, over λ1, instead of in v9.
+    let f = probe("L002", "v6 =λ2, v9 λ2", "v6 =λ2, v8 λ2");
+    assert!(f.iter().any(|f| f.contains("v8 still holds")), "{f:#?}");
+}
+
+#[test]
+fn l002_a_subtraction_the_wrong_way_round_is_caught_by_the_series() {
+    // With no right-hand column the mill column gives the order of a
+    // subtraction, so the run alone cannot catch this; the series does.
+    let t = page("L002").replacen("| A3-bλ2 ", "| bλ2-A3 ", 1);
+    assert_eq!(failures(&t), Vec::<String>::new());
+    assert!(!l002_against_the_series(&t).is_empty());
+}

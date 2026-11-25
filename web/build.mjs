@@ -13,6 +13,8 @@ copyFileSync(`${root}target/wasm32-wasip1/release/babbage.wasm`, `${root}web/bab
 // here, not on the sheet. 2x + 3y - 8 = 0 and 5x - y - 3 = 0: x = 1, y = 2.
 const examples = {
   "BAB/L/001": { at: "a=2,b=3,c=-8,a'=5,b'=-1,c'=-3", example: "2x + 3y − 8 = 0, 5x − y − 3 = 0 (x = 1, y = 2)" },
+  // (2 + 3x + 3x² + 3x³ + 3x⁴ + 3x⁵ + x⁶)/(2 + x) = 1 + x + x² + x³ + x⁴ + x⁵.
+  "BAB/L/002": { at: "a=2,b=1,A0=2,A1=3,A2=3,A3=3,A4=3,A5=3,A6=1", example: "(2 + 3x + 3x² + 3x³ + 3x⁴ + 3x⁵ + x⁶)/(2 + x) = 1 + x + x² + x³ + x⁴ + x⁵ (λ6 = 0)" },
 };
 
 const names = readdirSync(`${root}corpus`).filter((f) => f.endsWith(".bab")).map((f) => f.slice(0, -4)).sort();

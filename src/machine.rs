@@ -108,6 +108,14 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
             "No. 2, operation 8 is written v₁″ = v₁ = a: the a in v1 had been read away at operation 1 and comes back from v8. So v₁ (no accent) names the first number v1 held, not the column. The run looks every accented name up in the column's history.",
         ),
         (
+            "A column is given a number only when it is at zero.",
+            "BAB/L/001 and BAB/L/002: every column any row gives a number to is at zero, never yet used or left at zero by an earlier row. Not stated on a sheet; the run requires it, so that a number laid over another is caught.",
+        ),
+        (
+            "Where a sheet has no right-hand column, a subtraction or division takes its operands in the order the mill column writes.",
+            "BAB/L/002 writes each row as the operation, the mill's result (A₁ − bλ₀, N₁/a) and the cells, with no formula in the variables. The run then has no other statement of the order, so on such a sheet the mill column is checked for what is taken and made, not for which way round.",
+        ),
+        (
             "Great operations are multiplication and division; small are addition, subtraction and transfers.",
             "BAB/L/001 No. 2: \"great 7 small 6\" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.",
         ),
@@ -345,7 +353,24 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             vars(&c.rhs, &mut v);
             v
         }
-        None => reads.iter().map(|r| (*r, st.history[r].len() - 1)).collect(),
+        None => {
+            let mut v: Vec<(usize, usize)> = reads
+                .iter()
+                .map(|r| (*r, st.history.get(r).map_or(0, |h| h.len().saturating_sub(1))))
+                .collect();
+            // With no right-hand column, the mill column says which way round
+            // a subtraction or division goes (BAB/L/002 writes only A₁ − bλ₀).
+            if let (Some(op @ (Op::Sub | Op::Div)), Some((e, _)), [x, y]) = (row.op, &row.mill, &v[..]) {
+                let held = |(n, p): (usize, usize)| st.version(n, p).ok().and_then(|h| h.plain().cloned());
+                if let (Some(a), Some(b), Ok(Held::Plain(m))) = (held(*x), held(*y), st.eval(e)) {
+                    let same = |r: Result<Value, String>| r.is_ok_and(|r| Held::Plain(r).same(&Held::Plain(m.clone())));
+                    if !same(apply(op, &a, &b)) && same(apply(op, &b, &a)) {
+                        v.swap(0, 1);
+                    }
+                }
+            }
+            v
+        }
     };
     let mut table_formed = false;
     for (i, (n, p)) in named.iter().enumerate() {
@@ -535,6 +560,16 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
     }
     for r in &reads {
         st.store.insert(*r, Held::Plain(Value::zero()));
+    }
+    // A column is given a number only when it is at zero.
+    for (c, _) in &writes {
+        if !st.get(*c).is_zero() {
+            checks.push(check(
+                line,
+                format!("v{c} at zero to receive"),
+                Err(format!("v{c} still holds {}, which would be lost", st.get(*c))),
+            ));
+        }
     }
     for (c, v) in &writes {
         st.store.insert(*c, v.clone());

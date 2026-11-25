@@ -20,6 +20,7 @@ babbage lsp                  a language server on standard input and output
 $ babbage list
 L001-1   BAB/L/001  No. 1, 4 Aug 1837  Elimination between two equations of the first degree ax + by + c = 0  a'x + b'y + c' = 0 which is equivalent to calculating the value of x from the eqn x = (bc'-b'c)/(b'a-ba')
 L001-2   BAB/L/001  No. 2, 5 Aug 1837  Elimination between two equations of the first degree ax + by + c = 0 & a'x + b'y + c' = 0 which is equivalent to calculating x & y from the equations x = (bc'-b'c)/(b'a-ba') & y = (a'c-ac')/(b'a-ba')
+L002     BAB/L/002  No. 2, 14 Aug 1837  Computation of λ0, λ1, λ2, &c from (A0 + A1x + A2x² + &c)/(a + bx) = λ0 + λ1x + λ2x² + &c by Means of the relation λm = (Am - bλm-1)/a = Nm/a & λ0 = A0/a
 ```
 
 ```console
@@ -27,8 +28,9 @@ $ babbage verify
 L001-1    42 statements,  42 agree
 L001-2    81 statements,  80 agree
          ✗ line 37: − on v3 (c) and v5 ((abc′ - ab′c)/(ab′ - a′b)) gives -v3″-v5″: the operation gives v3″ − v5″, but the sheet writes -v3″-v5″: neither order of the two operands gives that. The run goes on with the value on the sheet
+L002      68 statements,  68 agree
 
-2 pages; 123 statements of the sheets checked, 122 agree.
+3 pages; 191 statements of the sheets checked, 190 agree.
 1 page(s) with statements that do not agree.
 ```
 
@@ -60,10 +62,16 @@ $ babbage decisions
 8. An accented name means that number, wherever it now is.
    No. 2, operation 8 is written v₁″ = v₁ = a: the a in v1 had been read away at operation 1 and comes back from v8. So v₁ (no accent) names the first number v1 held, not the column. The run looks every accented name up in the column's history.
 
-9. Great operations are multiplication and division; small are addition, subtraction and transfers.
+9. A column is given a number only when it is at zero.
+   BAB/L/001 and BAB/L/002: every column any row gives a number to is at zero, never yet used or left at zero by an earlier row. Not stated on a sheet; the run requires it, so that a number laid over another is caught.
+
+10. Where a sheet has no right-hand column, a subtraction or division takes its operands in the order the mill column writes.
+   BAB/L/002 writes each row as the operation, the mill's result (A₁ − bλ₀, N₁/a) and the cells, with no formula in the variables. The run then has no other statement of the order, so on such a sheet the mill column is checked for what is taken and made, not for which way round.
+
+11. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-10. Values are compared as algebra.
+12. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 

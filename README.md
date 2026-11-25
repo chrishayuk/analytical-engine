@@ -34,11 +34,14 @@ right.
 
 ## Status
 
-One sheet so far, **BAB/L/001**: its two programs, No. 1 (4 August 1837)
-and No. 2 (5 August 1837). The transcription was made by a coding agent from
-the scans; no person has checked it. Only one piece of secondary literature
-has been read (Rojas 2023), and no literature search has been made, so
-nothing here is claimed as new. See [`docs/literature.md`](docs/literature.md).
+Two sheets so far. **BAB/L/001**: its two programs, No. 1 (4 August 1837)
+and No. 2 (5 August 1837). **BAB/L/002**: one program of 30 operations,
+14 August 1837, dividing a polynomial of degree 6 by a + bx. (BAB/L/003 has
+no images in the Museum's catalogue; Rojas 2017 lists its program as not in
+the archive.) The transcriptions were made by a coding agent from the scans;
+no person has checked them. Two readings by Rojas (2017, 2023) have been
+read and a short search made, so nothing here is claimed as new. See
+[`docs/literature.md`](docs/literature.md).
 
 ## What running BAB/L/001 found
 
@@ -79,9 +82,30 @@ nothing here is claimed as new. See [`docs/literature.md`](docs/literature.md).
   pencil: "6 Mult = 18, 1 Div = 5, 6 add = 1", total 24. The table has 5
   multiplications and 2 divisions. Unrun; hand and date unknown.
 
+## What running BAB/L/002 found
+
+- **68 statements; 68 agree.** Every mill entry and every store cell of the
+  30 rows. The table has no right-hand column of formulas, so there are no
+  accents to check, and the mill column fixes which way round each
+  subtraction and division goes (rule 12 below).
+- **The coefficients are right.** The run's λ0 … λ6 are the coefficients of
+  (A0 + A1x + … + A6x⁶)/(a + bx), checked against the series worked out
+  independently of the sheet's recurrence (`tests/corpus.rs`).
+- **The program is a cycle of five.** After λ0, each λm takes the same five
+  operations: bring b into v2 from its complement in v1, × bλ, −, bring a
+  into v2 from its complement in v3, ÷. Only the columns of Am and λm
+  move on by one each time. A mark like ">" stands beside the table at the
+  start of each cycle, and pencil on the cover, faint and read only in part,
+  describes the cycles in words: "1 Bring in a number 2 Multiplication
+  {3} Subtraction {4} Bring in a number 5 Division gets λm … = 5 operations".
+  The run counts 13 great and 17 small: 1 + 4 + 5 × 5.
+- **a and b are kept only while needed.** The last division lays no
+  complement of a and writes λ6 in one column only; operation 27's "Com b"
+  is faint.
+
 ## The machine
 
-The engine's rules, as BAB/L/001 shows them (`babbage decisions` gives each
+The engine's rules, as BAB/L/001 and BAB/L/002 show them (`babbage decisions` gives each
 with what it rests on):
 
 1. Reading a column leaves it at zero.
@@ -97,9 +121,14 @@ with what it rests on):
 8. An accented name means that number, wherever it now is.
 9. Great operations are × and ÷; small are +, − and transfers.
 10. Values are compared as algebra.
+11. A column is given a number only when it is at zero. (Every row of
+    BAB/L/001 and BAB/L/002 obeys it; not stated on a sheet.)
+12. Where a sheet has no right-hand column, a subtraction or division takes
+    its operands in the order the mill column writes. (BAB/L/002.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
-sheet needs that BAB/L/001 does not show will be a new, dated decision.
+sheet needs that the sheets before it do not show will be a new, dated
+decision.
 
 ## Install and use
 

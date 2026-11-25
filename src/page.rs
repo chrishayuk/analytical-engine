@@ -127,7 +127,7 @@ fn parse_cell(s: &str) -> Result<(usize, Cell), String> {
     let cell = if rest == "0" {
         Cell::Zero
     } else if let Some(n) = rest.strip_prefix('=') {
-        Cell::Named(n.trim().to_string())
+        Cell::Named(crate::expr::plain_name(n.trim()))
     } else {
         Cell::Value(parse(rest)?, rest.to_string())
     };
@@ -136,7 +136,15 @@ fn parse_cell(s: &str) -> Result<(usize, Cell), String> {
 
 fn is_name(s: &str) -> bool {
     let s = s.trim();
-    !s.is_empty() && s.chars().all(|c| c.is_alphabetic()) && !s.starts_with('v')
+    !s.is_empty()
+        && s.chars().next().is_some_and(|c| c.is_alphabetic())
+        && s.chars().all(|c| {
+            c.is_alphabetic()
+                || crate::expr::plain_name(&c.to_string())
+                    .chars()
+                    .all(|d| d.is_ascii_digit())
+        })
+        && !s.starts_with('v')
 }
 
 fn parse_card(s: &str) -> Result<Card, String> {
@@ -253,7 +261,12 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                 "Date" => p.date = body,
                 "Title" => p.title = quote.unwrap_or(body),
                 "Image" => p.image.push(body),
-                "Letters" => p.letters = body.split_whitespace().map(|s| s.replace('′', "'")).collect(),
+                "Letters" => {
+                    p.letters = body
+                        .split_whitespace()
+                        .map(|s| crate::expr::plain_name(&s.replace('′', "'")))
+                        .collect()
+                }
                 "Store" => {
                     for c in body.split(',') {
                         let (v, e) = c.split_once('=').ok_or_else(|| err("Store v1 = a, ...".into()))?;
@@ -268,7 +281,7 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         .collect::<Result<_, _>>()
                         .map_err(err)?;
                 }
-                "Unknowns" => p.unknowns = body.split_whitespace().map(String::from).collect(),
+                "Unknowns" => p.unknowns = body.split_whitespace().map(crate::expr::plain_name).collect(),
                 "Equation" => {
                     let lhs = body.split('=').next().unwrap().trim().to_string();
                     p.equations.push((parse(&lhs).map_err(err)?, body.clone()));
@@ -276,7 +289,8 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                 "Find" => {
                     let (name, e) = body.split_once('=').ok_or_else(|| err("Find x = ...".into()))?;
                     let t = e.trim().to_string();
-                    p.finds.push((name.trim().to_string(), parse(&t).map_err(err)?, t, n));
+                    p.finds
+                        .push((crate::expr::plain_name(name.trim()), parse(&t).map_err(err)?, t, n));
                 }
                 "Op" => p.rows.push(parse_row(n, rest).map_err(err)?),
                 "States" => {

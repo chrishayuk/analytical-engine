@@ -35,6 +35,19 @@ No. 1 (4 Aug 1837) and No. 2 (Aug. 5) with their counts; marked "E 1905" and
 below, "4 Aug 1837" at the top right. `222/595`: the back, "4 Augt 1837",
 and the definition of the complement sign.
 
+### BAB/L/002
+
+Document `aa110000066`. Three images: `222/622`, the cover, "Notation for
+the coeffecients of the powers of x", dated "14 Aug 1837 No 2"; `222/624`
+(8064 × 6467), the opened sheet with one table of 30 operations; `222/626`,
+the back. See [`notes/L002.md`](notes/L002.md).
+
+### BAB/L/003
+
+Document `aa110000067`, "Computation of the coefficients of a polynomial
+from those of another divided by a quadratic term". The catalogue record has
+no images. Rojas (2017, Table 3) lists program 3 as not in the archive.
+
 ## Secondary literature
 
 - R. Rojas, "The first computer program", arXiv:2303.13740 (March 2023);

@@ -46,6 +46,20 @@ fn primes(cs: &[char], i: &mut usize) -> usize {
     n
 }
 
+/// A digit of a subscript, as an ASCII digit: `0`–`9` or `₀`–`₉`.
+fn subscript_digit(c: char) -> Option<char> {
+    match c {
+        '0'..='9' => Some(c),
+        '₀'..='₉' => char::from_u32(c as u32 - '₀' as u32 + '0' as u32),
+        _ => None,
+    }
+}
+
+/// A name as the page writes it, with any subscript in ASCII digits: `λ₁` is `λ1`.
+pub fn plain_name(s: &str) -> String {
+    s.chars().map(|c| subscript_digit(c).unwrap_or(c)).collect()
+}
+
 fn lex(s: &str) -> Result<Vec<Tok>, String> {
     let cs: Vec<char> = s.chars().collect();
     let mut i = 0;
@@ -105,6 +119,17 @@ fn lex(s: &str) -> Result<Vec<Tok>, String> {
                 let mut name = l.to_string();
                 for _ in 0..primes(&cs, &mut i) {
                     name.push('\'');
+                }
+                // A subscript, written after the letter: A0 or A₀ is A₀
+                // (BAB/L/002's coefficients), never A × 0.
+                while i < cs.len() {
+                    match subscript_digit(cs[i]) {
+                        Some(d) => {
+                            name.push(d);
+                            i += 1
+                        }
+                        None => break,
+                    }
                 }
                 out.push(Tok::Letter(name));
             }
