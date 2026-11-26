@@ -40,8 +40,11 @@ none; Rojas 2017 lists its program as not in the archive), 4 August 1837 to
 the store (L/016 sheet 2, L/027). One of the 33 is the looped program of
 L/023: the engine runs its cards. Of 2672 statements of the sheets the run
 checks, 2623 agree (`babbage verify`). The 49 that do
-not come from slips of the pen on 14 pages, each described on its page and
-counted in `tests/corpus.rs`; none stops a run.
+not are counted as slips on 14 pages, each described on its page and
+counted in `tests/corpus.rs`; none stops a run. They are leads, not
+settled: [`docs/discrepancies.md`](docs/discrepancies.md) gives each its
+candidate explanations: a slip in the table or the working, a fault in the
+program, a capability the engine lacks, or our reading.
 
 Those figures are for a run that, where the sheet and the run differ, goes
 on with the sheet's value, so one slip is one disagreement. `babbage verify
