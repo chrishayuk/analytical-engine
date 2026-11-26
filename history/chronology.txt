@@ -14,6 +14,9 @@
 % date: 1836-03-07; 1836-03 (the day not given); <1835-02-05 (before).
 % evidence: direct (the entry is about this capability); related (about
 %   something it depends on or belongs with; not the capability itself).
+% Also, where the history sheets point to them: the drawings (BAB/A, whose
+% numbers are Babbage's drawing numbers) and the Sketch Books (BAB/S/1);
+% see sources/references.md.
 % No person has checked the transcriptions these words come from.
 
 table-kept | conceived | <1835-02-05 | BAB/N/002 | related | Before 5 Feb. 1835 Divn by table was imagined, & enquired into before 13 March
@@ -45,6 +48,8 @@ loop | conceived | 1836-06 | BAB/N/003 | related | Cards first suggested
 loop | conceived | 1836-07-30 | BAB/N/003 | related | Two or three sets of cards one before the other. Vol 2 p 173 30
 loop | conceived | 1837-12-11 | BAB/N/004 | direct | Combinatorial Cards. 11 Vol 3 p 161
 loop | designed | 1838-06-18 | BAB/N/005 | related | Plans for Cards 18 64
+loop | designed | 1838-06-19 | BAB/A/064 (drawing 64) | related | Operation Card and Card Prism 19 June 1838
+loop | conceived | 1838-07-11 | BAB/S/1/03 p 228 (Sketch Book Vol 3) | related | A is backed by Combinatorial Card, B is backed by Combinatorial Counting Apparatus
 loop | conceived | 1839-02 | BAB/N/006 | direct | Card backing App. p 66 Vol IV
 
 letter-cards | conceived | 1837-03 | BAB/N/004 | related | Travelling Stop for Metal Cards [?to] save Multitude of Cards Vol 4 p 23

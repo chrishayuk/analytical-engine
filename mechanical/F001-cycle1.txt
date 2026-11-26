@@ -1,0 +1,91 @@
+% BAB/F/001, 216/275 and 216/276: the partial rows 11-13 at the top (top-)
+% and the first complete cycle, rows 1-13, as transcribed in
+% sources/notes/F001.md section 5 (machine-readable form). No person has
+% checked the transcription. row | column | mark | note
+top-11 | c01 A Ver. | erased mark | illegible
+top-11 | c04 | hatched x3 | 
+top-11 | c06 C1 Ver.Mo. | double arrow converging | 
+top-11 | c06 C1 Ver.Mo. | IF | 
+top-12 | c03 (struck Ver.Mo.) | hatched x2 | left of cell
+top-12 | c03 (struck Ver.Mo.) | IF struck x2 | right of cell
+top-12 | c04 | hatched x3 | spans 12-13
+top-12 | c05 F Cir.Mo. | down arrow, head mid | 
+top-12 | c05 F Cir.Mo. | word "Carry" | 
+top-12 | c05 F Cir.Mo. | IF | below "Carry"
+top-13 | c01 A Ver. | down mark [?Y-type] | 
+top-13 | c01 A Ver. | IF | 
+top-13 | c03 | hatched x1 | on rule
+top-13 | c04 | down arrow | shaft to rule
+top-13 | c05 F | up arrow, small | on rule
+top-13 | c06 C1 Ver.Mo. | double arrow diverging | 
+top-13 | c06 C1 Ver.Mo. | IF | 
+1 | c04 | up arrow, head top | just below rule
+1 | c05 F Cir.Mo. | up arrow, head top | just below rule
+1-10 | c02 A Cir.Mo. | long arrow down, head row 5 | ends top of row 11
+2 | c46 multiplier n. | digit 1 | 276
+2 | c47 multiplier n-1. | digit 0 | 276
+2 | c48 multiplier n-2. | digit 2 | 276
+2 | c49 multiplier n-3. | digit 1 | 276
+2 | c53 complement n. | digit 9 | 276; low in row
+2 | c54 complement n-1. | digit 0 | 276; low in row
+2 | c55 complement n-2. | digit 8 | 276; low in row
+2 | c56 complement n-3. | digit 9 | 276; low in row
+4 | c36 Single tooth for raising feeder Cir.Mo. | down arrow, dashed shaft | 275 and 276
+4 | c37 Cam for lowering the Feeder Ver.Mo. | down arrow, solid, short | 276
+5 | c12 Gathering up tooth | two staggered Y marks | second reaches row 5/6 boundary
+5 | c12 Gathering up tooth | IF. | 
+5 | c14 X. | Y mark | 
+5 | c14 X. | words "Put in" | 
+5 | c14 X. | IF. | 
+5 | c17 Starting tooth (mult. pinions) | Y mark | [?row 6]; on 5/6 boundary
+5 | c17 Starting tooth (mult. pinions) | IF. | 
+5-7 | c44 P Ver.Mo. | words "Gears with n." | 276; no arrow seen
+6 | c02 A Cir.Mo. | IF | beside long arrow
+6 | c07 S Cir.M. | down arrow, head mid | 
+6 | c07 S Cir.M. | IF. | 
+7 | c11 Feeder of 4th fig. | down arrow, short | head at top [?Y-type]
+7-10 | c11 Feeder of 4th fig. | words "lowered upon 1." | 
+7 | c14 X. | up arrow, short | 
+7 | c14 X. | IF. | 
+7-11 | c13 Cam for lowering the feeder | long arrow down, head row 9 | ends at row 11/12 boundary
+8-12 | c11 Feeder of 4th fig. | dotted line, no head | last dot in row 12
+9-10 | c38 Cam ... Cir.Mo. | long arrow down, head at end | 276
+9-10 | c40 Feeder. Cir.Mo. | long arrow down, head at end | 276
+9-10 | c40 Feeder. Cir.Mo. | words "Feels upon n." | 276
+10 | c50 Y. | up arrow | 276
+10 | c50 Y. | words "Put out." | 276
+10 | c51 U Starting tooth (registering) Ver.Mo. | down arrow | 276
+10 | c51 U Starting tooth (registering) Ver.Mo. | words "Put in." | 276
+10-13 | c18 Lower mult. pinions n. Ver.M. | long arrow down, head row 11 | to rule
+10 | c18 | IF. | 
+11-13 | c18 | words "Gears with n." | 
+10-13 | c20 Lower mult. pinions n-1. Ver.Mo. | long arrow down, head row 11 | to rule
+10 | c20 | IF. | 
+11-13 | c20 | words "Gears with n-1." | 
+10-13 | c22 Lower mult. pinions n-2. Ver.Mo. | long arrow down, head row 11 | to rule
+10 | c22 | IF. | 
+11-13 | c22 | words "Gears with n-2." | 
+10-13 | c24 Lower mult. pinions n-3. Ver.M. | long arrow down, head row 11 | to rule
+10 | c24 | IF. | 
+11-13 | c24 | words "Gears with n-3." | 
+11 | c04 | hatched x3 | 
+11 | c06 C1 Ver.Mo. | double arrow converging | 
+11 | c06 C1 Ver.Mo. | IF | 
+12 | c03 (struck Ver.Mo.) | hatched x2 | 
+12 | c04 | hatched x3 | spans 12-13
+12 | c05 F Cir.Mo. | down arrow, head mid | 
+12 | c05 F Cir.Mo. | word "Carry" | 
+12 | c17 Starting tooth (mult. pinions) | up arrow | 
+12 | c17 Starting tooth (mult. pinions) | IF. | 
+12 | c37 Cam for lowering the Feeder Ver.Mo. | up arrow | 276
+12 | c37 Cam for lowering the Feeder Ver.Mo. | word "Inactive." | 276
+13 | c01 A Ver. | down arrow, head mid | shaft to rule
+13 | c03 (struck Ver.Mo.) | hatched x1 + dot | on rule
+13 | c04 | down arrow | shaft to rule
+13 | c05 F Cir.Mo. | IF | 
+13 | c05 F Cir.Mo. | up arrow, small | on rule
+13 | c06 C1 Ver.Mo. | down arrow, head mid | shaft to rule
+13 | c06 C1 Ver.Mo. | words "In gear." | 
+13 | c52 C1. Ver.Mo. | down arrow, short | 276; head at rule
+13 | c52 C1. Ver.Mo. | number ".5" | 276
+~7 | margin right of c56 | pencil stroke "/" | 276; stray, outside the table

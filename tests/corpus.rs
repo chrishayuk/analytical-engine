@@ -457,3 +457,14 @@ fn chronology_against_the_corpus() {
     assert_eq!(sheet_date("before 22 Aug 1837").unwrap().day, 22);
     assert!(sheet_date("").is_none());
 }
+
+/// BAB/F/001's first cycle: every line of the transcription reads, and the
+/// count of marks no source explains is kept honest.
+#[test]
+fn f001_cycle_reads() {
+    use babbage::mechanical::{in_motion, read, Kind, F001};
+    let marks = read(F001).unwrap();
+    assert_eq!(marks.len(), 87);
+    assert_eq!(marks.iter().filter(|m| m.kind == Kind::Unknown).count(), 34);
+    assert_eq!(in_motion(&marks).iter().max(), Some(&10));
+}

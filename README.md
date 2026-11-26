@@ -360,9 +360,12 @@ what was hard to read in [`sources/notes/L001.md`](sources/notes/L001.md).
 - Rojas (2021, IEEE Annals, closed access) and Bromley (1982, 2000), read
   in full, before any result is called new. See
   [`docs/literature-mechanical-notation.md`](docs/literature-mechanical-notation.md).
-- Series F/001 as a pilot: one 13-unit cycle of "Multiply a, b, c, d by
-  1021" (1835), read in the mechanical notation of 1826, before anything of
-  Series F is run.
+- Series F: the pilot on F/001 ("Multiply a, b, c, d by 1021", about
+  1835) has its notation and timing for one cycle (`babbage mechanical`),
+  and stops before the mechanism: 34 of its 87 marks have no known meaning,
+  and the drawing it cites has no number. See
+  [`docs/f001-pilot.md`](docs/f001-pilot.md). The later cycles and F/002
+  come next.
 - A person to check the transcriptions against the scans.
 - Liu Hui and Babbage on the same equations: the counting board of
   [nine-chapters](../nine-chapters) and these tables, run on the same
