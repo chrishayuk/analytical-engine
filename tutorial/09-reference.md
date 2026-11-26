@@ -33,6 +33,17 @@ L010     BAB/L/010  No. 10, 23 Aug 1837  Computation of Tn = n⁴ By means of di
 L011-1   BAB/L/011  No. 11.1, 28 Aug 1837  Computation of u(z+1) = fz.uz + f1z from z = 0 to z = 1 = 2 &c
 L011-2   BAB/L/011  No. 11.2, 28 Aug 1837  Computation of u(z+2) = fz.u(z+1) + f1z.uz + f2z from z = 0 to z = 1 = 2 &c
 L012     BAB/L/012  No. 12, 29 Aug 1837  Calculation of Pk = (Mk-1/Nk-1) Pk-1. M and N rational functions of the second degree
+L013-1   BAB/L/013  No. 13.1, 11 Dec 1837  Calculation of the 7th coeffecient of ΣAm x^m × Σan x^n = Σλp x^p = ΣAq ap-q . x^p; λ6 = A0a6 + A1a5 + A2a4 + A3a3 + A4a2 + A5a1 + A6a0
+L013-2   BAB/L/013  No. 13.2, 11 Dec 1837  Calculation of the first seven coeffecients of the foregoing product viz. {A0a0, A0a1 + A1a0, A0a2 + A1a1 + A2a0, ... A0a6 + A1a5 + A2a4 + A3a3 + ...}
+L014-1   BAB/L/014  No. 14.1,   Calculation of the 7th coeffecient of ΣAm x^m × Σan x^n = Σλp x^p, m = 0,1,2,&c n = 0,1,2,&c p = 0,1,2,&c, λp = ΣAq ap-q q = 0,1,2,&c ...p. λ6 = A0a6 + A1a5 + A2a4 + A3a3 + A4a2 + A5a1 + A6a0
+L014-2   BAB/L/014  No. 14.2,   Calculation of the first six coeffecients of the above product. λ0 = A0a0, λ1 = A0a1 + A1a0 ..... λ5 = A0a5 + A1a4 + A2a3 + A3a2 + A4a1 + A5a0
+L015     BAB/L/015  No. 15, 23 Dec 1837  Notation for determining the value of x from the three equations ax + by + cz + ∂ = 0, a'x + b'y + c'z + ∂' = 0, a''x + b''y + c''z + ∂'' = 0 (A); First by reducing them to two equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0 (B); Secondly by reducing these two to one equivalent to H''x = M'' when x = M''/H''
+L016-1   BAB/L/016/1  No. 16, Jun 1838  Reduction of the equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 to three others Ax + By + Cz + D = 0, A'x + B'y + C'z + D' = 0, A''x + B''y + C''z + D'' = 0 = By + Ax + Cz + D wherein A = 0, A' = 0, A'' = 0, which in like manner are reduced to βy + αx + γz + δ = 0, β'y + α'x + γ'z + δ' = 0, β''y + α''x + γ''z + δ'' = 0 wherein β = 0 α = 0
+L016-2   BAB/L/016/2  No. 16, Jun 1838  Successive reduction of simultaneous equations: three equations in three variables, and five in five
+L017     BAB/L/017  No. 17, 1 Oct 1838  Notation For computing the elliptic radius vector by having the eccentricity and mean anomaly
+L018     BAB/L/018  No. 18, 9 Aug 1841  Notation For Computing the Elliptic radius vector by having the eccentricity ε & mean Anomaly Ξ
+L019     BAB/L/019  No. 19, 31 Jul 1840  Notation of the Reduction of the Four Equations
+L020     BAB/L/020  No. 20, 31 Jul 1840  Notation of the Reduction of the Three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and these to ∂z + e = 0 with the solution
 ```
 
 ```console
@@ -60,9 +71,45 @@ L010     128 statements, 125 agree
 L011-1     8 statements,   8 agree
 L011-2    14 statements,  14 agree
 L012     124 statements, 124 agree
+L013-1    27 statements,  27 agree
+L013-2    19 statements,  18 agree
+         ✗ line 39: v18 at zero to receive: v18 still holds Ca4, which would be lost
+L014-1    37 statements,  33 agree
+         ✗ line 28: where v5 comes from: v5 (A4) is not in a column this row leaves at zero, nor the table standing in the mill
+         ✗ line 29: where v6 comes from: v6 (A5) is not in a column this row leaves at zero, nor the table standing in the mill
+         ✗ line 29: v5 at zero to receive: v5 still holds A4, which would be lost
+         ✗ line 30: v6 at zero to receive: v6 still holds A5, which would be lost
+L014-2    94 statements,  92 agree
+         ✗ line 59: where v14″ comes from: v14″ (Ca0) is not in a column this row leaves at zero
+         ✗ line 60: v2 = Ca0: no column this row leaves at zero holds a0
+L015      69 statements,  64 agree
+         ✗ line 36: where v4 comes from: v4 (d) is not in a column this row leaves at zero
+         ✗ line 36: v4 at zero to receive: v4 still holds d, which would be lost
+         ✗ line 42: v4 at zero to receive: v4 still holds c′d, which would be lost
+         ✗ line 62: where v4‴ comes from: v4‴ (bc′c′′d′ - bc′^2d′′ + b′cc′d′′ - b′c′c′′d - b′′cc′d′ + b′′c′^2d) is not in a column this row leaves at zero
+         ✗ line 62: where v1″ comes from: v1″ (ab′c′c′′ - ab′′c′^2 - a′bc′c′′ + a′b′′cc′ + a′′bc′^2 - a′′b′cc′) is not in a column this row leaves at zero
+L016-1   156 statements, 156 agree
+L016-2     0 statements,   0 agree
+L017     127 statements, 118 agree
+         ✗ line 80: v6 left at 0: v6 was already zero
+         ✗ line 80: where v6 comes from: v6 (168) is not in a column this row leaves at zero
+         ✗ line 109: composition: v16 = (v1/v6)·v16: v16 is B66, but this is 12/7B66
+         ✗ line 113: composition: v18 = (v1′/v6′)·v16: v18 is 135/112B66, but this is 45/64B66
+         ✗ line 113: composition: (P1/Q1)·v16 = ((P0+ΔP)/(Q0+ΔQ0))·(P0/Q0)·B66: (P1/Q1)·v16 is 45/64B66, but this is 135/112B66
+         ✗ line 119: composition: v20 = v14″·v17: v20 is 81/640B66, but this is 27/56B66
+         ✗ line 119: composition: ((v1′+v4)/(v7+v8′))·v17 = ((v2+v3+v4)/(v6+v8+v9′+v10))·v17: ((v1′+v4)/(v7+v8′))·v17 is 27/56B66, but this is 3645/9128B66
+         ✗ line 119: composition: ((v2+v3+v4)/(v6+v8+v9′+v10))·v17 = ((P0+ΔP+ΔP)/(Q0+ΔQ0+ΔQ0+Δ²Q0))·v18: ((v2+v3+v4)/(v6+v8+v9′+v10))·v17 is 3645/9128B66, but this is 27/56B66
+         ✗ line 135: composition: B68 = -(6·6/4)·((6+2)/(1·7·6))·B66: B68 is 12/7B66, but this is -12/7B66
+L018      91 statements,  88 agree
+         ✗ line 81: mill: P1/Q1: the operation gives 184320
+         ✗ line 82: mill: (P1/Q1)·B68: the operation gives 45/64/81/140a
+         ✗ line 96: mill: ΔQ2+ΔQ2: the operation gives 1160
+L019     167 statements, 167 agree
+L020     148 statements, 147 agree
+         ✗ line 126: mill: -e/d: the operation gives (-BB′C′D′′ + BB′C′′D′ - B′B′′CD′ + B′B′′C′D + B′^2CD′′ - B′^2C′′D)/(-BB′C′E′′ + BB′C′′E′ - B′B′′CE′ + B′B′′C′E + B′^2CE′′ - B′^2C′′E)
 
-15 pages; 1059 statements of the sheets checked, 1051 agree.
-4 page(s) with statements that do not agree.
+26 pages; 1994 statements of the sheets checked, 1961 agree.
+11 page(s) with statements that do not agree.
 ```
 
 ## The rules of the machine
@@ -123,10 +170,28 @@ $ babbage decisions
 18. How a carriage gives M and N to the mill's columns is not settled.
    BAB/L/012 writes M1 in v1 at row 7 while Car3 holds C.M1, and M2 at row 19 while Car3 holds M2 (likewise N in v9 at rows 12 and 24). The run gives the complement at rows 7, 12, 31, 36 and not at 19, 24, as the cells require; no single rule does both.
 
-19. Great operations are multiplication and division; small are addition, subtraction and transfers.
+19. A number taken from a column may at the same time be laid, as it is, in another.
+   BAB/L/018 (1838–41) does so 27 times: Q0 into v6 at row 1, ΔQ0 into v8 at row 4, ΔP into v3 and v4 alternately. BAB/L/001 lays only complements; whether the copy goes through a complement and back (Rojas's "give off and retain") the sheet does not say.
+
+20. A table is made of the factor the next multiplication uses again.
+   BAB/L/015 (23 December 1837), rows 23 to 26: HK′ then MK′ with K′ in no column, and H′K then M′K with K in none. The mill tabulates K′ and K, the factor written second. On sheets with no right-hand column the run makes the table of whichever factor the next multiplication, reading one column, needs.
+
+21. A number may be given off to the mill and retained.
+   BAB/L/016 (June 1838), back: "G.R signifies give off & retain"; BAB/L/019 (July 1840), back: the 0 above means the column is reduced to zero, the letter below that it is "retained at the same place … by means of its Complement previously put out". The run gives the number to the mill and leaves it in its column; its accents do not change. A complement written on its way back ("C.'B 0") is checked to be of the number retained.
+
+22. A complement read into the mill gives the number it is the complement of.
+   BAB/L/014, second table: each a is read again and again from a column holding "Comp a", and laid again as "Comp a", with no transfer ever bringing it back.
+
+23. The variable cards are the pairs the run moves numbers by.
+   BAB/L/019 and L/020 (1840) list beside each operation its variable cards, "(v23 v7) the first variable … is that which is given off the second … that which receive[s]", 0 for the mill, with their counts and running totals. The run derives the same pairs from the cells and checks the sheet's, as sets; the order is not checked.
+
+24. Where the mill column and the operation differ, and no cell writes what the operation gives, the run goes on with the sheet's value.
+   BAB/L/020 writes −e/∂ = z from a division of ∂ by e; BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.
+
+25. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-20. Values are compared as algebra.
+26. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 

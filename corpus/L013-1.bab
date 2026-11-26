@@ -1,0 +1,47 @@
+% BAB/L/013, Science Museum Group Collection, document aa110001641.
+% The upper table of the opened sheet (image 222/569, top left). The cover
+% (222/568) is dated "11 Dec 1837 No 13"; the opened sheet "11 Dec 1837" at
+% the top right. Read from the zoom images at full resolution.
+
+Sheet BAB/L/013
+No. 13.1
+Date 11 Dec 1837          "11 Dec 1837 No 13"   % cover
+Title "Calculation of the 7th coeffecient of ΣAm x^m × Σan x^n = Σλp x^p = ΣAq ap-q . x^p; λ6 = A0a6 + A1a5 + A2a4 + A3a3 + A4a2 + A5a1 + A6a0"
+Image 222/568 cover: "Notation of the coeffecients of the powers of x in the product (A0 + A1x + A2x² + .... Amx^m) × (a0 + a1x + a2x² + .... anx^n) = λ0 + λ1x + λ2x² + .... λpx^p + λp+1x^p+1 + .... λm+nx^m+n; λp = A0ap + A1ap-1 + A2ap-2 + .... Aqap-q + .... Apa0. In the Notation p = 6"
+Image 222/569 the upper table
+Image 340/285 back: blank
+
+Letters A0 A1 A2 A3 A4 A5 A6 a0 a1 a2 a3 a4 a5 a6
+
+% The sheet heads v1 to v7 "A0" to "A6", v8 to v14 "a0" to "a6"; v15 has
+% no letter. An unheaded column stands between the mill and v1, and another
+% between v7 and v8; both are empty.
+Store v1 = A0, v2 = A1, v3 = A2, v4 = A3, v5 = A4, v6 = A5, v7 = A6, v8 = a0, v9 = a1, v10 = a2, v11 = a3, v12 = a4, v13 = a5, v14 = a6
+Working v15
+
+% No right-hand column of formulas. From operation 8 the mill and the cells
+% write products in the cover's short notation: "A point between two numbers
+% as 0.6 signifies the product of the letters affected by the numbers the
+% first being A the other a as A0a6 is represented by 0.6". So "0.6+1.5" is
+% written here A0a6+A1a5.
+Op 1     ×  | A0a6                          | v1 0, v14 0, v15 A0a6 |
+Op 2     ×  | A1a5                          | v1 A1a5, v2 0, v13 0 |
+Op 3     ×  | A2a4                          | v2 A2a4, v3 0, v12 0 |
+Op 4     ×  | A3a3                          | v3 A3a3, v4 0, v11 0 |
+Op 5     ×  | A4a2                          | v4 A4a2, v5 0, v10 0 |     % the subscripts 4 and 2 written heavily over others, in the mill and in v4
+Op 6     ×  | A5a1                          | v5 A5a1, v6 0, v9 0 |
+Op 7     ×  | A6a0                          | v6 A6a0, v7 0, v8 0 |
+Op 8     +  | A0a6+A1a5                     | v1 0, v7 A0a6+A1a5, v15 0 |                   % "0.6+1.5"
+Op 9     +  | A0a6+A1a5+A2a4                | v1 A0a6+A1a5+A2a4, v2 0, v7 0 |             % "0.6+2.4"; a second 0 in v15, lighter, crossed by a pencil stroke
+Op 10    +  | A0a6+A1a5+A2a4+A3a3           | v1 0, v2 A0a6+A1a5+A2a4+A3a3, v3 0 |        % "0.6+3.3"
+Op 11    +  | A0a6+A1a5+A2a4+A3a3+A4a2      | v1 A0a6+A1a5+A2a4+A3a3+A4a2, v2 0, v4 0 |   % "0.6+4.2"
+Op 12    +  | A0a6+A1a5+A2a4+A3a3+A4a2+A5a1 | v1 0, v2 A0a6+A1a5+A2a4+A3a3+A4a2+A5a1, v5 0 |   % "0.6+5.1"
+Op 13    +  | A0a6+A1a5+A2a4+A3a3+A4a2+A5a1+A6a0 | v1 A0a6+A1a5+A2a4+A3a3+A4a2+A5a1+A6a0, v2 0, v6 0 |   % "0.6+6.0"
+
+% The heading's λ6; the table ends with it in v1 (the sheet writes it there
+% as "0.6+6.0", and does not name it).
+Let λ6 = A0a6 + A1a5 + A2a4 + A3a3 + A4a2 + A5a1 + A6a0
+Gives 13 v1 = λ6
+
+Remark "A point between two numbers as 0.6 signifies the product of the letters affected by the numbers the first being A the other a as A0a6 is represented by 0.6"
+Unrun "cover: 'In the Notation p = 6' followed by 'and p = 1', smudged as if rubbed out; below, 'Σλp = A0a0 + (A0a1 + A1a0) + (A0a2 + A1a1 + A2a0) + &c = λ0 + λ1 + λ2 + &c. In the Notation p = 0, 1, 2, 3, 4, 5 & 6' (for the lower table)"

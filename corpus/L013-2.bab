@@ -1,0 +1,56 @@
+% BAB/L/013, Science Museum Group Collection, document aa110001641.
+% The lower table of the opened sheet (image 222/569, lower half, across both
+% leaves). The cover (222/568) is dated "11 Dec 1837 No 13". Read from the
+% zoom images at full resolution.
+
+Sheet BAB/L/013
+No. 13.2
+Date 11 Dec 1837          "11 Dec 1837 No 13"   % cover
+Title "Calculation of the first seven coeffecients of the foregoing product viz. {A0a0, A0a1 + A1a0, A0a2 + A1a1 + A2a0, ... A0a6 + A1a5 + A2a4 + A3a3 + ...}"
+Image 222/568 cover: "Σλp = A0a0 + (A0a1 + A1a0) + (A0a2 + A1a1 + A2a0) + &c = λ0 + λ1 + λ2 + &c. In the Notation p = 0, 1, 2, 3, 4, 5 & 6"
+Image 222/569 the lower table
+
+Letters A0 A1 A2 A3 A4 A5 a0 a1 a2 a3 a4 a5
+
+% The sheet heads v1 to v6 "A0" to "A5", v7 to v12 "a0" to "a5", v13 "λ0"
+% (blotted), and numbers v14 to v33 with no letters. An unheaded column
+% stands between the mill and v1, another between v6 and v7, two narrow
+% ones between v13 and v14. The rows are numbered to 36; 22 to 36 are empty.
+Store v1 = A0, v2 = A1, v3 = A2, v4 = A3, v5 = A4, v6 = A5, v7 = a0, v8 = a1, v9 = a2, v10 = a3, v11 = a4, v12 = a5
+Working v13 v14 v15 v16 v17 v18
+
+% The sheet's λ0 in v13 at row 1 is the cover's first coefficient, A0a0.
+Let λ0 = A0a0
+
+% No right-hand column of formulas. "Comp a0" and so on are written in words;
+% here Ca0. A0 is taken once, at row 1, and its table serves six
+% multiplications.
+%
+% Products written and struck through, on the right: A0a1 in v14 (row 2),
+% A0a2 in v15 (row 3), A0a3 in v16 (row 4, struck more lightly), A0a4 in v17
+% (row 5). Each stands in the column the row before gave a complement of
+% an a; each product is also written, not struck, on the left, in the column
+% the row before left at zero. The struck ones are not run.
+Op 1     ×  | A0a0      | v1 0, v7 0, v13 λ0, v14 Ca0 |
+Op 2     ×  | A0a1      | v1 A0a1, v8 0, v15 Ca1 |        % the A0 of v1's A0a1 has a heavy dot for its subscript
+Op 3     ×  | A0a2      | v7 A0a2, v9 0, v16 Ca2 |
+Op 4     ×  | A0a3      | v8 A0a3, v10 0, v17 Ca3 |
+Op 5     ×  | A0a4      | v9 A0a4, v11 0, v18 Ca4 |
+Op 6     ×  | A0a5      | v10 A0a5, v12 0, v18 A0a5 |     % A0a5 is written twice, in v10 and, not struck, in v18, where row 5 laid Ca4
+
+% Rows 7 to 21 write the operation and the product, and nothing else: the
+% product in a new column each time, v19 to v33, on a diagonal. No row
+% leaves a column at zero, none brings an a back from its complement (v14
+% to v18), and A1 to A5 are never taken from v2 to v6; no addition follows.
+% They cannot be run as written, and are kept here as the sheet has them:
+%   7 × A1a0  v19      12 × A2a0  v24      17 × A3a1  v29
+%   8 × A1a1  v20      13 × A2a1  v25      18 × A3a2  v30
+%   9 × A1a2  v21      14 × A2a2  v26      19 × A4a0  v31
+%  10 × A1a3  v22      15 × A2a3  v27      20 × A4a1  v32
+%  11 × A1a4  v23      16 × A3a0  v28      21 × A5a0  v33
+% Row 12's "× A2a0" has a wavy pencil line through it, running from the
+% pencil braces beside rows 9 to 17.
+
+Unrun "rows 7 to 21: × A1a0 … × A5a0, each product alone in v19 to v33, with no column read; see the comment above"
+Unrun "pencil, in the column of v3, beside rows 9 to 17: braces, and '× + × + × + ...' alternating"
+Unrun "struck through on the right: A0a1 in v14 (row 2), A0a2 in v15 (row 3), A0a3 in v16 (row 4), A0a4 in v17 (row 5)"

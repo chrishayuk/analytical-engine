@@ -1,0 +1,133 @@
+% BAB/L/020, Science Museum Group Collection, document aa110001682.
+% The cover (222/596): "No 20 continuation of No 19", "31 July 1840"; the
+% opened sheet (222/597): two tables, each with its variable cards; the back
+% (222/598): faint figures at the top left, nothing of the program. Read from
+% the zoom images at full resolution. See sources/notes/L020.md.
+%
+% DRAFT, not yet in the notation the engine reads (hence .bab.draft, which
+% build.rs does not pick up). Two things the engine lacks:
+%
+%  1. "Give off and retain" in one operation. A column read is written "0"
+%     and then, below and to the right, its number again ("0 'B"); its
+%     complement is laid in a complement column ("C.'B") and given back in
+%     the same operation, leaving that column "0". Written here, as a
+%     proposal: `v7 0 B'` (given off and retained) and `v17 CB' 0` (laid and
+%     given back). The cards show it: (v7 v17) ... (v17 v7).
+%  2. The variable cards themselves, written beside each row as pairs
+%     (from, to): (v7 v17) gives v7 to the mill and its complement to v17;
+%     (v17 v7) gives it back; (v3 0) gives v3 to the mill and leaves it at
+%     zero; (0 v18) puts the mill's result in v18. With each row its number of
+%     pairs, a total for each group of three rows (=12, =24 ...), and a
+%     running count carried over from No 19 (136, 148, 160 ...). Written
+%     here, as a proposal, `Cards` after each row: `Cards (v7 v17)(v3 0)(v17
+%     v7)(0 v18) 4`, and `Carried 136`, `Total 148`.
+%
+% Checked outside the engine (every cell, complement, quantity and card
+% count; 126 of 128 agree): see the notes.
+%
+% The sheet writes accents before the letter ('B, ''B, 'γ); here after (B',
+% B'', γ'). Its Greek: γ δ ε, then ∂ (round d) and e for the last equation.
+
+Sheet BAB/L/020
+No. 20
+Date 31 Jul 1840          "31 July 1840"   % cover
+Title "Notation of the Reduction of the Three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and these to ∂z + e = 0 with the solution"
+Image 222/596 cover: "No 20 continuation of No 19"
+Image 222/597 the two tables and their cards
+Image 222/598 back
+
+Letters B C D E B' C' D' E' B'' C'' D'' E''
+Unknowns x y z
+Equation B x + C y + D z + E = 0
+Equation B' x + C' y + D' z + E' = 0
+Equation B'' x + C'' y + D'' z + E'' = 0
+
+% The first table. Columns: "No. of the Opn"; a brace for each group of
+% three; "Opn"; "Quant" (the mill's quantity); "Ingress", "Egress" (empty);
+% the store under "Bx + Cy + Dz + E = 0": v2 B, v3 C, v4 D, v5 E; under
+% "'Bx + 'Cy + 'Dz + 'E = 0": v7 'B, v8 'C, v9 'D, v10 'E; under "''Bx ...":
+% v12 ''B, v13 ''C, v14 ''D, v15 ''E; v16 headed "C. B..", v17 "C. 'B..", and
+% a third, unheaded complement column; v18 and v19 headed "Prod"; then the
+% cards, "Carried over 136" above them.
+Store v2 = B, v3 = C, v4 = D, v5 = E, v7 = B', v8 = C', v9 = D', v10 = E', v12 = B'', v13 = C'', v14 = D'', v15 = E''
+Working v11 v16 v17 v18 v19   % v11: the complement column of the second table
+
+Carried 136
+Op 1     ×  | B'C           | v3 0, v7 0 B', v17 CB' 0, v18 B'C |
+Cards (v7 v17)(v3 0)(v17 v7)(0 v18) 4
+Op 2     ×  | BC'           | v2 0 B, v8 0 C', v16 CB 0, v17 CC' 0, v19 BC' |
+Cards (v2 v16)(v8 v17)(v16 v2)(v17 v8)(0 v19) 5
+Op 3     −  | B'C-BC'       | v3 =γ, v18 0, v19 0 |
+Cards (v18 0)(v19 0)(0 v3) 3
+Total 12 148
+Op 4     ×  | B'D           | v4 0, v7 0 B', v17 CB' 0, v18 B'D |
+Cards (v7 v17)(v4 0)(v17 v7)(0 v18) 4
+Op 5     ×  | BD'           | v2 0 B, v9 0 D', v16 CB 0, v17 CD' 0, v19 BD' |
+Cards (v2 v16)(v9 v17)(v16 v2)(v17 v9)(0 v19) 5
+Op 6     −  | B'D-BD'       | v4 =δ, v18 0, v19 0 |
+Cards (v18 0)(v19 0)(0 v4) 3
+Total 24 160
+Op 7     ×  | B'E           | v5 0, v7 0 B', v17 CB' 0, v18 B'E |
+Cards (v7 v17)(v5 0)(v17 v7)(0 v18) 4
+Op 8     ×  | BE'           | v2 0, v10 0 E', v17 CE' 0, v19 BE' |          % B given off and not retained: its last use
+Cards (v2 0)(v10 v17)(v17 v10)(0 v19) 4
+Op 9     −  | B'E-BE'       | v5 =ε, v18 0, v19 0 |
+Cards (v18 0)(v19 0)(0 v5) 3
+Total 35 171
+% A rule is drawn across the cards here, and a dashed one across v16 to
+% the third complement column.
+Op 10    ×  | B''C'         | v8 0, v12 0 B'', v16 CB'' 0, v18 B''C' |      % also "C''B" and "0" in the third complement column, struck through
+Cards (v12 v16)(v8 0)(v16 v12)(0 v18) 4
+Op 11    ×  | B'C''         | v7 0 B', v13 0, v17 CB' 0, v19 B'C'' |
+Cards (v7 v17)(v13 0)(v17 v7)(0 v19) 4
+Op 12    −  | B''C'-B'C''   | v8 =γ', v18 0, v19 0 |
+Cards (v18 0)(v19 0)(0 v8) 3
+Total 46 182
+Op 13    ×  | B''D'         | v9 0, v12 0 B'', v16 CB'' 0, v18 B''D' |      % again "C''B" and "0" in the third complement column, struck through
+Cards (v12 v16)(v9 0)(v16 v12)(0 v18) 4
+Op 14    ×  | B'D''         | v7 0 B', v14 0, v17 CB' 0, v19 B'D'' |
+Cards (v7 v17)(v14 0)(v17 v7)(0 v19) 4
+Op 15    −  | B''D'-B'D''   | v9 =δ', v18 0, v19 0 |
+Cards (v18 0)(v19 0)(0 v9) 3
+Total 57 193
+Op 16    ×  | B''E'         | v10 0, v12 0, v18 B''E' |                     % ''B not retained: its last use
+Cards (v12 0)(v10 0)(0 v18) 3
+Op 17    ×  | B'E''         | v7 0, v15 0, v19 B'E'' |                      % 'B not retained: its last use
+Cards (v7 0)(v15 0)(0 v19) 3
+Op 18    −  | B''E'-B'E''   | v10 =ε', v18 0, v19 0 |
+Cards (v18 0)(v19 0)(0 v10) 3
+Total 66 202
+
+% The second table, below. Store under "γy + δz + ε = 0": v3 γ, v4 δ, v5 ε;
+% under "'γy + 'δz + 'ε = 0": v8 'γ, v9 'δ, v10 'ε; complement columns v11
+% "Cγ.." and a second, its heading struck out (perhaps v18), "C'γ.."; v12 and
+% v13 "Prod". Numbered 1 to 6, then, after a gap, 1 again for the division.
+% Faint pencil numbers stand before some cells of v12 and v13 (1, 2, 3) and
+% left of the gap ("60", "61"): not read.
+% The second table counts its cards afresh ("=11", "=20"), the running
+% count going on from 202.
+Group
+Op 1     ×  | γ'δ           | v4 0, v8 0 γ', v11 Cγ' 0, v12 γ'δ |           % also "C'γ" and "0" in the second complement column, struck through
+Cards (v8 v11)(v4 0)(v11 v8)(0 v12) 4
+Op 2     ×  | γδ'           | v3 0 γ, v9 0, v11 Cγ 0, v13 γδ' |
+Cards (v3 v11)(v9 0)(v11 v3)(0 v13) 4
+Op 3     −  | γ'δ-γδ'       | v4 =d, v12 0, v13 0 |
+Cards (v12 0)(v13 0)(0 v4) 3
+Total 11 213                                                              % with "∂" beside it
+Op 4     ×  | γ'ε           | v5 0, v8 0, v12 γ'ε |
+Cards (v8 0)(v5 0)(0 v12) 3
+Op 5     ×  | γε'           | v3 0, v10 0, v13 γε' |
+Cards (v3 0)(v10 0)(0 v13) 3
+Op 6     −  | γ'ε-γε'       | v5 =e, v12 0, v13 0 |
+Cards (v12 0)(v13 0)(0 v5) 3
+Total 20 222                                                              % with "e" beside it
+% Below a dashed line, the division counts its own ("=3").
+Group
+Op 1  ÷     | -e/d          | v4 0, v5 0, v12 =z |  % the cell reads "-e/d = z"                   % a dashed line across v12 and v13 above this row
+Cards (v4 0)(v5 0)(0 v12) 3
+Total 3 225
+
+Find z = -e/d
+
+Unrun "cover, pencil: 'A product as ab requires three variables to contain it for it may consist of 80 figures divided on three variables viz Head middle & tail' (read in part; 'viz' and 'Head' uncertain)"
+Unrun "back (222/598), top left, faint: a line of figures and brackets, not read"

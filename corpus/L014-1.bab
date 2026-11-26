@@ -1,0 +1,40 @@
+% BAB/L/014, Science Museum Group Collection, document aa110001644.
+% The first table of the opened sheet (image 222/571, upper left). The cover
+% (222/570) is numbered "No 13" with "14" below, the 13 struck through, and
+% has "no date" in pencil; the back (340/286) is blank. Read from the zoom
+% images at full resolution. See sources/notes/L014.md.
+
+Sheet BAB/L/014
+No. 14.1
+Date                      % none on the sheet; the cover has "no date" in pencil
+Title "Calculation of the 7th coeffecient of ΣAm x^m × Σan x^n = Σλp x^p, m = 0,1,2,&c n = 0,1,2,&c p = 0,1,2,&c, λp = ΣAq ap-q q = 0,1,2,&c ...p. λ6 = A0a6 + A1a5 + A2a4 + A3a3 + A4a2 + A5a1 + A6a0"
+Image 222/570 cover: "Notations of the 7th Coeffecient of the product (A0 + A1x + A2x² + ... Amx^m)(a0 + a1x + .. anx^n) and of the first Six coeffecients of the same product; where two numbers are written with a point between them as 0.6 in No 8 signifies A0a6 in like manner in the same number 0.6 + 1.5 is for A0a6 + A1a5 & so of others"
+Image 222/571 the first table
+
+Letters A0 A1 A2 A3 A4 A5 A6 a0 a1 a2 a3 a4 a5 a6
+Find λ6 = A0a6 + A1a5 + A2a4 + A3a3 + A4a2 + A5a1 + A6a0
+
+% The sheet heads v1 to v7 "A0" to "A6", v8 to v14 "a0" to "a6"; v15 has no
+% heading. No right-hand column of formulas.
+Store v1 = A0, v2 = A1, v3 = A2, v4 = A3, v5 = A4, v6 = A5, v7 = A6, v8 = a0, v9 = a1, v10 = a2, v11 = a3, v12 = a4, v13 = a5, v14 = a6
+Working v15
+
+% The mill column of rows 8 to 13 is in the cover's shorthand: i.j is Ai aj,
+% and "0.6+..2.4" is A0a6 + A1a5 + A2a4. Written out here.
+Op 1     ×  | A0a6      | v1 0, v14 0, v15 A0a6 |
+Op 2     ×  | A1a5      | v1 A1a5, v2 0, v13 0 |
+Op 3     ×  | A2a4      | v2 A2a4, v3 0, v12 0 |
+Op 4     ×  | A3a3      | v3 A3a3, v4 0, v11 0 |
+Op 5     ×  | A4a2      | v4 A4a2, v10 0 |                % no 0 in v5, from which A4 is taken
+Op 6     ×  | A5a1      | v5 A5a1, v9 0 |                 % no 0 in v6, from which A5 is taken
+Op 7     ×  | A6a0      | v6 A6a0, v7 0, v8 0 |
+Op 8     +  | A0a6+A1a5 | v1 0, v7 A0a6+A1a5, v15 0 |     % "0.6+1.5"; a 0 in v14 is struck through
+Op 9     +  | A0a6+A1a5+A2a4 | v1 A0a6+A1a5+A2a4, v2 0, v7 0 |                      % "0.6+..2.4"
+Op 10    +  | A0a6+A1a5+A2a4+A3a3 | v1 0, v3 0, v7 A0a6+A1a5+A2a4+A3a3 |          % "0.6+..3.3"
+Op 11    +  | A0a6+A1a5+A2a4+A3a3+A4a2 | v1 A0a6+A1a5+A2a4+A3a3+A4a2, v4 0, v7 0 |                % "0.6+...4.2"
+Op 12    +  | A0a6+A1a5+A2a4+A3a3+A4a2+A5a1 | v1 0, v5 0, v7 A0a6+A1a5+A2a4+A3a3+A4a2+A5a1 |      % "0.6+...5.1"
+Op 13    +  | A0a6+A1a5+A2a4+A3a3+A4a2+A5a1+A6a0 | v1 =λ6, v6 0, v7 0 |       % "0.6+...6.0 = λ6"
+
+% To the right of the table: "Multipns = 7, Addns = 6, Total Opern = 13";
+% "Variables = 14, working do = 1, Total var = 15".
+States great 7, small 6, total 13, variables 14, working 1, occupied 15

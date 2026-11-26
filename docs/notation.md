@@ -70,6 +70,18 @@ Numbers given to the store from outside the table, between operations (the
 sheet's "Calculate f(1) f₁(1)"), are an `In` line: `In v1 f1, v2 g1`. They
 are not an operation; each column must be at zero.
 
+## Given off and retained; the cards
+
+`G.R` (BAB/L/016, "give off & retain") or `0 x` (BAB/L/019, L/020: a 0
+above, the letter below) is a column that gives its number to the mill and
+keeps it. `Cx 0` is the complement on its way back, in the column it passes
+through. After a row, `Cards (v7 v17)(v3 0)(v17 v7)(0 v18) 4` is the sheet's
+list of variable cards (0 for the mill) and their count, which the run
+checks against the pairs it moves numbers by; `Carried 136`, `Group` and
+`Total 12 148` are the sheet's counts, a group's and the running total.
+`C` is the complement before a letter, a bracket or a point, and otherwise
+the letter C.
+
 ## Turns of the store
 
 BAB/L/008 to L/012 work the store as a difference engine with three

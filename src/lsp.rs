@@ -393,6 +393,10 @@ pub const KEYWORD_HELP: &[(&str, &str)] = &[
         "Op",
         "an operation: `Op 1 × | b'a | v1 0, v5 0, v7 b'a | v7 = v5·v1` (number, operation, mill, store cells, formula)",
     ),
+    ("Cards", "the sheet's variable cards for the row above: `Cards (v7 v17)(v3 0)(v17 v7)(0 v18) 4`"),
+    ("Carried", "the count of cards carried over from the sheet before: `Carried 136`"),
+    ("Group", "a group of cards begins, counted afresh"),
+    ("Total", "the sheet's count of cards: the group's, and the running total: `Total 12 148`"),
     (
         "Turn",
         "a turn of the store and its carriages: `Turn 2 | Car1 = Car1 - v2, v7 = Car1 | Car1 995, v2 0, v7 995`",

@@ -1,0 +1,71 @@
+% BAB/L/015, Science Museum Group Collection, document aa110001649.
+% Cover 222/574 ("No 15", "23 Dec 1837"); the opened sheet with the table,
+% 222/576; a pencil draft of a table in the same ruling, 222/573 (not
+% transcribed); the back, 222/572. Read from the zoom images at full
+% resolution. See sources/notes/L015.md.
+
+Sheet BAB/L/015
+No. 15
+Date 23 Dec 1837          "No 15 23 Dec 1837"   % cover
+Title "Notation for determining the value of x from the three equations ax + by + cz + ∂ = 0, a'x + b'y + c'z + ∂' = 0, a''x + b''y + c''z + ∂'' = 0 (A); First by reducing them to two equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0 (B); Secondly by reducing these two to one equivalent to H''x = M'' when x = M''/H''"
+Image 222/574 cover: "Method of solution. The coeffecient of z in eqns 1, 2 of (A) are equalised, 2 & 3 ditto, Which gives the equations (B) by subtraction. In which equations (B) the coeffecients of y are equalised From which by subtraction arises the equation H''x = M''"
+Image 222/576 the table
+Image 222/573 a pencil draft in the same ruling, not transcribed
+Image 222/572 back: pencil, faint, three lines, not read
+
+% The sheet's ∂ (round d) is written d.
+Letters a b c d a' b' c' d' a'' b'' c'' d''
+Unknowns x y z
+Equation a x + b y + c z + d = 0
+Equation a' x + b' y + c' z + d' = 0
+Equation a'' x + b'' y + c'' z + d'' = 0
+Find x = M''/H''
+
+% The store is headed by the three equations, v1-v4 "ax + by + cz + ∂",
+% v5-v8 the second, v9-v12 the third; then the numbers of the operations
+% repeated; then v13 to v19, unheaded.
+Store v1 = a, v2 = b, v3 = c, v4 = d, v5 = a', v6 = b', v7 = c', v8 = d', v9 = a'', v10 = b'', v11 = c'', v12 = d''
+Working v13 v14 v15 v16 v17 v18 v19
+
+% No right-hand column of formulas: each row is the operation, the mill's
+% result and the cells. "Comp c'" and the like are written in words; here
+% Cc'. H, K, M and their accents are the sheet's; =H marks where the sheet
+% first writes each.
+Op 1     ×  | c'a        | v1 0, v7 0, v13 Cc', v14 c'a |
+Op 2     ×  | c'b        | v2 0, v15 c'b |
+Op 3     ×  | c'd        | v4 c'd, v16 c'd |          % "c'd" in v4, in ink, and no 0: d is taken from v4 and the row writes no 0 there
+Op 4     ×  | ca'        | v3 0, v5 0, v7 Ca', v17 ca' |
+Op 5     ×  | cb'        | v2 cb', v5 Cb', v6 0 |
+Op 6     ×  | cd'        | v6 Cd', v8 0, v18 cd' |
+Op 7     −  | c'a-ca'    | v1 =H, v14 0, v17 0 |
+Op 8     −  | c'b-cb'    | v2 0, v3 =K, v15 0 |        % also a fainter 0 in v14, with a smudge across it, as if erased; not written here
+Op 9     −  | c'd-cd'    | v4 =M, v16 0, v18 0 |
+Op 10       |            | v6 0, v8 d' |              % also a 0 in v5, smudged, as if erased; not written here
+Op 11       |            | v5 0, v6 b' |
+Op 12       |            | v5 a', v7 0 |
+Op 13       |            | v7 c', v13 0 |
+Op 14    ×  | c''a'      | v5 0, v11 0, v14 c''a' |
+Op 15    ×  | c''b'      | v6 0, v15 c''b' |
+Op 16    ×  | c''d'      | v8 0, v16 c''d' |
+Op 17    ×  | c'a''      | v7 0, v9 0, v17 c'a'' |
+Op 18    ×  | c'b''      | v10 0, v18 c'b'' |
+Op 19    ×  | c'd''      | v12 0, v19 c'd'' |
+Op 20    −  | c''a'-c'a'' | v5 =H', v14 0, v17 0 |
+Op 21    −  | c''b'-c'b'' | v7 =K', v15 0, v18 0 |
+Op 22    −  | c''d'-c'd'' | v8 =M', v16 0, v19 0 |
+Op 23    ×  | HK'        | v1 0, v7 0, v9 HK' |
+Op 24    ×  | MK'        | v4 0, v10 MK' |             % K' is in no column (v7 left at zero by 23): the common factor written second
+Op 25    ×  | H'K        | v3 0, v5 0, v11 H'K |
+Op 26    ×  | M'K        | v8 0, v12 M'K |             % K is in no column (v3 left at zero by 25): the common factor written second
+Op 27    −  | HK'-H'K    | v1 =H'', v9 0, v11 0 |
+Op 28    −  | M'K-MK'    | v4 =M'', v10 0, v12 0 |
+Op 29    ÷  | M''/H''    | v5 =x |                     % no 0 written in v1 or v4
+
+% Cover: "No of necessary variables = 12 / Contingent or working do = 7 /
+% Total number of variables = 19".
+States variables 12, working 7, occupied 19
+
+Unrun "pencil, faint, right of the table: a column of formulas in the variables, e.g. 'v7 v1 = v13', 'v3 v6 = v2'', 'v3 v8 = v17', 'v14 - v16 = v1'', which do not all match the ink table's columns; not read in full"
+Unrun "pencil, faint, left of row 9 under v2 and v3: '0' and 'c'b - cb'' with small figures below (perhaps 15)"
+Unrun "pencil, faint, headings v20 to v23 after v19"
+Unrun "cover, pencil, faint: a ruled grid of labelled rows of figures (perhaps Mult, Subtr, Transf...), as on the covers of BAB/L/004 and L/005; not read"

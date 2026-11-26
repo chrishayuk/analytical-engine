@@ -36,7 +36,7 @@ test("the built-in babbage runs every page of the corpus as the native one does"
     const result = spawnSync(process.execPath, [runner, corpus + file]);
     assert.equal(result.status, 0, `${file}: ${result.stderr}`);
     const out = result.stdout.toString();
-    assert.match(out, /^BAB\/L\/\d+ +No\. /, file);
+    assert.match(out, /^BAB\/L\/[\d\/]+ +No\. /, file);
     assert.match(out, /\n\d+ statements of the sheet checked: \d+ agree, \d+ do not\.\n/, file);
     if (existsSync(native)) {
       assert.equal(out, spawnSync(native, [corpus + file]).stdout.toString(), file);

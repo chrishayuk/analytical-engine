@@ -1,0 +1,34 @@
+% BAB/L/016/2, Science Museum Group Collection, document aa110001662
+% ("Sheet 2"). Three images: 222/581, the front, in pencil, "No 16" and the
+% list of formulas for Sheet 1's first set (transcribed as the right-hand
+% column of corpus/L016-1.bab.draft); 222/582, the opened sheet, in ink,
+% "June 1838"; 222/583, the back, "June 1838" in pencil. Read from the zoom
+% images at full resolution. See sources/notes/L016.md.
+%
+% The opened sheet has no table of operations. Its right half describes, in
+% words and equations, what Sheet 1's two sets of operations do; its left
+% half sketches the same for five equations in five variables. Nothing on
+% it is a row the engine can run: the page states the equations and quotes
+% the sheet.
+
+Sheet BAB/L/016/2
+No. 16
+Date Jun 1838            "June 1838"   % top right of 222/582
+Title "Successive reduction of simultaneous equations: three equations in three variables, and five in five"
+Image 222/581 front: pencil list "This is the Composition of the transformation of the equations given in Notation No 1 above"
+Image 222/582 the opened sheet: the reduction described in words
+Image 222/583 back: "June 1838"
+
+Letters a b c d a' b' c' d' a'' b'' c'' d''
+Unknowns x y z
+Equation a x + b y + c z + d = 0
+Equation a' x + b' y + c' z + d' = 0
+Equation a'' x + b'' y + c'' z + d'' = 0
+
+Remark "1 ax + by + cz + d = 0 2 a'x + b'y + c'z + d' = 0 3 a''x + b''y + c''z + d'' = 0. Multiply 2 & 3 by a the coeffecient of x in 1, 1 & 3 by a' ... 2, 1 & 2 by a'' ... 3. Hence arises six equations which being properly disposed (1) f + d'a = 0 (2) f + d''a (3) f + da' (4) f + d''a' (5) f + da'' 6 f + d'a = 0. Then (1) - (3) = {1}, (2) - (5) = {2}, (3) - (6) = {3}"
+Remark "{1} (a'a - aa')x + (b'a - ba')y + (c'a - ca')z + (d'a - da') = 0 {2} (a''a - aa'')x + (b''a - ba'')y + (c''a - ca'')z + (d''a - da'') = 0 {3} (a''a' - a'a'')x + (b''a' - b'a'')y + (c''a' - c'a'')z + (d''a' - d'a'') = 0"
+Remark "Thus the machine has transformed the three given equations into three others of the same form but the coeffecient of the first variable in each is equal to nothing. The action of the machine has therefore changed the coeffecients of the first variable to zero in the resulting equations; these equations may be written Ax + By + Cz + D = 0, A'x + B'y + C'z + D' = 0, A''x + B''y + C''z + D'' = 0 where A = 0 A' = 0 A'' = 0"
+Remark "If the same equations By + Ax + Cz + D = 0 ... be placed in the machine and subjected to the same operations as their primitives their derivatives βy + αx + γz + δ = 0, β'y + α'x + γ'z + δ' = 0, β''y + α''x + γ''z + δ'' = 0 will be found by repeating the same mechanical actions bringing about the same processes and conclusion i.e. it reduces the coeffecient of the first variable (which now is y) to zero i.e. β = 0 β' = 0 β'' = 0 α, α' & α'' are each zero per se hence these three equations are in fact γz + δ = 0, γ'z + δ' = 0, γ''z + δ'' = 0 and δ/γ = δ'/γ' = δ''/γ'' = -z"
+Remark "Primitive equation f(x, y, z, u, v, a) = 0, f(x, y, z, u, v, a') = 0, ... f(x, y, z, u, v, a'''') = 0 put in the Machine; Machine puts out f1(0x, y, z, u, v, a) = 0 ...; put in the Machine f1(y, 0x, z, u, v, a) = 0 ...; Machine puts out ...; ... Machine puts out f(0, ..., v, a) = 0 ... from either of which v may be determined"
+Unrun "222/582, left half: the five-variable sketch, each block of five functions between 'put in the Machine' and 'Machine puts out', the zeroed variables written 0x, 0y, ...; the inner lines are partly illegible and were not read cell for cell"
+Unrun "222/581: beside the list, pencil working: (ad + ...)/(a + b...), a(b + c), (ab + ac)/r = a(b + c)/r, -ab/r + ac/r"

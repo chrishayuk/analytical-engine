@@ -103,6 +103,28 @@ fn lex(s: &str) -> Result<Vec<Tok>, String> {
                 let p = primes(&cs, &mut i);
                 out.push(Tok::Var(CAR + n, p));
             }
+            // C is the complement before a letter, a bracket or "C."; else
+            // it is the letter C (BAB/L/019 and L/020: Bx + Cy + Dz + E).
+            'C' if !cs
+                .get(i + 1)
+                .is_some_and(|c| c.is_alphabetic() || matches!(c, '(' | '.')) =>
+            {
+                i += 1;
+                let mut name = "C".to_string();
+                for _ in 0..primes(&cs, &mut i) {
+                    name.push('\'');
+                }
+                while i < cs.len() {
+                    match subscript_digit(cs[i]) {
+                        Some(d) => {
+                            name.push(d);
+                            i += 1
+                        }
+                        None => break,
+                    }
+                }
+                out.push(Tok::Letter(name));
+            }
             'C' => {
                 out.push(Tok::Comp);
                 i += 1;

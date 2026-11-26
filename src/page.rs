@@ -32,6 +32,13 @@ pub enum Cell {
     /// `=x`: the column now holds what the sheet calls x.
     Named(String),
     Value(Expr, String),
+    /// `G.R` (BAB/L/016: "G.R signifies give off & retain"), or `0 x`
+    /// (BAB/L/020: "0 'B"): the column gives its number to the mill and keeps
+    /// it; with `x`, the number it keeps, as the sheet writes it.
+    Retain(Option<(Expr, String)>),
+    /// `x 0` (BAB/L/020: "C.'B 0"): the column holds x during the row, the
+    /// complement on its way back, and is at zero after it.
+    Transit(Expr, String),
 }
 
 #[derive(Clone, Debug)]
@@ -46,6 +53,10 @@ pub struct Card {
     pub tails: Vec<(Expr, String)>,
 }
 
+/// The cards a sheet writes for a row: pairs (from, to), 0 for the mill;
+/// the count it gives; the line.
+pub type CardsWritten = (Vec<(usize, usize)>, Option<i64>, usize);
+
 #[derive(Clone, Debug)]
 pub struct Row {
     pub line: usize,
@@ -58,6 +69,9 @@ pub struct Row {
     pub card_text: String,
     /// Numbers brought in from outside the table, not an operation.
     pub input: bool,
+    /// The variable cards the sheet writes for the row (BAB/L/019, L/020):
+    /// pairs (from, to), 0 for the mill; the count it gives; the line.
+    pub cards_written: Option<CardsWritten>,
     /// A turn of the store and its carriages (BAB/L/008 to L/012): what is
     /// done, in order, `Car1 = Car1 - v2`, each a column and what it is given.
     pub actions: Option<Vec<(usize, Expr, String)>>,
@@ -101,6 +115,9 @@ pub struct Page {
     /// What a column holds after a row, as the sheet's right-hand column
     /// states it: `Gives 4 v8 = C(T1)`.
     pub gives: Vec<(usize, usize, Expr, String, usize)>,
+    /// The sheet's counts of cards: `Carried 136` (from the sheet before),
+    /// `Total 12 148` (this group, and running), each after so many rows.
+    pub card_counts: Vec<(usize, Option<i64>, Option<i64>, usize)>,
     /// The first line of each directive, for pointing at it.
     pub lines: std::collections::BTreeMap<String, usize>,
 }
@@ -144,6 +161,12 @@ fn parse_cell(s: &str) -> Result<(usize, Cell), String> {
     let rest = rest.trim();
     let cell = if rest == "0" {
         Cell::Zero
+    } else if matches!(rest, "G.R" | "G. R" | "GR") {
+        Cell::Retain(None)
+    } else if let Some(x) = rest.strip_prefix("0 ") {
+        Cell::Retain(Some((parse(x.trim())?, x.trim().to_string())))
+    } else if let Some(x) = rest.strip_suffix(" 0") {
+        Cell::Transit(parse(x.trim())?, x.trim().to_string())
     } else if let Some(n) = rest.strip_prefix('=') {
         Cell::Named(crate::expr::plain_name(n.trim()))
     } else {
@@ -241,6 +264,7 @@ fn parse_row(n: usize, s: &str) -> Result<Row, String> {
         card_text,
         input: false,
         actions: None,
+        cards_written: None,
     })
 }
 
@@ -275,6 +299,7 @@ fn parse_turn(n: usize, s: &str) -> Result<Row, String> {
         card_text: f[1].trim().to_string(),
         input: false,
         actions: Some(actions),
+        cards_written: None,
     })
 }
 
@@ -351,6 +376,55 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                 }
                 "Op" => p.rows.push(parse_row(n, rest).map_err(err)?),
                 "Turn" => p.rows.push(parse_turn(n, &body).map_err(err)?),
+                // Cards [N] (v7 v17)(v3 0)(v17 v7)(0 v18) [4]
+                "Cards" => {
+                    let open = body.find('(').ok_or_else(|| err("Cards (v7 v17)(v3 0) 2".into()))?;
+                    let close = body.rfind(')').ok_or_else(|| err("Cards (v7 v17)(v3 0) 2".into()))?;
+                    let number: Option<usize> = body[..open].trim().parse().ok();
+                    let count: Option<i64> = body[close + 1..].trim().parse().ok();
+                    let mut pairs = vec![];
+                    for pr in body[open + 1..close].split(')') {
+                        let pr = pr.trim().trim_start_matches('(');
+                        if pr.is_empty() {
+                            continue;
+                        }
+                        let mut w = pr.split_whitespace();
+                        let side = |x: Option<&str>| -> Result<usize, String> {
+                            match x {
+                                Some("0") => Ok(0),
+                                Some(v) => var_index(v),
+                                None => Err("a card is a pair (from to)".into()),
+                            }
+                        };
+                        pairs.push((side(w.next()).map_err(err)?, side(w.next()).map_err(err)?));
+                    }
+                    let row = p
+                        .rows
+                        .last_mut()
+                        .ok_or_else(|| err("Cards follow the row they belong to".into()))?;
+                    if number.is_some_and(|k| k != row.number) {
+                        return Err(err(format!(
+                            "these cards are numbered {} after row {}",
+                            number.unwrap(),
+                            row.number
+                        )));
+                    }
+                    row.cards_written = Some((pairs, count, n));
+                }
+                "Carried" => {
+                    let k = body.trim().parse().map_err(|_| err("Carried 136".into()))?;
+                    p.card_counts.push((p.rows.len(), Some(k), None, n));
+                }
+                "Group" => p.card_counts.push((p.rows.len(), None, None, n)),
+                "Total" => {
+                    let mut w = body.split_whitespace().map(|x| x.parse::<i64>());
+                    let group = w
+                        .next()
+                        .and_then(|x| x.ok())
+                        .ok_or_else(|| err("Total 12 148".into()))?;
+                    let running = w.next().and_then(|x| x.ok());
+                    p.card_counts.push((p.rows.len(), running, Some(group), n));
+                }
                 "Wheels" => p.wheels = Some(body.trim().parse().map_err(|_| err("Wheels 3".into()))?),
                 "Let" => {
                     let (name, e) = body.split_once('=').ok_or_else(|| err("Let M1 = M0 + ΔM0".into()))?;
@@ -390,6 +464,7 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         card_text: String::new(),
                         input: true,
                         actions: None,
+                        cards_written: None,
                     });
                 }
                 "States" => {

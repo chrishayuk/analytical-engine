@@ -1,0 +1,140 @@
+% BAB/L/017, Science Museum Group Collection, document aa110001665.
+% Cover 222/584 ("No 17", "1 Oct. 1838": the day is written small and could be
+% read 4; BAB/L/018 is "Copied from Not. No 17 Dated 1 Oct. 1838"); the opened
+% sheet 222/585 with the table and, at the right, its composition of the
+% results; the back 340/289, blank. Read from the zoom images; the table
+% from tiles fetched at full size and reduced by about a tenth (the image
+% service then refused further requests). See sources/notes/L017.md.
+
+Sheet BAB/L/017
+No. 17
+Date 1 Oct 1838          "No 17 1 Oct. 1838"   % cover
+Title "Notation For computing the elliptic radius vector by having the eccentricity and mean anomaly"
+Image 222/584 cover: the formula, the coefficients P and Q and their differences, and "Let n = 6 p = 0"
+Image 222/585 the table (Mill, Store) and its right-hand column
+Image 340/289 back, blank
+
+% The cover's formula: ρ = A0 + A1 cos E + A2 cos 2E + &c + An cos nE + &c;
+% An = Bn,n·ε^n + Bn,n+2·ε^(n+2) + &c + Bn,n+2p·ε^(n+2p) + Bn,n+2p+2·ε^(n+2p+2) + &c;
+% A0 = a(1 + ½ε²); Bn,n = −n^(n−2)/(1·2·3…(n−1)·2^(n−1))·a;
+% Bn+1,n+1 = (n+1)^(n−1)/(1·2·3…n·2^n)·a = ½((n+1)/n)^(n−1)·Bn,n;
+% Bn,n+2p = −(−1)^p (n+2p)(n+2p−1)…(n+p+1) × n^(n−2+2p) / ((n−1+2p) × 1·2·3…p × 2^(n−1+2p))·a
+%   (as far as read);
+% Bn,n+2p+2 = −(n²/4)·(n+2+2p)/((1+p)(1+n+p)(n+2p))·Bn,n+2p = −(Pp/4Qp)·Bn,n+2p
+%   (the 4 before Qp partly a pencil stroke);
+% Pp = n²(n+2+2p), ΔPp = 2n², Δ² = 0;
+% Qp = 4(1+p)(1+n+p)(n+2p), with ΔQp, Δ²Qp and Δ³Qp worked out below it.
+% Then: "Let n = 6 p = 0  Pp = 288 ΔP = 72  Q0 = 168 ΔQ0 = 344 Δ²Q0 = 224
+% Δ³Q0 = 48" (the last figure could be read 45; the cover's working above
+% it ends "= 48").
+%
+% So the table computes B6,8, B6,10, … B6,18 from B6,6 by that recurrence,
+% stepping P and Q by their differences in the mill (all its small
+% operations are additions). The numbers P0 … Δ³Q are the cover's; the
+% names P1 … Q5 are what the sheet's symbols mean, by the differences.
+Letters B66
+Let P0 = 288
+Let ΔP = 72
+Let Q0 = 168
+Let ΔQ0 = 344
+Let Δ²Q0 = 224
+Let Δ³Q = 48
+Let P1 = P0 + ΔP
+Let P2 = P1 + ΔP
+Let P3 = P2 + ΔP
+Let P4 = P3 + ΔP
+Let P5 = P4 + ΔP
+Let Δ²Q1 = Δ²Q0 + Δ³Q
+Let Δ²Q2 = Δ²Q1 + Δ³Q
+Let Δ²Q3 = Δ²Q2 + Δ³Q
+Let ΔQ1 = ΔQ0 + Δ²Q0
+Let ΔQ2 = ΔQ1 + Δ²Q1
+Let ΔQ3 = ΔQ2 + Δ²Q2
+Let ΔQ4 = ΔQ3 + Δ²Q3
+Let Q1 = Q0 + ΔQ0
+Let Q2 = Q1 + ΔQ1
+Let Q3 = Q2 + ΔQ2
+Let Q4 = Q3 + ΔQ3
+Let Q5 = Q4 + ΔQ4
+
+% The store as the table starts it: v1 P0, v2 P0, v3 ΔP, v4 ΔP, v6 Q0,
+% v8 ΔQ0, v10 Δ²Q0, v12 Δ³Q, v16 B6,6; v7, v9, v11 and v13 are written 0.
+% v5 is headed and never used.
+Store v1 = P0, v2 = P0, v3 = ΔP, v4 = ΔP, v6 = Q0, v8 = ΔQ0, v10 = Δ²Q0, v12 = Δ³Q, v16 = B66
+Working v7 v9 v11 v13 v14 v15 v17 v18 v19 v20 v21 v22
+
+% Columns: "No of Oper", a column with a star between each multiplication
+% and the row after it (put here on the multiplication), "Nature of Opern",
+% the mill's result; then the store. The results of the additions are
+% written in braces, {P1}, {Q1}; the braces are left out here. Each
+% addition and division gives one of the numbers it reads back to another
+% column, as it is (v9 ΔQ0 at operation 4; v2 P1 and v6 Q1 at 5; ...):
+% Rojas's "give off and retain". The B's alternate between v15 and v17 as
+% the next multiplicand, and each is kept once more, in v16, v18 ... v22.
+% Two columns are taken as v16: a narrow one headed "V16" holding B6,6,
+% and the one beside it, headed "v1" and a 5 or 6 written over, that
+% receives B6,8; the right-hand column calls B6,8 "v16".
+Op 1     ÷  | P0/Q0          | v1 0, v6 0, v14 P0/Q0 |                     % Q0 is read from v6 and given back nowhere (v7 stays 0); operation 4 reads v6 again. BAB/L/018's copy gives Q0 to a second column here
+Op 2   * ×  | (P0/Q0)·B66    | v14 0, v15 =B68, v16 0, v16 B68 |
+Op 3     +  | P0+ΔP          | v1 P1, v2 0, v3 0 |
+Op 4     +  | Q0+ΔQ0         | v6 0, v7 Q1, v8 0, v9 ΔQ0 |
+Op 5     ÷  | P1/Q1          | v1 0, v2 P1, v6 Q1, v7 0, v14 P1/Q1 |
+Op 6   * ×  | (P1/Q1)·B68    | v14 0, v15 0, v17 =B610, v18 B610 |
+Op 7     +  | P1+ΔP          | v1 P2, v2 0, v3 ΔP, v4 0 |
+Op 8     +  | Δ²Q0+ΔQ0       | v8 ΔQ1, v9 0, v10 0, v11 Δ²Q0 |            % the mill's second subscript is not clear; read as 0
+Op 9     +  | Q1+ΔQ1         | v6 0, v7 Q2, v8 0, v9 ΔQ1 |
+Op 10    ÷  | P2/Q2          | v1 0, v2 P2, v6 Q2, v7 0, v14 P2/Q2 |
+Op 11  * ×  | (P2/Q2)·B610   | v14 0, v15 =B612, v17 0, v19 B612 |
+Op 12    +  | P2+ΔP          | v1 P3, v2 0, v3 0, v4 ΔP |
+Op 13    +  | Δ²Q0+Δ³Q       | v10 Δ²Q1, v11 0, v12 0, v13 Δ³Q |
+Op 14    +  | ΔQ1+Δ²Q1       | v8 ΔQ2, v9 0, v10 0, v11 Δ²Q1 |
+Op 15    +  | Q2+ΔQ2         | v6 0, v7 Q3, v8 0, v9 ΔQ2 |
+Op 16    ÷  | P3/Q3          | v1 0, v2 P3, v6 Q3, v7 0, v14 P3/Q3 |      % v6's Q3 has a brace on one side
+Op 17  * ×  | (P3/Q3)·B612   | v14 0, v15 0, v17 =B614, v20 B614 |
+Op 18    +  | P3+ΔP          | v1 P4, v2 0, v3 ΔP, v4 0 |
+Op 19    +  | Δ²Q1+Δ³Q       | v10 Δ²Q2, v11 0, v12 Δ³Q, v13 0 |
+Op 20    +  | ΔQ2+Δ²Q2       | v8 ΔQ3, v9 0, v10 0, v11 Δ²Q2 |
+Op 21    +  | Q3+ΔQ3         | v6 0, v7 Q4, v8 0, v9 ΔQ3 |
+Op 22    ÷  | P4/Q4          | v1 0, v2 P4, v6 Q4, v7 0, v14 P4/Q4 |
+Op 23  * ×  | (P4/Q4)·B614   | v14 0, v15 =B616, v17 0, v21 B616 |
+Op 24    +  | P4+ΔP          | v1 P5, v2 0, v3 0, v4 ΔP |
+Op 25    +  | Δ²Q2+Δ³Q       | v10 Δ²Q3, v11 0, v12 0, v13 Δ³Q |          % faint pencil "4 4 4" left of the number
+Op 26    +  | ΔQ3+Δ²Q3       | v8 ΔQ4, v9 0, v10 0, v11 Δ²Q3 |
+Op 27    +  | Q4+ΔQ4         | v6 0, v7 Q5, v8 0, v9 ΔQ4 |
+Op 28    ÷  | P5/Q5          | v1 0, v2 P5, v6 Q5, v7 0, v14 P5/Q5 |
+Op 29  * ×  | (P5/Q5)·B616   | v14 0, v15 0, v17 =B618, v22 B618 |
+
+% The right-hand column. Accents are written before the variable ('v1 is v1′).
+% "v16 = (v1/v6)·v16 = (P0/Q0)·B6,6 = (288/168)·B6,6 = (12/7)·B6,6 = B6,8":
+Composition v16 = (v1/v6)·v16 = (P0/Q0)·B66 = (288/168)·B66 = (12/7)·B66 = B68
+% "v18 = ('v1/'v6)·v16 = (P1/Q1)·v16 = ((v2 + v3)/(v6 + v8))·v1 = ((P0 + ΔP)/(Q0 + ΔQ0))·(P0/Q0)·B6,6
+% = ((288 + 72)/(168 + 344))·(12/7)·B6,6 = (360/512)·(12/7)·B6,6 = (1080/896)·B6,6 = (135/112)·B6,6 = B6,10";
+% the member ((v2 + v3)/(v6 + v8))·v1 is left out: its last letter is uncertain.
+Composition v18 = (v1'/v6')·v16 = (P1/Q1)·v16 = ((P0+ΔP)/(Q0+ΔQ0))·(P0/Q0)·B66 = ((288+72)/(168+344))·(12/7)·B66 = (360/512)·(12/7)·B66 = (1080/896)·B66 = (135/112)·B66 = B610
+% "v20 = ''v14·v17 = (''v1/'v7)·v17 = (('v2 + v4)/('v6 + 'v8))·v17 = (('v1 + v4)/(v7 + 'v8))·v17
+% = ((v2 + v3 + v4)/(v6 + v8 + 'v9 + v10))·v17 = ((P0 + ΔP + ΔP)/(Q0 + ΔQ0 + ΔQ0 + Δ²Q0))·v18
+% = ((P0 + 2ΔP)/(Q0 + 2ΔQ0 + Δ²Q0))·((P0 + ΔP)/(Q0 + ΔQ0))·(P0/Q0)·B6,6
+% = ((288 + 2×72)/(168 + 2×344 + 224))·(135/112)·B6,6 = ((288 + 144)/(168 + 688 + 224))·(135/112)·B6,6
+% = (432/1080)·(135/112)·B6,6 = (54/112)·B6,6 = (27/56)·B6,6 = B6,12"
+Composition v20 = v14''·v17 = (v1''/v7')·v17 = ((v2'+v4)/(v6'+v8'))·v17 = ((v1'+v4)/(v7+v8'))·v17 = ((v2+v3+v4)/(v6+v8+v9'+v10))·v17 = ((P0+ΔP+ΔP)/(Q0+ΔQ0+ΔQ0+Δ²Q0))·v18 = ((P0+2·ΔP)/(Q0+2·ΔQ0+Δ²Q0))·((P0+ΔP)/(Q0+ΔQ0))·(P0/Q0)·B66 = ((288+2·72)/(168+2·344+224))·(135/112)·B66 = ((288+144)/(168+688+224))·(135/112)·B66 = (432/1080)·(135/112)·B66 = (54/112)·B66 = (27/56)·B66 = B612
+
+% The cover's statements, with n = 6: Pp = n²(n+2+2p) and ΔP = 2n² against
+% its P0 = 288 and ΔP = 72, and against the P5 the table reaches by
+% differences; Qp = 4(1+p)(1+n+p)(n+2p) against Q0 = 168 and its
+% differences, and against Q5.
+Composition P0 = 6·6·(6+2)
+Composition ΔP = 2·6·6
+Composition P5 = 6·6·(6+2+2·5)
+Composition Q0 = 4·1·7·6
+Composition ΔQ0 = 4·2·8·8 - 4·1·7·6
+Composition Δ²Q0 = 4·3·9·10 - 2·4·2·8·8 + 4·1·7·6
+Composition Δ³Q = 4·4·10·12 - 3·4·3·9·10 + 3·4·2·8·8 - 4·1·7·6
+Composition Q5 = 4·6·12·16
+% The recurrence as the cover states it, Bn,n+2p+2 = −(n²/4)(n+2+2p)/((1+p)(1+n+p)(n+2p))·Bn,n+2p,
+% at n = 6, p = 0, against the B6,8 the table makes.
+Composition B68 = -(6·6/4)·((6+2)/(1·7·6))·B66
+
+Unrun "cover, beside the B formulas, in pencil: 'n = 6 p = 0 / p = 1' and 'B6,6' and small figures; in the left margin lower down, small figures (perhaps 192, 56, 248, ...)"
+Unrun "pencil figures beside many cells of v6 to v13 (2, 3, 4: the index of the number in the cell), and '4 4 4' left of operation 25"
+Unrun "arrows from the right-hand column's v16, v18, v20 towards the table; curved pencil lines from the B cells of operations 2, 6 and 11 to the right"
+Unrun "lower right of the opened sheet: a long working in small writing, products of fractions continuing the composition for the later B; not transcribed"

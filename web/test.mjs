@@ -19,7 +19,7 @@ for (const page of pages) {
     const want = execFileSync(native, args, { input: page.text }).toString();
     if (wasm.out !== want) fail(`${page.name} ${extra.join(" ")}: the wasm build and the native build differ`);
     const run = JSON.parse(wasm.out);
-    if (!run.steps.length) fail(`${page.name}: no steps`);
+    if (!run.steps.length && /^(Op|Turn) /m.test(page.text)) fail(`${page.name}: no steps`);
   }
 }
 // the worked example gives x = 1 and y = 2

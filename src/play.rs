@@ -104,6 +104,9 @@ pub fn run_json(text: &str, at: Option<BTreeMap<String, Rat>>) -> String {
                                 Cell::Zero => "0".to_string(),
                                 Cell::Named(n) => format!("={n}"),
                                 Cell::Value(_, t) => t.clone(),
+                                Cell::Retain(None) => "G.R".to_string(),
+                                Cell::Retain(Some((_, t))) => format!("0 {t}"),
+                                Cell::Transit(_, t) => format!("{t} 0"),
                             };
                             obj([("v", (*c).into()), ("text", t.into())])
                         })

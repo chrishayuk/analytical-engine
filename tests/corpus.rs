@@ -183,13 +183,41 @@ fn l002_a_subtraction_the_wrong_way_round_is_caught_by_the_series() {
 
 // The sheets of 16 August 1837 and after.
 
+/// Every page, and how many of its statements do not agree: the slips of
+/// the pen found so far, each described in its page and in the README.
+const DISAGREEMENTS: &[(&str, usize)] = &[
+    ("L001-2", 1),
+    ("L004-2", 2),
+    ("L007", 2),
+    ("L010", 3),
+    ("L013-2", 1),
+    ("L014-1", 4),
+    ("L014-2", 2),
+    ("L015", 5),
+    ("L017", 9),
+    ("L018", 3),
+    ("L020", 1),
+];
+
 #[test]
-fn every_other_page_agrees_throughout() {
+fn every_page_agrees_but_for_its_known_slips() {
     for (name, text) in PAGES {
-        if ["L001-2", "L004-2", "L007", "L010"].contains(name) {
-            continue;
-        }
-        assert_eq!(failures(text), Vec::<String>::new(), "{name}");
+        let want = DISAGREEMENTS.iter().find(|d| d.0 == *name).map_or(0, |d| d.1);
+        let f = failures(text);
+        assert_eq!(f.len(), want, "{name}: {f:#?}");
+        assert!(f.iter().all(|f| !f.starts_with("stopped")), "{name}: {f:#?}");
+    }
+}
+
+#[test]
+fn l019_and_l020_cards_agree_with_the_run() {
+    // Every card Babbage lists for the 36 operations of No. 19 and the 25 of
+    // No. 20, and his totals: 136 for No. 19, carried over to 225.
+    for name in ["L019", "L020"] {
+        let r = run(&read("", &page(name)).unwrap());
+        let cards: Vec<_> = r.all_checks().filter(|c| c.what.starts_with("cards ")).collect();
+        assert!(cards.len() >= 25, "{name}");
+        assert!(cards.iter().all(|c| c.ok), "{name}");
     }
 }
 

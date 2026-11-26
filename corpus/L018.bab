@@ -1,0 +1,109 @@
+% BAB/L/018, Science Museum Group Collection, document aa110001666.
+% Cover (222/586): "No 18 Copied from Not. No 17 Dated 1 Oct. 1838", and
+% "9 Aug. 1841" under the title. The opened sheet (222/587) holds the table
+% of 29 operations, and to its right a long "Computation of B6,..." in the
+% variables (not transcribed). The back (222/588): a date at the top left,
+% "1 Oct 183[8 or 9]", read only in overview. Read from the zoom images at
+% full resolution, except the right-hand computation and the back, which the
+% image service refused to serve again (403) and are read in overview only.
+% See sources/notes/L018.md.
+
+Sheet BAB/L/018
+No. 18
+Date 9 Aug 1841          "9 Aug. 1841"   % cover; "Copied from Not. No 17 Dated 1 Oct. 1838"
+Title "Notation For Computing the Elliptic radius vector by having the eccentricity ε & mean Anomaly Ξ"
+Image 222/586 cover: the formula ρ = A0 + A1 cos Ξ + A2 cos 2Ξ + ... + An cos nΞ + &c; An = Bn,n εⁿ + Bn,n+2 εⁿ⁺² + &c + Bn,n+2p εⁿ⁺²ᵖ + &c; A0 = a(1 + ε²/2); the Bs; Pp, Qp and their differences; "Let n = 6, p = 0, P0 = 288, Q0 = 168, ΔP = 72, ΔQ0 = 344, Δ²Q0 = 224, Δ³Q0 = 48"; B6,6 = −27a/80
+Image 222/587 the table, and the computation of B6,... to its right
+Image 222/588 back
+
+% From the cover, for n = 6:
+%   Bn,n+2p+2 = −(n²(n+2+2p) / 4(1+p)(1+n+p)(n+2p)) Bn,n+2p = −(Pp/Qp) Bn,n+2p
+%   Pp = n²(n+2+2p);  ΔP = 2n²;  Δ²P = 0
+%   Qp = 4(1+p)(1+n+p)(n+2p);  ΔQp = 24p² + 8(7+3n)p + 4(8+7n+n²);
+%   Δ²Qp = 48p + 8(10+3n);  Δ³Qp = 48;  Δ⁴Qp = 0
+% The table writes B6,6, B6,8, ... without their signs: beside the table,
+% "B6,6 has a −", then "B6,8 .. +", "B6,10 .... −", "B6,12 ... +",
+% "B6,14 ...... −", "B6,16 ..... +", "B6,18 has a sign −". So the columns
+% hold the Bs as numbers without sign, here B66, B68, ...: the cover's
+% Bn,n+2p for n = 6 and p = 0 to 6, without its sign (worked out here from
+% the cover's general formula, so that each cell is checked against it, not
+% against the recurrence the table runs). Pp, Qp and their differences are
+% the cover's formulas at n = 6.
+Letters a
+Let P0 = 6·6·(6+2)
+Let P1 = 6·6·(6+2+2)
+Let P2 = 6·6·(6+2+4)
+Let P3 = 6·6·(6+2+6)
+Let P4 = 6·6·(6+2+8)
+Let P5 = 6·6·(6+2+10)
+Let ΔP = 2·6·6
+Let Q0 = 4·1·7·6
+Let Q1 = 4·2·8·8
+Let Q2 = 4·3·9·10
+Let Q3 = 4·4·10·12
+Let Q4 = 4·5·11·14
+Let Q5 = 4·6·12·16
+Let ΔQ0 = 4·(8+7·6+6·6)
+Let ΔQ1 = 24 + 8·(7+18) + 4·(8+42+36)
+Let ΔQ2 = 24·4 + 8·(7+18)·2 + 4·(8+42+36)
+Let ΔQ3 = 24·9 + 8·(7+18)·3 + 4·(8+42+36)
+Let ΔQ4 = 24·16 + 8·(7+18)·4 + 4·(8+42+36)
+Let Δ²Q0 = 8·(10+18)
+Let Δ²Q1 = 48 + 8·(10+18)
+Let Δ²Q2 = 48·2 + 8·(10+18)
+Let Δ²Q3 = 48·3 + 8·(10+18)
+Let Δ³Q = 48
+Let B66 = 27a/80            % the cover: B6,6 = −6⁴/(1·2·3·4·5·2⁵)a = −2⁴3⁴a/(2⁸·3·5) = −3³a/(2⁴5) = −27a/80
+Let B68 = 81a/140
+Let B610 = 729a/1792
+Let B612 = 729a/4480
+Let B614 = 2187a/51200
+Let B616 = 19683a/2464000
+Let B618 = 177147a/157696000
+
+% The store as the table starts it. Above v1, v3, v5, v7, v9, v11 the sheet
+% writes the numbers in braces: {288}, {72}, {168}, {344}, {224}, {48}.
+% v6, v8, v10, v12 are written 0. A column between v12 and v13 is headed
+% "v12" with a cross above (here v22); it holds B6,6 and is not used again.
+Store v1 = P0, v2 = P0, v3 = ΔP, v4 = ΔP, v5 = Q0, v7 = ΔQ0, v9 = Δ²Q0, v11 = Δ³Q, v22 = B66, v13 = B66
+Working v6 v8 v10 v12 v14 v15 v16 v17 v18 v19 v20 v21
+
+% No right-hand column of formulas. Numbers in braces in the store, {P1},
+% {Q1}, {ΔQ1}, {Δ²Q1} ..., are written here without them: each is the sum
+% the row makes. A star stands left of each multiplication that makes a B.
+% Rows where the sheet writes a number read in that row again in another
+% column (Q0 in v6 at row 1, ΔQ0 in v8 at row 4, P1 in v2 at row 5, ΔP in
+% v3 at row 7, ...) are written as the sheet writes them.
+Op 1     ÷  | P0/Q0          | v1 0, v5 0, v6 Q0, v14 P0/Q0 |
+Op 2  *  ×  | (P0/Q0)·B66    | v13 0, v14 0, v15 B68, v16 B68 |
+Op 3     +  | P0+ΔP          | v1 P1, v2 0, v3 0 |
+Op 4     +  | Q0+ΔQ0         | v5 Q1, v6 0, v7 0, v8 ΔQ0 |
+Op 5     ×  | P1/Q1          | v1 0, v2 P1, v5 0, v6 Q1, v14 P1/Q1 |      % the species is ×, in ink; the mill column a quotient
+Op 6  *  ÷  | (P1/Q1)·B68    | v13 B610, v14 0, v16 0, v17 B610 |       % the species is ÷, in ink, over a faint pencil mark; the mill column a product
+Op 7     +  | P1+ΔP          | v1 P2, v2 0, v3 ΔP, v4 0 |
+Op 8     +  | ΔQ0+Δ²Q0       | v7 ΔQ1, v8 0, v9 0, v10 Δ²Q0 |
+Op 9     +  | Q1+ΔQ1         | v5 Q2, v6 0, v7 0, v8 ΔQ1 |
+Op 10    ÷  | P2/Q2          | v1 0, v2 P2, v5 0, v6 Q2, v14 P2/Q2 |   % a faint 0 in the unheaded column before v1
+Op 11 *  ×  | (P2/Q2)·B610   | v14 0, v16 B612, v17 0, v18 B612 |
+Op 12    +  | P2+ΔP          | v1 P3, v2 0, v3 0, v4 ΔP |
+Op 13    +  | Δ²Q0+Δ³Q       | v9 Δ²Q1, v10 0, v11 0, v12 Δ³Q |
+Op 14    +  | ΔQ1+Δ²Q1       | v7 ΔQ2, v8 0, v9 0, v10 Δ²Q1 |
+Op 15    +  | Q2+ΔQ2         | v5 Q3, v6 0, v7 0, v8 ΔQ2 |
+Op 16    ÷  | P3/Q3          | v1 0, v2 P3, v5 0, v6 Q3, v14 P3/Q3 |
+Op 17 *  ×  | (P3/Q3)·B612   | v14 0, v17 B614, v18 0, v19 B614 |
+Op 18    +  | P3+ΔP          | v1 P4, v2 0, v3 ΔP, v4 0 |
+Op 19    +  | Δ²Q1+Δ³Q       | v9 Δ²Q2, v10 0, v11 Δ³Q, v12 0 |
+Op 20    +  | ΔQ2+ΔQ2        | v7 ΔQ3, v8 0, v9 0, v10 Δ²Q2 |        % so written: "ΔQ2 + ΔQ2", read again at full size
+Op 21    +  | Q3+ΔQ3         | v5 Q4, v6 0, v7 0, v8 ΔQ3 |
+Op 22    ÷  | P4/Q4          | v1 0, v2 P4, v5 0, v6 Q4, v14 P4/Q4 |
+Op 23 *  ×  | (P4/Q4)·B614   | v14 0, v18 B616, v19 0, v20 B616 |
+Op 24    +  | P4+ΔP          | v1 P5, v2 0, v3 0, v4 ΔP |
+Op 25    +  | Δ²Q2+Δ³Q       | v9 Δ²Q3, v10 0, v11 0, v12 Δ³Q |
+Op 26    +  | ΔQ3+Δ²Q3       | v7 ΔQ4, v8 0, v9 0, v10 Δ²Q3 |
+Op 27    +  | Q4+ΔQ4         | v5 Q5, v6 0, v7 0, v8 ΔQ4 |
+Op 28    ÷  | P5/Q5          | v1 0, v2 P5, v5 0, v6 Q5, v14 P5/Q5 |
+Op 29 *  ×  | (P5/Q5)·B616   | v14 0, v19 B618, v20 0, v21 B618 |
+
+Unrun "beside the table, the sign of each B: 'B6,6 has a −', 'B6,8 .. +', 'B6,10 .... −', 'B6,12 ... +', 'B6,14 ...... −', 'B6,16 ..... +', 'B6,18 has a sign −'"
+Unrun "right of the table: 'Computation of B6,...', a small table of Q and its first, second and third differences ('3rd diff constant'), and a long expansion of B in the variables down the page; read in overview only, not transcribed"
+Unrun "faint pencil under the store columns (a+r, a+2r, a+3r, ...; v'12, v'13), apparently left from another notation; not read"

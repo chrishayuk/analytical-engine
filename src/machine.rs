@@ -35,6 +35,8 @@ pub struct Cards {
     pub reads: Vec<usize>,
     pub writes: Vec<(usize, Held)>,
     pub table_formed: bool,
+    /// The variable cards the row needs, (from, to), 0 for the mill.
+    pub pairs: Vec<(usize, usize)>,
 }
 
 pub struct Step {
@@ -148,6 +150,30 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
             "BAB/L/012 writes M1 in v1 at row 7 while Car3 holds C.M1, and M2 at row 19 while Car3 holds M2 (likewise N in v9 at rows 12 and 24). The run gives the complement at rows 7, 12, 31, 36 and not at 19, 24, as the cells require; no single rule does both.",
         ),
         (
+            "A number taken from a column may at the same time be laid, as it is, in another.",
+            "BAB/L/018 (1838–41) does so 27 times: Q0 into v6 at row 1, ΔQ0 into v8 at row 4, ΔP into v3 and v4 alternately. BAB/L/001 lays only complements; whether the copy goes through a complement and back (Rojas's \"give off and retain\") the sheet does not say.",
+        ),
+        (
+            "A table is made of the factor the next multiplication uses again.",
+            "BAB/L/015 (23 December 1837), rows 23 to 26: HK′ then MK′ with K′ in no column, and H′K then M′K with K in none. The mill tabulates K′ and K, the factor written second. On sheets with no right-hand column the run makes the table of whichever factor the next multiplication, reading one column, needs.",
+        ),
+        (
+            "A number may be given off to the mill and retained.",
+            "BAB/L/016 (June 1838), back: \"G.R signifies give off & retain\"; BAB/L/019 (July 1840), back: the 0 above means the column is reduced to zero, the letter below that it is \"retained at the same place … by means of its Complement previously put out\". The run gives the number to the mill and leaves it in its column; its accents do not change. A complement written on its way back (\"C.'B 0\") is checked to be of the number retained.",
+        ),
+        (
+            "A complement read into the mill gives the number it is the complement of.",
+            "BAB/L/014, second table: each a is read again and again from a column holding \"Comp a\", and laid again as \"Comp a\", with no transfer ever bringing it back.",
+        ),
+        (
+            "The variable cards are the pairs the run moves numbers by.",
+            "BAB/L/019 and L/020 (1840) list beside each operation its variable cards, \"(v23 v7) the first variable … is that which is given off the second … that which receive[s]\", 0 for the mill, with their counts and running totals. The run derives the same pairs from the cells and checks the sheet's, as sets; the order is not checked.",
+        ),
+        (
+            "Where the mill column and the operation differ, and no cell writes what the operation gives, the run goes on with the sheet's value.",
+            "BAB/L/020 writes −e/∂ = z from a division of ∂ by e; BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.",
+        ),
+        (
             "Great operations are multiplication and division; small are addition, subtraction and transfers.",
             "BAB/L/001 No. 2: \"great 7 small 6\" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.",
         ),
@@ -163,6 +189,8 @@ struct State<'a> {
     store: BTreeMap<usize, Held>,
     history: BTreeMap<usize, Vec<Held>>,
     table: Option<Value>,
+    /// The row after the one being run, for a table made to serve it.
+    next: Option<&'a Row>,
     results: BTreeMap<String, Value>,
 }
 
@@ -305,6 +333,13 @@ fn turn(st: &mut State, row: &Row, actions: &[(usize, Expr, String)]) -> Vec<Che
         let now = st.plain(st.get(*col));
         let name = crate::expr::col_name(*col);
         match cell {
+            Cell::Retain(_) | Cell::Transit(..) => {
+                checks.push(check(
+                    line,
+                    format!("{name}: give off and retain"),
+                    Err("not part of a turn of the carriages".into()),
+                ));
+            }
             Cell::Zero => {
                 let r = if now.is_zero() {
                     Ok(())
@@ -377,6 +412,7 @@ pub fn run(page: &Page) -> Run {
         store: BTreeMap::new(),
         history: BTreeMap::new(),
         table: None,
+        next: None,
         results: BTreeMap::new(),
     };
     let at = |w: &str| page.lines.get(w).copied().unwrap_or(1);
@@ -402,7 +438,8 @@ pub fn run(page: &Page) -> Run {
     let mut tally = Tally::default();
     let mut stopped = None;
     let mut stopped_line = None;
-    for row in &page.rows {
+    for (i, row) in page.rows.iter().enumerate() {
+        st.next = page.rows.get(i + 1);
         if let Some(actions) = &row.actions {
             let checks = turn(&mut st, row, actions);
             if row.number > 0 {
@@ -418,6 +455,7 @@ pub fn run(page: &Page) -> Run {
                     reads,
                     writes,
                     table_formed: false,
+                    pairs: vec![],
                 },
                 result: None,
                 checks,
@@ -458,6 +496,7 @@ pub fn run(page: &Page) -> Run {
                     reads: vec![],
                     writes,
                     table_formed: false,
+                    pairs: vec![],
                 },
                 result: None,
                 checks,
@@ -551,8 +590,61 @@ pub fn run(page: &Page) -> Run {
                 }
             }
         }
-        let touched: std::collections::BTreeSet<usize> =
-            st.history.keys().copied().filter(|n| *n < crate::expr::CAR).collect();
+        // The sheet's counts of cards: each group since the last count, and
+        // the running count from what was carried over.
+        if !page.card_counts.is_empty() {
+            let per_row: Vec<i64> = steps
+                .iter()
+                .map(|s| s.row.cards_written.as_ref().map_or(s.cards.pairs.len(), |w| w.0.len()) as i64)
+                .collect();
+            // `Carried k` starts the running count at k; `Group` starts a
+            // group; `Total g r` says the group so far lists g cards and the
+            // running count is r.
+            let sum = |a: usize, b: usize| -> i64 { per_row[a.min(b)..b].iter().sum() };
+            let (mut carried, mut carried_at, mut group_at) = (None, 0usize, 0usize);
+            for (after, run_count, group, line) in &page.card_counts {
+                let upto = (*after).min(per_row.len());
+                match (group, run_count) {
+                    (None, Some(k)) => {
+                        carried = Some(*k);
+                        carried_at = upto;
+                        group_at = upto;
+                    }
+                    (None, None) => group_at = upto,
+                    (Some(g), r) => {
+                        let n = sum(group_at, upto);
+                        let ok = if *g == n {
+                            Ok(())
+                        } else {
+                            Err(format!("the rows of the group list {n}"))
+                        };
+                        checks.push(check(*line, format!("{g} cards in the group"), ok));
+                        if let (Some(want), Some(c)) = (r, carried) {
+                            let got = c + sum(carried_at, upto);
+                            let ok = if *want == got {
+                                Ok(())
+                            } else {
+                                Err(format!("the count comes to {got}"))
+                            };
+                            checks.push(check(*line, format!("{want} cards in all"), ok));
+                        }
+                    }
+                }
+            }
+        }
+        // Used: every column given a number, and every column a complement
+        // passes through on its way back (BAB/L/019's v21 to v23).
+        let touched: std::collections::BTreeSet<usize> = st
+            .history
+            .keys()
+            .copied()
+            .chain(
+                page.rows
+                    .iter()
+                    .flat_map(|r| r.cells.iter().filter(|c| matches!(c.1, Cell::Transit(..))).map(|c| c.0)),
+            )
+            .filter(|n| *n < crate::expr::CAR)
+            .collect();
         let declared: std::collections::BTreeSet<usize> = page
             .store
             .iter()
@@ -609,7 +701,13 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
     let reads: Vec<usize> = row
         .cells
         .iter()
-        .filter(|c| matches!(c.1, Cell::Zero))
+        .filter(|c| matches!(c.1, Cell::Zero | Cell::Retain(_)))
+        .map(|c| c.0)
+        .collect();
+    let retained: Vec<usize> = row
+        .cells
+        .iter()
+        .filter(|c| matches!(c.1, Cell::Retain(_)))
         .map(|c| c.0)
         .collect();
     for r in &reads {
@@ -658,7 +756,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                     if let Some(k) = v.iter().position(is_f) {
                         let x = v.remove(k);
                         v.insert(0, x);
-                    } else if v.len() == 1 && st.table.as_ref().is_some_and(|t| t.same(&f)) {
+                    } else if v.len() <= 1 && st.table.as_ref().is_some_and(|t| t.same(&f)) {
                         // The multiplicand is in the mill only: name it by the
                         // column and number it was taken from.
                         let from = st
@@ -673,12 +771,107 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                         // column the row does not leave at zero: name it, so
                         // that the run says so and goes on (BAB/L/007, row 22).
                         let standing = st.store.iter().find_map(|(n, h)| {
-                            (h.same(&Held::Plain(f.clone())) && !reads.contains(n))
-                                .then(|| (*n, st.history.get(n).map_or(0, |h| h.len().saturating_sub(1))))
+                            ((h.same(&Held::Plain(f.clone())) || h.same(&Held::Complement(f.clone())))
+                                && !reads.contains(n))
+                            .then(|| (*n, st.history.get(n).map_or(0, |h| h.len().saturating_sub(1))))
                         });
                         if let Some(x) = standing {
                             v.insert(0, x);
                         }
+                    }
+                }
+            }
+            // The table standing may be of the factor written second
+            // (BAB/L/015: MK′ after HK′, the table of K′).
+            if let (Some(Op::Mul), Some((Expr::Mul(_, b), _)), 1) = (row.op, &row.mill, v.len()) {
+                if let (Ok(Held::Plain(g)), Some(t)) = (st.eval(b), st.table.as_ref()) {
+                    let read_is_g = st
+                        .version(v[0].0, v[0].1)
+                        .ok()
+                        .is_some_and(|h| h.same(&Held::Plain(g.clone())));
+                    if t.same(&g) && !read_is_g {
+                        let from = st
+                            .history
+                            .iter()
+                            .find_map(|(n, h)| h.iter().position(|x| x.same(&Held::Plain(g.clone()))).map(|p| (*n, p)));
+                        if let Some(x) = from {
+                            v.insert(0, x);
+                        }
+                    }
+                }
+            }
+            // A factor neither read nor in the mill but standing in a column
+            // the row does not leave at zero: named, so that the run says so
+            // and goes on (BAB/L/015, row 3: c′d with d in v4, no 0 written).
+            if let (Some(Op::Mul), Some((Expr::Mul(a, b), _))) = (row.op, &row.mill) {
+                if v.len() == 1 {
+                    let have = st.version(v[0].0, v[0].1).ok();
+                    for e in [a, b] {
+                        if v.len() == 2 {
+                            break;
+                        }
+                        let Ok(Held::Plain(f)) = st.eval(e) else { continue };
+                        if have.as_ref().is_some_and(|h| h.same(&Held::Plain(f.clone()))) {
+                            continue;
+                        }
+                        let standing = st.store.iter().find_map(|(n, h)| {
+                            ((h.same(&Held::Plain(f.clone())) || h.same(&Held::Complement(f.clone())))
+                                && !reads.contains(n))
+                            .then(|| (*n, st.history.get(n).map_or(0, |h| h.len().saturating_sub(1))))
+                        });
+                        if let Some(x) = standing {
+                            v.push(x);
+                        }
+                    }
+                }
+            }
+            // A subtraction or division whose numbers the sheet leaves
+            // standing, with no 0 written (BAB/L/015, row 29: M″/H″).
+            if let (Some(Op::Sub | Op::Div), Some((Expr::Sub(a, b) | Expr::Div(a, b), _))) = (row.op, &row.mill) {
+                if v.len() < 2 {
+                    let mut w = vec![];
+                    for e in [a, b] {
+                        let Ok(Held::Plain(f)) = st.eval(e) else { continue };
+                        let read = v
+                            .iter()
+                            .find(|x| {
+                                st.version(x.0, x.1)
+                                    .ok()
+                                    .is_some_and(|h| h.same(&Held::Plain(f.clone())))
+                            })
+                            .copied();
+                        let found = read.or_else(|| {
+                            st.store.iter().find_map(|(n, h)| {
+                                ((h.same(&Held::Plain(f.clone())) || h.same(&Held::Complement(f.clone())))
+                                    && !reads.contains(n))
+                                .then(|| (*n, st.history.get(n).map_or(0, |h| h.len().saturating_sub(1))))
+                            })
+                        });
+                        if let Some(x) = found {
+                            w.push(x);
+                        }
+                    }
+                    if w.len() == 2 {
+                        v = w;
+                    }
+                }
+            }
+            // A table is made of the factor the next multiplication uses
+            // again, whichever the mill column writes first: BAB/L/015 writes
+            // HK′ and then MK′ with K′ in no column, so the table of K′.
+            if let (Some(Op::Mul), [x, y], Some(next)) = (row.op, &v[..], st.next) {
+                let next_reads = next.cells.iter().filter(|c| matches!(c.1, Cell::Zero)).count();
+                if let (Some(Op::Mul), None, Some((Expr::Mul(a, b), _)), 1) =
+                    (next.op, &next.card, &next.mill, next_reads)
+                {
+                    let factors: Vec<Value> = [a, b]
+                        .iter()
+                        .filter_map(|e| st.eval(e).ok()?.plain().cloned())
+                        .collect();
+                    let val = |(n, p): (usize, usize)| st.version(n, p).ok().and_then(|h| h.plain().cloned());
+                    let again = |x: Option<Value>| x.is_some_and(|x| factors.iter().any(|f| f.same(&x)));
+                    if !again(val(*x)) && again(val(*y)) {
+                        v.swap(0, 1);
                     }
                 }
             }
@@ -726,9 +919,13 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
     for r in &reads {
         let to_mill = operands.iter().any(|o| matches!(o.0, Source::Read(n) if n == *r));
         let to_column = row.cells.iter().any(|(_, c)| match c {
-            Cell::Value(Expr::Complement(inner), _) => {
-                st.eval(inner).ok().zip(before.get(r)).is_some_and(|(v, h)| v.same(h))
-            }
+            Cell::Value(Expr::Complement(inner), _) | Cell::Transit(Expr::Complement(inner), _) => st
+                .eval(inner)
+                .ok()
+                .zip(before.get(r))
+                .is_some_and(|(v, h)| v.same(h) || v.complemented().same(h)),
+            // Or laid as it is in another column (BAB/L/018).
+            Cell::Value(e, _) => st.eval(e).ok().zip(before.get(r)).is_some_and(|(v, h)| v.same(h)),
             _ => false,
         });
         let transfer = row.op.is_none() && reads.len() == 1;
@@ -753,9 +950,14 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                     operands.len()
                 ));
             }
-            let mut m = operands[0].1.plain().ok_or("an operand is a complement")?.clone();
+            // A complement read into the mill gives the number it is the
+            // complement of (BAB/L/014: Comp aj read for aj).
+            let num = |h: &Held| match h {
+                Held::Plain(v) | Held::Complement(v) => v.clone(),
+            };
+            let mut m = num(&operands[0].1);
             for o in &operands[1..] {
-                m = apply(op, &m, o.1.plain().ok_or("an operand is a complement")?)?;
+                m = apply(op, &m, &num(&o.1))?;
             }
             let m = Held::Plain(m);
             let said = match &row.card {
@@ -833,7 +1035,20 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 Err(format!("the operation gives {result}"))
             }
         });
+        let differs = r.is_err();
         checks.push(check(line, format!("mill: {t}"), r));
+        // With no right-hand column, where the mill column and the
+        // operation differ and no cell writes what the operation gives, the
+        // run goes on with the sheet's value (BAB/L/020: −e/∂ = z).
+        if differs && row.card.is_none() && row.op.is_some() {
+            let cell_has_result = row.cells.iter().any(|(_, c)| match c {
+                Cell::Value(x, _) => st.eval(x).is_ok_and(|v| v.same(&result)),
+                _ => false,
+            });
+            if let (false, Ok(v @ Held::Plain(_))) = (cell_has_result, st.eval(e)) {
+                result = v;
+            }
+        }
     }
 
     // What the row writes.
@@ -841,6 +1056,39 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
     for (col, cell) in &row.cells {
         let v = match cell {
             Cell::Zero => continue,
+            Cell::Retain(kept) => {
+                if let Some((e, t)) = kept {
+                    let r = match (st.eval(e), before.get(col)) {
+                        (Ok(v), Some(h)) if v.same(h) => Ok(()),
+                        (Ok(v), h) => Err(format!(
+                            "it held {}, not {v}",
+                            h.map(|h| h.to_string()).unwrap_or_default()
+                        )),
+                        (Err(e), _) => Err(e),
+                    };
+                    checks.push(check(line, format!("v{col} gives off and retains {}", pretty(t)), r));
+                }
+                continue;
+            }
+            Cell::Transit(e, t) => {
+                let r = match st.eval(e) {
+                    Ok(Held::Complement(inner))
+                        if reads.iter().any(|r| {
+                            before.get(r).is_some_and(|h| {
+                                h.same(&Held::Plain(inner.clone())) || h.same(&Held::Complement(inner.clone()))
+                            })
+                        }) =>
+                    {
+                        Ok(())
+                    }
+                    Ok(v) => Err(format!(
+                        "no column this row reads holds the number {v} is the complement of"
+                    )),
+                    Err(e) => Err(e),
+                };
+                checks.push(check(line, format!("v{col} = {} on its way", pretty(t)), r));
+                continue;
+            }
             Cell::Named(n) => {
                 let r = match (st.results.get(n), result.plain()) {
                     (Some(prev), Some(now)) if !prev.same(now) => Err(format!("{n} was {prev} and is now {now}")),
@@ -858,14 +1106,22 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 let r = if v.same(&result) {
                     Ok(())
                 } else if let Held::Complement(inner) = &v {
-                    let ok = reads
-                        .iter()
-                        .any(|r| before.get(r).is_some_and(|h| h.same(&Held::Plain(inner.clone()))));
+                    // Of a number read, or, reading a complement, that
+                    // complement again (BAB/L/014).
+                    let ok = reads.iter().any(|r| {
+                        before.get(r).is_some_and(|h| {
+                            h.same(&Held::Plain(inner.clone())) || h.same(&Held::Complement(inner.clone()))
+                        })
+                    });
                     if ok {
                         Ok(())
                     } else {
                         Err(format!("no column this row leaves at zero holds {inner}"))
                     }
+                } else if reads.iter().any(|r| before.get(r).is_some_and(|h| h.same(&v))) {
+                    // A number read, laid as it is in another column as it
+                    // goes to the mill (BAB/L/018: Q0 into v6 at row 1).
+                    Ok(())
                 } else {
                     Err(format!("the operation of the row gives {result}"))
                 };
@@ -875,7 +1131,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         };
         writes.push((*col, v));
     }
-    for r in &reads {
+    for r in reads.iter().filter(|r| !retained.contains(r)) {
         st.store.insert(*r, Held::Plain(Value::zero()));
     }
     // A column is given a number only when it is at zero.
@@ -952,6 +1208,98 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         _ => tally.small += 1,
     }
 
+    // The variable cards: a column given off to the mill (r 0); given off
+    // and retained through a complement column t, (r t) and (t r); a
+    // complement laid from a column read, (r c); a result received, (0 w);
+    // a transfer, (r w).
+    let mut pairs = vec![];
+    let held = |c: usize| before.get(&c).cloned();
+    let comp_of = |e: &Expr| match st.eval(e) {
+        Ok(Held::Complement(x)) => Some(x),
+        _ => None,
+    };
+    let transits: Vec<(usize, Value)> = row
+        .cells
+        .iter()
+        .filter_map(|(c, cell)| match cell {
+            Cell::Transit(e, _) => comp_of(e).map(|x| (*c, x)),
+            _ => None,
+        })
+        .collect();
+    let laid: Vec<(usize, Value)> = row
+        .cells
+        .iter()
+        .filter_map(|(c, cell)| match cell {
+            Cell::Value(e, _) => comp_of(e).map(|x| (*c, x)),
+            _ => None,
+        })
+        .collect();
+    let is = |h: Option<Held>, x: &Value| {
+        h.is_some_and(|h| h.same(&Held::Plain(x.clone())) || h.same(&Held::Complement(x.clone())))
+    };
+    let mut restores = vec![];
+    for (c, cell) in &row.cells {
+        match cell {
+            Cell::Retain(_) => match transits.iter().find(|(_, x)| is(held(*c), x)) {
+                Some((t, _)) => {
+                    pairs.push((*c, *t));
+                    restores.push((*t, *c));
+                }
+                None => pairs.push((*c, 0)),
+            },
+            Cell::Zero if row.op.is_none() => {}
+            Cell::Zero => match laid.iter().find(|(_, x)| is(held(*c), x)) {
+                Some((l, _)) => pairs.push((*c, *l)),
+                None => pairs.push((*c, 0)),
+            },
+            _ => {}
+        }
+    }
+    pairs.extend(restores);
+    if row.op.is_none() {
+        for (w, _) in &writes {
+            pairs.push((reads.first().copied().unwrap_or(0), *w));
+        }
+    } else {
+        for (w, _) in &writes {
+            if !laid.iter().any(|(l, _)| l == w) {
+                pairs.push((0, *w));
+            }
+        }
+    }
+    if let Some((written, count, cline)) = &row.cards_written {
+        let mut a = pairs.clone();
+        let mut b = written.clone();
+        a.sort();
+        b.sort();
+        let name = |x: usize| {
+            if x == 0 {
+                "0".to_string()
+            } else {
+                crate::expr::col_name(x)
+            }
+        };
+        let show = |v: &[(usize, usize)]| {
+            v.iter()
+                .map(|(f, t)| format!("({} {})", name(*f), name(*t)))
+                .collect::<String>()
+        };
+        let r = if a == b {
+            Ok(())
+        } else {
+            Err(format!("the run needs {}", show(&pairs)))
+        };
+        checks.push(check(*cline, format!("cards {}", show(written)), r));
+        if let Some(k) = count {
+            let r = if *k == written.len() as i64 {
+                Ok(())
+            } else {
+                Err(format!("the sheet lists {}", written.len()))
+            };
+            checks.push(check(*cline, format!("{k} cards"), r));
+        }
+    }
+
     Ok(Step {
         row: row.clone(),
         cards: Cards {
@@ -960,6 +1308,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             reads,
             writes,
             table_formed,
+            pairs,
         },
         result: Some(result),
         checks,

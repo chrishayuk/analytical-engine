@@ -69,7 +69,7 @@
       ]
     },
     "directive": {
-      "match": "^\\s*(Letters|Unknowns|Equation|Find|Store|Working|Op|In|Turn|Wheels|Let|Gives|Composition|States)(?=\\s|$)",
+      "match": "^\\s*(Letters|Unknowns|Equation|Find|Store|Working|Op|In|Turn|Wheels|Let|Gives|Cards|Carried|Group|Total|Composition|States)(?=\\s|$)",
       "captures": { "1": { "name": "keyword.control.directive.babbage" } }
     },
     "not-a-directive": {
