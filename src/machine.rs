@@ -45,6 +45,9 @@ pub struct Step {
     pub result: Option<Held>,
     pub checks: Vec<Check>,
     pub store_after: BTreeMap<usize, Held>,
+    /// What else the run did at the row, in words (the letter cards, the
+    /// backing of a looped program).
+    pub note: String,
 }
 
 #[derive(Default)]
@@ -174,6 +177,22 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
             "BAB/L/020 writes −e/∂ = z from a division of ∂ by e; BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.",
         ),
         (
+            "With --strict, the run never goes on with the sheet's value: where they differ, it keeps its own.",
+            "So that agreement counts only what the machine confirms unaided. A slip is then followed by the disagreements it causes.",
+        ),
+        (
+            "A looped program is run from its cards. The groups run in order; after the last card of a group, a backing apparatus sends the cards to the start of another group, unless its condition holds.",
+            "BAB/L/023 (7 June 1838), cover: \"There are three groups of cards … The backing apparatus Y backs the cards to the beginning of the formulae cards. The backing apparatus Z backs them to the beginning of the cards forming the combinatorial numbers.\" In its table, Y backs after each subtraction that leaves Comb above 0, and Z after those that leave it at 0.",
+        ),
+        (
+            "In a looped program, a column the cards read keeps its number.",
+            "BAB/L/023 writes no 0 under Δ′, Tab or Const when they are read, and Tab and Const are read again in later passes. Comb, given a new number, is written \"0 1\": a 0, then the number.",
+        ),
+        (
+            "Letter cards stand at a place given by the store. The sheet's advances and backs are checked against the moves needed between the letters the cards read.",
+            "BAB/L/023 writes the moves (\"Great back 1, Small back 2\") and not what sets them. Placing the great cards at Tab − Comb and the small at Comb − 1 gives every move the sheet writes.",
+        ),
+        (
             "Great operations are multiplication and division; small are addition, subtraction and transfers.",
             "BAB/L/001 No. 2: \"great 7 small 6\" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.",
         ),
@@ -285,7 +304,7 @@ pub fn ordinal(n: usize) -> String {
     }
 }
 
-fn check(line: usize, what: impl Into<String>, r: Result<(), String>) -> Check {
+pub(crate) fn check(line: usize, what: impl Into<String>, r: Result<(), String>) -> Check {
     let (ok, detail) = match r {
         Ok(()) => (true, String::new()),
         Err(e) => (false, pretty(&e)),
@@ -419,6 +438,9 @@ pub fn run_strict(page: &Page) -> Run {
 }
 
 fn run_with(page: &Page, strict: bool) -> Run {
+    if !page.decks.is_empty() {
+        return crate::loops::run(page);
+    }
     let mut st = State {
         strict,
         page,
@@ -473,6 +495,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
                 result: None,
                 checks,
                 store_after: st.store.clone(),
+                note: String::new(),
             });
             gives(&st, page, row, steps.last_mut().unwrap());
             continue;
@@ -514,6 +537,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
                 result: None,
                 checks,
                 store_after: st.store.clone(),
+                note: String::new(),
             });
             continue;
         }
@@ -1041,7 +1065,11 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 Err(format!(
                     "the transfer brings {machine}, but the sheet writes {}, which is {said}.{}",
                     pretty(&c.rhs_text),
-                    if st.strict { "" } else { " The run goes on with the value on the sheet" }
+                    if st.strict {
+                        ""
+                    } else {
+                        " The run goes on with the value on the sheet"
+                    }
                 )),
             ));
             if !st.strict {
@@ -1070,7 +1098,11 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 Err(format!(
                     "the operation gives {plain}, but the sheet writes {}: {why}.{}",
                     pretty(&c.rhs_text),
-                    if st.strict { "" } else { " The run goes on with the value on the sheet" }
+                    if st.strict {
+                        ""
+                    } else {
+                        " The run goes on with the value on the sheet"
+                    }
                 )),
             ));
             if !st.strict {
@@ -1385,6 +1417,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         result: Some(result),
         checks,
         store_after: st.store.clone(),
+        note: String::new(),
     })
 }
 

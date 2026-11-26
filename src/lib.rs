@@ -7,6 +7,7 @@ pub mod algebra;
 pub mod corpus;
 pub mod expr;
 pub mod json;
+pub mod loops;
 pub mod lsp;
 pub mod machine;
 pub mod page;

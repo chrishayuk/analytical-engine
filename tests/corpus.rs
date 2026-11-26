@@ -340,9 +340,58 @@ fn strict_runs() {
             }
         }
     }
-    assert_eq!((all, ok), (2549, 2445));
+    assert_eq!((all, ok), (2672, 2568));
     // Run exactly as written, two pages end with a wrong answer: L/001's
     // back (−v3″−v5″ at operation 12) and L/020 (−e/∂ = z at the last).
     wrong_answer.dedup();
     assert_eq!(wrong_answer, ["L001-2", "L020"]);
+}
+
+/// BAB/L/023: the looped program. The cards run, and the 35 rows are what
+/// they do; each kind of statement on the sheet, changed, is caught.
+#[test]
+fn l023_the_cards_make_the_rows() {
+    assert_eq!(failures(&page("L023")), Vec::<String>::new());
+    let r = run(&read("", &page("L023")).unwrap());
+    assert_eq!(r.steps.len(), 35);
+    assert_eq!(r.all_checks().count(), 123);
+    // The four results are the coefficients of the product of the series.
+    let (great, small) = (["A", "B", "C", "D"], ["a", "b", "c", "d"]);
+    for k in 0..4 {
+        let mut want = babbage::algebra::Value::zero();
+        for i in 0..=k {
+            want = want
+                .add(&babbage::algebra::Value::letter(great[i]).mul(&babbage::algebra::Value::letter(small[k - i])));
+        }
+        assert!(r.results[&format!("c{k}")].same(&want), "c{k}");
+    }
+    let cases = [
+        ("Op 9   ×  | Ba ", "Op 9   ×  | Bb ", "mill: Bb"),
+        (
+            "Op 15  −  | 3−1         | v3 0 2",
+            "Op 15  −  | 3−1         | v3 0 1",
+            "v3 = 0, then 1",
+        ),
+        (
+            "Moves Great back 2, Small back 3",
+            "Moves Great back 1, Small back 3",
+            "Great back 1",
+        ),
+        (
+            "Op 18  −  | 2−1         | v3 0 1     |\n  Backing Y \"back\"",
+            "Op 18  −  | 2−1         | v3 0 1     |\n  Backing Z \"back\"",
+            "Z backs the cards",
+        ),
+        ("Op 26  ×", "Op 26  +", "operation +"),
+        ("= 252.5 hours", "= 254.2 hours", "100 results in 254.2 hours"),
+        (
+            "Find c2 = Ac + Bb + C a ",
+            "Find c2 = Ac + Bc + C a ",
+            "c2 = Ac + Bc + C a",
+        ),
+    ];
+    for (from, to, want) in cases {
+        let f = probe("L023", from, to);
+        assert!(f.iter().any(|f| f.starts_with(want)), "{want}: {f:#?}");
+    }
 }

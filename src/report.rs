@@ -69,6 +69,9 @@ fn step_parts(s: &Step, o: &Options) -> (String, String, String, String) {
     for (c, v) in &s.cards.writes {
         what.push(format!("{} = {}", crate::expr::col_name(*c), show(v, &o.at)));
     }
+    if !s.note.is_empty() {
+        what.push(s.note.clone());
+    }
     let n = s.checks.len();
     let bad = s.checks.iter().filter(|c| !c.ok).count();
     let mark = if bad == 0 {

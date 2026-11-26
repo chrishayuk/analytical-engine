@@ -47,6 +47,7 @@ L019     BAB/L/019  No. 19, 31 Jul 1840  Notation of the Reduction of the Four E
 L020     BAB/L/020  No. 20, 31 Jul 1840  Notation of the Reduction of the Three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and these to ∂z + e = 0 with the solution
 L021     BAB/L/021  No. 21, 15 Aug 1840  Reduction of the four Equations
 L022     BAB/L/022  No. 22, 15 Aug 1840  Reduction of the three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two others viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and of these to ∂z + e = 0
+L023     BAB/L/023  No. 23, 7 Jun 1838  Notation of a Formula for the Multn of A + Bx + Cx² + ... by a + bx + cx² + ...
 L024-1   BAB/L/024  No. 24.1,   Notations for determining Px+1 from Px, Px+1 = (Wx/Vx).Px, Wx & Vx being both quadratic functions of x
 L024-2   BAB/L/024  No. 24.2,   bs(i+1) = (Pi.bs(i) − Qi.bs(i−1))/Ri
 L025     BAB/L/025  No. 25,   Algebraic Notation
@@ -121,6 +122,7 @@ L021     182 statements, 179 agree
          ✗ line 89: cards (v23 v24)(v14 v26)(v24 v23)(v26 v14)(0 v29): the run needs (v23 v24)(v14 0)(v24 v23)(0 v29)
          ✗ line 70: 48 cards in all: the count comes to 49
 L022      99 statements,  99 agree
+L023     123 statements, 123 agree
 L024-1    59 statements,  56 agree
          ✗ line 63: where v1‴ comes from: v1‴ (W0 + 3ΔW0 + 3Δ²W) is not in a column this row leaves at zero
          ✗ line 63: v2 = W3: the operation of the row gives (W0 + 3ΔW0 + 3Δ²W)/(V0 + 3ΔV0 + 3Δ²V)
@@ -142,7 +144,7 @@ L026-1    27 statements,  27 agree
 L026-2    31 statements,  31 agree
 L027       0 statements,   0 agree
 
-34 pages; 2549 statements of the sheets checked, 2499 agree.
+35 pages; 2672 statements of the sheets checked, 2622 agree.
 15 page(s) with statements that do not agree.
 ```
 
@@ -222,10 +224,22 @@ $ babbage decisions
 24. Where the mill column and the operation differ, and no cell writes what the operation gives, the run goes on with the sheet's value.
    BAB/L/020 writes −e/∂ = z from a division of ∂ by e; BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.
 
-25. Great operations are multiplication and division; small are addition, subtraction and transfers.
+25. With --strict, the run never goes on with the sheet's value: where they differ, it keeps its own.
+   So that agreement counts only what the machine confirms unaided. A slip is then followed by the disagreements it causes.
+
+26. A looped program is run from its cards. The groups run in order; after the last card of a group, a backing apparatus sends the cards to the start of another group, unless its condition holds.
+   BAB/L/023 (7 June 1838), cover: "There are three groups of cards … The backing apparatus Y backs the cards to the beginning of the formulae cards. The backing apparatus Z backs them to the beginning of the cards forming the combinatorial numbers." In its table, Y backs after each subtraction that leaves Comb above 0, and Z after those that leave it at 0.
+
+27. In a looped program, a column the cards read keeps its number.
+   BAB/L/023 writes no 0 under Δ′, Tab or Const when they are read, and Tab and Const are read again in later passes. Comb, given a new number, is written "0 1": a 0, then the number.
+
+28. Letter cards stand at a place given by the store. The sheet's advances and backs are checked against the moves needed between the letters the cards read.
+   BAB/L/023 writes the moves ("Great back 1, Small back 2") and not what sets them. Placing the great cards at Tab − Comb and the small at Comb − 1 gives every move the sheet writes.
+
+29. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-26. Values are compared as algebra.
+30. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 

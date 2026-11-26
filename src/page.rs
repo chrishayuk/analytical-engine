@@ -88,6 +88,60 @@ pub struct Row {
     /// A turn of the store and its carriages (BAB/L/008 to L/012): what is
     /// done, in order, `Car1 = Car1 - v2`, each a column and what it is given.
     pub actions: Option<Vec<(usize, Expr, String)>>,
+    /// The letter cards the sheet moves at the row (BAB/L/023): which, by
+    /// how many places, forward ("advance") or not, the line.
+    pub moves: Vec<(String, i64, usize)>,
+    /// What the sheet writes in a backing apparatus's column at the row:
+    /// the apparatus and the words.
+    pub backing: Vec<(String, String, usize)>,
+}
+
+/// A group of operation cards (BAB/L/023: "There are three groups of
+/// cards"), each card an operation and what it gives, in order.
+#[derive(Clone, Debug)]
+pub struct Deck {
+    pub name: String,
+    pub cards: Vec<DeckCard>,
+}
+
+#[derive(Clone, Debug)]
+pub struct DeckCard {
+    pub op: Op,
+    /// What the card gives, in order: a column or a name, and its value;
+    /// the first is what the mill shows.
+    pub sets: Vec<(Target, Expr, String)>,
+    pub line: usize,
+}
+
+#[derive(Clone, Debug, PartialEq)]
+pub enum Target {
+    Col(usize),
+    Name(String),
+}
+
+/// A row of letter cards (BAB/L/023's "Great Letter Cards", "Small letter
+/// Cards"): the name the operation cards use for the letter showing, the
+/// letters in order, where in the row they stand, and the letter towards
+/// which they advance.
+#[derive(Clone, Debug)]
+pub struct LetterCards {
+    pub label: String,
+    pub name: String,
+    pub letters: Vec<String>,
+    pub at: (Expr, String),
+    pub towards: String,
+    pub line: usize,
+}
+
+/// A backing apparatus: after the last card of one group, it sends the
+/// cards back to the first of another, unless a column holds a number.
+#[derive(Clone, Debug)]
+pub struct Backing {
+    pub name: String,
+    pub after: String,
+    pub to: String,
+    pub unless: Option<(Expr, Expr, String)>,
+    pub line: usize,
 }
 
 #[derive(Clone, Debug)]
@@ -133,6 +187,18 @@ pub struct Page {
     pub card_counts: Vec<(usize, CardCount, usize)>,
     /// The first line of each directive, for pointing at it.
     pub lines: std::collections::BTreeMap<String, usize>,
+    /// A looped program (BAB/L/023): its groups of cards, letter cards and
+    /// backing; the rows are then the run of the cards.
+    pub decks: Vec<Deck>,
+    pub letter_cards: Vec<LetterCards>,
+    pub backings: Vec<Backing>,
+    /// A name whose value, each time the given apparatus backs the cards,
+    /// is the next result: `Result S at Z`.
+    pub result_at: Option<(String, String)>,
+    /// The time the sheet gives for so many results: `Time 100 results =
+    /// 252.5 hours, a minute for each card of formula use`: the results,
+    /// the hours as written, the groups whose cards are counted, the line.
+    pub time: Option<(usize, String, Vec<String>, usize)>,
 }
 
 fn quoted(s: &str) -> (String, Option<String>) {
@@ -278,6 +344,8 @@ fn parse_row(n: usize, s: &str) -> Result<Row, String> {
         input: false,
         actions: None,
         cards_written: None,
+        moves: vec![],
+        backing: vec![],
     })
 }
 
@@ -313,6 +381,8 @@ fn parse_turn(n: usize, s: &str) -> Result<Row, String> {
         input: false,
         actions: Some(actions),
         cards_written: None,
+        moves: vec![],
+        backing: vec![],
     })
 }
 
@@ -482,6 +552,8 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         input: true,
                         actions: None,
                         cards_written: None,
+                        moves: vec![],
+                        backing: vec![],
                     });
                 }
                 "States" => {
@@ -509,6 +581,132 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         parts,
                         equation,
                     });
+                }
+                // Deck make + | v2 = v2 + v1, v3 = v2, S = 0
+                "Deck" => {
+                    let (head, sets) = body
+                        .split_once('|')
+                        .ok_or_else(|| err("Deck name op | v2 = v2 + v1".into()))?;
+                    let mut w = head.split_whitespace();
+                    let name = w.next().ok_or_else(|| err("Deck name op | ...".into()))?.to_string();
+                    let op = op_of(w.next().unwrap_or(""))?
+                        .ok_or_else(|| err("a card of a deck has an operation".into()))?;
+                    let mut out = vec![];
+                    for a in sets.split(',').filter(|a| !a.trim().is_empty()) {
+                        let (to, e) = a.split_once('=').ok_or_else(|| err(format!("`{a}`: `v2 = v2 + v1`")))?;
+                        let to = to.trim();
+                        let target = if to.starts_with('v') && to[1..].chars().all(|c| c.is_ascii_digit()) {
+                            Target::Col(var_index(to)?)
+                        } else {
+                            Target::Name(to.to_string())
+                        };
+                        let t = e.trim().to_string();
+                        out.push((target, parse(&t)?, format!("{to} = {t}")));
+                    }
+                    if out.is_empty() {
+                        return Err(err("a card gives something".into()));
+                    }
+                    let card = DeckCard { op, sets: out, line: n };
+                    match p.decks.iter_mut().find(|d| d.name == name) {
+                        Some(d) => d.cards.push(card),
+                        None => p.decks.push(Deck {
+                            name,
+                            cards: vec![card],
+                        }),
+                    }
+                }
+                // Letter Great Γ = A B C D at v2 - v3 towards D
+                "Letter" => {
+                    let (head, tail) = body
+                        .split_once('=')
+                        .ok_or_else(|| err("Letter Great Γ = A B C D at v2 - v3 towards D".into()))?;
+                    let mut h = head.split_whitespace();
+                    let label = h.next().unwrap_or("").to_string();
+                    let name = h.next().ok_or_else(|| err("Letter Great Γ = ...".into()))?.to_string();
+                    let (letters, rest) = tail
+                        .split_once(" at ")
+                        .ok_or_else(|| err("… at v2 - v3 towards D".into()))?;
+                    let (at, towards) = rest.split_once(" towards ").ok_or_else(|| err("… towards D".into()))?;
+                    let at = at.trim().to_string();
+                    p.letter_cards.push(LetterCards {
+                        label,
+                        name,
+                        letters: letters.split_whitespace().map(str::to_string).collect(),
+                        at: (parse(&at)?, at),
+                        towards: towards.trim().to_string(),
+                        line: n,
+                    });
+                }
+                // Back Y after use to formula unless v3 = 0
+                "Back" => {
+                    let w: Vec<&str> = body.split_whitespace().collect();
+                    match w.as_slice() {
+                        [name, "after", after, "to", to, rest @ ..] => {
+                            let unless = match rest {
+                                [] => None,
+                                ["unless", cond @ ..] => {
+                                    let c = cond.join(" ");
+                                    let (a, b) = c.split_once('=').ok_or_else(|| err("unless v3 = 0".into()))?;
+                                    Some((parse(a.trim())?, parse(b.trim())?, c.clone()))
+                                }
+                                _ => return Err(err("Back Y after use to formula [unless v3 = 0]".into())),
+                            };
+                            p.backings.push(Backing {
+                                name: name.to_string(),
+                                after: after.to_string(),
+                                to: to.to_string(),
+                                unless,
+                                line: n,
+                            });
+                        }
+                        _ => return Err(err("Back Y after use to formula [unless v3 = 0]".into())),
+                    }
+                }
+                "Time" => {
+                    let w: Vec<&str> = body.split_whitespace().collect();
+                    match w.as_slice() {
+                        [k, "results", "=", h, "hours,", "a", "minute", "for", "each", "card", "of", decks @ ..]
+                            if !decks.is_empty() =>
+                        {
+                            let k = k.parse().map_err(|_| err("Time 100 results = ...".into()))?;
+                            p.time = Some((k, h.to_string(), decks.iter().map(|d| d.to_string()).collect(), n));
+                        }
+                        _ => {
+                            return Err(err(
+                                "Time 100 results = 252.5 hours, a minute for each card of formula use".into(),
+                            ))
+                        }
+                    }
+                }
+                "Result" => {
+                    let w: Vec<&str> = body.split_whitespace().collect();
+                    match w.as_slice() {
+                        [name, "at", app] => p.result_at = Some((name.to_string(), app.to_string())),
+                        _ => return Err(err("Result S at Z".into())),
+                    }
+                }
+                // Moves Great back 0, Small advance 1: after the row they belong to.
+                "Moves" => {
+                    let row = p.rows.last_mut().ok_or_else(|| err("Moves follow their row".into()))?;
+                    for m in body.split(',').filter(|m| !m.trim().is_empty()) {
+                        let w: Vec<&str> = m.split_whitespace().collect();
+                        let (label, k) = match w.as_slice() {
+                            [l, "advance", k] => (l, k.parse::<i64>().map_err(|_| err(format!("`{m}`")))?),
+                            [l, "back", k] => (l, -k.parse::<i64>().map_err(|_| err(format!("`{m}`")))?),
+                            _ => return Err(err(format!("`{m}`: `Great back 0`"))),
+                        };
+                        row.moves.push((label.to_string(), k, n));
+                    }
+                }
+                // Backing Y "gear": the words in an apparatus's column at the row.
+                "Backing" => {
+                    let row = p.rows.last_mut().ok_or_else(|| err("Backing follows its row".into()))?;
+                    let name = body
+                        .split_whitespace()
+                        .next()
+                        .ok_or_else(|| err("Backing Y \"back\"".into()))?;
+                    row.backing
+                        .push((name.to_string(), quote.clone().unwrap_or_default(), n));
                 }
                 "Remark" => p.remarks.push(quote.unwrap_or(body)),
                 "Unrun" => p.unrun.push(quote.unwrap_or(body)),

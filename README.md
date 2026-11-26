@@ -36,17 +36,17 @@ right.
 
 Every sheet of Series L that has images, BAB/L/001 to BAB/L/027 (L/003 has
 none; Rojas 2017 lists its program as not in the archive), 4 August 1837 to
-9 August 1841: 34 pages, of which 31 run, two are prose or a drawing of the
-store (L/016 sheet 2, L/027), and one, the looped program of L/023, is
-checked by a script that runs its cards (35 of 35 rows). Of 2549 statements
-of the sheets the run checks, 2499 agree (`babbage verify`). The 50 that do
+9 August 1841: 35 pages, of which 33 run and two are prose or a drawing of
+the store (L/016 sheet 2, L/027). One of the 33 is the looped program of
+L/023: the engine runs its cards. Of 2672 statements of the sheets the run
+checks, 2622 agree (`babbage verify`). The 50 that do
 not come from slips of the pen on 15 pages, each described on its page and
 counted in `tests/corpus.rs`; none stops a run.
 
 Those figures are for a run that, where the sheet and the run differ, goes
 on with the sheet's value, so one slip is one disagreement. `babbage verify
 --strict` never does: the run keeps its own value, and what a slip causes
-later is counted too. Strict, 2445 of 2549 agree, on the same 15 pages and
+later is counted too. Strict, 2568 of 2672 agree, on the same 15 pages and
 no others; the extra 54 are the consequences of slips already counted
 (most on L/014 sheet 2, L/018 and L/024 sheet 2). Run strictly as written,
 12 pages state equations the run can solve. Ten of them reach the solution
@@ -195,9 +195,10 @@ search made, so nothing here is claimed as new. See
 - **The looped program** (L/023, 7 June 1838). The product of two series
   by combinatorial cards: an inner loop backed by Y to the formula cards, an
   outer one by Z to the start, the letter cards advanced and backed, and a
-  counter stepped by its difference. A script runs the cards as a loop and
-  gives the sheet's 35 rows, operation and mill entry, all 35
-  (`sources/checks/L023.py`). The engine does not yet run loops.
+  counter stepped by its difference. The page gives the cards and the
+  engine runs them as a loop. All 123 of the sheet's statements agree with
+  what the cards do: the 35 rows, every letter-card move, every backing of
+  Y and Z, the four results, and the NB's 252·5 hours for 100 terms.
 - **Recurrences** (L/024). Laplace coefficients by Pₓ₊₁ = (Wₓ/Vₓ)Pₓ and a
   three-term recurrence: 113 of 123, four slips of the pen.
 - **One formula two ways** (L/026, undated). (ab + c∂)/(a + c) and
@@ -260,6 +261,16 @@ with what it rests on):
 27. Where the mill column and the operation differ and the cells follow the
     mill, the run goes on with the sheet's value: one slip, one
     disagreement. (L/018, L/020.)
+28. With `--strict`, the run never goes on with the sheet's value.
+29. A looped program is run from its cards. The groups run in order. After
+    a group's last card, a backing apparatus sends the cards to the start
+    of another group, unless its condition holds. (BAB/L/023's cover: Y to
+    the formula cards, Z to the cards forming the combinatorial numbers.)
+30. In a looped program, a column the cards read keeps its number.
+    (BAB/L/023: no 0 under Δ′, Tab or Const.)
+31. Letter cards stand at a place the store gives. The sheet's advances and
+    backs are checked against the moves that requires. (BAB/L/023 writes
+    the moves, not what sets them.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
 sheet needs that the sheets before it do not show will be a new, dated
@@ -309,9 +320,6 @@ what was hard to read in [`sources/notes/L001.md`](sources/notes/L001.md).
 
 ## Next
 
-- Loops in the engine: L/023's combinatorial cards, backing Y and Z, the
-  moving letter cards and the counter, so that its rows are made by the
-  cards and checked as the other pages are.
 - Series F, where the catalogue says earlier "user program traces" are found
   among the earliest notations, for anything before 4 August 1837.
 - Bromley (2000) and Rojas (2021), before any result is called new.

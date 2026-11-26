@@ -104,6 +104,47 @@ its cells can be checked against what the name means; `Gives 4 v8 = C(T1)`
 is the sheet's statement of what a column holds after a row. A `Turn 0` is
 not counted.
 
+## A looped program
+
+BAB/L/023 (7 June 1838) is written as the run of its cards. The page gives
+the cards; the engine runs them, and each `Op` row is checked against the
+card that comes up in its place.
+
+```
+Deck make     + | v2 = v2 + v1, v3 = v2, S = 0
+Deck formula  × | P = Γγ
+Deck formula  + | S = S + P
+Deck use      − | v3 = v3 - v4
+Back Y after use to formula unless v3 = 0
+Back Z after use to make
+Letter Great Γ = A B C D at v2 - v3 towards D
+Letter Small γ = a b c d at v3 - 1 towards a
+Result S at Z
+Time 100 results = 252.5 hours, a minute for each card of formula use
+
+Op 13  ×  | Ac          |            |
+  Moves Great back 1, Small back 2
+  Backing Y "gear"
+```
+
+A `Deck` line is one card of a group: its operation, then what it gives, in
+order, to columns or to names. The first of these is what the mill shows.
+The groups run in the order they first appear. After the last card of a
+group, the first `Back` named for that group that applies sends the cards to
+the start of another group. A `Back` with `unless v3 = 0` does not apply
+while v3 holds 0. If no `Back` applies, the next group follows.
+A `Letter` row of cards stands at the place its expression gives (counting
+from 0), and a card names the letter showing by the row's name (`Γ`).
+Under an `Op`, `Moves` is what the sheet writes in the letter-card columns,
+checked against how far the cards go between the letters they show.
+`Backing` holds the words in an apparatus's column. The word `back` is
+checked: the apparatus backs the cards at that row, and every backing the
+run makes must be written. Other words, such as gear and ungear, are shown
+but not run. `Result S at Z` makes S's value a result each time Z backs, and
+the `Find` lines are checked against those results in order. `Time` runs the
+cards, counting only, until there are so many results, and checks the hours
+at a minute for each card of the groups named.
+
 ## Checked statements
 
 ```

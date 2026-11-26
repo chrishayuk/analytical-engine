@@ -1,4 +1,6 @@
-# python3 -I sources/checks/L023.py corpus/L023.bab.draft
+# python3 -I sources/checks/L023.py corpus/L023.bab
+#
+# An independent check, kept beside the engine's own run of the page.
 #
 # Run BAB/L/023's cards as a loop and print the trace, to compare with the
 # sheet's 35 rows: Tab += Δ'; Comb = Tab; then Comb times: ×, +, Comb −= 1,

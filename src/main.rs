@@ -1,5 +1,5 @@
-use babbage::machine::{decisions, run_strict};
 use babbage::machine::run as run_lax;
+use babbage::machine::{decisions, run_strict};
 use babbage::page::read;
 use babbage::rat::Rat;
 use babbage::report::{cards_text, run_text, Options};
@@ -118,7 +118,11 @@ fn main() {
             println!(
                 "\n{} pages; {all} statements of the sheets checked, {good} agree{}.",
                 corpus::PAGES.len(),
-                if strict { " (strict: the run never takes the sheet's value)" } else { "" }
+                if strict {
+                    " (strict: the run never takes the sheet's value)"
+                } else {
+                    ""
+                }
             );
             if bad_pages > 0 {
                 println!("{bad_pages} page(s) with statements that do not agree.");

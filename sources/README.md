@@ -51,8 +51,9 @@ no images. Rojas (2017, Table 3) lists program 3 as not in the archive.
 ### BAB/L/004 to BAB/L/027
 
 See `notes/L004.md` to `notes/L027.md` for each sheet's images, cover and
-readings, and `checks/L023.py` for the looped program of L/023, run as a
-loop and compared with its 35 rows.
+readings. The engine runs the looped program of L/023 itself;
+`checks/L023.py` is an earlier, independent script that also runs its cards
+and compares them with the 35 rows.
 
 ## Secondary literature
 

@@ -397,6 +397,13 @@ pub const KEYWORD_HELP: &[(&str, &str)] = &[
     ("Carried", "the count of cards carried over from the sheet before: `Carried 136`"),
     ("Group", "a group of cards begins, counted afresh"),
     ("Running", "the sheet's running count of cards alone: `Running 98`"),
+    ("Deck", "a card of a group of operation cards, in a looped program: `Deck make + | v2 = v2 + v1, v3 = v2`"),
+    ("Letter", "a row of letter cards: `Letter Great Γ = A B C D at v2 - v3 towards D`"),
+    ("Back", "a backing apparatus: `Back Y after use to formula unless v3 = 0`"),
+    ("Result", "the name whose value is a result each time an apparatus backs the cards: `Result S at Z`"),
+    ("Time", "the sheet's time for so many results: `Time 100 results = 252.5 hours, a minute for each card of formula use`"),
+    ("Moves", "the letter cards the sheet moves at the row before: `Moves Great back 0, Small back 1`"),
+    ("Backing", "the words in a backing apparatus's column at the row before: `Backing Y \"back\"`"),
     ("Total", "the sheet's count of cards: the group's, and the running total: `Total 12 148`"),
     (
         "Turn",
