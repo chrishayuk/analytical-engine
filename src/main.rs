@@ -18,6 +18,8 @@ babbage verify               run every page, and say what agrees
 babbage list                 the pages
 babbage history              each capability: conceived, designed, used, revised (Series N and the corpus)
 babbage history pages        each page's capabilities against the record before its date
+babbage history pages --as-of 1837-08-04
+                             each page against the machine as evidenced by that date: what it needs that is not yet
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground
@@ -69,12 +71,17 @@ fn main() {
     let mut o = Options { at: None, store: false };
     let mut rest = vec![];
     let strict = args.iter().any(|a| a == "--strict");
+    let mut as_of: Option<String> = None;
     let run = |p: &Page| if strict { run_strict(p) } else { run_lax(p) };
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
             "--store" => o.store = true,
             "--strict" => {}
+            "--as-of" => {
+                i += 1;
+                as_of = args.get(i).cloned();
+            }
             "--at" => {
                 i += 1;
                 o.at = Some(parse_at(args.get(i).map(String::as_str).unwrap_or("")));
@@ -170,6 +177,31 @@ fn main() {
                             e.source,
                             e.words
                         );
+                    }
+                }
+            } else if let Some(d) = &as_of {
+                // The machine as evidenced by a date: a capability is there
+                // if the history records it (direct) by then, or a sheet
+                // dated by then uses it. Nothing is enabled or disabled: the
+                // run is the same; this says what it needed that was not yet.
+                let Some(at) = babbage::history::parse_iso(d) else {
+                    eprintln!("--as-of 1837-08-04");
+                    exit(2)
+                };
+                let there = |c: &str| {
+                    record
+                        .iter()
+                        .any(|e| e.capability == c && e.direct && e.when.not_after(&at) == Some(true))
+                        || users(c).iter().any(|u| u.not_after(&at) == Some(true))
+                };
+                println!("The machine as evidenced by {at}:");
+                for (n, date, caps) in &pages {
+                    let missing: Vec<&str> = caps.iter().copied().filter(|c| !there(c)).collect();
+                    let when = date.map(|w| w.to_string()).unwrap_or_else(|| "undated".into());
+                    if missing.is_empty() {
+                        println!("{n:<8} {when:<18} runs");
+                    } else {
+                        println!("{n:<8} {when:<18} needs {}", missing.join(", "));
                     }
                 }
             } else {

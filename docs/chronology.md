@@ -41,7 +41,16 @@ uses stands against the record before that date:
 - **recorded**: the history sheets have the capability by then;
 - **related only**: they have only something related to it by then;
 - **used before**: an earlier sheet already uses it;
-- **first here**: this sheet is the first evidence of any kind.
+- **first here**: this sheet is the first evidence of any kind;
+- **same month**: the history records it in the same month and gives no
+  day, so the order cannot be told.
+
+`babbage history pages --as-of 1837-08-04` asks the question the other
+way: given the machine as evidenced by a date, which pages need something
+it does not yet have? A capability counts as there if the history sheets
+record it directly by that date, or a sheet dated by then uses it. On 4
+August 1837, for example, L/023's loop is there (recorded in March 1836),
+but its letter cards are not (first recorded in November 1837).
 
 Nothing is enabled or disabled by date. The engine runs every page on the
 same rules, and the report says where the record and the programs stand

@@ -40,8 +40,8 @@ none; Rojas 2017 lists its program as not in the archive), 4 August 1837 to
 the store (L/016 sheet 2, L/027). One of the 33 is the looped program of
 L/023: the engine runs its cards. Of 2672 statements of the sheets the run
 checks, 2623 agree (`babbage verify`). The 49 that do
-not are counted as slips on 14 pages, each described on its page and
-counted in `tests/corpus.rs`; none stops a run. They are leads, not
+not are on 14 pages, each described on its page and counted in
+`tests/corpus.rs`; none stops a run. They are leads, not
 settled: [`docs/discrepancies.md`](docs/discrepancies.md) gives each its
 candidate explanations: a slip in the table or the working, a fault in the
 program, a capability the engine lacks, or our reading.
@@ -225,7 +225,8 @@ are transcribed in `sources/notes/N001.md` to `N008.md`. Each capability
 the engine has is set against them in `history/chronology.txt`: when the
 history sheets record it as conceived, designed or revised, and when a
 program first uses it. `babbage history` and `babbage history pages` print
-the result. See [`docs/chronology.md`](docs/chronology.md).
+the result. `--as-of DATE` lists what each page needs that the machine, as
+evidenced by that date, does not yet have. See [`docs/chronology.md`](docs/chronology.md).
 
 The order runs both ways:
 - Some capabilities are recorded before any program uses them. "Plan of

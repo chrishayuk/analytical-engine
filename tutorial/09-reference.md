@@ -14,6 +14,8 @@ babbage verify               run every page, and say what agrees
 babbage list                 the pages
 babbage history              each capability: conceived, designed, used, revised (Series N and the corpus)
 babbage history pages        each page's capabilities against the record before its date
+babbage history pages --as-of 1837-08-04
+                             each page against the machine as evidenced by that date: what it needs that is not yet
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground

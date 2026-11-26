@@ -209,7 +209,7 @@ impl When {
 }
 
 /// `1836-03-07`, `1836-03`, `<1835-02-05`.
-fn parse_iso(s: &str) -> Option<When> {
+pub fn parse_iso(s: &str) -> Option<When> {
     let (before, s) = match s.strip_prefix('<') {
         Some(r) => (true, r),
         None => (false, s),
