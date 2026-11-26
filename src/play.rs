@@ -4,7 +4,7 @@
 
 use crate::expr::Held;
 use crate::json::{obj, Json};
-use crate::lsp::{analyse, problems};
+use crate::lsp::problems;
 use crate::machine::Source;
 use crate::page::Cell;
 use crate::rat::Rat;
@@ -42,7 +42,12 @@ fn checks_json<'a>(cs: impl Iterator<Item = &'a crate::machine::Check>) -> Json 
 }
 
 pub fn run_json(text: &str, at: Option<BTreeMap<String, Rat>>) -> String {
-    let a = analyse(text);
+    run_json_with(text, at, crate::machine::Model::default())
+}
+
+/// The run as JSON on a variant of the machine: `--strict` in the playground.
+pub fn run_json_with(text: &str, at: Option<BTreeMap<String, Rat>>, m: crate::machine::Model) -> String {
+    let a = crate::lsp::analyse_with(text, m);
     let p = &a.page;
     let r = &a.run;
     let columns: Vec<usize> = {

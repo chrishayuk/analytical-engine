@@ -39,4 +39,16 @@ if (!lsp.results[0]?.data?.length) fail("lsp: no semantic tokens");
 if (!/table of multiples still standing/.test(lsp.results[1]?.contents?.value ?? "")) fail("lsp: hover on operation 2 does not give the table");
 if (lsp.diagnostics.filter((d) => d.severity <= 2).length !== 1) fail("lsp: L001-2 should have one problem");
 console.log(`${pages.length} pages through the wasm build, ${failed ? failed + " failed" : "all agree with the native build"}`);
+// Strict, through the wasm build: L/017 run as written loses Q0.
+{
+  const l017 = JSON.parse(readFileSync(`${root}web/corpus.json`, "utf8")).find((p) => p.name === "L017");
+  if (l017) {
+    const lax = JSON.parse(babbage(module, ["json", "-"], l017.text).out);
+    const strict = JSON.parse(babbage(module, ["json", "-", "--strict"], l017.text).out);
+    const bad = (r) => JSON.stringify(r).split('"ok":false').length - 1;
+    if (!(bad(strict) > bad(lax))) { console.log(`strict should find more on L017: ${bad(lax)} vs ${bad(strict)}`); failed = true; }
+    console.log(`L017 through wasm: ${bad(lax)} disagreements, strict ${bad(strict)}`);
+  }
+}
+
 process.exit(failed ? 1 : 0);

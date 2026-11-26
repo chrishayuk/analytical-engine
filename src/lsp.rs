@@ -8,7 +8,7 @@
 
 use crate::expr::show_var;
 use crate::json::{self, obj, Json};
-use crate::machine::{run, Run, Source, Step};
+use crate::machine::{Run, Source, Step};
 use crate::page::{read_all, Page};
 use std::collections::HashMap;
 use std::io::{BufRead, Write};
@@ -165,8 +165,13 @@ pub struct Analysis {
 }
 
 pub fn analyse(text: &str) -> Analysis {
+    analyse_with(text, crate::machine::Model::default())
+}
+
+/// The same, on a variant of the machine (`--strict`, a competing model).
+pub fn analyse_with(text: &str, m: crate::machine::Model) -> Analysis {
     let (page, errors) = read_all("page", text);
-    let run = run(&page);
+    let run = crate::machine::run_model(&page, m);
     Analysis { page, errors, run }
 }
 

@@ -364,7 +364,12 @@ fn main() {
                     }),
                 }
             };
-            println!("{}", babbage::play::run_json(&text, o.at.clone()));
+            let m = Model {
+                strict,
+                transfer_keeps,
+                complement_as_held,
+            };
+            println!("{}", babbage::play::run_json_with(&text, o.at.clone(), m));
         }
         ["cards", f] => {
             let p = load(f);
