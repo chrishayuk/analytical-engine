@@ -319,3 +319,30 @@ fn l026_computes_one_formula_two_ways() {
     let x = |name: &str| run(&read("", &page(name)).unwrap()).results.get("x").cloned().unwrap();
     assert!(x("L026-1").same(&x("L026-2")));
 }
+
+/// Strict: the run never goes on with the sheet's value. A slip is then
+/// followed by what it causes, and the count is of statements the machine
+/// confirms with no help from the sheet.
+#[test]
+fn strict_runs() {
+    use babbage::machine::run_strict;
+    let (mut all, mut ok) = (0, 0);
+    let mut wrong_answer = vec![];
+    for (n, t) in PAGES {
+        let r = run_strict(&read(n, t).unwrap());
+        assert!(r.stopped.is_none(), "{n} stopped: {:?}", r.stopped);
+        for c in r.all_checks() {
+            all += 1;
+            if c.ok {
+                ok += 1;
+            } else if c.what.contains("solves the equations") {
+                wrong_answer.push(*n);
+            }
+        }
+    }
+    assert_eq!((all, ok), (2549, 2445));
+    // Run exactly as written, two pages end with a wrong answer: L/001's
+    // back (−v3″−v5″ at operation 12) and L/020 (−e/∂ = z at the last).
+    wrong_answer.dedup();
+    assert_eq!(wrong_answer, ["L001-2", "L020"]);
+}

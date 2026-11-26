@@ -6,6 +6,7 @@
 $ babbage --help
 babbage FILE                 run a page: every operation, every cell of the sheet checked (- reads standard input)
 babbage no L001-1            a page of the corpus (babbage list)
+babbage FILE --strict        never go on with the sheet's value where it differs (also with verify)
 babbage FILE --store         the whole store after each operation
 babbage FILE --at a=2,b=3,…  the same run, its values shown at these numbers
 babbage cards FILE           the program as operation and variable cards

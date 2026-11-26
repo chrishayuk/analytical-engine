@@ -1,4 +1,5 @@
-use babbage::machine::{decisions, run};
+use babbage::machine::{decisions, run_strict};
+use babbage::machine::run as run_lax;
 use babbage::page::read;
 use babbage::rat::Rat;
 use babbage::report::{cards_text, run_text, Options};
@@ -9,6 +10,7 @@ use std::process::exit;
 const USAGE: &str = "\
 babbage FILE                 run a page: every operation, every cell of the sheet checked (- reads standard input)
 babbage no L001-1            a page of the corpus (babbage list)
+babbage FILE --strict        never go on with the sheet's value where it differs (also with verify)
 babbage FILE --store         the whole store after each operation
 babbage FILE --at a=2,b=3,…  the same run, its values shown at these numbers
 babbage cards FILE           the program as operation and variable cards
@@ -63,10 +65,13 @@ fn main() {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let mut o = Options { at: None, store: false };
     let mut rest = vec![];
+    let strict = args.iter().any(|a| a == "--strict");
+    let run = |p: &Page| if strict { run_strict(p) } else { run_lax(p) };
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
             "--store" => o.store = true,
+            "--strict" => {}
             "--at" => {
                 i += 1;
                 o.at = Some(parse_at(args.get(i).map(String::as_str).unwrap_or("")));
@@ -111,8 +116,9 @@ fn main() {
                 }
             }
             println!(
-                "\n{} pages; {all} statements of the sheets checked, {good} agree.",
-                corpus::PAGES.len()
+                "\n{} pages; {all} statements of the sheets checked, {good} agree{}.",
+                corpus::PAGES.len(),
+                if strict { " (strict: the run never takes the sheet's value)" } else { "" }
             );
             if bad_pages > 0 {
                 println!("{bad_pages} page(s) with statements that do not agree.");

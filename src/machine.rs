@@ -192,6 +192,8 @@ struct State<'a> {
     /// The row after the one being run, for a table made to serve it.
     next: Option<&'a Row>,
     results: BTreeMap<String, Value>,
+    /// Never go on with the sheet's value where it differs from the run's.
+    strict: bool,
 }
 
 impl State<'_> {
@@ -407,7 +409,18 @@ fn apply(op: Op, a: &Value, b: &Value) -> Result<Value, String> {
 }
 
 pub fn run(page: &Page) -> Run {
+    run_with(page, false)
+}
+
+/// Strict: where the sheet and the run differ, the run goes on with its own
+/// value, never the sheet's, so a slip may be followed by others it causes.
+pub fn run_strict(page: &Page) -> Run {
+    run_with(page, true)
+}
+
+fn run_with(page: &Page, strict: bool) -> Run {
     let mut st = State {
+        strict,
         page,
         store: BTreeMap::new(),
         history: BTreeMap::new(),
@@ -1026,11 +1039,14 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 line,
                 what,
                 Err(format!(
-                    "the transfer brings {machine}, but the sheet writes {}, which is {said}. The run goes on with the value on the sheet",
-                    pretty(&c.rhs_text)
+                    "the transfer brings {machine}, but the sheet writes {}, which is {said}.{}",
+                    pretty(&c.rhs_text),
+                    if st.strict { "" } else { " The run goes on with the value on the sheet" }
                 )),
             ));
-            result = said.clone();
+            if !st.strict {
+                result = said.clone();
+            }
         } else {
             let named: Vec<String> = named.iter().map(|(n, p)| show_var(*n, *p)).collect();
             let plain = match row.op {
@@ -1052,11 +1068,14 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 line,
                 what,
                 Err(format!(
-                    "the operation gives {plain}, but the sheet writes {}: {why}. The run goes on with the value on the sheet",
-                    pretty(&c.rhs_text)
+                    "the operation gives {plain}, but the sheet writes {}: {why}.{}",
+                    pretty(&c.rhs_text),
+                    if st.strict { "" } else { " The run goes on with the value on the sheet" }
                 )),
             ));
-            result = said.clone();
+            if !st.strict {
+                result = said.clone();
+            }
         }
     }
     if let Some((e, t)) = &row.mill {
@@ -1072,7 +1091,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         // With no right-hand column, where the mill column and the
         // operation differ and no cell writes what the operation gives, the
         // run goes on with the sheet's value (BAB/L/020: −e/∂ = z).
-        if differs && row.card.is_none() && row.op.is_some() {
+        if differs && !st.strict && row.card.is_none() && row.op.is_some() {
             let cell_has_result = row.cells.iter().any(|(_, c)| match c {
                 Cell::Value(x, _) => st.eval(x).is_ok_and(|v| v.same(&result)),
                 _ => false,
@@ -1157,8 +1176,13 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 } else {
                     Err(format!("the operation of the row gives {result}"))
                 };
+                let keep_sheet = r.is_ok() || !st.strict;
                 checks.push(check(line, format!("v{col} = {t}"), r));
-                v
+                if keep_sheet {
+                    v
+                } else {
+                    result.clone()
+                }
             }
         };
         writes.push((*col, v));

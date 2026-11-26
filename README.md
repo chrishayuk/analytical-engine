@@ -43,6 +43,18 @@ of the sheets the run checks, 2499 agree (`babbage verify`). The 50 that do
 not come from slips of the pen on 15 pages, each described on its page and
 counted in `tests/corpus.rs`; none stops a run.
 
+Those figures are for a run that, where the sheet and the run differ, goes
+on with the sheet's value, so one slip is one disagreement. `babbage verify
+--strict` never does: the run keeps its own value, and what a slip causes
+later is counted too. Strict, 2445 of 2549 agree, on the same 15 pages and
+no others; the extra 54 are the consequences of slips already counted
+(most on L/014 sheet 2, L/018 and L/024 sheet 2). Run strictly as written,
+12 pages state equations the run can solve. Ten of them reach the solution
+on the machine's own values. Two end with a wrong answer: L/001's back,
+from −v3″−v5″ at operation 12, and L/020, from −e/∂ = z at the last
+operation. On pages without equations, strict mode carries wrong values
+forward from slips: L/018's Bernoulli recurrence and L/024's second sheet.
+
 The transcriptions were made by coding agents from the scans; no person has
 checked them. Two readings by Rojas (2017, 2023) have been read and a short
 search made, so nothing here is claimed as new. See
