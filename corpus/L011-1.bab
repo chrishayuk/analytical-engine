@@ -1,0 +1,30 @@
+% BAB/L/011, Science Museum Group Collection, document aa110001635.
+% The first table of the opened sheet (image 222/563, upper left). The cover
+% (222/562) is dated "No 11 28 Aug 1837". Read from the zoom images at full
+% resolution.
+
+Sheet BAB/L/011
+No. 11.1
+Date 28 Aug 1837          "No 11 28 Aug 1837"   % cover
+Title "Computation of u(z+1) = fz.uz + f1z from z = 0 to z = 1 = 2 &c"
+Image 222/562 cover: "Calculation of u(z+1) from the equation u(z+1) = fz.uz + f1z", and in pencil "= vz.uz + wz"
+Image 222/563 the first table
+
+% The sheet's f(z) and f₁(z) are written here f and g with the argument as a
+% subscript: f0 is f(0), g0 is f₁(0), f1 is f(1), g1 is f₁(1).
+Letters f0 g0 u0 f1 g1
+
+% The sheet heads v1 "f(0)", v2 "f₁(0)", v3 "u0"; v4 has no heading.
+Store v1 = f0, v2 = g0, v3 = u0
+Working v4
+
+% No right-hand column of formulas, no numbers of operations.
+Op 1     ×  | f0.u0     | v1 0, v3 0, v4 f0.u0 |
+Op 2     +  | f0.u0+g0  | v2 0, v3 =u1, v4 0 |
+
+% Across v1 and v2: "Calculate f(1) f₁(1)": new numbers, from outside the
+% table, stand in v1 and v2 before the next row.
+In v1 f1, v2 g1          "Calculate f(1) f1(1)"
+Op 3     ×  | f1.u1     | v1 0, v3 0, v4 f1.u1 |   % the mill writes "f(1).u1"
+Op 4     +  | f1.u1+g1  | v2 0, v3 =u2, v4 0 |
+% Across v1 and v2: "Calculate f(2) f₁(2)". The table ends.

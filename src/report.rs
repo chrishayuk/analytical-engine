@@ -62,7 +62,11 @@ fn step_parts(s: &Step, o: &Options) -> (String, String, String, String) {
         format!("✗ {bad} of {n}")
     };
     (
-        format!("{:>3} {} {}", r.number, if r.star { "*" } else { " " }, op),
+        if r.input {
+            " in    ".to_string()
+        } else {
+            format!("{:>3} {} {}", r.number, if r.star { "*" } else { " " }, op)
+        },
         pretty(&r.card_text),
         what.join("; "),
         mark,
@@ -151,7 +155,7 @@ pub fn cards_text(p: &Page, run: &Run) -> String {
     let mut out = String::new();
     writeln!(out, "{}\n", header(p)).unwrap();
     writeln!(out, "     {:<10} {:<34} to the store", "operation", "to the mill").unwrap();
-    for s in &run.steps {
+    for s in run.steps.iter().filter(|s| !s.row.input) {
         let op = match s.cards.op {
             Some(o) => o.sign().to_string(),
             None => "(transfer)".into(),

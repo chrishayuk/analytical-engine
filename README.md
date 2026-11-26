@@ -34,16 +34,23 @@ right.
 
 ## Status
 
-Six sheets, nine programs, 4 to about 22 August 1837: **BAB/L/001** (Nos. 1
-and 2, 4 and 5 August), **BAB/L/002** (14 August), **BAB/L/004** (three
-programs, 16 August), **BAB/L/005** (16 August), **BAB/L/006** and
-**BAB/L/007** (undated; L/007 is marked "before 22 Aug 1837" in pencil).
-BAB/L/003 has no images in the Museum's catalogue; Rojas 2017 lists its
-program as not in the archive. 620 statements of the sheets are checked and
-615 agree (`babbage verify`). The transcriptions were made by coding agents
-from the scans; no person has checked them. Two readings by Rojas (2017,
-2023) have been read and a short search made, so nothing here is claimed as
-new. See [`docs/literature.md`](docs/literature.md).
+Eleven sheets read, 4 to 29 August 1837. Run by the engine, eight sheets and
+eleven programs: **BAB/L/001** (Nos. 1 and 2, 4 and 5 August), **BAB/L/002**
+(14 August), **BAB/L/004** (three programs, 16 August), **BAB/L/005**
+(16 August), **BAB/L/006**, **BAB/L/007** (before 22 August) and
+**BAB/L/011** (two programs, 28 August): 642 statements checked, 637 agree
+(`babbage verify`). **BAB/L/008, L/009 and L/010** (20 to 23 August) work the
+store as a difference engine with "carriages", which the engine does not yet
+model; each is checked figure by figure by a short script instead
+([`sources/checks/`](sources/checks/)), 276 of 279 figures agreeing.
+**BAB/L/012** (29 August), carriages beside the mill, is transcribed and not
+yet checked. BAB/L/003 has no images in the Museum's catalogue; Rojas 2017
+lists its program as not in the archive.
+
+The transcriptions were made by coding agents from the scans; no person has
+checked them. Two readings by Rojas (2017, 2023) have been read and a short
+search made, so nothing here is claimed as new. See
+[`docs/literature.md`](docs/literature.md).
 
 ## What running BAB/L/001 found
 
@@ -125,6 +132,28 @@ new. See [`docs/literature.md`](docs/literature.md).
   after each round put a, b, c, d, e back; the last round keeps none.
 - See `sources/notes/` for each sheet's cover, pencil and uncertain cells.
 
+## What reading BAB/L/008 to BAB/L/012 found
+
+- **The store becomes a difference engine.** L/008, L/009 and L/010
+  tabulate n² + 2n + 3, n³ and n⁴ with no mill at all: three-figure columns,
+  complements written as numbers (994 for 6), and three "carriages" that
+  accumulate and pass their figures on. Each value takes the number of
+  operations the cover gives (six for n³: "Each value of n³ takes six
+  operations"; 2m for n^m on L/010), and the columns alternate between
+  plain numbers and complements from one value to the next, as L/010's cover
+  says. Every figure of L/008 (60) and L/009 (95) agrees; L/010 has two
+  slips in its last block, a transposition (320 for 302) and 469 for 369,
+  neither of which reaches T₄ = 256.
+- **L/011 runs a recurrence twice.** u(z+1) = f(z)u(z) + f₁(z) and the
+  three-term u(z+2), each written out for z = 0 and 1, with "Calculate f(1)
+  f₁(1)" between: 22 of 22 statements agree. A faint pencil draft lays
+  complements and marks each group with ">", as L/002 does.
+- **L/012 joins the two.** The store's carriages step M and N, quadratics in
+  k, by differences, and the mill does the two great operations of each
+  cycle of twelve, as the cover says ("Twelve Operations are required for
+  each value of P. Two Great and Ten Small"). How its columns v1 and v9
+  receive M and N from a carriage is not settled by any single rule yet.
+
 ## The machine
 
 The engine's rules, as BAB/L/001 and BAB/L/002 show them (`babbage decisions` gives each
@@ -151,6 +180,9 @@ with what it rests on):
     writes is the multiplicand. (BAB/L/004, BAB/L/007.)
 14. A composition written as equations ("= 0") agrees up to a factor free of
     the unknowns, member by member. (BAB/L/004.)
+15. An addition may take more than two numbers. (BAB/L/011.)
+16. Numbers may be given to the store from outside the table between
+    operations ("Calculate f(1)"). (BAB/L/011.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
 sheet needs that the sheets before it do not show will be a new, dated

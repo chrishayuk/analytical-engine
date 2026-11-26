@@ -311,7 +311,7 @@ function engine(root) {
     else {
       const bad = s.checks.filter((c) => !c.ok);
       cap.replaceChildren(
-        el("span", "what", `${s.number}${s.star ? " *" : ""}  ${s.op ?? "transfer"}  ${prime(s.card)}`),
+        el("span", "what", s.input ? "in  numbers from outside the table" : `${s.number}${s.star ? " *" : ""}  ${s.op ?? "transfer"}  ${prime(s.card)}`),
         el("span", bad.length ? "no" : "ok", bad.length ? `✗ ${bad.map((c) => c.detail).join("; ")}` : `✓ ${s.checks.length} statements`)
       );
     }

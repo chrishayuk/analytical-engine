@@ -385,8 +385,12 @@ pub const KEYWORD_HELP: &[(&str, &str)] = &[
         "an operation: `Op 1 × | b'a | v1 0, v5 0, v7 b'a | v7 = v5·v1` (number, operation, mill, store cells, formula)",
     ),
     (
+        "In",
+        "numbers given to the store from outside the table, between operations: `In v1 f1, v2 g1`",
+    ),
+    (
         "Composition",
-        "the sheet's composition of a result: every member must be equal",
+        "the sheet's composition of a result: each member equal to the one before (ending `= 0`: as equations)",
     ),
     (
         "States",

@@ -66,6 +66,10 @@ Four fields, separated by `|`:
 
 A cell the sheet leaves empty is not written.
 
+Numbers given to the store from outside the table, between operations (the
+sheet's "Calculate f(1) f₁(1)"), are an `In` line: `In v1 f1, v2 g1`. They
+are not an operation; each column must be at zero.
+
 ## Checked statements
 
 ```

@@ -1,0 +1,86 @@
+% BAB/L/010, Science Museum Group Collection, document aa110001631.
+% The opened sheet (image 222/558), one table of 32 rows. The cover (222/557)
+% is marked "No 10 23 Aug 1837"; the back (222/559) "No 10 23 Aug 1837" and
+% "23 Aug 1837". Read from the zoom images at full resolution.
+%
+% NOT RUN. The table is in numbers, not letters, and its additions are made
+% in the store by three "Car" columns (carriages), not in the mill: there is
+% no species of operation and no mill column. The engine has neither, so the
+% table is kept below, cell for cell, as notes; the page itself runs nothing.
+% A model of the carriages, outside the engine, agrees with 121 of its 124
+% numbers (see sources/notes/L010.md).
+
+Sheet BAB/L/010
+No. 10
+Date 23 Aug 1837          "No 10 23 Aug 1837"   % cover
+Title "Computation of Tn = n⁴ By means of differences"
+Image 222/557 cover: "Calculation of Tn when Tn = n⁴, T0 = 0, Δ0 = 1, Δ0 = 14, Δ²0 = 36, Δ³0 = 24, Δ⁵n = 0"
+Image 222/558 the table
+Image 222/559 back: "No 10 23 Aug 1837", "23 Aug 1837"
+
+% The store as the table starts it, three figures to a column: v1 = Δ⁴ "024",
+% v2 = Δ³ "036", v3 = Δ² "014", v4 = Δ "001", v5 = T "000". v6 is headed
+% but never used. v7 to v11 are headed Δ⁴, Δ³, Δ², Δ, T again: they receive
+% the arithmetical complements (to 1000) of the new values when n is odd.
+% v12 is headed and never used.
+Store v1 = 24, v2 = 36, v3 = 14, v4 = 1, v5 = 0
+
+% The table. Columns: number of the operation; an unheaded column holding
+% only a cross (x) at rows 8/9, 16/17, 24/25 and after 32; three columns
+% headed "Car" (1st, 2nd, 3rd carriage); v1 … v6; v7 … v12; the numbers of
+% the operations again. "−0" is written in a carriage that is cleared.
+%
+%  row  Car1  Car2  Car3  | cells
+%   1   976               | v1 0, v7 976, v8 976
+%   2   940   964         | v2 0, v8 940
+%   3   −0    −0    964   | v9 964
+%   4   986         950   | v3 0, v9 950            (Car1: the middle figure written over)
+%   5   −0    986   −0    | v10 986
+%   6   999   985         | v4 0, v10 985
+%   7   −0    −0    999   | v11 999
+%   8               999   | v5 0, v11 999
+%   9   024               | v7 0, v1 024, v2 024
+%  10   084   060         | v8 0, v2 084
+%  11   −0    −0    060   | v3 060
+%  12   050         110   | v9 0, v3 110
+%  13   −0    050   −0    | v4 050                 (both −0 written over something)
+%  14   015   065         | v10 0, v4 065
+%  15   −0    −0    015   | v5 015
+%  16               016   | v11 0, v5 016
+%  17   976               | v1 0, v7 976, v8 976
+%  18   892   916         | v2 0, v8 892
+%  19   −0    −0    916   | v9 916
+%  20   890         806   | v3 0, v9 806
+%  21   −0    890   −0    | v10 890
+%  22   935   825         | v4 0, v10 825          (Car2: the 8 written over)
+%  23   −0    −0    935   | v11 935
+%  24               919   | v5 0, v11 919
+%  25   024               | v7 0, v1 024, v2 024
+%  26   132   108         | v8 0, v2 132
+%  27   −0    −0    108   | v3 108
+%  28   194         302   | v9 0, v3 320           (v3 "320": Car3, the same number, is "302")
+%  29   −0    194   −0    | v4 194
+%  30   175   469         | v10 0, v4 469          (194 + 175 is 369; both cells write 469)
+%  31   −0    −0    175   | v5 175
+%  32               256   | v11 0, v5 256          (a pencil stroke through v11's 0)
+%
+% So the table gives T1 = 1 (as its complement 999 in v11), T2 = 16,
+% T3 = 81 (as 919) and T4 = 256: n⁴ for n = 1 to 4.
+
+% The right-hand column, rows 1 to 9 only ("Ar. Co." is arithmetical
+% complement; "1st Car(1)" is the 1st carriage after operation 1):
+%  1  1st Car = Ar.Co. Δ⁴ = v7 = v8
+%  2  2nd Car = 1st Car(1) − Δ³0 = v8 = Ar.Co. Δ⁴ + Ar.Co Δ³0 = Ar.Co. Δ³1   2nd Car = Ar.Co Δ³0
+%     (the first "2nd Car" is what the table puts in the 1st carriage)
+%  3  1st & 2nd Car = −0   3rd Car = v9 = 2nd Car(2)
+%  4  1st Car = 1st Car(3) − Δ²0 = Ar.Co. Δ²0   3rd Car = v9 = 3rd Car(3) − Δ²0 = ar co(Δ³ + Δ²0) = ar. Co. of Δ²1
+%  5  1st & 3rd Car = 0   2nd Car = v10 = 1st Car(4) = Ar.Co. Δ²0
+%  6  1st Car = Ar Co Δ0   2nd Car = 2nd Car(5) − Δ0 = ar.Co(Δ²0 + Δ0) = ar.Co. Δ1 = v10
+%  7  1st & 2nd Car = 0   3rd Car = v11 = 1st Car(6) = Ar.Co. Δ0
+%  8  3rd Car = 3rd Car(7) − T0 = v11 = ar.Co.(Δ0 + T0) = Ar. Co. T1 * [1⁴]
+%  9  x 1st Car = v1 = v2
+% Above the column: "T0 = 1   Δ0 = 1   Δ²0 = 14   Δ³0 = 36   Δ⁴0 = 24" (T0 = 1
+% as written; the cover and the table have T0 = 0).
+
+Remark "When n is an odd the complement is first made of Tn"
+Remark "Let Tn = n^m then it takes 2m operations for each value of Tn when n is even and for its complement when n is odd"

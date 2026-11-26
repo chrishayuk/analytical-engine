@@ -89,6 +89,7 @@ pub fn run_json(text: &str, at: Option<BTreeMap<String, Rat>>) -> String {
                 ("line", row.line.into()),
                 ("number", row.number.into()),
                 ("star", row.star.into()),
+                ("input", row.input.into()),
                 (
                     "op",
                     row.op.map(|o| Json::from(o.sign().to_string())).unwrap_or(Json::Null),

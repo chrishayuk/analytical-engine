@@ -1,0 +1,33 @@
+% BAB/L/011, Science Museum Group Collection, document aa110001635.
+% The second table of the opened sheet (image 222/563, lower left). The cover
+% (222/562) is dated "No 11 28 Aug 1837". Read from the zoom images at full
+% resolution.
+
+Sheet BAB/L/011
+No. 11.2
+Date 28 Aug 1837          "No 11 28 Aug 1837"   % cover
+Title "Computation of u(z+2) = fz.u(z+1) + f1z.uz + f2z from z = 0 to z = 1 = 2 &c"
+Image 222/562 cover: "Calculation of u(z+2) from the equation u(z+2) = fz.u(z+1) + f1z.uz + f2z", and in pencil "= tz u(z+1) + vz.uz + wz"
+Image 222/563 the second table
+
+% f(z), f₁(z), f₂(z) are written f, g, h with the argument as a subscript.
+Letters f0 g0 h0 u0 u1 f1 g1 h1
+
+% The sheet heads v1 "f(0)", v2 "f₁(0)", v3 "f₂(0)", v4 "u1", v5 "u1",
+% v6 "u0": u1 stands in two columns. v7 and v8 have no heading.
+Store v1 = f0, v2 = g0, v3 = h0, v4 = u1, v5 = u1, v6 = u0
+Working v7 v8
+
+% No right-hand column of formulas, no numbers of operations. Operations 3
+% and 6 add three numbers in one operation, and give the result to two
+% columns.
+Op 1     ×  | f0.u1           | v1 0, v4 0, v7 f0.u1 |
+Op 2     ×  | g0.u0           | v2 0, v6 0, v8 g0.u0 |
+Op 3     +  | f0.u1+g0.u0+h0  | v3 0, v4 =u2, v6 u2, v7 0, v8 0 |
+
+% Across v1 to v3: "calculate f(1) f₁(1) f₂(1)".
+In v1 f1, v2 g1, v3 h1   "calculate f(1) f1(1) f2(1)"
+Op 4     ×  | f1.u2           | v1 0, v4 0, v7 f1.u2 |
+Op 5     ×  | g1.u1           | v2 0, v5 0, v8 g1.u1 |
+Op 6     +  | f1.u2+g1.u1+h1  | v3 0, v4 =u3, v5 u3, v7 0, v8 0 |
+% Across v1 to v3: "Calculate f(2) f₁(2) f₂(2)". The table ends.

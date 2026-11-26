@@ -56,6 +56,8 @@ pub struct Row {
     pub cells: Vec<(usize, Cell)>,
     pub card: Option<Card>,
     pub card_text: String,
+    /// Numbers brought in from outside the table, not an operation.
+    pub input: bool,
 }
 
 #[derive(Clone, Debug)]
@@ -224,6 +226,7 @@ fn parse_row(n: usize, s: &str) -> Result<Row, String> {
         cells,
         card,
         card_text,
+        input: false,
     })
 }
 
@@ -299,6 +302,27 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         .push((crate::expr::plain_name(name.trim()), parse(&t).map_err(err)?, t, n));
                 }
                 "Op" => p.rows.push(parse_row(n, rest).map_err(err)?),
+                // `In v1 f1, v2 g1  "Calculate f(1) f1(1)"`: numbers given to
+                // the store from outside, between operations.
+                "In" => {
+                    let cells = body
+                        .split(',')
+                        .filter(|c| !c.trim().is_empty())
+                        .map(parse_cell)
+                        .collect::<Result<_, _>>()
+                        .map_err(err)?;
+                    p.rows.push(Row {
+                        line: n,
+                        number: 0,
+                        star: false,
+                        op: None,
+                        mill: None,
+                        cells,
+                        card: None,
+                        card_text: String::new(),
+                        input: true,
+                    });
+                }
                 "States" => {
                     for c in body.split(',') {
                         let mut w = c.split_whitespace();

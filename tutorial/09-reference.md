@@ -27,6 +27,8 @@ L004-3   BAB/L/004  No. 4.3, 16 Aug 1837  Reduction of the same two equations ax
 L005     BAB/L/005  No. 5, 16 Aug 1837  Reductions of the three equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 to two equations of the form Hx + Ky + M = 0 and H'x + K'y + M' = 0
 L006     BAB/L/006  No. 6,   Notation For the reduction of the three Equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 To two Equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0
 L007     BAB/L/007  No. 7, before 22 Aug 1837  Notation of the Reduction of the four equations ax + by + cz + du + e = 0, a'x + b'y + c'z + d'u + e' = 0, a''x + … = 0, a'''x + … = 0 (A) To three equations of the following form Hx + Ky + Lz + M = 0, H'x + K'y + L'z + M' = 0, H''x + K''y + L''z + M'' = 0 (B)
+L011-1   BAB/L/011  No. 11.1, 28 Aug 1837  Computation of u(z+1) = fz.uz + f1z from z = 0 to z = 1 = 2 &c
+L011-2   BAB/L/011  No. 11.2, 28 Aug 1837  Computation of u(z+2) = fz.u(z+1) + f1z.uz + f2z from z = 0 to z = 1 = 2 &c
 ```
 
 ```console
@@ -45,8 +47,10 @@ L006     107 statements, 107 agree
 L007      79 statements,  77 agree
          ✗ line 48: where v22″ comes from: v22″ (d′′′/d) is not in a column this row leaves at zero, nor the table standing in the mill
          ✗ line 61: mill: (d′/d)b-b″: the operation gives (-bd′′ + b′′d)/d
+L011-1     8 statements,   8 agree
+L011-2    14 statements,  14 agree
 
-9 pages; 620 statements of the sheets checked, 615 agree.
+11 pages; 642 statements of the sheets checked, 637 agree.
 3 page(s) with statements that do not agree.
 ```
 
@@ -90,10 +94,16 @@ $ babbage decisions
 12. A composition written as equations agrees up to a factor free of the unknowns.
    BAB/L/004 No. 2 writes each member of its composition "= 0", and its last member is b times the one before. Each = is checked against the member before it.
 
-13. Great operations are multiplication and division; small are addition, subtraction and transfers.
+13. An addition may take more than two numbers in one operation.
+   BAB/L/011, second table, operations 3 and 6: f₀u₁ + g₀u₀ + h₀ in one row, three columns read.
+
+14. Numbers may be given to the store from outside the table between operations.
+   BAB/L/011 writes "Calculate f(1) f₁(1)" across the columns between cycles, with no operation that puts them there. The run gives the columns the numbers (each must be at zero), counts no operation and checks nothing else.
+
+15. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-14. Values are compared as algebra.
+16. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 

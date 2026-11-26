@@ -124,6 +124,14 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
             "BAB/L/004 No. 2 writes each member of its composition \"= 0\", and its last member is b times the one before. Each = is checked against the member before it.",
         ),
         (
+            "An addition may take more than two numbers in one operation.",
+            "BAB/L/011, second table, operations 3 and 6: f₀u₁ + g₀u₀ + h₀ in one row, three columns read.",
+        ),
+        (
+            "Numbers may be given to the store from outside the table between operations.",
+            "BAB/L/011 writes \"Calculate f(1) f₁(1)\" across the columns between cycles, with no operation that puts them there. The run gives the columns the numbers (each must be at zero), counts no operation and checks nothing else.",
+        ),
+        (
             "Great operations are multiplication and division; small are addition, subtraction and transfers.",
             "BAB/L/001 No. 2: \"great 7 small 6\" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.",
         ),
@@ -229,6 +237,45 @@ pub fn run(page: &Page) -> Run {
     let mut stopped = None;
     let mut stopped_line = None;
     for row in &page.rows {
+        if row.input {
+            // Numbers brought into the store from outside the table
+            // ("Calculate f(1) f₁(1)", BAB/L/011): no operation, nothing to check
+            // but that each column is at zero to receive.
+            let mut checks = vec![];
+            for (c, cell) in &row.cells {
+                if let Cell::Value(e, t) = cell {
+                    if !st.get(*c).is_zero() {
+                        checks.push(check(
+                            row.line,
+                            format!("v{c} at zero to receive"),
+                            Err(format!("v{c} still holds {}", st.get(*c))),
+                        ));
+                    }
+                    match st.eval(e) {
+                        Ok(v) => {
+                            st.store.insert(*c, v.clone());
+                            st.history.entry(*c).or_default().push(v);
+                        }
+                        Err(e) => checks.push(check(row.line, format!("v{c} = {t}"), Err(e))),
+                    }
+                }
+            }
+            let writes = row.cells.iter().map(|(c, _)| (*c, st.get(*c))).collect();
+            steps.push(Step {
+                row: row.clone(),
+                cards: Cards {
+                    op: None,
+                    operands: vec![],
+                    reads: vec![],
+                    writes,
+                    table_formed: false,
+                },
+                result: None,
+                checks,
+                store_after: st.store.clone(),
+            });
+            continue;
+        }
         match step(&mut st, row, &mut tally) {
             Ok(s) => steps.push(s),
             Err(e) => {
@@ -504,16 +551,20 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
     // The operation.
     let (machine, said): (Held, Option<Held>) = match row.op {
         Some(op) => {
-            if operands.len() != 2 {
+            // An addition may take more than two numbers at once
+            // (BAB/L/011: f₀u₁ + g₀u₀ + h₀); every other operation two.
+            if operands.len() != 2 && !(op == Op::Add && operands.len() > 2) {
                 return Err(format!(
                     "{} needs two operands; the row gives {}",
                     op.sign(),
                     operands.len()
                 ));
             }
-            let a = operands[0].1.plain().ok_or("an operand is a complement")?.clone();
-            let b = operands[1].1.plain().ok_or("an operand is a complement")?.clone();
-            let m = Held::Plain(apply(op, &a, &b)?);
+            let mut m = operands[0].1.plain().ok_or("an operand is a complement")?.clone();
+            for o in &operands[1..] {
+                m = apply(op, &m, o.1.plain().ok_or("an operand is a complement")?)?;
+            }
+            let m = Held::Plain(m);
             let said = match &row.card {
                 Some(c) => Some(st.eval(&c.rhs)?),
                 None => None,

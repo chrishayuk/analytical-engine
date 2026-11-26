@@ -1,0 +1,94 @@
+% BAB/L/008, Science Museum Group Collection, document aa110001622.
+% Cover 222/658 ("No 8 Aug 20th /37"); the table in ink 222/659; a draft of
+% the same table in pencil, on four-figure wheels, 222/657; backs 222/655 and
+% 222/660 ("22 Aug 1837" at the top left of 222/660). Read from the zoom
+% images at full resolution. See sources/notes/L008.md.
+%
+% NOT RUN. This sheet is not a program of the mill. Each of its 16 rows is
+% one "turn" of the store working with three "negative carriages" as a
+% difference engine: numbers are subtracted from carriages and from columns
+% in place, on three-figure wheels, so that a column holds a number or its
+% arithmetical complement (998 for 2). The engine has no carriages, no
+% arithmetic in a column, and no wheels of a fixed number of figures, so the
+% rows are kept below as the sheet writes them, in comments. Checked
+% outside the engine (every one of the 60 cells agrees with the turns as the
+% sheet's own numbered instructions describe them): see the notes.
+
+Sheet BAB/L/008
+No. 8
+Date 20 Aug 1837          "No 8 Aug 20th /37"   % cover; the back of 222/660 reads "22 Aug 1837"
+Title "Calculation of a rational Integral Function, of the Second Degree by Differences"
+Image 222/658 cover: "Calculation of Tn = n² + 2n + 3 By Differences. T0 = 3, Δ0 = 3, Δ²0 = 3, Δ³n = 0. It requires four operations to obtain each value of Tn or its complement according as n is even or odd"
+Image 222/659 the table, its right-hand column, and eight numbered instructions
+Image 222/657 a draft of the table in pencil, on four-figure wheels (9998, 9995, ...); not transcribed cell for cell
+
+% Heading of 222/659: "Tn = an² + bn + c. Let a = 1, b = 2, c = 3, then
+% Tn = an² + bn + c = 1n² + 2n + 3. T0 = 3, ΔT0 = 3, Δ²T0 = 2".
+% (The cover's "Δ²0 = 3" disagrees with the table's Δ²T0 = 2 and with
+% n² + 2n + 3, whose second difference is 2. Read again at full size: the
+% cover's figure is a 3.)
+%
+% Columns: number of the turn; a narrow column with a × between turns 4
+% and 5, 8 and 9, 12 and 13, and after 16; three columns "Car Car Car"
+% under "Carriages Negative"; the store, v1 "Δ²", v2 "Δ", v3 "T", v4, v5,
+% an unheaded column, v6 "Δ²", v7 "Δ", v8 "T", v9 to v12 (v4, v5, v9-v12
+% empty). Then the right-hand column of formulas.
+%
+% A small figure after a complement is the number it is the complement of:
+% 998₂, 995₅, 994₆, 991₉, 982₁₈. "−0" is a carriage reduced to negative zero.
+%
+%  turn  Car1  Car2  Car3   v1   v2   v3      v6    v7    v8
+%  (start)                  002  003  003
+%   1    998                0                 998₂  998
+%   2    995   997               0                  995₅
+%   3    −0    −0    997                                  997
+%   4                994              0                   994₆
+%   ×
+%   5    002                002  002          0
+%   6    007   005               007                0
+%   7    −0    −0    005              005
+%   8                011              011                 0
+%   ×
+%   9    998         −0     0                 998₂  998          % Car3 "−0" faint, in pencil
+%  10    991   993               0                  991₉
+%  11    −0    −0    993                                  993
+%  12                982              0                   982₁₈
+%   ×
+%  13    002         −0     002  002          0                  % Car3 "−0" faint, in pencil
+%  14    011   009               011                0
+%  15    −0    −0    009              009
+%  16                027              027                 0
+%   ×
+%
+% The right-hand column, by turn (accents on the carriages count their
+% numbers, as on BAB/L/001, in turns 1-8; from turn 9 a number in
+% parentheses names the turn a number was made in instead):
+%   1  1st Car = ar.Co of v1 = v6 = v7 = ar.Co of Δ²
+%   2  1st Car' = 1st Car − v2 = v7' = ar.co. of Δ² − Δ0 = ArCo Δ1;  2nd Car = ArCo Δ0 = −v2
+%   3  1st Car'' = 0  2nd Car' = 0  3rd Car = 2nd Car = ar Co. Δ0 = v8
+%   4  3rd Car' = v8' = 3rd Car − v3 = ar Co Δ0 + ar.Co T0 = ar Co T1 *
+%   5  1st Car''' = 1st Car'' − v6 = Δ1 = v2' = ar co. of ar Co of Δ² = Δ²
+%   6  1st Car^iv = v2'' = 1st Car''' − v7' = Δ² − ar Co Δ1 = Δ² + Δ1 = Δ2;  2nd Car'' = 2nd Car' − v7' = − ArCo Δ1 = Δ1
+%   7  1st Car^v = 0  2nd Car''' = 0  (then, faint, as if erased: 3rd Car ... v3 ... )
+%   8  3rd Car'' = v3' = 2nd Car'' − v8' = Δ1 − ar Co T1 = Δ1 + T1 = T2 *
+%   9  1st Car(7) − v1(5) = Ar Co. of Δ² = v6 = v7 = 1st Car   % "v1" written over another figure
+%  10  1st Car(9) − v2(6) = ar Co of Δ² − Δ2 = ar Co. of (Δ² + Δ2) = ar Co. of Δ3 = v7;  2nd Car = ArCo v2(6) = ArCo Δ2
+%  11  1st Car = 0  2nd = 0  3rd Carr = 2nd Car (10) = v8
+%  12  3rd Car = v8 = 3rd carr(11) − v3(8) = Ar Co. Δ2 + Ar Co T2 = Ar. Co. of T3
+%  13  1st Car = 1st Car(11) − v6(9) = − Ar co. of Δ² = Δ² = v1 = v2
+%  14  1st Car = v2 = 1st Car(13) − v7(10) = Δ² − Ar Co of Δ3 = Δ4;  2nd Car = 2nd Car(11) − v7(10) = − ArCo. Δ3 = Δ3
+%  15  1st Car = 2nd Car = 0  3rd Car = 2nd Car(14) = Δ3 = v3
+%  16  3rd Car = v3 = 3rd Car(15) − v8(12) = Δ3 − Ar Co of T3 = Δ3 + T3 = T4 *
+
+Remark "Carriages are negative"
+Remark "1 In the first turn subtract Δ²0 from the first negative carriage reducing Δ²0 to zero also put the result upon the two axes v6 and v7. The result is the Arithmetical Complement of Δ²0"
+Remark "2 Subtract Δ0 from arith comp of Δ²0 and put the result (which is the Arith Comp of {Δ²0 + Δ0 = Δ1}) under the arith comp of Δ²0 which is on carriage and also under the same in v7. Also subtract the Δ0 from another carriage the result is Arith Comp of Δ0 which put in the last named carriage reducing Δ0 to zero"
+Remark "3 Reduce the two carriages to negative zero transfer the number on the second carriage to the figure wheels of the third carriage and also to v8"
+Remark "4 Subtract T0 from the third carriage and from v8 the result is ar comp of T1 for the number on third carriage is that brought from the second in turn 2 which is Arith Comp of Δ0 wherefore in this turn the result is Arith Comp of Δ0 − T0 = Arith Comp of T1"
+Remark "5 In this turn subtract v6 from the negative zero of the first carriage reducing v6 to zero and put the result [which is Ar Co of Ar Co of Δ² = Δ²] on this first carriage and also on v1 and v2 thus the result Δ² stands where it did at first"
+Remark "6 Subtract v7 from Δ² on the first carriage and from Δ² on v2 and put the result (which is Δ² − Ar Co Δ1 = Δ² + Δ1 = Δ2) under Δ² on first carriage and on Δ² at v2 also subtract the same v7 from the second carr at neg zero the result which Ar Co of Ar Co of Δ1 = Δ1 put on the said Second carriage reducing Δ1 to zero"
+Remark "7 Reduce first and second carriages to their neg zeros transferring the result on the second carriage to the fig. wheels of the third and also to v3 thus third carr and v3 have Δ1 upon them"
+Remark "8 Subtract v8 from the third carriage and also from v3 and put the equal results on third carriage and on v3 which will then hold T2 for v3 − v8 = Δ1 − Ar Co of T1 = Δ1 + T1 = T2"
+Remark "Now v1 has Δ² as before, v2 has Δ2 as before it had Δ0, v3 has T2 as before it had T0. The Machine stands now as at the beginning and the same process gives Ar.Co. of T2k+1 and T2k alternately"
+Unrun "the table and its right-hand column, 16 turns: in comments above; checked outside the engine"
+Unrun "222/657: the same table and instructions in a draft, the numbers on four-figure wheels (0002 0003 0003; 9998; 9995 9997; ...), headed 'Calculation of the successive values of a [rational] integral function by differences', 'Let a = 1, b = 2, c = 3, ΔT = 3, Δ²T = 2, T = 3'"
