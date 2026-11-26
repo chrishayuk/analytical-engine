@@ -16,6 +16,8 @@ babbage FILE --at a=2,b=3,…  the same run, its values shown at these numbers
 babbage cards FILE           the program as operation and variable cards
 babbage verify               run every page, and say what agrees
 babbage list                 the pages
+babbage history              each capability: conceived, designed, used, revised (Series N and the corpus)
+babbage history pages        each page's capabilities against the record before its date
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground
@@ -87,6 +89,110 @@ fn main() {
             for (n, t) in corpus::PAGES {
                 let p = read(n, t).unwrap();
                 println!("{n:<8} {}  No. {}, {}  {}", p.sheet, p.number, p.date, p.title);
+            }
+        }
+        ["history"] | ["history", "pages"] => {
+            use babbage::history::{chronology, sheet_date, standing, used, Standing, When, CAPABILITIES};
+            let record = chronology().unwrap_or_else(|e| {
+                eprintln!("{e}");
+                exit(2)
+            });
+            // Every page's date and the capabilities it uses.
+            let pages: Vec<(String, Option<When>, Vec<&str>)> = corpus::PAGES
+                .iter()
+                .map(|(n, t)| {
+                    let p = read(n, t).unwrap();
+                    let u = used(&p, &run(&p));
+                    let caps = CAPABILITIES.iter().map(|c| c.0).filter(|c| u.contains_key(c)).collect();
+                    (n.to_string(), sheet_date(&p.date), caps)
+                })
+                .collect();
+            let users = |cap: &str| -> Vec<When> {
+                pages
+                    .iter()
+                    .filter(|p| p.2.contains(&cap))
+                    .filter_map(|p| p.1)
+                    .collect()
+            };
+            if rest.len() == 1 {
+                for (cap, what) in CAPABILITIES {
+                    println!("{cap}: {what}");
+                    for kind in ["conceived", "designed"] {
+                        for direct in [true, false] {
+                            if let Some(e) = record
+                                .iter()
+                                .filter(|e| e.capability == *cap && e.kind == kind && e.direct == direct)
+                                .min_by_key(|e| e.when)
+                            {
+                                let rel = if direct { "" } else { " (related)" };
+                                println!(
+                                    "  {kind:<10}{rel:<10} {:<16} {}: \"{}\"",
+                                    e.when.to_string(),
+                                    e.source,
+                                    e.words
+                                );
+                            }
+                        }
+                    }
+                    let mut us: Vec<(&String, &Option<When>)> = pages
+                        .iter()
+                        .filter(|p| p.2.contains(cap))
+                        .map(|p| (&p.0, &p.1))
+                        .collect();
+                    us.sort_by_key(|u| {
+                        u.1.map(|w| (0, w)).unwrap_or((
+                            1,
+                            When {
+                                year: 0,
+                                month: 0,
+                                day: 0,
+                                before: false,
+                            },
+                        ))
+                    });
+                    match us.first() {
+                        Some((n, Some(w))) => println!(
+                            "  {:<20} {:<16} {n} (first of {} pages)",
+                            "used",
+                            w.to_string(),
+                            us.len()
+                        ),
+                        Some((n, None)) => {
+                            println!("  {:<20} {:<16} {n} (undated; {} pages)", "used", "undated", us.len())
+                        }
+                        None => println!("  {:<20} not in the corpus", "used"),
+                    }
+                    for e in record.iter().filter(|e| e.capability == *cap && e.kind == "revised") {
+                        println!(
+                            "  {:<20} {:<16} {}: \"{}\"",
+                            "revised",
+                            e.when.to_string(),
+                            e.source,
+                            e.words
+                        );
+                    }
+                }
+            } else {
+                for (n, date, caps) in &pages {
+                    let Some(at) = date else {
+                        println!("{n:<8} undated: {}", caps.join(" "));
+                        continue;
+                    };
+                    let parts: Vec<String> = caps
+                        .iter()
+                        .map(|c| {
+                            let mark = match standing(c, at, &record, &users(c)) {
+                                Standing::Recorded => "recorded",
+                                Standing::RelatedOnly => "related only",
+                                Standing::UsedBefore => "used before",
+                                Standing::FirstHere => "first here",
+                                Standing::SameMonth => "same month",
+                            };
+                            format!("{c} ({mark})")
+                        })
+                        .collect();
+                    println!("{n:<8} {:<17} {}", at.to_string(), parts.join(", "));
+                }
             }
         }
         ["uses"] => {

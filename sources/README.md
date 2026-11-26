@@ -69,3 +69,13 @@ History of Computing* 4(3), 1982; C. Babbage, "On the Mathematical Powers of
 the Calculating Engine" (December 1837), printed in B. Randell (ed.), *The
 Origins of Digital Computers* (1973 and later); the Plan 28 project's
 publications.
+
+### BAB/N/001 to BAB/N/008
+
+The history sheets of the Analytical Engine, 1834 to 1841 (documents
+`aa110000071` to `aa110000073`, `aa110001793` to `aa110001797`). See
+`notes/N001.md` to `notes/N008.md`. Each note gives the images and their
+zoom paths. Two drafts (N 1834 [a], N 1837 [a]) and one more (N 1839 [a])
+are transcribed beside their fair copies. Some regions were read below full
+resolution after the zoom server refused requests for a time; the notes say
+which.

@@ -215,6 +215,29 @@ search made, so nothing here is claimed as new. See
   wheel above each, laid out for the variables of many problems, and, on
   the cover, a product split into heads and tails of thirty figures each.
 
+## What Babbage's history sheets show
+
+BAB/N/001 to N/008, the yearly "history" of the engine from 1834 to 1841,
+are transcribed in `sources/notes/N001.md` to `N008.md`. Each capability
+the engine has is set against them in `history/chronology.txt`: when the
+history sheets record it as conceived, designed or revised, and when a
+program first uses it. `babbage history` and `babbage history pages` print
+the result. See [`docs/chronology.md`](docs/chronology.md).
+
+The order runs both ways:
+- Some capabilities are recorded before any program uses them. "Plan of
+  Mult. by Table" is recorded on 12 March 1835, and "To repeat an Opn any
+  variable No of times" on 7 March 1836.
+- Others appear in a program first. L/023's backing apparatus comes 8
+  months before the history's "Card backing App.". L/011's addition of many
+  numbers comes 11 months before "Principles of Compound Addn". The
+  complements of August 1837 come two years before the history records an
+  apparatus for them.
+
+L/020's "−e/∂ = z", once counted as a slip, is the mill giving out a result
+with its sign changed, which the history records the month before. And the
+history's Notations column records none of the Series L programs.
+
 ## The machine
 
 The engine's rules, as BAB/L/001 and BAB/L/002 show them (`babbage decisions` gives each
@@ -330,7 +353,12 @@ what was hard to read in [`sources/notes/L001.md`](sources/notes/L001.md).
 
 - Series F, where the catalogue says earlier "user program traces" are found
   among the earliest notations, for anything before 4 August 1837.
-- Bromley (2000) and Rojas (2021), before any result is called new.
+- Rojas (2021, IEEE Annals, closed access) and Bromley (1982, 2000), read
+  in full, before any result is called new. See
+  [`docs/literature-mechanical-notation.md`](docs/literature-mechanical-notation.md).
+- Series F/001 as a pilot: one 13-unit cycle of "Multiply a, b, c, d by
+  1021" (1835), read in the mechanical notation of 1826, before anything of
+  Series F is run.
 - A person to check the transcriptions against the scans.
 - Liu Hui and Babbage on the same equations: the counting board of
   [nine-chapters](../nine-chapters) and these tables, run on the same

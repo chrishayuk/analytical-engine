@@ -12,6 +12,8 @@ babbage FILE --at a=2,b=3,…  the same run, its values shown at these numbers
 babbage cards FILE           the program as operation and variable cards
 babbage verify               run every page, and say what agrees
 babbage list                 the pages
+babbage history              each capability: conceived, designed, used, revised (Series N and the corpus)
+babbage history pages        each page's capabilities against the record before its date
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground

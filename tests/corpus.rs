@@ -429,3 +429,31 @@ fn capabilities_used() {
     assert!(!uses("L001-1").contains_key("transfer"));
     assert!(uses("L001-2").contains_key("transfer"));
 }
+
+/// The capabilities against Babbage's history sheets (history/chronology.txt).
+#[test]
+fn chronology_against_the_corpus() {
+    use babbage::history::{chronology, sheet_date, standing, Standing};
+    let record = chronology().unwrap();
+    let at = |s: &str| sheet_date(s).unwrap();
+    // The sign changed: recorded in June 1840, used by L/020 in July.
+    assert_eq!(
+        standing("sign-changed", &at("31 Jul 1840"), &record, &[]),
+        Standing::Recorded
+    );
+    // Many numbers added at once: used by L/011 eleven months before the
+    // record's "Principles of Compound Addn" (July 1838).
+    assert_eq!(
+        standing("many-addends", &at("28 Aug 1837"), &record, &[]),
+        Standing::FirstHere
+    );
+    // Repetition recorded in March 1836, before L/023 (June 1838).
+    assert_eq!(standing("loop", &at("7 Jun 1838"), &record, &[]), Standing::Recorded);
+    // Multiplication by table planned in March 1835, before L/001.
+    assert_eq!(
+        standing("table-kept", &at("4 Aug 1837"), &record, &[]),
+        Standing::Recorded
+    );
+    assert_eq!(sheet_date("before 22 Aug 1837").unwrap().day, 22);
+    assert!(sheet_date("").is_none());
+}

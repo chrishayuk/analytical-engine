@@ -1,0 +1,51 @@
+% The machine's capabilities in Babbage's own record: the history sheets of
+% the Analytical Engine, BAB/N/001 to N/008 (1834 to 1841), transcribed in
+% sources/notes/N001.md to N008.md. Read by `babbage history`.
+%
+% capability | kind | date | source | evidence | the sheet's words
+%
+% kind: conceived (the idea recorded, with a notebook page or none);
+%       designed (the entry gives the number of a drawing: the 1834 draft's
+%         back, 223/667: "Figures at the end of each column denote the
+%         number of the drawing or notation referred to");
+%       revised (a later change to how it is done).
+% The date the engine finds for "used" is not here: it is the first sheet
+% of Series L whose run needs the capability (`babbage uses`).
+% date: 1836-03-07; 1836-03 (the day not given); <1835-02-05 (before).
+% evidence: direct (the entry is about this capability); related (about
+%   something it depends on or belongs with; not the capability itself).
+% No person has checked the transcriptions these words come from.
+
+table-kept | conceived | <1835-02-05 | BAB/N/002 | related | Before 5 Feb. 1835 Divn by table was imagined, & enquired into before 13 March
+table-kept | conceived | 1835-03-12 | BAB/N/001 draft 223/666 | direct | Plan of Mult. by Table 12
+table-kept | designed | 1837-11-07 | BAB/N/004 | related | Stepping on Table axes 7 [58]
+table-kept | revised | 1839-12-06 | BAB/N/006 | direct | Table made in 5 turns by Subt. from 10[?ⁿ] p 269 Vol. IV. 6
+
+read-to-zero | conceived | 1836-05-23 | BAB/N/003 | related | Decided on absolute independence of Mill & Store Vol 2 p 120 23
+
+complement | conceived | 1834-11 | BAB/N/001 | related | first indication of … change of a number from positive to negative as a mode of dividing … had been planned before 27
+complement | conceived | 1836-08 | BAB/N/003 | related | Mill taught the rule of algebraic signs / Sign Sh. directive
+complement | designed | 1839-12 | BAB/N/006 | direct | Selecting App. for number and Comp. p 271. Vol IV 82 83
+complement-read | designed | 1839-12 | BAB/N/006 | related | Selecting App. for number and Comp. p 271. Vol IV 82 83
+
+sign-changed | conceived | 1834-11 | BAB/N/001 | related | first indication of … change of a number from positive to negative as a mode of dividing … had been planned before 27
+sign-changed | conceived | 1839-12-13 | BAB/N/006 | related | Mode of reversing the sign of Carr. p 278 Vol. IV . 13
+sign-changed | conceived | 1840-06 | BAB/N/007 | direct | Order to Mill to give out the Result of any opern with its sign changed p. 406 V.IV
+
+many-addends | conceived | 1838-07 | BAB/N/005 | direct | Principles of Compound Addn Vol 4 p 17
+many-addends | conceived | 1838-07-27 | BAB/N/005 | direct | Put all numbers to be added on A connected with a Pos. & Neg. Carr. 27
+
+input | conceived | 1837-09-07 | BAB/N/004 | related | Proposed to use number cards for tables Vol 3 p 89 [7]
+input | conceived | 1837-09-13 | BAB/N/004 | related | Giving off from fig. cards to fig whs Vol [?3] p [?93] . Vol 3 p 98 [13]
+
+loop | conceived | 1834-11-21 | BAB/N/001 | related | Running up 21
+loop | conceived | 1836-03-07 | BAB/N/003 | related | Running up applied to order any Opn 7
+loop | conceived | 1836-03-07 | BAB/N/003 | direct | To repeat an Opn any variable No of times . Vol 2 p 84 7
+loop | conceived | 1836-06 | BAB/N/003 | related | Cards first suggested
+loop | conceived | 1836-07-30 | BAB/N/003 | related | Two or three sets of cards one before the other. Vol 2 p 173 30
+loop | conceived | 1837-12-11 | BAB/N/004 | direct | Combinatorial Cards. 11 Vol 3 p 161
+loop | designed | 1838-06-18 | BAB/N/005 | related | Plans for Cards 18 64
+loop | conceived | 1839-02 | BAB/N/006 | direct | Card backing App. p 66 Vol IV
+
+letter-cards | conceived | 1837-03 | BAB/N/004 | related | Travelling Stop for Metal Cards [?to] save Multitude of Cards Vol 4 p 23
+letter-cards | conceived | 1837-11-18 | BAB/N/004 | direct | Two sets of variable cards to save the necessity of a great number of Cards for Comb. Analys. Vol 3 p 137 [18]
