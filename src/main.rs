@@ -16,6 +16,7 @@ babbage FILE --at a=2,b=3,…  the same run, its values shown at these numbers
 babbage cards FILE           the program as operation and variable cards
 babbage verify               run every page, and say what agrees
 babbage list                 the pages
+babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground
 babbage lsp                  a language server on standard input and output";
@@ -86,6 +87,30 @@ fn main() {
             for (n, t) in corpus::PAGES {
                 let p = read(n, t).unwrap();
                 println!("{n:<8} {}  No. {}, {}  {}", p.sheet, p.number, p.date, p.title);
+            }
+        }
+        ["uses"] => {
+            let names: Vec<&str> = babbage::history::CAPABILITIES.iter().map(|c| c.0).collect();
+            for (n, t) in corpus::PAGES {
+                let p = read(n, t).unwrap();
+                let u = babbage::history::used(&p, &run(&p));
+                let have: Vec<&str> = names.iter().copied().filter(|c| u.contains_key(c)).collect();
+                println!("{n:<8} {:<12} {}", p.date, have.join(" "));
+            }
+        }
+        ["uses", f] => {
+            let p = load(f);
+            let u = babbage::history::used(&p, &run(&p));
+            for (name, what) in babbage::history::CAPABILITIES {
+                if let Some(rows) = u.get(name) {
+                    let rows: Vec<String> = rows.iter().filter(|r| **r > 0).map(|r| r.to_string()).collect();
+                    let at = if rows.is_empty() {
+                        "the page".to_string()
+                    } else {
+                        format!("rows {}", rows.join(", "))
+                    };
+                    println!("{name:<20} {at}\n{:<20} {what}", "");
+                }
             }
         }
         ["decisions"] => {

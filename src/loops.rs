@@ -348,6 +348,7 @@ pub fn run(page: &Page) -> Run {
                     writes: done.writes.iter().map(|(c, v)| (*c, Held::Plain(v.clone()))).collect(),
                     table_formed: false,
                     pairs: vec![],
+                    table_of_second: false,
                 },
                 result: Some(Held::Plain(done.mill.clone())),
                 checks,

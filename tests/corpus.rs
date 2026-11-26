@@ -411,3 +411,21 @@ fn three_versions_strict() {
     assert_eq!(count("L025"), (89, 93));
     assert_eq!(count("L018"), (73, 91));
 }
+
+/// What each page needs of the machine: the capability each rule describes
+/// is found where the rule came from.
+#[test]
+fn capabilities_used() {
+    let uses = |n: &str| {
+        let p = read(n, &page(n)).unwrap();
+        babbage::history::used(&p, &run(&p))
+    };
+    assert!(uses("L015").contains_key("table-of-second"));
+    assert!(uses("L014-2").contains_key("complement-read"));
+    assert!(uses("L023").contains_key("loop"));
+    assert!(uses("L011-2").contains_key("many-addends"));
+    assert!(uses("L008").contains_key("carriages"));
+    assert!(uses("L001-1").contains_key("table-kept"));
+    assert!(!uses("L001-1").contains_key("transfer"));
+    assert!(uses("L001-2").contains_key("transfer"));
+}

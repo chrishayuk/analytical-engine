@@ -37,6 +37,9 @@ pub struct Cards {
     pub table_formed: bool,
     /// The variable cards the row needs, (from, to), 0 for the mill.
     pub pairs: Vec<(usize, usize)>,
+    /// The table was made of the factor written second, for the next
+    /// multiplication (`decisions`: BAB/L/015).
+    pub table_of_second: bool,
 }
 
 pub struct Step {
@@ -494,6 +497,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
                     writes,
                     table_formed: false,
                     pairs: vec![],
+                    table_of_second: false,
                 },
                 result: None,
                 checks,
@@ -536,6 +540,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
                     writes,
                     table_formed: false,
                     pairs: vec![],
+                    table_of_second: false,
                 },
                 result: None,
                 checks,
@@ -769,6 +774,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
     // The operands, from the right-hand column where there is one, else the
     // columns read, in the order of the sheet.
     let mut operands: Vec<(Source, Held)> = vec![];
+    let mut table_of_second = false;
     let named: Vec<(usize, usize)> = match &row.card {
         Some(c) => {
             let mut v = vec![];
@@ -944,6 +950,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                     let again = |x: Option<Value>| x.is_some_and(|x| factors.iter().any(|f| f.same(&x)));
                     if !again(val(*x)) && again(val(*y)) {
                         v.swap(0, 1);
+                        table_of_second = true;
                     }
                 }
             }
@@ -1437,6 +1444,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             writes,
             table_formed,
             pairs,
+            table_of_second,
         },
         result: Some(result),
         checks,
