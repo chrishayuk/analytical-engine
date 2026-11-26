@@ -468,3 +468,33 @@ fn f001_cycle_reads() {
     assert_eq!(marks.iter().filter(|m| m.kind == Kind::Unknown).count(), 34);
     assert_eq!(in_motion(&marks).iter().max(), Some(&10));
 }
+
+/// Competing models of the complement (docs/discrepancies.md, item 1): a
+/// transfer that keeps the complement contradicts L/001 No. 2's own
+/// right-hand column and five other sheets; taking a complement as −x in
+/// the mill changes nothing in the corpus.
+#[test]
+fn competing_complement_models() {
+    use babbage::machine::{run_model, Model};
+    let total = |m: Model| {
+        PAGES
+            .iter()
+            .map(|(n, t)| run_model(&read(n, t).unwrap(), m).all_checks().filter(|c| c.ok).count())
+            .sum::<usize>()
+    };
+    assert_eq!(total(Model::default()), 2623);
+    assert_eq!(
+        total(Model {
+            complement_as_held: true,
+            ..Model::default()
+        }),
+        2623
+    );
+    assert_eq!(
+        total(Model {
+            transfer_keeps: true,
+            ..Model::default()
+        }),
+        2579
+    );
+}

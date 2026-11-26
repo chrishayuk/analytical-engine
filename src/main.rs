@@ -1,5 +1,5 @@
 use babbage::machine::run as run_lax;
-use babbage::machine::{decisions, run_strict};
+use babbage::machine::{decisions, run_model, Model};
 use babbage::page::read;
 use babbage::rat::Rat;
 use babbage::report::{cards_text, run_text, Options};
@@ -11,6 +11,10 @@ const USAGE: &str = "\
 babbage FILE                 run a page: every operation, every cell of the sheet checked (- reads standard input)
 babbage no L001-1            a page of the corpus (babbage list)
 babbage FILE --strict        never go on with the sheet's value where it differs (also with verify)
+babbage FILE --model=transfer-keeps
+                             a competing reading: a transfer moves a number as it is (rule 5 says it complements)
+babbage FILE --model=complement-as-held
+                             another: the mill takes a complement read as the wheels hold it, −x (rule 24 says x)
 babbage FILE --store         the whole store after each operation
 babbage FILE --at a=2,b=3,…  the same run, its values shown at these numbers
 babbage cards FILE           the program as operation and variable cards
@@ -73,12 +77,27 @@ fn main() {
     let mut rest = vec![];
     let strict = args.iter().any(|a| a == "--strict");
     let mut as_of: Option<String> = None;
-    let run = |p: &Page| if strict { run_strict(p) } else { run_lax(p) };
+    let transfer_keeps = args.iter().any(|a| a == "--model=transfer-keeps");
+    let complement_as_held = args.iter().any(|a| a == "--model=complement-as-held");
+    let run = |p: &Page| {
+        if strict || transfer_keeps || complement_as_held {
+            run_model(
+                p,
+                Model {
+                    strict,
+                    transfer_keeps,
+                    complement_as_held,
+                },
+            )
+        } else {
+            run_lax(p)
+        }
+    };
     let mut i = 0;
     while i < args.len() {
         match args[i].as_str() {
             "--store" => o.store = true,
-            "--strict" => {}
+            "--strict" | "--model=transfer-keeps" | "--model=complement-as-held" => {}
             "--as-of" => {
                 i += 1;
                 as_of = args.get(i).cloned();

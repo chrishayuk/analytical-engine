@@ -73,11 +73,46 @@ Nothing in the history sheets settles it.
   "v3'' = v3 = c", and the engine's rule 5 (a transfer complements) gives c.
   If the transfer of op 10 left the complement as it was, the page would
   agree and its y would be right. That would change rule 5, which rests on
-  this same page. So it needs the scan, and Rojas's reading of the
-  transfer, before anything is changed.
+  this same page. Tested below: it does not hold.
 - **Item 4** (L/007, row 35) has the shape of a result given out with its
   sign changed, three years before the history records it. The accent
   must be checked on the scan first.
 - **Item 14** (L/018) bears on the debugging story: whether the swap was
   in the program or only in the table.
 - **The rows with no 0** (above).
+
+## Item 1 tested: two models of the complement
+
+Two competing readings of L/001 No. 2, operation 12, were added to the
+engine as switches. Each changes one rule and nothing else. Both were run
+over the whole corpus, normally and strictly (`babbage verify
+--model=…`).
+
+| Model | Rule changed | L/001 No. 2 | Corpus, normal | Corpus, strict |
+|---|---|---|---|---|
+| A (as it stands) | — | 80 of 81 | 2623 of 2672 | 2535 of 2675 |
+| A′ `complement-as-held` | rule 24: the mill takes a complement read as −x, not x | 80 of 81 | 2623 | 2535 |
+| B `transfer-keeps` | rule 5: a transfer moves the complement as it is | 77 of 81 | 2579 | 2113 of 2287 |
+| B + A′ | both | 77 of 81 | 2579 | strict L/001 No. 2 stops at op 11 |
+
+What the runs show:
+
+- **B contradicts the sheet it was meant to explain.** Operations 8, 9 and
+  10 of L/001 No. 2 each write their result in the right-hand column:
+  "v1″ = v1 = a", "v2‴ = v2 = b", "v3″ = v3 = c". Under B they bring back
+  Ca, Cb and Cc. Run strictly, the machine then stops at operation 11,
+  which multiplies the complement of a by x.
+- **B breaks transfers on five other sheets:** L/002, L/005, L/006, L/007
+  and L/015, which lose 4 to 12 agreements each in a normal run. Strictly,
+  L/005 falls from 199 to 8.
+- **A′ changes nothing anywhere in the corpus.** Rule 24 cannot be told
+  from its alternative on this evidence.
+- **Neither model accounts for −c−ax.** Under B the operand of operation
+  12 would be Cc, but the sheet itself says v3 holds c.
+
+So A stands. Item 1 remains open, as a slip or as something not yet
+modelled. The one reading consistent with the sheet's own right-hand
+column is that Babbage wrote the numerator of y, −c − ax, directly, and not
+what the subtraction gives. The switches stay in the engine
+(`--model=transfer-keeps`, `--model=complement-as-held`), so any later
+reading can be set against the whole corpus the same way.

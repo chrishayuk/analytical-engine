@@ -222,6 +222,10 @@ struct State<'a> {
     results: BTreeMap<String, Value>,
     /// Never go on with the sheet's value where it differs from the run's.
     strict: bool,
+    /// Model B for BAB/L/001 No. 2, operation 10: a transfer moves the
+    /// number as it is, and does not complement it (`Model`).
+    transfer_keeps: bool,
+    complement_as_held: bool,
     /// Strict: what the sheet says each column holds, where it says so.
     said: BTreeMap<usize, Held>,
 }
@@ -446,6 +450,28 @@ pub fn run(page: &Page) -> Run {
     run_with(page, false)
 }
 
+/// A variant of the machine, to set competing readings against the whole
+/// corpus. Each field changes one rule and nothing else.
+#[derive(Clone, Copy, Default)]
+pub struct Model {
+    pub strict: bool,
+    /// A transfer moves the number as it is, instead of complementing it
+    /// (rule 5). BAB/L/001 No. 2's operation 12, −c−ax, is what a
+    /// subtraction gives if operation 10 left the complement of c in v3.
+    pub transfer_keeps: bool,
+    /// A complement read into the mill is taken as the wheels hold it,
+    /// 10^k − x (−x in letters), instead of as the number it stands for
+    /// (rule 24, from BAB/L/014).
+    pub complement_as_held: bool,
+}
+
+pub fn run_model(page: &Page, m: Model) -> Run {
+    if !page.decks.is_empty() {
+        return crate::loops::run(page);
+    }
+    run_inner(page, m)
+}
+
 /// Strict: where the sheet and the run differ, the run goes on with its own
 /// value, never the sheet's, so a slip may be followed by others it causes.
 pub fn run_strict(page: &Page) -> Run {
@@ -453,11 +479,21 @@ pub fn run_strict(page: &Page) -> Run {
 }
 
 fn run_with(page: &Page, strict: bool) -> Run {
-    if !page.decks.is_empty() {
-        return crate::loops::run(page);
-    }
+    run_model(
+        page,
+        Model {
+            strict,
+            ..Model::default()
+        },
+    )
+}
+
+fn run_inner(page: &Page, m: Model) -> Run {
+    let strict = m.strict;
     let mut st = State {
         strict,
+        transfer_keeps: m.transfer_keeps,
+        complement_as_held: m.complement_as_held,
         said: BTreeMap::new(),
         page,
         store: BTreeMap::new(),
@@ -1073,7 +1109,11 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             // A complement read into the mill gives the number it is the
             // complement of (BAB/L/014: Comp aj read for aj).
             let num = |h: &Held| match h {
-                Held::Plain(v) | Held::Complement(v) => v.clone(),
+                Held::Plain(v) => v.clone(),
+                // Model: the mill takes a complement as the wheels hold it,
+                // 10^k − x, which in letters is −x.
+                Held::Complement(v) if st.complement_as_held => st.complement_of(v),
+                Held::Complement(v) => v.clone(),
             };
             let mut m = num(&operands[0].1);
             for o in &operands[1..] {
@@ -1098,7 +1138,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 Some(c) => Some(st.eval(&c.rhs)?),
                 None => None,
             };
-            (src.complemented(), said)
+            (if st.transfer_keeps { src } else { src.complemented() }, said)
         }
     };
     let mut result = machine.clone();
