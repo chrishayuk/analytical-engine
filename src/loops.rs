@@ -349,6 +349,7 @@ pub fn run(page: &Page) -> Run {
                     table_formed: false,
                     pairs: vec![],
                     table_of_second: false,
+                    sign_changed: false,
                 },
                 result: Some(Held::Plain(done.mill.clone())),
                 checks,

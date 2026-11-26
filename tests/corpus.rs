@@ -196,7 +196,6 @@ const DISAGREEMENTS: &[(&str, usize)] = &[
     ("L015", 5),
     ("L017", 9),
     ("L018", 3),
-    ("L020", 1),
     ("L021", 3),
     ("L024-1", 3),
     ("L024-2", 7),
@@ -340,11 +339,12 @@ fn strict_runs() {
             }
         }
     }
-    assert_eq!((all, ok), (2675, 2532));
-    // Run exactly as written, two pages end with a wrong answer: L/001's
-    // back (−v3″−v5″ at operation 12) and L/020 (−e/∂ = z at the last).
+    assert_eq!((all, ok), (2675, 2535));
+    // Run exactly as written, one page ends with a wrong answer: L/001's
+    // back (−v3″−v5″ at operation 12). L/020's −e/∂ = z is the mill giving
+    // out e/∂ with its sign changed (BAB/N/007, June 1840).
     wrong_answer.dedup();
-    assert_eq!(wrong_answer, ["L001-2", "L020"]);
+    assert_eq!(wrong_answer, ["L001-2"]);
 }
 
 /// BAB/L/023: the looped program. The cards run, and the 35 rows are what

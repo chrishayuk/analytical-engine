@@ -40,6 +40,8 @@ pub struct Cards {
     /// The table was made of the factor written second, for the next
     /// multiplication (`decisions`: BAB/L/015).
     pub table_of_second: bool,
+    /// The mill gave out the result with its sign changed.
+    pub sign_changed: bool,
 }
 
 pub struct Step {
@@ -177,7 +179,11 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
         ),
         (
             "Where the mill column and the operation differ, and no cell writes what the operation gives, the run goes on with the sheet's value.",
-            "BAB/L/020 writes −e/∂ = z from a division of ∂ by e; BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.",
+            "BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.",
+        ),
+        (
+            "The mill may give out the result of an operation with its sign changed.",
+            "BAB/N/007, the history sheet for 1840, June: \"Order to Mill to give out the Result of any opern with its sign changed p. 406 V.IV\". BAB/L/020, 31 July 1840, ends \"÷ −e/∂ = z\" with cards taking ∂ and e: e/∂, given out with its sign changed. Looked for only where neither order of the operands gives the mill column as written.",
         ),
         (
             "With --strict, the run never goes on with the sheet's value: where they differ, it keeps its own.",
@@ -423,6 +429,10 @@ fn gives(st: &State, page: &Page, row: &Row, step: &mut Step) {
     }
 }
 
+fn v_of(h: Result<Held, String>) -> Held {
+    h.unwrap_or(Held::Plain(Value::zero()))
+}
+
 fn apply(op: Op, a: &Value, b: &Value) -> Result<Value, String> {
     Ok(match op {
         Op::Mul => a.mul(b),
@@ -498,6 +508,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
                     table_formed: false,
                     pairs: vec![],
                     table_of_second: false,
+                    sign_changed: false,
                 },
                 result: None,
                 checks,
@@ -541,6 +552,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
                     table_formed: false,
                     pairs: vec![],
                     table_of_second: false,
+                    sign_changed: false,
                 },
                 result: None,
                 checks,
@@ -791,8 +803,23 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             if let (Some(op @ (Op::Sub | Op::Div)), Some((e, _)), [x, y]) = (row.op, &row.mill, &v[..]) {
                 let held = |(n, p): (usize, usize)| st.version(n, p).ok().and_then(|h| h.plain().cloned());
                 if let (Some(a), Some(b), Ok(Held::Plain(m))) = (held(*x), held(*y), st.eval(e)) {
-                    let same = |r: Result<Value, String>| r.is_ok_and(|r| Held::Plain(r).same(&Held::Plain(m.clone())));
-                    if !same(apply(op, &a, &b)) && same(apply(op, &b, &a)) {
+                    // Or its sign changed (BAB/N/007, June 1840: "Order to
+                    // Mill to give out the Result of any opern with its sign
+                    // changed"; BAB/L/020 writes −e/∂).
+                    // A sign change is looked for only where neither order
+                    // gives the mill column as written: b − a is always
+                    // −(a − b).
+                    let same = |r: &Result<Value, String>| {
+                        r.as_ref()
+                            .is_ok_and(|r| Held::Plain(r.clone()).same(&Held::Plain(m.clone())))
+                    };
+                    let negated = |r: &Result<Value, String>| {
+                        r.as_ref()
+                            .is_ok_and(|r| Held::Plain(r.neg()).same(&Held::Plain(m.clone())))
+                    };
+                    let (ab, ba) = (apply(op, &a, &b), apply(op, &b, &a));
+                    let plain = same(&ab) || same(&ba);
+                    if (!same(&ab) && same(&ba)) || (!plain && !negated(&ab) && negated(&ba)) {
                         v.swap(0, 1);
                     }
                 }
@@ -1134,19 +1161,32 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             }
         }
     }
+    let mut sign_changed = false;
     if let Some((e, t)) = &row.mill {
         let r = st.eval(e).and_then(|v| {
             if v.same(&result) {
                 Ok(())
+            } else if let (Some(_), Some(x), Held::Plain(w)) = (row.op, result.plain(), &v) {
+                // The result given out with its sign changed (BAB/N/007,
+                // June 1840; BAB/L/020).
+                if x.neg().same(w) {
+                    sign_changed = true;
+                    Ok(())
+                } else {
+                    Err(format!("the operation gives {result}"))
+                }
             } else {
                 Err(format!("the operation gives {result}"))
             }
         });
+        if sign_changed {
+            result = v_of(st.eval(e));
+        }
         let differs = r.is_err();
         checks.push(check(line, format!("mill: {t}"), r));
         // With no right-hand column, where the mill column and the
         // operation differ and no cell writes what the operation gives, the
-        // run goes on with the sheet's value (BAB/L/020: −e/∂ = z).
+        // run goes on with the sheet's value (BAB/L/018, rows 5 and 6).
         if differs && !st.strict && row.card.is_none() && row.op.is_some() {
             let cell_has_result = row.cells.iter().any(|(_, c)| match c {
                 Cell::Value(x, _) => st.eval(x).is_ok_and(|v| v.same(&result)),
@@ -1445,6 +1485,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
             table_formed,
             pairs,
             table_of_second,
+            sign_changed,
         },
         result: Some(result),
         checks,

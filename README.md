@@ -39,20 +39,22 @@ none; Rojas 2017 lists its program as not in the archive), 4 August 1837 to
 9 August 1841: 35 pages, of which 33 run and two are prose or a drawing of
 the store (L/016 sheet 2, L/027). One of the 33 is the looped program of
 L/023: the engine runs its cards. Of 2672 statements of the sheets the run
-checks, 2622 agree (`babbage verify`). The 50 that do
-not come from slips of the pen on 15 pages, each described on its page and
+checks, 2623 agree (`babbage verify`). The 49 that do
+not come from slips of the pen on 14 pages, each described on its page and
 counted in `tests/corpus.rs`; none stops a run.
 
 Those figures are for a run that, where the sheet and the run differ, goes
 on with the sheet's value, so one slip is one disagreement. `babbage verify
 --strict` never does. The run keeps its own value, and an operand that is
 not where the sheet says it is comes from the column as it actually is. So
-what a slip causes later is counted too. Strict, 2532 of 2675 statements
+what a slip causes later is counted too. Strict, 2535 of 2675 statements
 agree (a strict run checks three more). The disagreements are on the same
-15 pages and no others. Of the 12 pages that state equations the run can
-solve, ten reach the solution on the machine's own values. Two end with a
-wrong answer: L/001's back, from −v3″−v5″ at operation 12, and L/020, from
-−e/∂ = z at the last operation. On pages without equations, slips carry
+14 pages and no others. Of the 12 pages that state equations the run can
+solve, eleven reach the solution on the machine's own values. One ends with
+a wrong answer: L/001's back, from −v3″−v5″ at operation 12. L/020's last
+operation, −e/∂ = z, once counted as a slip, is the mill giving out e/∂
+with its sign changed, which Babbage's history sheet for 1840 records in
+June, the month before (rule 32). On pages without equations, slips carry
 wrong values forward in L/017, L/018 and L/024's second sheet. For the
 three versions of the elliptic radius vector, see
 [`docs/revisions.md`](docs/revisions.md): run as written, L/017 and L/018
@@ -264,7 +266,7 @@ with what it rests on):
     L/022.)
 27. Where the mill column and the operation differ and the cells follow the
     mill, the run goes on with the sheet's value: one slip, one
-    disagreement. (L/018, L/020.)
+    disagreement. (L/018.)
 28. With `--strict`, the run never goes on with the sheet's value.
 29. A looped program is run from its cards. The groups run in order. After
     a group's last card, a backing apparatus sends the cards to the start
@@ -275,6 +277,8 @@ with what it rests on):
 31. Letter cards stand at a place the store gives. The sheet's advances and
     backs are checked against the moves that requires. (BAB/L/023 writes
     the moves, not what sets them.)
+32. The mill may give out a result with its sign changed. (BAB/N/007, June
+    1840; used by BAB/L/020, July 1840.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
 sheet needs that the sheets before it do not show will be a new, dated

@@ -116,8 +116,7 @@ L018      91 statements,  88 agree
          ✗ line 82: mill: (P1/Q1)·B68: the operation gives 45/64/81/140a
          ✗ line 96: mill: ΔQ2+ΔQ2: the operation gives 1160
 L019     167 statements, 167 agree
-L020     148 statements, 147 agree
-         ✗ line 126: mill: -e/d: the operation gives (-BB′C′D′′ + BB′C′′D′ - B′B′′CD′ + B′B′′C′D + B′^2CD′′ - B′^2C′′D)/(-BB′C′E′′ + BB′C′′E′ - B′B′′CE′ + B′B′′C′E + B′^2CE′′ - B′^2C′′E)
+L020     148 statements, 148 agree
 L021     182 statements, 179 agree
          ✗ line 88: v26 = C(d′) on its way: no column this row reads holds the number Cd′ is the complement of
          ✗ line 89: cards (v23 v24)(v14 v26)(v24 v23)(v26 v14)(0 v29): the run needs (v23 v24)(v14 0)(v24 v23)(0 v29)
@@ -145,8 +144,8 @@ L026-1    27 statements,  27 agree
 L026-2    31 statements,  31 agree
 L027       0 statements,   0 agree
 
-35 pages; 2672 statements of the sheets checked, 2622 agree.
-15 page(s) with statements that do not agree.
+35 pages; 2672 statements of the sheets checked, 2623 agree.
+14 page(s) with statements that do not agree.
 ```
 
 ## The rules of the machine
@@ -223,24 +222,27 @@ $ babbage decisions
    BAB/L/019 and L/020 (1840) list beside each operation its variable cards, "(v23 v7) the first variable … is that which is given off the second … that which receive[s]", 0 for the mill, with their counts and running totals. The run derives the same pairs from the cells and checks the sheet's, as sets; the order is not checked.
 
 24. Where the mill column and the operation differ, and no cell writes what the operation gives, the run goes on with the sheet's value.
-   BAB/L/020 writes −e/∂ = z from a division of ∂ by e; BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.
+   BAB/L/018 marks rows 5 and 6 with each other's signs. One slip is then one disagreement, not a cascade.
 
-25. With --strict, the run never goes on with the sheet's value: where they differ, it keeps its own.
+25. The mill may give out the result of an operation with its sign changed.
+   BAB/N/007, the history sheet for 1840, June: "Order to Mill to give out the Result of any opern with its sign changed p. 406 V.IV". BAB/L/020, 31 July 1840, ends "÷ −e/∂ = z" with cards taking ∂ and e: e/∂, given out with its sign changed. Looked for only where neither order of the operands gives the mill column as written.
+
+26. With --strict, the run never goes on with the sheet's value: where they differ, it keeps its own.
    So that agreement counts only what the machine confirms unaided. A slip is then followed by the disagreements it causes.
 
-26. A looped program is run from its cards. The groups run in order; after the last card of a group, a backing apparatus sends the cards to the start of another group, unless its condition holds.
+27. A looped program is run from its cards. The groups run in order; after the last card of a group, a backing apparatus sends the cards to the start of another group, unless its condition holds.
    BAB/L/023 (7 June 1838), cover: "There are three groups of cards … The backing apparatus Y backs the cards to the beginning of the formulae cards. The backing apparatus Z backs them to the beginning of the cards forming the combinatorial numbers." In its table, Y backs after each subtraction that leaves Comb above 0, and Z after those that leave it at 0.
 
-27. In a looped program, a column the cards read keeps its number.
+28. In a looped program, a column the cards read keeps its number.
    BAB/L/023 writes no 0 under Δ′, Tab or Const when they are read, and Tab and Const are read again in later passes. Comb, given a new number, is written "0 1": a 0, then the number.
 
-28. Letter cards stand at a place given by the store. The sheet's advances and backs are checked against the moves needed between the letters the cards read.
+29. Letter cards stand at a place given by the store. The sheet's advances and backs are checked against the moves needed between the letters the cards read.
    BAB/L/023 writes the moves ("Great back 1, Small back 2") and not what sets them. Placing the great cards at Tab − Comb and the small at Comb − 1 gives every move the sheet writes.
 
-29. Great operations are multiplication and division; small are addition, subtraction and transfers.
+30. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-30. Values are compared as algebra.
+31. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 

@@ -41,6 +41,7 @@ pub const CAPABILITIES: &[(&str, &str)] = &[
         "A row moves a number while the mill operates on others",
     ),
     ("give-off-retain", "A column gives its number to the mill and keeps it"),
+    ("sign-changed", "The mill gives out a result with its sign changed"),
     ("many-addends", "An addition takes more than two numbers"),
     (
         "input",
@@ -97,6 +98,9 @@ pub fn used(page: &Page, run: &Run) -> BTreeMap<&'static str, Vec<usize>> {
             }
             if c.operands.iter().any(|(src, _)| matches!(src, Source::Table)) {
                 add("table-kept", n);
+            }
+            if c.sign_changed {
+                add("sign-changed", n);
             }
             if c.table_of_second {
                 add("table-of-second", n);
