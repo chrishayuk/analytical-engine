@@ -45,15 +45,19 @@ counted in `tests/corpus.rs`; none stops a run.
 
 Those figures are for a run that, where the sheet and the run differ, goes
 on with the sheet's value, so one slip is one disagreement. `babbage verify
---strict` never does: the run keeps its own value, and what a slip causes
-later is counted too. Strict, 2568 of 2672 agree, on the same 15 pages and
-no others; the extra 54 are the consequences of slips already counted
-(most on L/014 sheet 2, L/018 and L/024 sheet 2). Run strictly as written,
-12 pages state equations the run can solve. Ten of them reach the solution
-on the machine's own values. Two end with a wrong answer: L/001's back,
-from −v3″−v5″ at operation 12, and L/020, from −e/∂ = z at the last
-operation. On pages without equations, strict mode carries wrong values
-forward from slips: L/018's Bernoulli recurrence and L/024's second sheet.
+--strict` never does. The run keeps its own value, and an operand that is
+not where the sheet says it is comes from the column as it actually is. So
+what a slip causes later is counted too. Strict, 2532 of 2675 statements
+agree (a strict run checks three more). The disagreements are on the same
+15 pages and no others. Of the 12 pages that state equations the run can
+solve, ten reach the solution on the machine's own values. Two end with a
+wrong answer: L/001's back, from −v3″−v5″ at operation 12, and L/020, from
+−e/∂ = z at the last operation. On pages without equations, slips carry
+wrong values forward in L/017, L/018 and L/024's second sheet. For the
+three versions of the elliptic radius vector, see
+[`docs/revisions.md`](docs/revisions.md): run as written, L/017 and L/018
+get five of their six coefficients wrong, for different reasons, and L/025
+gets all six right.
 
 The transcriptions were made by coding agents from the scans; no person has
 checked them. Two readings by Rojas (2017, 2023) have been read and a short

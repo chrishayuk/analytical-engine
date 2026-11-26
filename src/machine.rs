@@ -213,6 +213,8 @@ struct State<'a> {
     results: BTreeMap<String, Value>,
     /// Never go on with the sheet's value where it differs from the run's.
     strict: bool,
+    /// Strict: what the sheet says each column holds, where it says so.
+    said: BTreeMap<usize, Held>,
 }
 
 impl State<'_> {
@@ -443,6 +445,7 @@ fn run_with(page: &Page, strict: bool) -> Run {
     }
     let mut st = State {
         strict,
+        said: BTreeMap::new(),
         page,
         store: BTreeMap::new(),
         history: BTreeMap::new(),
@@ -948,6 +951,9 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         }
     };
     let mut table_formed = false;
+    // Strict: the numbers the sheet names for its operands, and what the
+    // columns actually gave in their place.
+    let mut substituted: Vec<(Held, Held)> = vec![];
     for (i, (n, p)) in named.iter().enumerate() {
         let want = st.version(*n, *p)?;
         let from_column = reads.contains(n) && before.get(n).is_some_and(|h| h.same(&want));
@@ -975,6 +981,17 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                         }
                     )),
                 ));
+                // Strict: the mill gets what the column holds, not the
+                // number the sheet names (BAB/L/017, row 4: v6 at zero).
+                if st.strict {
+                    let now = before.get(n).cloned().unwrap_or(Held::Plain(Value::zero()));
+                    if row.op == Some(Op::Mul) && i == 0 {
+                        table_formed = true;
+                    }
+                    substituted.push((want.clone(), now.clone()));
+                    operands.push((Source::Read(*n), now));
+                    continue;
+                }
                 Source::Read(*n)
             }
         };
@@ -1210,8 +1227,15 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 };
                 let keep_sheet = r.is_ok() || !st.strict;
                 checks.push(check(line, format!("v{col} = {t}"), r));
+                st.said.insert(*col, v.clone());
                 if keep_sheet {
                     v
+                } else if let Some((_, now)) = substituted.iter().find(|(said, _)| said.same(&v)) {
+                    // A number read, laid again: what was actually read.
+                    now.clone()
+                } else if let Some(r) = reads.iter().find(|r| st.said.get(r).is_some_and(|h| h.same(&v))) {
+                    // The column the sheet says held it, as it actually was.
+                    before.get(r).cloned().unwrap_or(Held::Plain(Value::zero()))
                 } else {
                     result.clone()
                 }

@@ -340,7 +340,7 @@ fn strict_runs() {
             }
         }
     }
-    assert_eq!((all, ok), (2672, 2568));
+    assert_eq!((all, ok), (2675, 2532));
     // Run exactly as written, two pages end with a wrong answer: L/001's
     // back (−v3″−v5″ at operation 12) and L/020 (−e/∂ = z at the last).
     wrong_answer.dedup();
@@ -394,4 +394,20 @@ fn l023_the_cards_make_the_rows() {
         let f = probe("L023", from, to);
         assert!(f.iter().any(|f| f.starts_with(want)), "{want}: {f:#?}");
     }
+}
+
+/// The three versions of the elliptic radius vector, run as written
+/// (docs/revisions.md): L/017 loses Q0, L/018 swaps the signs of rows 5
+/// and 6, L/025 is right.
+#[test]
+fn three_versions_strict() {
+    use babbage::machine::run_strict;
+    let count = |n: &str| {
+        let r = run_strict(&read(n, &page(n)).unwrap());
+        let all: Vec<_> = r.all_checks().collect();
+        (all.iter().filter(|c| c.ok).count(), all.len())
+    };
+    assert_eq!(count("L017"), (84, 127));
+    assert_eq!(count("L025"), (89, 93));
+    assert_eq!(count("L018"), (73, 91));
 }
