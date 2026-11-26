@@ -71,7 +71,7 @@ against each other.
 | Sign changed | "Order to Mill to give out the Result of any opern with its sign changed" Jun 1840 | L/020, 31 Jul 1840 | record first, by a month |
 
 - **The order runs both ways.** Some capabilities were written down long
-  before any program used them: repetition by nearly two years,
+  before any program used them: repetition by more than two years,
   multiplication by table by more than two. Others appear in a program
   first: backing apparatus, compound addition, complements.
   So the first surviving evidence of a capability is not its date of
