@@ -70,6 +70,27 @@ Numbers given to the store from outside the table, between operations (the
 sheet's "Calculate f(1) f₁(1)"), are an `In` line: `In v1 f1, v2 g1`. They
 are not an operation; each column must be at zero.
 
+## Turns of the store
+
+BAB/L/008 to L/012 work the store as a difference engine with three
+carriages, `Car1` to `Car3`. A row is a `Turn`: its number, what is done in
+order, and the cells the sheet writes.
+
+```
+Wheels 3
+Turn 2  | Car1 = Car1 - v2, v7 = Car1, Car2 = Car2 - v2 | Car1 995, Car2 997, v2 0, v7 995
+Turn 3  | Car3 = Car2, v8 = Car2, Car1 = 0, Car2 = 0    | Car1 -0, Car2 -0, Car3 997, v8 997
+```
+
+A store column an action takes a number from is left at zero after the turn
+unless the turn gives it one; a column given a number need not be at zero.
+`Wheels 3` puts the page on three-figure wheels, where `C(x)` is 1000 − x;
+with no `Wheels`, in letters, `C(x)` (or the sheet's `C.x`) is −x. `Δ²M`,
+`ΔM0` are names. `Let M1 = M0 + ΔM0` defines a name the sheet uses, so that
+its cells can be checked against what the name means; `Gives 4 v8 = C(T1)`
+is the sheet's statement of what a column holds after a row. A `Turn 0` is
+not counted.
+
 ## Checked statements
 
 ```

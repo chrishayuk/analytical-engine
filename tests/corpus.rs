@@ -186,7 +186,7 @@ fn l002_a_subtraction_the_wrong_way_round_is_caught_by_the_series() {
 #[test]
 fn every_other_page_agrees_throughout() {
     for (name, text) in PAGES {
-        if ["L001-2", "L004-2", "L007"].contains(name) {
+        if ["L001-2", "L004-2", "L007", "L010"].contains(name) {
             continue;
         }
         assert_eq!(failures(text), Vec::<String>::new(), "{name}");
@@ -218,4 +218,53 @@ fn l007_disagrees_at_operations_22_and_35() {
     let f = failures(&page("L007"));
     assert_eq!(f.len(), 2, "{f:#?}");
     assert!(f[0].contains("v22″") && f[1].starts_with("mill: (d′/d)b-b″"), "{f:#?}");
+}
+
+// The carriage sheets, 20 to 29 August 1837.
+
+#[test]
+fn l010_disagrees_only_in_its_last_block() {
+    // Row 28 writes v3 320 where the carriage beside it has 302; row 30
+    // writes 469 for 194 + 175 = 369, in Car2 and v4.
+    let f = failures(&page("L010"));
+    assert_eq!(f.len(), 3, "{f:#?}");
+    assert!(
+        f[0].contains("v3 = 320") && f[1].contains("Car2 = 469") && f[2].contains("v4 = 469"),
+        "{f:#?}"
+    );
+}
+
+#[test]
+fn the_difference_engines_tabulate_their_functions() {
+    // Each starred value against n² + 2n + 3, n³ and n⁴ (Gives), every one
+    // checked and agreeing, complements on the odd values.
+    for (name, n) in [("L008", 4), ("L009", 4), ("L010", 4)] {
+        let r = run(&read("", &page(name)).unwrap());
+        let given: Vec<_> = r.all_checks().filter(|c| c.what.starts_with("after ")).collect();
+        assert_eq!(given.len(), n, "{name}");
+        assert!(given.iter().all(|c| c.ok), "{name}");
+    }
+}
+
+#[test]
+fn a_wrong_figure_on_a_carriage_is_caught() {
+    let f = probe("L009", "Car1 976, Car2 982", "Car1 967, Car2 982");
+    assert!(f.iter().any(|f| f.starts_with("Car1 = 967")), "{f:#?}");
+}
+
+#[test]
+fn l012_needs_two_rules_for_bringing_m_and_n_to_the_mill() {
+    // Rows 7, 12, 31 and 36 give v1 (or v9) the complement of what Car3
+    // holds; rows 19 and 24 give it what Car3 holds. Either rule alone
+    // leaves the other rows wrong.
+    let t = page("L012");
+    let plain = t.replace("= C(Car3), Car3 = 0", "= Car3, Car3 = 0");
+    let comp = t
+        .replace("v1 = Car3, Car3 = 0", "v1 = C(Car3), Car3 = 0")
+        .replace("v9 = Car3, Car3 = 0", "v9 = C(Car3), Car3 = 0");
+    assert_ne!(plain, t);
+    assert_ne!(comp, t);
+    assert!(!failures(&plain).is_empty());
+    assert!(!failures(&comp).is_empty());
+    assert_eq!(failures(&t), Vec::<String>::new());
 }

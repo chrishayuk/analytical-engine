@@ -4,16 +4,6 @@
 % 222/660 ("22 Aug 1837" at the top left of 222/660). Read from the zoom
 % images at full resolution. See sources/notes/L008.md.
 %
-% NOT RUN. This sheet is not a program of the mill. Each of its 16 rows is
-% one "turn" of the store working with three "negative carriages" as a
-% difference engine: numbers are subtracted from carriages and from columns
-% in place, on three-figure wheels, so that a column holds a number or its
-% arithmetical complement (998 for 2). The engine has no carriages, no
-% arithmetic in a column, and no wheels of a fixed number of figures, so the
-% rows are kept below as the sheet writes them, in comments. Checked
-% outside the engine (every one of the 60 cells agrees with the turns as the
-% sheet's own numbered instructions describe them): see the notes.
-
 Sheet BAB/L/008
 No. 8
 Date 20 Aug 1837          "No 8 Aug 20th /37"   % cover; the back of 222/660 reads "22 Aug 1837"
@@ -37,29 +27,46 @@ Image 222/657 a draft of the table in pencil, on four-figure wheels (9998, 9995,
 % A small figure after a complement is the number it is the complement of:
 % 998₂, 995₅, 994₆, 991₉, 982₁₈. "−0" is a carriage reduced to negative zero.
 %
-%  turn  Car1  Car2  Car3   v1   v2   v3      v6    v7    v8
-%  (start)                  002  003  003
-%   1    998                0                 998₂  998
-%   2    995   997               0                  995₅
-%   3    −0    −0    997                                  997
-%   4                994              0                   994₆
-%   ×
-%   5    002                002  002          0
-%   6    007   005               007                0
-%   7    −0    −0    005              005
-%   8                011              011                 0
-%   ×
-%   9    998         −0     0                 998₂  998          % Car3 "−0" faint, in pencil
-%  10    991   993               0                  991₉
-%  11    −0    −0    993                                  993
-%  12                982              0                   982₁₈
-%   ×
-%  13    002         −0     002  002          0                  % Car3 "−0" faint, in pencil
-%  14    011   009               011                0
-%  15    −0    −0    009              009
-%  16                027              027                 0
-%   ×
-%
+% Each row is a turn of the store with its three negative carriages, on
+% three-figure wheels: a complement is 1000 - x. The actions of each turn are
+% what the sheet's right-hand column and its numbered instructions (below)
+% say is done, in that order; the cells are the figures the table writes.
+% A column an action takes a number from is left at zero ("reducing Δ²0 to
+% zero"). Rounds of four turns alternate between v1-v3 and v6-v8.
+Wheels 3
+Let T1 = 1·1 + 2·1 + 3
+Let T2 = 2·2 + 2·2 + 3
+Let T3 = 3·3 + 2·3 + 3
+Let T4 = 4·4 + 2·4 + 3
+Store v1 = 002, v2 = 003, v3 = 003
+Working v6 v7 v8
+
+Turn 1  | Car1 = Car1 - v1, v6 = Car1, v7 = Car1                 | Car1 998, v1 0, v6 998, v7 998
+Turn 2  | Car1 = Car1 - v2, v7 = Car1, Car2 = Car2 - v2           | Car1 995, Car2 997, v2 0, v7 995
+Turn 3  | Car3 = Car2, v8 = Car2, Car1 = 0, Car2 = 0              | Car1 -0, Car2 -0, Car3 997, v8 997
+Turn 4  | Car3 = Car3 - v3, v8 = Car3                             | Car3 994, v3 0, v8 994
+Turn 5  | Car1 = Car1 - v6, v1 = Car1, v2 = Car1                  | Car1 002, v1 002, v2 002, v6 0
+Turn 6  | Car1 = Car1 - v7, v2 = Car1, Car2 = Car2 - v7           | Car1 007, Car2 005, v2 007, v7 0
+Turn 7  | Car3 = Car2, v3 = Car2, Car1 = 0, Car2 = 0              | Car1 -0, Car2 -0, Car3 005, v3 005
+Turn 8  | Car3 = Car3 - v8, v3 = Car3                             | Car3 011, v3 011, v8 0
+Turn 9  | Car1 = Car1 - v1, v6 = Car1, v7 = Car1, Car3 = 0        | Car1 998, Car3 -0, v1 0, v6 998, v7 998   % Car3 "−0" faint, in pencil
+Turn 10 | Car1 = Car1 - v2, v7 = Car1, Car2 = Car2 - v2           | Car1 991, Car2 993, v2 0, v7 991
+Turn 11 | Car3 = Car2, v8 = Car2, Car1 = 0, Car2 = 0              | Car1 -0, Car2 -0, Car3 993, v8 993
+Turn 12 | Car3 = Car3 - v3, v8 = Car3                             | Car3 982, v3 0, v8 982
+Turn 13 | Car1 = Car1 - v6, v1 = Car1, v2 = Car1, Car3 = 0        | Car1 002, Car3 -0, v1 002, v2 002, v6 0   % Car3 "−0" faint, in pencil
+Turn 14 | Car1 = Car1 - v7, v2 = Car1, Car2 = Car2 - v7           | Car1 011, Car2 009, v2 011, v7 0
+Turn 15 | Car3 = Car2, v3 = Car2, Car1 = 0, Car2 = 0              | Car1 -0, Car2 -0, Car3 009, v3 009
+Turn 16 | Car3 = Car3 - v8, v3 = Car3                             | Car3 027, v3 027, v8 0
+
+% The right-hand column's starred results ("ar Co T1 *", "T2 *", ...;
+% turn 12 "Ar. Co. of T3", turn 16 "T4 *"):
+Gives 4 v8 = C(T1)
+Gives 8 v3 = T2
+Gives 12 v8 = C(T3)
+Gives 16 v3 = T4
+
+% The cover: "It requires four operations to obtain each value of Tn".
+
 % The right-hand column, by turn (accents on the carriages count their
 % numbers, as on BAB/L/001, in turns 1-8; from turn 9 a number in
 % parentheses names the turn a number was made in instead):
@@ -80,6 +87,7 @@ Image 222/657 a draft of the table in pencil, on four-figure wheels (9998, 9995,
 %  15  1st Car = 2nd Car = 0  3rd Car = 2nd Car(14) = Δ3 = v3
 %  16  3rd Car = v3 = 3rd Car(15) − v8(12) = Δ3 − Ar Co of T3 = Δ3 + T3 = T4 *
 
+
 Remark "Carriages are negative"
 Remark "1 In the first turn subtract Δ²0 from the first negative carriage reducing Δ²0 to zero also put the result upon the two axes v6 and v7. The result is the Arithmetical Complement of Δ²0"
 Remark "2 Subtract Δ0 from arith comp of Δ²0 and put the result (which is the Arith Comp of {Δ²0 + Δ0 = Δ1}) under the arith comp of Δ²0 which is on carriage and also under the same in v7. Also subtract the Δ0 from another carriage the result is Arith Comp of Δ0 which put in the last named carriage reducing Δ0 to zero"
@@ -90,5 +98,4 @@ Remark "6 Subtract v7 from Δ² on the first carriage and from Δ² on v2 and pu
 Remark "7 Reduce first and second carriages to their neg zeros transferring the result on the second carriage to the fig. wheels of the third and also to v3 thus third carr and v3 have Δ1 upon them"
 Remark "8 Subtract v8 from the third carriage and also from v3 and put the equal results on third carriage and on v3 which will then hold T2 for v3 − v8 = Δ1 − Ar Co of T1 = Δ1 + T1 = T2"
 Remark "Now v1 has Δ² as before, v2 has Δ2 as before it had Δ0, v3 has T2 as before it had T0. The Machine stands now as at the beginning and the same process gives Ar.Co. of T2k+1 and T2k alternately"
-Unrun "the table and its right-hand column, 16 turns: in comments above; checked outside the engine"
 Unrun "222/657: the same table and instructions in a draft, the numbers on four-figure wheels (0002 0003 0003; 9998; 9995 9997; ...), headed 'Calculation of the successive values of a [rational] integral function by differences', 'Let a = 1, b = 2, c = 3, ΔT = 3, Δ²T = 2, T = 3'"

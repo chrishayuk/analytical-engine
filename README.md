@@ -34,18 +34,15 @@ right.
 
 ## Status
 
-Eleven sheets read, 4 to 29 August 1837. Run by the engine, eight sheets and
-eleven programs: **BAB/L/001** (Nos. 1 and 2, 4 and 5 August), **BAB/L/002**
-(14 August), **BAB/L/004** (three programs, 16 August), **BAB/L/005**
-(16 August), **BAB/L/006**, **BAB/L/007** (before 22 August) and
-**BAB/L/011** (two programs, 28 August): 642 statements checked, 637 agree
-(`babbage verify`). **BAB/L/008, L/009 and L/010** (20 to 23 August) work the
-store as a difference engine with "carriages", which the engine does not yet
-model; each is checked figure by figure by a short script instead
-([`sources/checks/`](sources/checks/)), 276 of 279 figures agreeing.
-**BAB/L/012** (29 August), carriages beside the mill, is transcribed and not
-yet checked. BAB/L/003 has no images in the Museum's catalogue; Rojas 2017
-lists its program as not in the archive.
+Eleven sheets, fifteen programs, 4 to 29 August 1837, all run: **BAB/L/001**
+(Nos. 1 and 2, 4 and 5 August), **BAB/L/002** (14 August), **BAB/L/004**
+(three programs, 16 August), **BAB/L/005** (16 August), **BAB/L/006**,
+**BAB/L/007** (before 22 August), **BAB/L/008**, **L/009** and **L/010**
+(20 to 23 August, the store as a difference engine), **BAB/L/011** (two
+programs, 28 August) and **BAB/L/012** (29 August). 1059 statements of the
+sheets are checked and 1051 agree (`babbage verify`). BAB/L/003 has no images
+in the Museum's catalogue; Rojas 2017 lists its program as not in the
+archive.
 
 The transcriptions were made by coding agents from the scans; no person has
 checked them. Two readings by Rojas (2017, 2023) have been read and a short
@@ -132,27 +129,32 @@ search made, so nothing here is claimed as new. See
   after each round put a, b, c, d, e back; the last round keeps none.
 - See `sources/notes/` for each sheet's cover, pencil and uncertain cells.
 
-## What reading BAB/L/008 to BAB/L/012 found
+## What running BAB/L/008 to BAB/L/012 found
 
 - **The store becomes a difference engine.** L/008, L/009 and L/010
-  tabulate n² + 2n + 3, n³ and n⁴ with no mill at all: three-figure columns,
-  complements written as numbers (994 for 6), and three "carriages" that
-  accumulate and pass their figures on. Each value takes the number of
-  operations the cover gives (six for n³: "Each value of n³ takes six
-  operations"; 2m for n^m on L/010), and the columns alternate between
-  plain numbers and complements from one value to the next, as L/010's cover
-  says. Every figure of L/008 (60) and L/009 (95) agrees; L/010 has two
-  slips in its last block, a transposition (320 for 302) and 469 for 369,
-  neither of which reaches T₄ = 256.
+  tabulate n² + 2n + 3, n³ and n⁴ with no mill at all: three-figure wheels,
+  complements written as numbers (994 for 6), and three "Carriages Negative"
+  that take numbers subtracted from them, are cleared ("−0") and lay their
+  figures on the columns. Each turn is run by the actions the sheet's own
+  right-hand column or numbered instructions state (`Turn` rows). L/008:
+  66 of 66; L/009: 99 of 99; L/010: 125 of 128, two slips in its last block
+  (320 for 302, and 469 for 369 twice) that do not reach T₄ = 256. Every
+  starred value is right: T₁ … T₄ for each, as complements for odd n, as the
+  covers say ("Each value of n³ takes six operations when n is even the
+  same number of operations obtains the complement when n is odd").
 - **L/011 runs a recurrence twice.** u(z+1) = f(z)u(z) + f₁(z) and the
   three-term u(z+2), each written out for z = 0 and 1, with "Calculate f(1)
-  f₁(1)" between: 22 of 22 statements agree. A faint pencil draft lays
-  complements and marks each group with ">", as L/002 does.
-- **L/012 joins the two.** The store's carriages step M and N, quadratics in
-  k, by differences, and the mill does the two great operations of each
-  cycle of twelve, as the cover says ("Twelve Operations are required for
-  each value of P. Two Great and Ten Small"). How its columns v1 and v9
-  receive M and N from a carriage is not settled by any single rule yet.
+  f₁(1)" between: 22 of 22. A faint pencil draft lays complements and marks
+  each group with ">", as L/002 does.
+- **L/012 joins the two, and runs: 124 of 124.** The carriages step M and
+  N, quadratics in k, by their differences, in letters, and the mill does
+  the two great operations of each cycle of twelve, as the cover says ("Two
+  Great and Ten Small"); P₁ … P₄ are the cover's (M/N)·P. One thing the
+  sheet does not settle: v1 and v9 receive M and N from a carriage that
+  holds their complements in cycles 1 and 3 and the numbers themselves in
+  cycle 2, so the transfer must complement in the one and not the other.
+  The run does what the cells require; no single rule does both
+  (`tests/corpus.rs`).
 
 ## The machine
 
@@ -183,6 +185,14 @@ with what it rests on):
 15. An addition may take more than two numbers. (BAB/L/011.)
 16. Numbers may be given to the store from outside the table between
     operations ("Calculate f(1)"). (BAB/L/011.)
+17. The store can work as a difference engine with three carriages and no
+    mill: a column read is subtracted from carriages and left at zero; a
+    carriage's number is laid on columns, which need not be at zero; "−0"
+    clears a carriage. (BAB/L/008 to L/010.)
+18. On wheels of k places a complement is 10^k − x; in letters, −x.
+19. A turn of the carriages is a small operation. (Covers of L/010, L/012.)
+20. How a carriage gives M and N to the mill's columns is not settled.
+    (BAB/L/012.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
 sheet needs that the sheets before it do not show will be a new, dated

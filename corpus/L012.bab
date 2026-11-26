@@ -1,0 +1,88 @@
+% BAB/L/012, Science Museum Group Collection, document aa110001637.
+Sheet BAB/L/012
+No. 12
+Date 29 Aug 1837          "No 12 29 Aug. 1837"   % cover; the back also "29 Aug 1837", in pencil
+Title "Calculation of Pk = (Mk-1/Nk-1) Pk-1. M and N rational functions of the second degree"
+Image 222/565 cover: "Calculation of Pk. Pk = (Mk-1/Nk-1)·Pk-1. M and N are rational functions of k of the second degree. Twelve Operations are required for each value of P. Two Great and Ten Small."
+Image 222/566 the table
+Image 222/567 back: "29 Aug 1837" in pencil, nothing else
+
+% Store headings: v1 M0, v2 M0, v3 ΔM0, v4 Δ²M0, v5 M, v6 ΔM, v7 Δ²M,
+% v8 P0, v9 N0, v10 N0, v11 ΔN0, v12 Δ²N0, v13 N, v14 ΔN, v15 Δ²N; v16 and
+% v17 have no heading. A blank column stands between v4 and v5, between v7
+% and v8, between v8 and v9, between v12 and v13.
+% The store's carriages ("Car") step M and N, quadratics in k, by their
+% differences, in letters; the mill does the two great operations of each
+% cycle. A complement "C." is held as the negative it is on the wheels. The
+% actions of each turn are read from the cells, by the rules of BAB/L/008
+% to L/010 (a column read is subtracted from the carriages the row names;
+% a carriage's number is laid in the columns it names; "−0" clears it): the
+% sheet has no right-hand column. Mk, ΔMk, Nk, ΔNk are defined below from
+% the sheet's M0, ΔM0, Δ²M (and N), and Pk by the cover's Pk = (Mk−1/Nk−1)Pk−1,
+% so that every cell is checked against what the sheet's symbol means.
+Letters M0 ΔM0 Δ²M N0 ΔN0 Δ²N P0
+Let M1 = M0 + ΔM0
+Let M2 = M0 + 2ΔM0 + Δ²M
+Let M3 = M0 + 3ΔM0 + 3Δ²M
+Let ΔM1 = ΔM0 + Δ²M
+Let ΔM2 = ΔM0 + 2Δ²M
+Let ΔM3 = ΔM0 + 3Δ²M
+Let N1 = N0 + ΔN0
+Let N2 = N0 + 2ΔN0 + Δ²N
+Let N3 = N0 + 3ΔN0 + 3Δ²N
+Let ΔN1 = ΔN0 + Δ²N
+Let ΔN2 = ΔN0 + 2Δ²N
+Let ΔN3 = ΔN0 + 3Δ²N
+Let P1 = (M0/N0)·P0
+Let P2 = (M1/N1)·P1
+Let P3 = (M2/N2)·P2
+Let P4 = (M3/N3)·P3
+
+Store v1 = M0, v2 = M0, v3 = ΔM0, v4 = Δ²M, v8 = P0, v9 = N0, v10 = N0, v11 = ΔN0, v12 = Δ²N   % headed Δ²M0 and Δ²N0: the second difference is constant
+Working v5 v6 v7 v13 v14 v15 v17
+
+% A row before 1, numbered with a tick: 0 in v5 v6 v7 v13 v14 v15. No
+% action; not counted.
+Turn 0  | | v5 0, v6 0, v7 0, v13 0, v14 0, v15 0
+Op 1    ×  | M0·P0          | v1 0, v8 0, v17 M0P0 |   % the mill column writes M0×P0 = Q0
+Op 2    ÷  | (M0·P0)/N0     | v8 P1, v9 0, v17 0 |   % the mill column writes M0×P0/N0 = P1; a pencil-like × in the margin after 2
+Turn 3  | Car1 = Car1 - v4, v6 = Car1, v7 = Car1           | Car1 C.Δ²M, v4 0, v6 C.Δ²M, v7 C.Δ²M
+Turn 4  | Car1 = Car1 - v3, Car2 = Car2 - v3, v6 = Car1    | Car1 C.ΔM1, Car2 C.ΔM0, v3 0, v6 C.ΔM1
+Turn 5  | Car3 = Car2, v5 = Car3, Car1 = 0, Car2 = 0       | Car1 -0, Car2 -0, Car3 C.ΔM0, v5 C.ΔM0
+Turn 6  | Car3 = Car3 - v2, v5 = Car3                      | Car3 C.M1, v2 0, v5 C.M1
+Turn 7  | v1 = C(Car3), Car3 = 0                           | Car3 -0, v1 M1   % v1 is given M1, the complement of what Car3 holds
+Turn 8  | Car1 = Car1 - v12, v14 = Car1, v15 = Car1        | Car1 C.Δ²N, v12 0, v14 C.Δ²N, v15 C.Δ²N
+Turn 9  | Car1 = Car1 - v11, Car2 = Car2 - v11, v14 = Car1 | Car1 C.ΔN1, Car2 C.ΔN0, v11 0, v14 C.ΔN1
+Turn 10 | Car3 = Car2, v13 = Car3, Car1 = 0, Car2 = 0      | Car1 -0, Car2 -0, Car3 C.ΔN0, v13 C.ΔN0
+Turn 11 | Car3 = Car3 - v10, v13 = Car3                    | Car3 C.N1, v10 0, v13 C.N1
+Turn 12 | v9 = C(Car3), Car3 = 0                           | Car3 -0, v9 N1   % v9 is given N1, the complement of what Car3 holds
+Op 13   ×  | M1·P1          | v1 0, v8 0, v17 M1P1 |
+Op 14   ÷  | (M1·P1)/N1     | v8 P2, v9 0, v17 0 |   % the mill column writes M1×P1/N1 = P2; ">" in the margin after 14
+Turn 15 | Car1 = Car1 - v7, v3 = Car1, v4 = Car1           | Car1 Δ²M, v7 0, v3 Δ²M, v4 Δ²M
+Turn 16 | Car1 = Car1 - v6, Car2 = Car2 - v6, v3 = Car1    | Car1 ΔM2, Car2 ΔM1, v6 0, v3 ΔM2
+Turn 17 | Car3 = Car2, v2 = Car3, Car1 = 0, Car2 = 0       | Car1 -0, Car2 -0, Car3 ΔM1, v2 ΔM1
+Turn 18 | Car3 = Car3 - v5, v2 = Car3                      | Car3 M2, v5 0, v2 M2
+Turn 19 | v1 = Car3, Car3 = 0                              | Car3 -0, v1 M2   % v1 is given M2, what Car3 holds
+Turn 20 | Car1 = Car1 - v15, v11 = Car1, v12 = Car1        | Car1 Δ²N, v15 0, v11 Δ²N, v12 Δ²N
+Turn 21 | Car1 = Car1 - v14, Car2 = Car2 - v14, v11 = Car1 | Car1 ΔN2, Car2 ΔN1, v14 0, v11 ΔN2
+Turn 22 | Car3 = Car2, v10 = Car3, Car1 = 0, Car2 = 0      | Car1 -0, Car2 -0, Car3 ΔN1, v10 ΔN1
+Turn 23 | Car3 = Car3 - v13, v10 = Car3                    | Car3 N2, v13 0, v10 N2   % the 23 of the number column is written over another figure
+Turn 24 | v9 = Car3, Car3 = 0                              | Car3 -0, v9 N2   % v9 is given N2, what Car3 holds
+Op 25   ×  | M2·P2          | v1 0, v8 0, v17 M2P2 |
+Op 26   ÷  | (M2·P2)/N2     | v8 P3, v9 0, v17 0 |   % the mill column writes M2×P2/N2 = P3; ">" after 26
+Turn 27 | Car1 = Car1 - v4, v6 = Car1, v7 = Car1           | Car1 C.Δ²M, v4 0, v6 C.Δ²M, v7 C.Δ²M
+Turn 28 | Car1 = Car1 - v3, Car2 = Car2 - v3, v6 = Car1    | Car1 C.ΔM3, Car2 C.ΔM2, v3 0, v6 C.ΔM3
+Turn 29 | Car3 = Car2, v5 = Car3, Car1 = 0, Car2 = 0       | Car1 -0, Car2 -0, Car3 C.ΔM2, v5 C.ΔM2
+Turn 30 | Car3 = Car3 - v2, v5 = Car3                      | Car3 C.M3, v2 0, v5 C.M3
+Turn 31 | v1 = C(Car3), Car3 = 0                           | Car3 -0, v1 M3   % v1 is given M3, the complement of what Car3 holds
+Turn 32 | Car1 = Car1 - v12, v14 = Car1, v15 = Car1        | Car1 C.Δ²N, v12 0, v14 C.Δ²N, v15 C.Δ²N
+Turn 33 | Car1 = Car1 - v11, Car2 = Car2 - v11, v14 = Car1 | Car1 C.ΔN3, Car2 C.ΔN2, v11 0, v14 C.ΔN3
+Turn 34 | Car3 = Car2, v13 = Car3, Car1 = 0, Car2 = 0      | Car1 -0, Car2 -0, Car3 C.ΔN2, v13 C.ΔN2
+Turn 35 | Car3 = Car3 - v10, v13 = Car3                    | Car3 C.N3, v10 0, v13 C.N3
+Turn 36 | v9 = C(Car3), Car3 = 0                           | Car3 -0, v9 N3   % v9 is given N3, the complement of what Car3 holds
+Op 37   ×  | M3·P3          | v1 0, v8 0, v17 M3P3 |
+Op 38   ÷  | (M3·P3)/N3     | v8 P4, v9 0, v17 0 |   % the mill column writes M3×P3/N3 = P4; ">" after 38
+
+Remark "Twelve Operations are required for each value of P. Two Great and Ten Small."
+Unrun "pencil, very faint, above the heading of the table: perhaps 'Mk-1', 'P = 2', 'Δ ='; not read"
+Unrun "a mark like '>' left of the number column after operations 14, 26 and 38, and something like '×' after 2"

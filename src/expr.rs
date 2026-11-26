@@ -92,9 +92,24 @@ fn lex(s: &str) -> Result<Vec<Tok>, String> {
                 out.push(Tok::Op('/'));
                 i += 1
             }
+            // A carriage of the store, `Car1` (BAB/L/008 to L/012).
+            'C' if cs[i..].starts_with(&['C', 'a', 'r']) && cs.get(i + 3).is_some_and(|c| c.is_ascii_digit()) => {
+                i += 3;
+                let mut n = 0usize;
+                while i < cs.len() && cs[i].is_ascii_digit() {
+                    n = n * 10 + cs[i].to_digit(10).unwrap() as usize;
+                    i += 1;
+                }
+                let p = primes(&cs, &mut i);
+                out.push(Tok::Var(CAR + n, p));
+            }
             'C' => {
                 out.push(Tok::Comp);
-                i += 1
+                i += 1;
+                // The sheets also write it "C." (BAB/L/012).
+                if cs.get(i) == Some(&'.') {
+                    i += 1
+                }
             }
             'v' if i + 1 < cs.len() && cs[i + 1].is_ascii_digit() => {
                 i += 1;
@@ -117,6 +132,18 @@ fn lex(s: &str) -> Result<Vec<Tok>, String> {
             l if l.is_alphabetic() => {
                 i += 1;
                 let mut name = l.to_string();
+                // A difference is one name: Δ, its order, and what it is of
+                // (ΔM0, Δ²M, Δ2N).
+                if l == 'Δ' {
+                    while i < cs.len() && matches!(cs[i], '²' | '³' | '⁴' | '⁵' | '⁶') {
+                        name.push(cs[i]);
+                        i += 1
+                    }
+                    if i < cs.len() && cs[i].is_alphabetic() && cs[i] != 'v' {
+                        name.push(cs[i]);
+                        i += 1
+                    }
+                }
                 for _ in 0..primes(&cs, &mut i) {
                     name.push('\'');
                 }
@@ -301,6 +328,18 @@ pub fn vars(e: &Expr, out: &mut Vec<(usize, usize)>) {
     }
 }
 
+/// Where the carriages of the store are numbered: `Car1` is column CAR + 1.
+pub const CAR: usize = 1000;
+
+/// A column's name: `v3`, or `Car1` for a carriage.
+pub fn col_name(n: usize) -> String {
+    if n > CAR {
+        format!("Car{}", n - CAR)
+    } else {
+        format!("v{n}")
+    }
+}
+
 pub fn show_var(n: usize, p: usize) -> String {
     let accents = match p {
         0 => String::new(),
@@ -309,7 +348,7 @@ pub fn show_var(n: usize, p: usize) -> String {
         3 => "‴".into(),
         p => "′".repeat(p),
     };
-    format!("v{n}{accents}")
+    format!("{}{accents}", col_name(n))
 }
 
 /// A formula as typed (`v1''`), with its accents as the sheet writes them (`v1″`).

@@ -13,6 +13,15 @@ pub struct Options {
 }
 
 fn show(h: &Held, at: &Option<BTreeMap<String, Rat>>) -> String {
+    // A whole number on a page of wheels is shown with its figures.
+    if let (Held::Plain(v), None) = (h, at) {
+        if let (Some(n), Some(d)) = (v.num.as_constant(), v.den.as_constant()) {
+            let r = n / d;
+            if r.is_int() && r.numer() >= 0 && WHEELS.with(|w| w.get()) > 0 {
+                return format!("{:0w$}", r.numer(), w = WHEELS.with(|w| w.get()));
+            }
+        }
+    }
     match (h, at) {
         (Held::Plain(v), Some(at)) => v.eval(at).map(|r| r.to_string()).unwrap_or_else(|| "?".into()),
         (Held::Complement(v), Some(at)) => v.eval(at).map(|r| format!("C{r}")).unwrap_or_else(|| "C?".into()),
@@ -20,7 +29,13 @@ fn show(h: &Held, at: &Option<BTreeMap<String, Rat>>) -> String {
     }
 }
 
+thread_local! {
+    /// The places of the wheels of the page being shown, 0 for none.
+    static WHEELS: std::cell::Cell<usize> = const { std::cell::Cell::new(0) };
+}
+
 pub fn header(p: &Page) -> String {
+    WHEELS.with(|w| w.set(p.wheels.unwrap_or(0) as usize));
     let mut s = format!("{}  No. {}", p.sheet, p.number);
     if !p.date.is_empty() {
         s += &format!(", {}", p.date);
@@ -48,11 +63,11 @@ fn step_parts(s: &Step, o: &Options) -> (String, String, String, String) {
         }
     }
     if !s.cards.reads.is_empty() {
-        let rs: Vec<String> = s.cards.reads.iter().map(|r| format!("v{r}")).collect();
+        let rs: Vec<String> = s.cards.reads.iter().map(|r| crate::expr::col_name(*r)).collect();
         what.push(format!("{} → 0", rs.join(" ")));
     }
     for (c, v) in &s.cards.writes {
-        what.push(format!("v{c} = {}", show(v, &o.at)));
+        what.push(format!("{} = {}", crate::expr::col_name(*c), show(v, &o.at)));
     }
     let n = s.checks.len();
     let bad = s.checks.iter().filter(|c| !c.ok).count();
@@ -92,7 +107,7 @@ pub fn run_text(p: &Page, run: &Run, o: &Options) -> String {
                 .store_after
                 .iter()
                 .filter(|(_, h)| !h.is_zero())
-                .map(|(c, h)| format!("v{c} {}", show(h, &o.at)))
+                .map(|(c, h)| format!("{} {}", crate::expr::col_name(*c), show(h, &o.at)))
                 .collect();
             writeln!(out, "        store: {}", cells.join(", ")).unwrap();
         }
@@ -155,7 +170,7 @@ pub fn cards_text(p: &Page, run: &Run) -> String {
     let mut out = String::new();
     writeln!(out, "{}\n", header(p)).unwrap();
     writeln!(out, "     {:<10} {:<34} to the store", "operation", "to the mill").unwrap();
-    for s in run.steps.iter().filter(|s| !s.row.input) {
+    for s in run.steps.iter().filter(|s| !s.row.input && s.row.actions.is_none()) {
         let op = match s.cards.op {
             Some(o) => o.sign().to_string(),
             None => "(transfer)".into(),
@@ -175,7 +190,11 @@ pub fn cards_text(p: &Page, run: &Run) -> String {
         let mut outs: Vec<String> = vec![];
         for (c, h) in &s.cards.writes {
             let comp = matches!(h, Held::Complement(_)) && s.cards.op.is_some();
-            outs.push(if comp { format!("C → v{c}") } else { format!("v{c}") });
+            outs.push(if comp {
+                format!("C → v{c}")
+            } else {
+                crate::expr::col_name(*c)
+            });
         }
         let from = if s.cards.op.is_none() {
             format!("v{} → ", s.cards.reads.first().copied().unwrap_or(0))

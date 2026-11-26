@@ -69,7 +69,7 @@
       ]
     },
     "directive": {
-      "match": "^\\s*(Letters|Unknowns|Equation|Find|Store|Working|Op|In|Composition|States)(?=\\s|$)",
+      "match": "^\\s*(Letters|Unknowns|Equation|Find|Store|Working|Op|In|Turn|Wheels|Let|Gives|Composition|States)(?=\\s|$)",
       "captures": { "1": { "name": "keyword.control.directive.babbage" } }
     },
     "not-a-directive": {
@@ -84,12 +84,12 @@
     },
     "variable": {
       "comment": "A variable of the store, with its accents: v1, v3''.",
-      "match": "\\bv[0-9]+['′″‴]*",
+      "match": "\\b(?:v|Car)[0-9]+['′″‴]*",
       "name": "variable.other.store.babbage"
     },
     "complement": {
       "comment": "C before a number: its complement (the back of BAB/L/001).",
-      "match": "C(?=[a-z(])",
+      "match": "C(?!ar[0-9])\\.?(?=[a-zA-Z(Δ])",
       "name": "keyword.operator.complement.babbage"
     },
     "number": {

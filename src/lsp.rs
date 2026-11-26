@@ -79,6 +79,15 @@ pub fn line_tokens(text: &str) -> Vec<(usize, usize, usize)> {
             i = j;
             continue;
         }
+        if c == 'C' && cs[i..].starts_with(&['C', 'a', 'r']) && cs.get(i + 3).is_some_and(|d| d.is_ascii_digit()) {
+            let mut j = i + 3;
+            while j < cs.len() && cs[j].is_ascii_digit() {
+                j += 1;
+            }
+            out.push((i, j - i, 5));
+            i = j;
+            continue;
+        }
         if c.is_ascii_digit() {
             let mut j = i;
             while j < cs.len() && cs[j].is_ascii_digit() {
@@ -384,6 +393,13 @@ pub const KEYWORD_HELP: &[(&str, &str)] = &[
         "Op",
         "an operation: `Op 1 × | b'a | v1 0, v5 0, v7 b'a | v7 = v5·v1` (number, operation, mill, store cells, formula)",
     ),
+    (
+        "Turn",
+        "a turn of the store and its carriages: `Turn 2 | Car1 = Car1 - v2, v7 = Car1 | Car1 995, v2 0, v7 995`",
+    ),
+    ("Wheels", "figures on wheels of this many places: a complement is 10^k − x"),
+    ("Let", "a name the sheet uses, defined in its letters: `Let M1 = M0 + ΔM0`"),
+    ("Gives", "what a column holds after a row, as the sheet states it: `Gives 4 v8 = C(T1)`"),
     (
         "In",
         "numbers given to the store from outside the table, between operations: `In v1 f1, v2 g1`",

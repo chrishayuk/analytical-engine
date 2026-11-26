@@ -132,6 +132,22 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
             "BAB/L/011 writes \"Calculate f(1) f₁(1)\" across the columns between cycles, with no operation that puts them there. The run gives the columns the numbers (each must be at zero), counts no operation and checks nothing else.",
         ),
         (
+            "The store can work as a difference engine, with carriages, and no mill.",
+            "BAB/L/008 to L/010 (20 to 23 August 1837) tabulate n² + 2n + 3, n³ and n⁴ in the store alone, with three \"Carriages Negative\". Each row is a turn: a column read is subtracted from the carriages the row names and left at zero; a carriage's number is laid on the columns the row names, which need not be at zero; \"−0\" clears a carriage. The actions of each turn are those the sheet's right-hand column or numbered instructions state, where written, and by the same rule where not.",
+        ),
+        (
+            "On wheels of k places, a complement is 10^k − x; in letters, −x.",
+            "BAB/L/008 writes 998 for the complement of 2 on three-figure wheels; L/012 writes C.ΔM in letters. 10^k − x and −x are the same figures below the highest place, so a carriage holding C.ΔM is held as −ΔM.",
+        ),
+        (
+            "Carriage turns count as small operations.",
+            "BAB/L/012 cover: \"Twelve Operations are required for each value of P. Two Great and Ten Small\": ten turns and a multiplication and a division. BAB/L/010 cover: \"2m operations for each value of Tn\", eight turns for n⁴.",
+        ),
+        (
+            "How a carriage gives M and N to the mill's columns is not settled.",
+            "BAB/L/012 writes M1 in v1 at row 7 while Car3 holds C.M1, and M2 at row 19 while Car3 holds M2 (likewise N in v9 at rows 12 and 24). The run gives the complement at rows 7, 12, 31, 36 and not at 19, 24, as the cells require; no single rule does both.",
+        ),
+        (
             "Great operations are multiplication and division; small are addition, subtraction and transfers.",
             "BAB/L/001 No. 2: \"great 7 small 6\" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.",
         ),
@@ -180,6 +196,54 @@ impl State<'_> {
     fn get(&self, n: usize) -> Held {
         self.store.get(&n).cloned().unwrap_or(Held::Plain(Value::zero()))
     }
+    /// 10^k, on a page of figures on wheels of k places.
+    fn modulus(&self) -> Option<i128> {
+        self.page.wheels.map(|k| 10i128.pow(k))
+    }
+    /// A number as the wheels hold it: on wheels of k places, reduced to
+    /// 0 … 10^k − 1. In letters, as it is.
+    fn wheel(&self, v: Value) -> Value {
+        match (self.modulus(), v.num.as_constant(), v.den.as_constant()) {
+            (Some(m), Some(n), Some(d)) if (n / d).is_int() => {
+                Value::constant(crate::rat::Rat::int((n / d).numer().rem_euclid(m)))
+            }
+            _ => v,
+        }
+    }
+    /// The complement: on wheels of k places 10^k − x; in letters, −x, which
+    /// is what 10^k − x is, figure for figure, below the highest place.
+    fn complement_of(&self, v: &Value) -> Value {
+        match self.modulus() {
+            Some(m) => self.wheel(Value::constant(crate::rat::Rat::int(m)).sub(v)),
+            None => v.neg(),
+        }
+    }
+    /// A complement taken as the number it is on the wheels.
+    fn plain(&self, h: Held) -> Value {
+        match h {
+            Held::Plain(v) => v,
+            Held::Complement(v) => self.complement_of(&v),
+        }
+    }
+    fn show(&self, v: &Value) -> String {
+        match (self.page.wheels, v.num.as_constant(), v.den.as_constant()) {
+            (Some(k), Some(n), Some(d)) if (n / d).is_int() => format!("{:0w$}", (n / d).numer(), w = k as usize),
+            _ => v.to_string(),
+        }
+    }
+    /// An expression in a turn: complements as numbers.
+    fn turn_eval(&self, e: &Expr) -> Result<Value, String> {
+        Ok(match e {
+            Expr::Var(n, _) => self.plain(self.get(*n)),
+            Expr::Letter(_) | Expr::Num(_) => self.plain(self.eval(e)?),
+            Expr::Complement(x) => self.complement_of(&self.turn_eval(x)?),
+            Expr::Neg(x) => self.turn_eval(x)?.neg(),
+            Expr::Add(a, b) => self.turn_eval(a)?.add(&self.turn_eval(b)?),
+            Expr::Sub(a, b) => self.turn_eval(a)?.sub(&self.turn_eval(b)?),
+            Expr::Mul(a, b) => self.turn_eval(a)?.mul(&self.turn_eval(b)?),
+            Expr::Div(a, b) => self.turn_eval(a)?.div(&self.turn_eval(b)?).ok_or("division by zero")?,
+        })
+    }
 }
 
 pub fn ordinal(n: usize) -> String {
@@ -204,6 +268,100 @@ fn check(line: usize, what: impl Into<String>, r: Result<(), String>) -> Check {
     }
 }
 
+/// The store columns a turn's actions take numbers from: each is left at
+/// zero after the turn unless the turn gives it a number.
+fn actions_reads(actions: &[(usize, Expr, String)]) -> Vec<usize> {
+    let mut v = vec![];
+    for (_, e, _) in actions {
+        vars(e, &mut v);
+    }
+    let mut out: Vec<usize> = v.into_iter().map(|x| x.0).filter(|n| *n < crate::expr::CAR).collect();
+    out.dedup();
+    out.retain(|n| !actions.iter().any(|a| a.0 == *n));
+    out.sort();
+    out.dedup();
+    out
+}
+
+/// One turn of the store and its carriages: each action in order, on the
+/// numbers as they stand, then every figure the sheet writes for the turn.
+fn turn(st: &mut State, row: &Row, actions: &[(usize, Expr, String)]) -> Vec<Check> {
+    let line = row.line;
+    let mut checks = vec![];
+    for (to, e, t) in actions {
+        match st.turn_eval(e) {
+            Ok(v) => {
+                let v = st.wheel(v);
+                st.store.insert(*to, Held::Plain(v.clone()));
+                st.history.entry(*to).or_default().push(Held::Plain(v));
+            }
+            Err(e) => checks.push(check(line, t.clone(), Err(e))),
+        }
+    }
+    for r in actions_reads(actions) {
+        st.store.insert(r, Held::Plain(Value::zero()));
+    }
+    for (col, cell) in &row.cells {
+        let now = st.plain(st.get(*col));
+        let name = crate::expr::col_name(*col);
+        match cell {
+            Cell::Zero => {
+                let r = if now.is_zero() {
+                    Ok(())
+                } else {
+                    Err(format!("{name} holds {}", st.show(&now)))
+                };
+                checks.push(check(line, format!("{name} = 0"), r));
+            }
+            Cell::Named(n) => {
+                let r = match st.results.get(n) {
+                    Some(prev) if !prev.same(&now) => {
+                        Err(format!("{n} is {}, and {name} holds {}", st.show(prev), st.show(&now)))
+                    }
+                    _ => Ok(()),
+                };
+                st.results.insert(n.clone(), now.clone());
+                checks.push(check(line, format!("{name} = {n}"), r));
+            }
+            Cell::Value(e, t) => {
+                let r = match st.eval(e).map(|h| st.plain(h)) {
+                    Ok(want) if st.wheel(want.clone()).same(&now) => Ok(()),
+                    Ok(_) => Err(format!("the turn gives {}", st.show(&now))),
+                    Err(e) => Err(e),
+                };
+                checks.push(check(line, format!("{name} = {}", pretty(t)), r));
+            }
+        }
+    }
+    checks
+}
+
+/// The sheet's statements of what a column holds after a row (`Gives`).
+fn gives(st: &State, page: &Page, row: &Row, step: &mut Step) {
+    if row.input {
+        return;
+    }
+    for (n, col, e, t, line) in &page.gives {
+        if *n != row.number {
+            continue;
+        }
+        let now = st.plain(st.get(*col));
+        let name = crate::expr::col_name(*col);
+        let r = match st.eval(e).map(|h| st.plain(h)) {
+            Ok(want) if st.wheel(want.clone()).same(&now) => Ok(()),
+            Ok(want) => Err(format!(
+                "{name} holds {}, and {} is {}",
+                st.show(&now),
+                pretty(t),
+                st.show(&st.wheel(want))
+            )),
+            Err(e) => Err(e),
+        };
+        step.checks
+            .push(check(*line, format!("after {}: {name} = {}", row.number, pretty(t)), r));
+    }
+}
+
 fn apply(op: Op, a: &Value, b: &Value) -> Result<Value, String> {
     Ok(match op {
         Op::Mul => a.mul(b),
@@ -223,6 +381,14 @@ pub fn run(page: &Page) -> Run {
     };
     let at = |w: &str| page.lines.get(w).copied().unwrap_or(1);
     let mut checks = vec![];
+    for (name, e, t, line) in &page.lets {
+        match st.eval(e).map(|h| st.plain(h)) {
+            Ok(v) => {
+                st.results.insert(name.clone(), v);
+            }
+            Err(e) => checks.push(check(*line, format!("{name} = {t}"), Err(e))),
+        }
+    }
     for (v, e, t) in &page.store {
         match st.eval(e) {
             Ok(h) => {
@@ -237,6 +403,29 @@ pub fn run(page: &Page) -> Run {
     let mut stopped = None;
     let mut stopped_line = None;
     for row in &page.rows {
+        if let Some(actions) = &row.actions {
+            let checks = turn(&mut st, row, actions);
+            if row.number > 0 {
+                tally.small += 1;
+            }
+            let reads = actions_reads(actions);
+            let writes = actions.iter().map(|(c, _, _)| (*c, st.get(*c))).collect();
+            steps.push(Step {
+                row: row.clone(),
+                cards: Cards {
+                    op: None,
+                    operands: vec![],
+                    reads,
+                    writes,
+                    table_formed: false,
+                },
+                result: None,
+                checks,
+                store_after: st.store.clone(),
+            });
+            gives(&st, page, row, steps.last_mut().unwrap());
+            continue;
+        }
         if row.input {
             // Numbers brought into the store from outside the table
             // ("Calculate f(1) f₁(1)", BAB/L/011): no operation, nothing to check
@@ -277,7 +466,10 @@ pub fn run(page: &Page) -> Run {
             continue;
         }
         match step(&mut st, row, &mut tally) {
-            Ok(s) => steps.push(s),
+            Ok(s) => {
+                steps.push(s);
+                gives(&st, page, row, steps.last_mut().unwrap());
+            }
             Err(e) => {
                 stopped = Some(format!("operation {} (line {}): {e}", row.number, row.line));
                 stopped_line = Some(row.line);
@@ -359,7 +551,8 @@ pub fn run(page: &Page) -> Run {
                 }
             }
         }
-        let touched: std::collections::BTreeSet<usize> = st.history.keys().copied().collect();
+        let touched: std::collections::BTreeSet<usize> =
+            st.history.keys().copied().filter(|n| *n < crate::expr::CAR).collect();
         let declared: std::collections::BTreeSet<usize> = page
             .store
             .iter()

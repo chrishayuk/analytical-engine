@@ -1,0 +1,66 @@
+% BAB/L/009, Science Museum Group Collection, document aa110001629.
+% The cover (222/663) "No 9", "22 Aug 1837"; the opened sheet (222/664) with
+% the table; the back (222/666) "9 Augt 1837". Read from the zoom images at
+% full resolution. See sources/notes/L009.md.
+
+Sheet BAB/L/009
+No. 9
+Date 22 Aug 1837          "No 9 22 Aug 1837"   % cover
+Title "Computation of Tn = n³"
+Image 222/663 cover: "Calculation of Tn = n³ By Differences. T0 = 0  Δ0 = 1  Δ0² = 6  Δ0³ = 6  Δn⁴ = 0. Each value of n³ takes six operations when n is even the same number of operations obtains the complement when n is odd"
+Image 222/664 the table and its right-hand column
+Image 222/666 back: "9 Augt 1837"
+
+% Each row is a turn of the store with its three carriages ("Carr"), on
+% three-figure wheels: 994 is the arithmetical complement of 6. The actions
+% are those the right-hand column states for each row, written for rows 1
+% to 12 ("1st Carr = v7 = 1st Carr (1) − v2", "3rd Carr = 2nd Carr (2) =
+% v8", "1st Carr = 2nd car = 0", ...); rows 13 to 24 are written by the same
+% rules, as the column says they run. A column an action takes a number
+% from is left at zero. Cycles of six alternate between v1-v4 and v6-v9.
+% An "×" stands between the cycles.
+Wheels 3
+Let T1 = 1·1·1
+Let T2 = 2·2·2
+Let T3 = 3·3·3
+Let T4 = 4·4·4
+Store v1 = 006, v2 = 006, v3 = 001, v4 = 000
+Working v6 v7 v8 v9
+
+Turn 1  | Car1 = Car1 - v1, v6 = Car1, v7 = Car1               | Car1 994, v1 0, v6 994, v7 994
+Turn 2  | Car1 = Car1 - v2, v7 = Car1, Car2 = Car2 - v2        | Car1 988, Car2 994, v2 0, v7 988
+Turn 3  | Car3 = Car2, v8 = Car3, Car1 = 0, Car2 = 0           | Car1 -0, Car2 -0, Car3 994, v8 994
+Turn 4  | Car1 = Car1 - v3, Car3 = Car3 - v3, v8 = Car3        | Car1 999, Car3 993, v3 0, v8 993
+Turn 5  | Car2 = Car1, v9 = Car2, Car1 = 0, Car3 = 0           | Car1 -0, Car2 999, Car3 -0, v9 999   % the 2nd Carr's 999 is struck through
+Turn 6  | Car2 = Car2 - v4, v9 = Car2                          | Car2 999, v4 0, v9 999
+
+Turn 7  | Car2 = 0, Car1 = Car1 - v6, v1 = Car1, v2 = Car1     | Car1 006, Car2 -0, v1 006, v2 006, v6 0
+Turn 8  | Car1 = Car1 - v7, v2 = Car1, Car2 = Car2 - v7        | Car1 018, Car2 012, v2 018, v7 0
+Turn 9  | Car3 = Car2, v3 = Car3, Car1 = 0, Car2 = 0           | Car1 -0, Car2 -0, Car3 012, v3 012
+Turn 10 | Car1 = Car1 - v8, Car3 = Car3 - v8, v3 = Car3        | Car1 007, Car3 019, v3 019, v8 0   % the 2nd Carr has a faint figure, erased; not written here
+Turn 11 | Car2 = Car1, v4 = Car2, Car1 = 0, Car3 = 0           | Car1 -0, Car2 007, Car3 -0, v4 007
+Turn 12 | Car2 = Car2 - v9, v4 = Car2                          | Car2 008, v4 008, v9 0
+
+Turn 13 | Car2 = 0, Car1 = Car1 - v1, v6 = Car1, v7 = Car1     | Car1 994, Car2 -0, v1 0, v6 994, v7 994
+Turn 14 | Car1 = Car1 - v2, v7 = Car1, Car2 = Car2 - v2        | Car1 976, Car2 982, v2 0, v7 976
+Turn 15 | Car3 = Car2, v8 = Car3, Car1 = 0, Car2 = 0           | Car1 -0, Car2 -0, Car3 982, v8 982
+Turn 16 | Car1 = Car1 - v3, Car3 = Car3 - v3, v8 = Car3        | Car1 981, Car3 963, v3 0, v8 963
+Turn 17 | Car2 = Car1, v9 = Car2, Car1 = 0, Car3 = 0           | Car1 -0, Car2 981, Car3 -0, v9 981   % the 8 of the 2nd Carr's 981 is written over another figure
+Turn 18 | Car2 = Car2 - v4, v9 = Car2                          | Car2 973, v4 0, v9 973   % the 7 of 973 is written over another figure
+
+Turn 19 | Car2 = 0, Car1 = Car1 - v6, v1 = Car1, v2 = Car1     | Car1 006, Car2 -0, v1 006, v2 006, v6 0
+Turn 20 | Car1 = Car1 - v7, v2 = Car1, Car2 = Car2 - v7        | Car1 030, Car2 024, v2 030, v7 0
+Turn 21 | Car3 = Car2, v3 = Car3, Car1 = 0, Car2 = 0           | Car1 -0, Car2 -0, Car3 024, v3 024
+Turn 22 | Car1 = Car1 - v8, Car3 = Car3 - v8, v3 = Car3        | Car1 037, Car3 061, v3 061, v8 0
+Turn 23 | Car2 = Car1, v4 = Car2, Car1 = 0, Car3 = 0           | Car1 -0, Car2 037, Car3 -0, v4 037
+Turn 24 | Car2 = Car2 - v9, v4 = Car2                          | Car2 064, v4 064, v9 0
+
+% The right-hand column's starred results: row 6 "ar Co of T1 = 1³ *",
+% row 12 "T2 = 2³ *", row 18 "ar. Co. of T3 = 3³ *", row 24 "T4 = 4³ *".
+Gives 6 v9 = C(T1)
+Gives 12 v4 = T2
+Gives 18 v9 = C(T3)
+Gives 24 v4 = T4
+
+Unrun "faint pencil '007' and '008' beside the 3rd Carr at rows 11 and 12; a faint '0' beside the 2nd Carr at rows 7, 9 and 11"
+Unrun "222/661 and 222/662, a pencil sheet 'BAB [L 9 [a]]', 'Copied into No 9': drafts in the same layout, and a heading like Pn = (an² + bn + c)/(a′n² + b′n + c′)·Pn−1; not read further"

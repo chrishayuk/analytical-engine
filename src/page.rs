@@ -58,6 +58,9 @@ pub struct Row {
     pub card_text: String,
     /// Numbers brought in from outside the table, not an operation.
     pub input: bool,
+    /// A turn of the store and its carriages (BAB/L/008 to L/012): what is
+    /// done, in order, `Car1 = Car1 - v2`, each a column and what it is given.
+    pub actions: Option<Vec<(usize, Expr, String)>>,
 }
 
 #[derive(Clone, Debug)]
@@ -91,6 +94,13 @@ pub struct Page {
     pub quotes: Vec<(usize, String)>,
     /// Lines of the sheet transcribed but not run: pencil, scribbles.
     pub unrun: Vec<String>,
+    /// Figures on wheels of this many places: a complement is 10^k − x.
+    pub wheels: Option<u32>,
+    /// Names the sheet uses, defined in its letters: `Let M1 = M0 + ΔM0`.
+    pub lets: Vec<(String, Expr, String, usize)>,
+    /// What a column holds after a row, as the sheet's right-hand column
+    /// states it: `Gives 4 v8 = C(T1)`.
+    pub gives: Vec<(usize, usize, Expr, String, usize)>,
     /// The first line of each directive, for pointing at it.
     pub lines: std::collections::BTreeMap<String, usize>,
 }
@@ -117,8 +127,11 @@ fn op_of(s: &str) -> Result<Option<Op>, String> {
 }
 
 fn var_index(s: &str) -> Result<usize, String> {
-    s.trim()
-        .strip_prefix('v')
+    let s = s.trim();
+    if let Some(n) = s.strip_prefix("Car").and_then(|n| n.parse::<usize>().ok()) {
+        return Ok(crate::expr::CAR + n);
+    }
+    s.strip_prefix('v')
         .and_then(|n| n.parse().ok())
         .ok_or_else(|| format!("`{s}` is not a variable"))
 }
@@ -227,6 +240,41 @@ fn parse_row(n: usize, s: &str) -> Result<Row, String> {
         card,
         card_text,
         input: false,
+        actions: None,
+    })
+}
+
+/// `Turn 2 | Car1 = Car1 - v2, Car2 = Car2 - v2, v7 = Car1 | Car1 995, v2 0, v7 995`
+fn parse_turn(n: usize, s: &str) -> Result<Row, String> {
+    let f: Vec<&str> = s.split('|').collect();
+    if f.len() != 3 {
+        return Err("a turn is `number | actions | cells`".into());
+    }
+    let number = f[0].trim().parse().map_err(|_| "the number of the turn")?;
+    let mut actions = vec![];
+    for a in f[1].split(',').filter(|a| !a.trim().is_empty()) {
+        let (to, e) = a
+            .split_once('=')
+            .ok_or_else(|| format!("`{a}`: an action is `Car1 = Car1 - v2`"))?;
+        let t = e.trim().to_string();
+        actions.push((var_index(to)?, parse(&t)?, format!("{} = {t}", to.trim())));
+    }
+    let cells = f[2]
+        .split(',')
+        .filter(|c| !c.trim().is_empty())
+        .map(parse_cell)
+        .collect::<Result<_, _>>()?;
+    Ok(Row {
+        line: n,
+        number,
+        star: false,
+        op: None,
+        mill: None,
+        cells,
+        card: None,
+        card_text: f[1].trim().to_string(),
+        input: false,
+        actions: Some(actions),
     })
 }
 
@@ -302,6 +350,26 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         .push((crate::expr::plain_name(name.trim()), parse(&t).map_err(err)?, t, n));
                 }
                 "Op" => p.rows.push(parse_row(n, rest).map_err(err)?),
+                "Turn" => p.rows.push(parse_turn(n, &body).map_err(err)?),
+                "Wheels" => p.wheels = Some(body.trim().parse().map_err(|_| err("Wheels 3".into()))?),
+                "Let" => {
+                    let (name, e) = body.split_once('=').ok_or_else(|| err("Let M1 = M0 + ΔM0".into()))?;
+                    let t = e.trim().to_string();
+                    p.lets
+                        .push((crate::expr::plain_name(name.trim()), parse(&t).map_err(err)?, t, n));
+                }
+                "Gives" => {
+                    // Gives 4 v8 = C(T1)
+                    let (head, e) = body.split_once('=').ok_or_else(|| err("Gives 4 v8 = C(T1)".into()))?;
+                    let mut w = head.split_whitespace();
+                    let row: usize = w
+                        .next()
+                        .and_then(|x| x.parse().ok())
+                        .ok_or_else(|| err("Gives 4 v8 = C(T1)".into()))?;
+                    let col = var_index(w.next().unwrap_or("")).map_err(err)?;
+                    let t = e.trim().to_string();
+                    p.gives.push((row, col, parse(&t).map_err(err)?, t, n));
+                }
                 // `In v1 f1, v2 g1  "Calculate f(1) f1(1)"`: numbers given to
                 // the store from outside, between operations.
                 "In" => {
@@ -321,6 +389,7 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         card: None,
                         card_text: String::new(),
                         input: true,
+                        actions: None,
                     });
                 }
                 "States" => {

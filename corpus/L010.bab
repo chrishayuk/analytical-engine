@@ -1,0 +1,91 @@
+% BAB/L/010, Science Museum Group Collection, document aa110001631.
+% The opened sheet (image 222/558), one table of 32 rows. The cover (222/557)
+% is marked "No 10 23 Aug 1837"; the back (222/559) "No 10 23 Aug 1837" and
+% "23 Aug 1837". Read from the zoom images at full resolution.
+%
+
+Sheet BAB/L/010
+No. 10
+Date 23 Aug 1837          "No 10 23 Aug 1837"   % cover
+Title "Computation of Tn = n⁴ By means of differences"
+Image 222/557 cover: "Calculation of Tn when Tn = n⁴, T0 = 0, Δ0 = 1, Δ0 = 14, Δ²0 = 36, Δ³0 = 24, Δ⁵n = 0"
+Image 222/558 the table
+Image 222/559 back: "No 10 23 Aug 1837", "23 Aug 1837"
+
+% Each row is a turn of the store with its three carriages ("Car"), on
+% three-figure wheels: 976 is the arithmetical complement of 24. The
+% actions are those the right-hand column states for rows 1 to 9 ("2nd Car
+% = 1st Car(1) − Δ³0 = v8", "1st & 2nd Car = −0  3rd Car = v9 = 2nd
+% Car(2)", ...); the later rows are written by the same rules. A column an
+% action takes a number from is left at zero. Blocks of eight alternate
+% between v1-v5 and v7-v11; a cross stands between them. v6 and v12 are
+% headed and never used.
+Wheels 3
+Let T1 = 1·1·1·1
+Let T2 = 2·2·2·2
+Let T3 = 3·3·3·3
+Let T4 = 4·4·4·4
+% v1 to v5 headed Δ⁴, Δ³, Δ², Δ, T; v7 to v11 the same again.
+Store v1 = 024, v2 = 036, v3 = 014, v4 = 001, v5 = 000
+Working v7 v8 v9 v10 v11
+
+Turn 1  | Car1 = Car1 - v1, v7 = Car1, v8 = Car1             | Car1 976, v1 0, v7 976, v8 976
+Turn 2  | Car1 = Car1 - v2, Car2 = Car2 - v2, v8 = Car1      | Car1 940, Car2 964, v2 0, v8 940
+Turn 3  | Car3 = Car2, v9 = Car3, Car1 = 0, Car2 = 0         | Car1 -0, Car2 -0, Car3 964, v9 964
+Turn 4  | Car1 = Car1 - v3, Car3 = Car3 - v3, v9 = Car3      | Car1 986, Car3 950, v3 0, v9 950   % Car1: the middle figure written over
+Turn 5  | Car2 = Car1, v10 = Car2, Car1 = 0, Car3 = 0        | Car1 -0, Car2 986, Car3 -0, v10 986
+Turn 6  | Car1 = Car1 - v4, Car2 = Car2 - v4, v10 = Car2     | Car1 999, Car2 985, v4 0, v10 985
+Turn 7  | Car3 = Car1, v11 = Car3, Car1 = 0, Car2 = 0        | Car1 -0, Car2 -0, Car3 999, v11 999
+Turn 8  | Car3 = Car3 - v5, v11 = Car3                       | Car3 999, v5 0, v11 999
+
+Turn 9  | Car1 = Car1 - v7, v1 = Car1, v2 = Car1             | Car1 024, v1 024, v2 024, v7 0
+Turn 10 | Car1 = Car1 - v8, Car2 = Car2 - v8, v2 = Car1      | Car1 084, Car2 060, v2 084, v8 0
+Turn 11 | Car3 = Car2, v3 = Car3, Car1 = 0, Car2 = 0         | Car1 -0, Car2 -0, Car3 060, v3 060
+Turn 12 | Car1 = Car1 - v9, Car3 = Car3 - v9, v3 = Car3      | Car1 050, Car3 110, v3 110, v9 0
+Turn 13 | Car2 = Car1, v4 = Car2, Car1 = 0, Car3 = 0         | Car1 -0, Car2 050, Car3 -0, v4 050   % both −0 written over something
+Turn 14 | Car1 = Car1 - v10, Car2 = Car2 - v10, v4 = Car2    | Car1 015, Car2 065, v4 065, v10 0
+Turn 15 | Car3 = Car1, v5 = Car3, Car1 = 0, Car2 = 0         | Car1 -0, Car2 -0, Car3 015, v5 015
+Turn 16 | Car3 = Car3 - v11, v5 = Car3                       | Car3 016, v5 016, v11 0
+
+Turn 17 | Car1 = Car1 - v1, v7 = Car1, v8 = Car1             | Car1 976, v1 0, v7 976, v8 976
+Turn 18 | Car1 = Car1 - v2, Car2 = Car2 - v2, v8 = Car1      | Car1 892, Car2 916, v2 0, v8 892
+Turn 19 | Car3 = Car2, v9 = Car3, Car1 = 0, Car2 = 0         | Car1 -0, Car2 -0, Car3 916, v9 916
+Turn 20 | Car1 = Car1 - v3, Car3 = Car3 - v3, v9 = Car3      | Car1 890, Car3 806, v3 0, v9 806
+Turn 21 | Car2 = Car1, v10 = Car2, Car1 = 0, Car3 = 0        | Car1 -0, Car2 890, Car3 -0, v10 890
+Turn 22 | Car1 = Car1 - v4, Car2 = Car2 - v4, v10 = Car2     | Car1 935, Car2 825, v4 0, v10 825   % Car2: the 8 written over
+Turn 23 | Car3 = Car1, v11 = Car3, Car1 = 0, Car2 = 0        | Car1 -0, Car2 -0, Car3 935, v11 935
+Turn 24 | Car3 = Car3 - v5, v11 = Car3                       | Car3 919, v5 0, v11 919
+
+Turn 25 | Car1 = Car1 - v7, v1 = Car1, v2 = Car1             | Car1 024, v1 024, v2 024, v7 0
+Turn 26 | Car1 = Car1 - v8, Car2 = Car2 - v8, v2 = Car1      | Car1 132, Car2 108, v2 132, v8 0
+Turn 27 | Car3 = Car2, v3 = Car3, Car1 = 0, Car2 = 0         | Car1 -0, Car2 -0, Car3 108, v3 108
+Turn 28 | Car1 = Car1 - v9, Car3 = Car3 - v9, v3 = Car3      | Car1 194, Car3 302, v3 320, v9 0   % v3 "320": Car3, the same number, is "302"
+Turn 29 | Car2 = Car1, v4 = Car2, Car1 = 0, Car3 = 0         | Car1 -0, Car2 194, Car3 -0, v4 194
+Turn 30 | Car1 = Car1 - v10, Car2 = Car2 - v10, v4 = Car2    | Car1 175, Car2 469, v4 469, v10 0   % 194 + 175 is 369; both cells write 469
+Turn 31 | Car3 = Car1, v5 = Car3, Car1 = 0, Car2 = 0         | Car1 -0, Car2 -0, Car3 175, v5 175
+Turn 32 | Car3 = Car3 - v11, v5 = Car3                       | Car3 256, v5 256, v11 0   % a pencil stroke through v11's 0
+
+% The right-hand column's "Ar. Co. T1 * [1⁴]" at row 8; the table's T2, T3
+% (as its complement) and T4 at rows 16, 24 and 32.
+Gives 8 v11 = C(T1)
+Gives 16 v5 = T2
+Gives 24 v11 = C(T3)
+Gives 32 v5 = T4
+
+% The right-hand column, rows 1 to 9 only ("Ar. Co." is arithmetical
+% complement; "1st Car(1)" is the 1st carriage after operation 1):
+%  1  1st Car = Ar.Co. Δ⁴ = v7 = v8
+%  2  2nd Car = 1st Car(1) − Δ³0 = v8 = Ar.Co. Δ⁴ + Ar.Co Δ³0 = Ar.Co. Δ³1   2nd Car = Ar.Co Δ³0
+%     (the first "2nd Car" is what the table puts in the 1st carriage)
+%  3  1st & 2nd Car = −0   3rd Car = v9 = 2nd Car(2)
+%  4  1st Car = 1st Car(3) − Δ²0 = Ar.Co. Δ²0   3rd Car = v9 = 3rd Car(3) − Δ²0 = ar co(Δ³ + Δ²0) = ar. Co. of Δ²1
+%  5  1st & 3rd Car = 0   2nd Car = v10 = 1st Car(4) = Ar.Co. Δ²0
+%  6  1st Car = Ar Co Δ0   2nd Car = 2nd Car(5) − Δ0 = ar.Co(Δ²0 + Δ0) = ar.Co. Δ1 = v10
+%  7  1st & 2nd Car = 0   3rd Car = v11 = 1st Car(6) = Ar.Co. Δ0
+%  8  3rd Car = 3rd Car(7) − T0 = v11 = ar.Co.(Δ0 + T0) = Ar. Co. T1 * [1⁴]
+%  9  x 1st Car = v1 = v2
+% Above the column: "T0 = 1   Δ0 = 1   Δ²0 = 14   Δ³0 = 36   Δ⁴0 = 24" (T0 = 1
+% as written; the cover and the table have T0 = 0).
+
+Remark "When n is an odd the complement is first made of Tn"
+Remark "Let Tn = n^m then it takes 2m operations for each value of Tn when n is even and for its complement when n is odd"

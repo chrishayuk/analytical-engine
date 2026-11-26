@@ -51,7 +51,7 @@ no images. Rojas (2017, Table 3) lists program 3 as not in the archive.
 ### BAB/L/004 to BAB/L/012
 
 See `notes/L004.md` to `notes/L012.md` for each sheet's images, cover and
-readings, and [`checks/`](checks/) for the carriage sheets L/008 to L/010.
+readings.
 
 ## Secondary literature
 

@@ -27,8 +27,12 @@ L004-3   BAB/L/004  No. 4.3, 16 Aug 1837  Reduction of the same two equations ax
 L005     BAB/L/005  No. 5, 16 Aug 1837  Reductions of the three equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 to two equations of the form Hx + Ky + M = 0 and H'x + K'y + M' = 0
 L006     BAB/L/006  No. 6,   Notation For the reduction of the three Equations ax + by + cz + d = 0, a'x + b'y + c'z + d' = 0, a''x + b''y + c''z + d'' = 0 To two Equations of the form Hx + Ky + M = 0, H'x + K'y + M' = 0
 L007     BAB/L/007  No. 7, before 22 Aug 1837  Notation of the Reduction of the four equations ax + by + cz + du + e = 0, a'x + b'y + c'z + d'u + e' = 0, a''x + … = 0, a'''x + … = 0 (A) To three equations of the following form Hx + Ky + Lz + M = 0, H'x + K'y + L'z + M' = 0, H''x + K''y + L''z + M'' = 0 (B)
+L008     BAB/L/008  No. 8, 20 Aug 1837  Calculation of a rational Integral Function, of the Second Degree by Differences
+L009     BAB/L/009  No. 9, 22 Aug 1837  Computation of Tn = n³
+L010     BAB/L/010  No. 10, 23 Aug 1837  Computation of Tn = n⁴ By means of differences
 L011-1   BAB/L/011  No. 11.1, 28 Aug 1837  Computation of u(z+1) = fz.uz + f1z from z = 0 to z = 1 = 2 &c
 L011-2   BAB/L/011  No. 11.2, 28 Aug 1837  Computation of u(z+2) = fz.u(z+1) + f1z.uz + f2z from z = 0 to z = 1 = 2 &c
+L012     BAB/L/012  No. 12, 29 Aug 1837  Calculation of Pk = (Mk-1/Nk-1) Pk-1. M and N rational functions of the second degree
 ```
 
 ```console
@@ -47,11 +51,18 @@ L006     107 statements, 107 agree
 L007      79 statements,  77 agree
          ✗ line 48: where v22″ comes from: v22″ (d′′′/d) is not in a column this row leaves at zero, nor the table standing in the mill
          ✗ line 61: mill: (d′/d)b-b″: the operation gives (-bd′′ + b′′d)/d
+L008      66 statements,  66 agree
+L009      99 statements,  99 agree
+L010     128 statements, 125 agree
+         ✗ line 62: v3 = 320: the turn gives 302
+         ✗ line 64: Car2 = 469: the turn gives 369
+         ✗ line 64: v4 = 469: the turn gives 369
 L011-1     8 statements,   8 agree
 L011-2    14 statements,  14 agree
+L012     124 statements, 124 agree
 
-11 pages; 642 statements of the sheets checked, 637 agree.
-3 page(s) with statements that do not agree.
+15 pages; 1059 statements of the sheets checked, 1051 agree.
+4 page(s) with statements that do not agree.
 ```
 
 ## The rules of the machine
@@ -100,10 +111,22 @@ $ babbage decisions
 14. Numbers may be given to the store from outside the table between operations.
    BAB/L/011 writes "Calculate f(1) f₁(1)" across the columns between cycles, with no operation that puts them there. The run gives the columns the numbers (each must be at zero), counts no operation and checks nothing else.
 
-15. Great operations are multiplication and division; small are addition, subtraction and transfers.
+15. The store can work as a difference engine, with carriages, and no mill.
+   BAB/L/008 to L/010 (20 to 23 August 1837) tabulate n² + 2n + 3, n³ and n⁴ in the store alone, with three "Carriages Negative". Each row is a turn: a column read is subtracted from the carriages the row names and left at zero; a carriage's number is laid on the columns the row names, which need not be at zero; "−0" clears a carriage. The actions of each turn are those the sheet's right-hand column or numbered instructions state, where written, and by the same rule where not.
+
+16. On wheels of k places, a complement is 10^k − x; in letters, −x.
+   BAB/L/008 writes 998 for the complement of 2 on three-figure wheels; L/012 writes C.ΔM in letters. 10^k − x and −x are the same figures below the highest place, so a carriage holding C.ΔM is held as −ΔM.
+
+17. Carriage turns count as small operations.
+   BAB/L/012 cover: "Twelve Operations are required for each value of P. Two Great and Ten Small": ten turns and a multiplication and a division. BAB/L/010 cover: "2m operations for each value of Tn", eight turns for n⁴.
+
+18. How a carriage gives M and N to the mill's columns is not settled.
+   BAB/L/012 writes M1 in v1 at row 7 while Car3 holds C.M1, and M2 at row 19 while Car3 holds M2 (likewise N in v9 at rows 12 and 24). The run gives the complement at rows 7, 12, 31, 36 and not at 19, 24, as the cells require; no single rule does both.
+
+19. Great operations are multiplication and division; small are addition, subtraction and transfers.
    BAB/L/001 No. 2: "great 7 small 6" with 5 multiplications, 2 divisions, 3 subtractions and 3 transfers.
 
-16. Values are compared as algebra.
+20. Values are compared as algebra.
    Every number the sheet writes is in letters (b′a, bc′ − b′c). The run holds rational functions of the page's letters exactly and compares by cross-multiplying, so a check holds for all values of the letters, not for chosen numbers.
 ```
 
