@@ -53,6 +53,19 @@ pub struct Card {
     pub tails: Vec<(Expr, String)>,
 }
 
+/// A count of cards the sheet writes, after so many rows.
+#[derive(Clone, Debug)]
+pub enum CardCount {
+    /// `Carried 136`: the running count starts here.
+    Carried(i64),
+    /// `Group`: a group of cards begins, counted afresh.
+    Group,
+    /// `Total 12 148`: the group so far, and the running count if given.
+    Total(i64, Option<i64>),
+    /// `Running 98`: the running count alone.
+    Running(i64),
+}
+
 /// The cards a sheet writes for a row: pairs (from, to), 0 for the mill;
 /// the count it gives; the line.
 pub type CardsWritten = (Vec<(usize, usize)>, Option<i64>, usize);
@@ -117,7 +130,7 @@ pub struct Page {
     pub gives: Vec<(usize, usize, Expr, String, usize)>,
     /// The sheet's counts of cards: `Carried 136` (from the sheet before),
     /// `Total 12 148` (this group, and running), each after so many rows.
-    pub card_counts: Vec<(usize, Option<i64>, Option<i64>, usize)>,
+    pub card_counts: Vec<(usize, CardCount, usize)>,
     /// The first line of each directive, for pointing at it.
     pub lines: std::collections::BTreeMap<String, usize>,
 }
@@ -161,7 +174,7 @@ fn parse_cell(s: &str) -> Result<(usize, Cell), String> {
     let rest = rest.trim();
     let cell = if rest == "0" {
         Cell::Zero
-    } else if matches!(rest, "G.R" | "G. R" | "GR") {
+    } else if matches!(rest, "G.R" | "G. R" | "GR" | "←") {
         Cell::Retain(None)
     } else if let Some(x) = rest.strip_prefix("0 ") {
         Cell::Retain(Some((parse(x.trim())?, x.trim().to_string())))
@@ -413,9 +426,13 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                 }
                 "Carried" => {
                     let k = body.trim().parse().map_err(|_| err("Carried 136".into()))?;
-                    p.card_counts.push((p.rows.len(), Some(k), None, n));
+                    p.card_counts.push((p.rows.len(), CardCount::Carried(k), n));
                 }
-                "Group" => p.card_counts.push((p.rows.len(), None, None, n)),
+                "Group" => p.card_counts.push((p.rows.len(), CardCount::Group, n)),
+                "Running" => {
+                    let k = body.trim().parse().map_err(|_| err("Running 98".into()))?;
+                    p.card_counts.push((p.rows.len(), CardCount::Running(k), n));
+                }
                 "Total" => {
                     let mut w = body.split_whitespace().map(|x| x.parse::<i64>());
                     let group = w
@@ -423,7 +440,7 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         .and_then(|x| x.ok())
                         .ok_or_else(|| err("Total 12 148".into()))?;
                     let running = w.next().and_then(|x| x.ok());
-                    p.card_counts.push((p.rows.len(), running, Some(group), n));
+                    p.card_counts.push((p.rows.len(), CardCount::Total(group, running), n));
                 }
                 "Wheels" => p.wheels = Some(body.trim().parse().map_err(|_| err("Wheels 3".into()))?),
                 "Let" => {

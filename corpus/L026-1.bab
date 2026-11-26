@@ -1,0 +1,40 @@
+% BAB/L/026, Science Museum Group Collection, document aa110001735.
+% Two images: 222/615, the sheet with two tables, "Calculation of the
+% numerical value of x = (ab + cd)/(a + c)" above and "Another method for the
+% same" below; 222/613, the back, ruled and blank but for "BAB [L] 26".
+% No date on either image. This page is the upper table. Read from the zoom
+% images at full resolution. See sources/notes/L026.md.
+
+Sheet BAB/L/026
+No. 26.1
+Title "Calculation of the numerical value of x = (ab + cd)/(a + c)"
+Image 222/615 upper table and its right-hand column
+Image 222/613 back: blank but for "BAB [L] 26"
+
+% The fourth letter is written ∂; here d.
+Letters a b c d
+Find x = (ab+cd)/(a+c)
+
+% Columns: "No. of Open", "Operation", "Mill", then the "Store", v1 to v10,
+% a b c ∂ in v1 to v4. v10 is never used.
+Store v1 = a, v2 = b, v3 = c, v4 = d
+Working v5 v6 v7 v8 v9
+
+% No 0 anywhere. Each number that goes to the mill is marked by an arrow,
+% "←", in its column, and no column is cleared: c is taken at operation 2
+% and again at 4, a at 1 and again at 4. Each arrow is written here as
+% the sheet writes it, ←: given to the mill, and the column kept. The arrows in
+% v1 and v2 at operation 1 and in v4 at operation 2 have a short hook at
+% the tail (as "←˥"); the others are plain.
+% The right-hand column, written to the right of the table, without accents:
+% "v1 = a v2 = b v3 = c v4 = ∂", "v5 = v1v2", "v6 = v3v4", "v7 = v5 + v6",
+% "v8 = v1 + v3", then the composition below.
+Op 1     ×  | ab            | v1 ←, v2 ←, v5 ab          | v5 = v1·v2
+Op 2     ×  | cd            | v3 ←, v4 ←, v6 cd          | v6 = v3·v4
+Op 3     +  | ab+cd         | v5 ←, v6 ←, v7 ab+cd       | v7 = v5+v6
+Op 4     +  | a+c           | v1 ←, v3 ←, v8 a+c         | v8 = v1+v3      % the mill column "a + ∂c", the ∂ (or c) written over; a faint pencil arrow in v2, rubbed out
+Op 5     ÷  | (ab+cd)/(a+c) | v7 ←, v8 ←, v9 =x          | x = v9 = v7/v8  % the mill column writes "(ab + c∂)/(a + c) = x"; v9 "(ab + c∂)/(a + c)"
+
+Composition x = v9 = v7/v8 = (v5+v6)/(v1+v3) = (v1·v2+v3·v4)/(v1+v3) = (ab+cd)/(a+c)
+
+Unrun "the arrows of operation 1 (v1, v2) and operation 2 (v4) have a hook at the tail; the others are plain"

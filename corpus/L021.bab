@@ -1,0 +1,140 @@
+% BAB/L/021, Science Museum Group Collection, document aa110001687.
+% Cover 222/599 ("No 21", "15 Aug 1840"); the opened sheet 222/600 with the
+% table and, at the right, "Variable Cards"; the back 340/323, blank but for
+% two small marks at the left edge. Read from the zoom images at full
+% resolution. See sources/notes/L021.md.
+%
+% Babbage writes the accents before the letter: 'a is a′, ''b is b″; ∂ is
+% written d. "C'b" over a small 0 (a complement laid and given back in the
+% same operation) is C(b') 0; "0" over a letter (given off and retained) is
+% "0 x".
+
+Sheet BAB/L/021
+No. 21
+Date 15 Aug 1840          "15 Aug 1840"   % cover
+Title "Reduction of the four Equations"
+Image 222/599 cover: "Reduction of the four Equations aw + bx + cy + ∂z + e = 0, 'aw + 'bx + 'cy + '∂z + 'e = 0, ''aw + ''bx + ''cy + ''∂z + ''e = 0, '''aw + '''bx + '''cy + '''∂z + '''e = 0 to three others viz Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0"
+Image 222/600 the table, the left-hand list of operands, and the variable cards
+Image 340/323 back: blank
+
+Letters a b c d e a' b' c' d' e' a'' b'' c'' d'' e'' a''' b''' c''' d''' e'''
+
+% Store headings: v1 0, v2 b, v3 c, v4 ∂, v5 e; v6 0, v7 'b … v10 'e; v11 0,
+% v12 ''b … v15 ''e; v16 0, v17 '''b … v20 '''e; v21 a, v22 0, v23 'a, v24 0,
+% v25 ''a, v26 0, v27 '''a, v28 0; v29 to v32 with no heading. The
+% multipliers stand apart from their equations, each with an empty column
+% beside it for its complement. v16, v31 and v32 are never used.
+Store v2 = b, v3 = c, v4 = d, v5 = e, v7 = b', v8 = c', v9 = d', v10 = e', v12 = b'', v13 = c'', v14 = d'', v15 = e'', v17 = b''', v18 = c''', v19 = d''', v20 = e''', v21 = a, v23 = a', v25 = a'', v27 = a'''
+Working v1 v6 v11 v22 v24 v26 v28 v29 v30
+
+% Columns: "No. of Oper"; braces grouping the operations in threes;
+% "Variables", the two columns each multiplication takes its factors from
+% (v21 v7, v23 v2, …); "Oper"; "Quantity", the product or "a'b − 'ab = B";
+% the store; an unheaded column repeating each result (B, C, D, E, 'B, …);
+% braces; "Variable Cards", with the number of cards right of each group of
+% three. Dashed lines across the table after operations 12 and 24. Each
+% group of three is a Group here, so that its count is checked.
+
+Group
+Op 1   ×  | ab'             | v21 0 a, v22 C(a) 0, v7 0 b', v24 C(b') 0, v29 ab' |   % the left-hand column names the operands: v21 v7
+Cards 1 (v21 v22)(v7 v24)(v22 v21)(v24 v7)(0 v29)
+Op 2   ×  | a'b             | v23 0 a', v24 C(a') 0, v2 0, v30 a'b |
+Cards 2 (v23 v24)(v2 0)(v24 v23)(0 v30)
+Op 3   −  | ab'-a'b         | v29 0, v30 0, v2 =B |   % the quantity column: "a'b − 'ab = B"; this B is ab′ − a′b, the negative of L/019's
+Cards 3 (v29 0)(v30 0)(0 v2)
+Total 12
+Group
+Op 4   ×  | ac'             | v21 0 a, v22 C(a) 0, v8 0 c', v24 C(c') 0, v29 ac' |
+Cards 4 (v21 v22)(v8 v24)(v22 v21)(v24 v8)(0 v29)
+Op 5   ×  | a'c             | v23 0 a', v24 C(a') 0, v3 0, v30 a'c |
+Cards 5 (v23 v24)(v3 0)(v24 v23)(0 v30)
+Op 6   −  | ac'-a'c         | v29 0, v30 0, v3 =C |
+Cards 6 (v29 0)(v30 0)(0 v3)
+Total 12
+Group
+Op 7   ×  | ad'             | v21 0 a, v22 C(a) 0, v9 0 d', v24 C(d') 0, v29 ad' |
+Cards 7 (v21 v22)(v9 v24)(v22 v21)(v24 v9)(0 v29)
+Op 8   ×  | a'd             | v23 0 a', v24 C(a') 0, v4 0, v30 a'd |
+Cards 8 (v23 v24)(v4 0)(v24 v23)(0 v30)
+Op 9   −  | ad'-a'd         | v29 0, v30 0, v4 =D |
+Cards 9 (v29 0)(v30 0)(0 v4)
+Total 12
+Group
+Op 10  ×  | ae'             | v21 0, v10 0 e', v24 C(e') 0, v29 ae' |
+Cards 10 (v21 0)(v10 v24)(v24 v10)(0 v29)
+Op 11  ×  | a'e             | v23 0 a', v24 C(a') 0, v5 0, v30 a'e, v2 0, v1 CB 0, v21 B |   % B, given off from v2, laid in v1 as its complement "CB" with 0 below, and so into v21, where a stood: cards (v2 v1)(v1 v21)
+Cards 11 (v23 v24)(v5 0)(v24 v23)(0 v30)(v2 v1)(v1 v21)
+Op 12  −  | ae'-a'e         | v29 0, v30 0, v5 =E |
+Cards 12 (v29 0)(v30 0)(0 v5)
+% Right of these cards: "48", the 8 written heavily over another figure (or "49"): the cards so far; the rows above list 49.
+Running 48
+Group
+Op 13  ×  | a'b''           | v23 0 a', v24 C(a') 0, v12 0 b'', v26 C(b'') 0, v29 a'b'' |
+Cards 13 (v23 v24)(v12 v26)(v24 v23)(v26 v12)(0 v29)
+Op 14  ×  | a''b'           | v25 0 a'', v26 C(a'') 0, v7 0, v30 a''b' |
+Cards 14 (v25 v26)(v7 0)(v26 v25)(0 v30)
+Op 15  −  | a'b''-a''b'     | v29 0, v30 0, v7 =B' |
+Cards 15 (v29 0)(v30 0)(0 v7)
+Total 12
+Group
+Op 16  ×  | a'c''           | v23 0 a', v24 C(a') 0, v13 0 c'', v26 C(c'') 0, v29 a'c'' |
+Cards 16 (v23 v24)(v13 v26)(v24 v23)(v26 v13)(0 v29)
+Op 17  ×  | a''c'           | v25 0 a'', v26 C(a'') 0, v8 0, v30 a''c' |
+Cards 17 (v25 v26)(v8 0)(v26 v25)(0 v30)
+Op 18  −  | a'c''-a''c'     | v29 0, v30 0, v8 =C' |
+Cards 18 (v29 0)(v30 0)(0 v8)
+Total 12
+Group
+Op 19  ×  | a'd''           | v23 0 a', v24 C(a') 0, v14 0 d'', v26 C(d') 0, v29 a'd'' |   % v26: "C'∂" with one accent, where the number given off and retained is ''∂ (v14); read at full size
+Cards 19 (v23 v24)(v14 v26)(v24 v23)(v26 v14)(0 v29)
+Op 20  ×  | a''d'           | v25 0 a'', v26 C(a'') 0, v9 0, v30 a''d' |
+Cards 20 (v25 v26)(v9 0)(v26 v25)(0 v30)
+Op 21  −  | a'd''-a''d'     | v29 0, v30 0, v9 =D' |
+Cards 21 (v29 0)(v30 0)(0 v9)
+Total 12
+Group
+Op 22  ×  | a'e''           | v23 0, v15 0 e'', v26 C(e'') 0, v29 a'e'' |
+Cards 22 (v23 0)(v15 v26)(v26 v15)(0 v29)
+Op 23  ×  | a''e'           | v25 0 a'', v26 C(a'') 0, v10 0, v30 a''e', v7 0, v6 C(B') 0, v23 B' |   % 'B, from v7 through v6 into v23, where a′ stood
+Cards 23 (v25 v26)(v10 0)(v26 v25)(0 v30)(v7 v6)(v6 v23)
+Op 24  −  | a'e''-a''e'     | v29 0, v30 0, v10 =E' |
+Cards 24 (v29 0)(v30 0)(0 v10)
+% Right of these cards: "98", the cards so far.
+Running 98
+Group
+Op 25  ×  | a''b'''         | v25 0 a'', v26 C(a'') 0, v17 0, v29 a''b''' |
+Cards 25 (v25 v26)(v17 0)(v26 v25)(0 v29)
+Op 26  ×  | a'''b''         | v27 0 a''', v28 C(a''') 0, v12 0, v30 a'''b'' |
+Cards 26 (v27 v28)(v12 0)(v28 v27)(0 v30)
+Op 27  −  | a''b'''-a'''b'' | v29 0, v30 0, v12 =B'' |
+Cards 27 (v29 0)(v30 0)(0 v12)
+Total 11
+Group
+Op 28  ×  | a''c'''         | v25 0 a'', v26 C(a'') 0, v18 0, v29 a''c''' |
+Cards 28 (v25 v26)(v18 0)(v26 v25)(0 v29)
+Op 29  ×  | a'''c''         | v27 0 a''', v28 C(a''') 0, v13 0, v30 a'''c'' |
+Cards 29 (v27 v28)(v13 0)(v28 v27)(0 v30)
+Op 30  −  | a''c'''-a'''c'' | v29 0, v30 0, v13 =C'' |
+Cards 30 (v29 0)(v30 0)(0 v13)
+Total 11
+Group
+Op 31  ×  | a''d'''         | v25 0 a'', v26 C(a'') 0, v19 0, v29 a''d''' |
+Cards 31 (v25 v26)(v19 0)(v26 v25)(0 v29)
+Op 32  ×  | a'''d''         | v27 0 a''', v28 C(a''') 0, v14 0, v30 a'''d'' |   % the cards of 32 are written over heavily: (v27 v28)(v14 0)(v28 v27)(0 v30)
+Cards 32 (v27 v28)(v14 0)(v28 v27)(0 v30)
+Op 33  −  | a''d'''-a'''d'' | v29 0, v30 0, v14 =D'' |
+Cards 33 (v29 0)(v30 0)(0 v14)
+Total 11
+Group
+Op 34  ×  | a''e'''         | v25 0, v20 0, v29 a''e''' |
+Cards 34 (v25 0)(v20 0)(0 v29)
+Op 35  ×  | a'''e''         | v27 0, v15 0, v30 a'''e'', v12 0, v11 C(B'') 0, v25 B'' |   % ''B, from v12 through v11 into v25, where a″ stood; a‴ and e″ are given off and not retained
+Cards 35 (v27 0)(v15 0)(0 v30)(v12 v11)(v11 v25)
+Op 36  −  | a''e'''-a'''e'' | v29 0, v30 0, v15 =E'' |
+Cards 36 (v29 0)(v30 0)(0 v15)
+% Right of these cards: "142", the cards so far.
+Running 142
+
+Unrun "the number of cards right of each group of three: 12 12 12, then the cards so far '48' (the 8 written heavily over another figure; the rows give 49); 12 12 12, '98'; 11 11 11, '142'"
+Unrun "the column 'Variables' left of 'Oper': the two columns each multiplication takes its factors from, as v21 v7, v23 v2, v21 v8, …, v27 v15"
+Unrun "a column right of the store repeating each result: B, C, D, E, 'B, 'C, 'D, 'E, ''B, ''C, ''D, ''E"

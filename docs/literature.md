@@ -69,6 +69,37 @@ restore a, c, b, is the reading the run uses (decisions 4 and 5).
    The operation is a subtraction; the run finds that neither order of
    subtraction of the two operands gives −c − ax.
 
+## The later sheets, against Rojas (2017)
+
+Rojas's Table 3 lists the programs by number and date. Against the sheets:
+
+1. **Program 26** is described as "two methods for the solution of two
+   simultaneous equations", 8.1837. The sheet (BAB/L/026, undated) computes
+   one formula, (ab + c∂)/(a + c), by two methods; there are no equations.
+   Rojas's own worked example (his Tables 4 and 5) is that formula, but
+   written with give-off-and-retain ("0/a") and a complement in v9, which
+   the sheet does not have: it marks each number going to the mill with an
+   arrow and clears no column.
+2. **Program 23** (7.6.1838). Rojas names the backing apparatus for the
+   formula cards z and for the start y; the sheet's cover and table name
+   them the other way, Y backing to the formula cards and Z to the
+   combinatorial cards. The table works out four coefficients, x⁰ to x³,
+   and begins a fifth, where Rojas describes three. The combinatorial index,
+   which he finds unclear, is shown: Tab is stepped by a difference (Δ′ = 1),
+   Comb is set from Tab and reduced by one at each pass.
+3. **Program 14.** Rojas says the archive's description, two cosine series,
+   is wrong and that the program multiplies polynomials. The sheet agrees:
+   cosines are only in the catalogue's title.
+4. **Programs 19 to 22.** Rojas doubts that Babbage had a way to coordinate
+   loops of operations with the variable cards. The sheets list every card;
+   L/021 and L/022 move each new coefficient into the column its multiplier
+   left, so the reduced equations stand as the first did and the same
+   pattern of cards could serve again. Whether that was meant to make the
+   cards repeat the sheets do not say.
+
+These are readings of the sheets, by agents, not yet checked by a person,
+against two papers by Rojas; the papers not read may already have them.
+
 ## Not yet read
 
 Rojas (2021) in the *IEEE Annals*, which reviews "some" of the 26 programs;

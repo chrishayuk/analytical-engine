@@ -1,0 +1,99 @@
+% BAB/L/025, Science Museum Group Collection, document aa110001734,
+% catalogued "Algebraic notation". Two images: 222/611, the opened sheet
+% with the table and, to its right, the "Composition of B6,18 = v26";
+% 222/608, the outside, with "Algebraic Notation" written along the fold,
+% "E-1905" and the Museum's marks. Read from the zoom images at full
+% resolution, the pencil with its contrast raised. See sources/notes/L025.md.
+
+Sheet BAB/L/025
+No. 25
+% No number and no date on the sheet. Rojas 2017 dates program 25 to October
+% 1838; L/018 is "Copied from Not. No 17 Dated 1 Oct. 1838".
+Title "Algebraic Notation"
+Image 222/611 the table, written in pencil throughout, and the Composition of B6,18 to its right
+Image 222/608 outside: "Algebraic Notation"
+
+% The table computes B6,8 ... B6,18 for the elliptic radius vector, as L/017
+% and L/018 do: B6,6 multiplied by P0/Q0, then P and Q stepped by their
+% differences in the mill and each new B made from the last as (Pp/Qp)·B.
+% There is no cover on this sheet; P0, Q0, their differences and the Bs are
+% defined here as on L/018, from L/017's cover with n = 6, and the Bs
+% without their signs (as the table writes them, and as on L/018).
+Letters a
+Let P0 = 6·6·(6+2)
+Let P1 = 6·6·(6+2+2)
+Let P2 = 6·6·(6+2+4)
+Let P3 = 6·6·(6+2+6)
+Let P4 = 6·6·(6+2+8)
+Let P5 = 6·6·(6+2+10)
+Let ΔP = 2·6·6
+Let Q0 = 4·1·7·6
+Let Q1 = 4·2·8·8
+Let Q2 = 4·3·9·10
+Let Q3 = 4·4·10·12
+Let Q4 = 4·5·11·14
+Let Q5 = 4·6·12·16
+Let ΔQ0 = 4·(8+7·6+6·6)
+Let ΔQ1 = 24 + 8·(7+18) + 4·(8+42+36)
+Let ΔQ2 = 24·4 + 8·(7+18)·2 + 4·(8+42+36)
+Let ΔQ3 = 24·9 + 8·(7+18)·3 + 4·(8+42+36)
+Let ΔQ4 = 24·16 + 8·(7+18)·4 + 4·(8+42+36)
+Let Δ²Q0 = 8·(10+18)
+Let Δ²Q1 = 48 + 8·(10+18)
+Let Δ²Q2 = 48·2 + 8·(10+18)
+Let Δ²Q3 = 48·3 + 8·(10+18)
+Let Δ³Q = 48
+Let B66 = 27a/80            % the cover: B6,6 = −6⁴/(1·2·3·4·5·2⁵)a = −2⁴3⁴a/(2⁸·3·5) = −3³a/(2⁴5) = −27a/80
+Let B68 = 81a/140
+Let B610 = 729a/1792
+Let B612 = 729a/4480
+Let B614 = 2187a/51200
+Let B616 = 19683a/2464000
+Let B618 = 177147a/157696000
+
+% Store headings: v1 P0, v2 P0, v3 ΔP, v4 ΔP, an unheaded column, v5 Q0,
+% v6 Q0, v7 ΔQ0, v8 "0", v9 Δ²Q0, v10 "0", v11 Δ³Q, v12 "0", a column headed
+% "v12" with a small cross (here v40), holding B6,6, v13, v14, v15 B6,6, a
+% narrow column under a tear (perhaps v16) never used, v17 to v28. The "0"
+% under v8, v10 and v12 is not written into the store here.
+Store v1 = P0, v2 = P0, v3 = ΔP, v4 = ΔP, v5 = Q0, v6 = Q0, v7 = ΔQ0, v9 = Δ²Q0, v11 = Δ³Q, v40 = B66, v15 = B66
+Working v8 v10 v12 v13 v14 v17 v18 v19 v20 v21 v22 v23 v24 v25 v26 v27
+
+% Columns: "No of the Opern"; a column with a star before the operations
+% that make a B; "Nature of the Opern"; the mill. Sums are written in braces
+% ({P1}); here without them.
+Op 1     ÷  | P0/Q0          | v1 0, v5 0, v13 P0/Q0 |
+Op 2   * ×  | (P0/Q0)·B66    | v13 0, v14 B68, v15 0, v17 B68 |
+Op 3     +  | P0+ΔP          | v1 P1, v2 0, v3 0 |
+Op 4     +  | Q0+ΔQ0         | v5 Q1, v6 0, v7 0, v8 ΔQ0 |
+Op 5     ÷  | P1/Q1          | v1 0, v2 P1, v5 0, v6 Q1, v13 P1/Q1, v18 B610, v19 B610 |   % "B6,10" in v18 and v19 on this row's line, not struck, and again on row 6's; a 0 in v14, struck through, not written here
+Op 6   * ×  | (P1/Q1)·B68    | v13 0, v14 0, v18 B610, v19 B610 |
+Op 7     +  | P1+ΔP          | v1 P2, v2 0, v3 ΔP, v4 0 |
+Op 8     +  | ΔQ0+Δ²Q0       | v7 ΔQ1, v8 0, v9 0, v10 Δ²Q0 |
+Op 9     +  | Q1+ΔQ1         | v5 Q2, v6 0, v7 0, v8 ΔQ1 |
+Op 10    ÷  | P2/Q2          | v1 0, v2 P2, v5 0, v6 Q2, v13 P2/Q2 |
+Op 11  * ×  | (P2/Q2)·B610   | v13 0, v18 0, v20 B612, v21 B612 |
+Op 12    +  | P2+ΔP          | v1 P3, v2 0, v3 0, v4 ΔP |
+Op 13    +  | Δ²Q0+Δ³Q       | v9 Δ²Q1, v10 0, v11 0, v12 Δ³Q |
+Op 14    +  | ΔQ1+Δ²Q1       | v7 ΔQ2, v8 0, v9 0, v10 Δ²Q1 |
+Op 15    +  | Q2+ΔQ2         | v5 Q3, v6 0, v7 0, v8 ΔQ2 |
+Op 16    ÷  | P3/Q3          | v1 0, v2 P3, v5 0, v6 Q3, v13 P3/Q3 |
+Op 17  * ×  | (P3/Q3)·B612   | v13 0, v20 0, v22 B614, v23 B614 |
+Op 18    +  | P3+ΔP          | v1 P4, v2 0, v3 ΔP, v4 0 |
+Op 19    +  | Δ²Q1+Δ³Q       | v9 Δ²Q2, v10 0, v11 Δ³Q, v12 0 |
+Op 20    +  | ΔQ2+Δ²Q2       | v7 ΔQ3, v8 0, v9 0, v10 Δ²Q2 |
+Op 21    +  | Q3+ΔQ3         | v5 Q4, v6 0, v7 0, v8 ΔQ3 |
+Op 22    ÷  | P4/Q4          | v1 0, v2 P4, v5 0, v6 Q4, v13 P4/Q4 |
+Op 23  * ×  | (P4/Q4)·B614   | v13 0, v22 0, v24 B616, v25 B616 |
+Op 24    +  | P4+ΔP          | v1 P5, v2 0, v3 0, v4 ΔP |   % the mill column writes "P4 + ΔP4", the second P with a subscript like 4
+Op 25    +  | Δ²Q2+Δ³Q       | v9 Δ²Q3, v10 0, v11 0, v12 Δ³Q |
+Op 26    +  | ΔQ3+Δ²Q3       | v7 ΔQ4, v8 0, v9 0, v10 Δ²Q3 |
+Op 27    +  | Q4+ΔQ4         | v5 Q5, v6 0, v7 0, v8 ΔQ4 |
+Op 28    ÷  | P5/Q5          | v1 0, v5 0, v13 P5/Q5 |   % nothing in v2 or v6: P5 and Q5 are not kept; a small mark above v5's 0
+Op 29  * ×  | (P5/Q5)·B616   | v13 0, v24 0, v26 B618, v27 B618 |
+
+% "Composition of B6,18 = v26", to the right of the table:
+Gives 29 v26 = B618
+
+Unrun "right of the table, 'Composition of B6,18 = v26': v26 = ᵛv13·v24 = (ᵛv1/ᵛv5)v24 = ((ⁱᵛv2 + ″v3)/(ⁱᵛv5 + ⁱᵛv7))v24 = ..., accents before the variable, unwinding P5 and Q5 to the store's first numbers and ending (v2 + 5v3)/(v6 + 5v7 + 10v9 + ...)·v24, i.e. P5 = P0 + 5ΔP and Q5 = Q0 + 5ΔQ0 + 10Δ²Q0 + ...; eleven lines, partly faint, several terms corrected; not transcribed member by member"
+Unrun "faint pencil in the columns v12 to v14 at rows 12 to 18, words like 'Result'; not read"

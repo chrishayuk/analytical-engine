@@ -34,15 +34,14 @@ right.
 
 ## Status
 
-Eleven sheets, fifteen programs, 4 to 29 August 1837, all run: **BAB/L/001**
-(Nos. 1 and 2, 4 and 5 August), **BAB/L/002** (14 August), **BAB/L/004**
-(three programs, 16 August), **BAB/L/005** (16 August), **BAB/L/006**,
-**BAB/L/007** (before 22 August), **BAB/L/008**, **L/009** and **L/010**
-(20 to 23 August, the store as a difference engine), **BAB/L/011** (two
-programs, 28 August) and **BAB/L/012** (29 August). 1059 statements of the
-sheets are checked and 1051 agree (`babbage verify`). BAB/L/003 has no images
-in the Museum's catalogue; Rojas 2017 lists its program as not in the
-archive.
+Every sheet of Series L that has images, BAB/L/001 to BAB/L/027 (L/003 has
+none; Rojas 2017 lists its program as not in the archive), 4 August 1837 to
+9 August 1841: 34 pages, of which 31 run, two are prose or a drawing of the
+store (L/016 sheet 2, L/027), and one, the looped program of L/023, is
+checked by a script that runs its cards (35 of 35 rows). Of 2549 statements
+of the sheets the run checks, 2499 agree (`babbage verify`). The 50 that do
+not come from slips of the pen on 15 pages, each described on its page and
+counted in `tests/corpus.rs`; none stops a run.
 
 The transcriptions were made by coding agents from the scans; no person has
 checked them. Two readings by Rojas (2017, 2023) have been read and a short
@@ -156,6 +155,47 @@ search made, so nothing here is claimed as new. See
   The run does what the cells require; no single rule does both
   (`tests/corpus.rs`).
 
+## What running BAB/L/013 to BAB/L/027 found
+
+- **The products of polynomials** (L/013, 11 December 1837; L/014,
+  undated). λ6 = ΣAₖa₆₋ₖ, and the first six coefficients, laid out in the
+  cover's point notation ("0.6 + 1.5" for A₀a₆ + A₁a₅). L/014's second table
+  orders its 21 products by Aₖ, so that six tables of multiples serve them
+  all; each a is read again and again from its complement. L/013's second
+  table is unfinished on the sheet. Nothing on L/014 mentions cosines,
+  which are only in the catalogue's title, as Rojas says.
+- **Elimination, 1837 to 1840** (L/015, L/016, L/019 to L/022). L/015
+  eliminates by cross-multiplication and needs the mill to keep the table of
+  the factor written second (HK′, then MK′ with K′ in no column). L/016
+  (June 1838) brings in "G.R", "give off & retain"; by 1840 (L/019 to L/022)
+  every number kept is given off through a complement column and back, and
+  every operation has its variable cards listed beside it. All 136 cards of
+  L/019, the 225 of L/019–L/020 and the 142 of L/021 agree with the run,
+  with their counts and running totals (L/021's first total is written 48
+  for 49). L/021 and L/022 move each new coefficient into the column its
+  multiplier left, so that the reduced equations stand as the first ones
+  did, and the same pattern of cards serves again.
+- **The elliptic radius vector** (L/017, 1 October 1838; L/025, pencil,
+  undated; L/018, a fair copy dated 9 August 1841 "from Not. No 17"). The
+  same 29 operations three times. L/017 fails to keep Q₀, which L/018 and
+  L/025 put right; L/018, the fair copy, swaps the signs of rows 5 and 6
+  and writes ΔQ₂ + ΔQ₂ for ΔQ₂ + Δ²Q₂, slips L/025 does not have.
+- **The looped program** (L/023, 7 June 1838). The product of two series
+  by combinatorial cards: an inner loop backed by Y to the formula cards, an
+  outer one by Z to the start, the letter cards advanced and backed, and a
+  counter stepped by its difference. A script runs the cards as a loop and
+  gives the sheet's 35 rows, operation and mill entry, all 35
+  (`sources/checks/L023.py`). The engine does not yet run loops.
+- **Recurrences** (L/024). Laplace coefficients by Pₓ₊₁ = (Wₓ/Vₓ)Pₓ and a
+  three-term recurrence: 113 of 123, four slips of the pen.
+- **One formula two ways** (L/026, undated). (ab + c∂)/(a + c) and
+  b + (∂ − b)c/(a + c), in five operations each, with no 0, no complement
+  and no accent: each number going to the mill is marked with an arrow and
+  every column keeps its number. Both give the same x (58 of 58).
+- **The store drawn** (L/027, undated). Columns of figure wheels with a sign
+  wheel above each, laid out for the variables of many problems, and, on
+  the cover, a product split into heads and tails of thirty figures each.
+
 ## The machine
 
 The engine's rules, as BAB/L/001 and BAB/L/002 show them (`babbage decisions` gives each
@@ -193,6 +233,21 @@ with what it rests on):
 19. A turn of the carriages is a small operation. (Covers of L/010, L/012.)
 20. How a carriage gives M and N to the mill's columns is not settled.
     (BAB/L/012.)
+21. A table is made of the factor the next multiplication uses again,
+    whichever is written first. (BAB/L/015.)
+22. A number taken from a column may be laid, as it is, in another.
+    (BAB/L/017, L/018.)
+23. A number may be given off to the mill and retained: "G.R" (L/016), the
+    0 above the letter (L/019 to L/022), the arrow (L/026).
+24. A complement read into the mill gives the number it is the complement
+    of. (BAB/L/014.)
+25. The variable cards are the pairs the run moves numbers by; the sheet's
+    are checked against them, with their counts. (BAB/L/019 to L/022.)
+26. A row may move a number while the mill operates on others. (L/021,
+    L/022.)
+27. Where the mill column and the operation differ and the cells follow the
+    mill, the run goes on with the sheet's value: one slip, one
+    disagreement. (L/018, L/020.)
 
 Each later sheet will be run on the rules of its own date, and a rule a later
 sheet needs that the sheets before it do not show will be a new, dated
@@ -242,17 +297,16 @@ what was hard to read in [`sources/notes/L001.md`](sources/notes/L001.md).
 
 ## Next
 
-- The other 26 sets of Series L, in date order: L/004-L/007, L/015, L/016,
-  L/019-L/022 are elimination (three, four and five equations); L/008-L/010
-  tabulation by differences; L/002-L/003 and L/013-L/014 coefficients of
-  polynomials and series; L/017-L/018 the elliptic radius vector.
-- What rules each needs beyond BAB/L/001's, and when each first appears.
+- Loops in the engine: L/023's combinatorial cards, backing Y and Z, the
+  moving letter cards and the counter, so that its rows are made by the
+  cards and checked as the other pages are.
 - Series F, where the catalogue says earlier "user program traces" are found
   among the earliest notations, for anything before 4 August 1837.
+- Bromley (2000) and Rojas (2021), before any result is called new.
+- A person to check the transcriptions against the scans.
 - Liu Hui and Babbage on the same equations: the counting board of
   [nine-chapters](../nine-chapters) and these tables, run on the same
-  systems, operation for operation. Still to be made.
-- A literature search before any result is called new.
+  systems, operation for operation.
 
 ## Licence
 

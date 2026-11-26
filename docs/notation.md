@@ -78,7 +78,8 @@ keeps it. `Cx 0` is the complement on its way back, in the column it passes
 through. After a row, `Cards (v7 v17)(v3 0)(v17 v7)(0 v18) 4` is the sheet's
 list of variable cards (0 for the mill) and their count, which the run
 checks against the pairs it moves numbers by; `Carried 136`, `Group` and
-`Total 12 148` are the sheet's counts, a group's and the running total.
+`Total 12 148` are the sheet's counts, a group's and the running total;
+`Running 98` is a running total alone.
 `C` is the complement before a letter, a bracket or a point, and otherwise
 the letter C.
 

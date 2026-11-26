@@ -1,0 +1,71 @@
+% BAB/L/027, Science Museum Group Collection, document aa110001736.
+% Two images: 222/617, the folded cover (left half blank; right half "List of
+% Variables their signs & coefficients", pencil working, "BAB [L27]",
+% "E.-1905"); 222/620 (7838 × 6342), the opened sheet: five bands of store
+% columns, drawn, with no operations. Read from the zoom images at full
+% resolution; the pencil with its contrast raised. See sources/notes/L027.md.
+%
+% NOTHING TO RUN. The sheet has no operations, no mill and no values: every
+% column is drawn as a sign wheel (a circle, with + in it or empty) over four
+% figure wheels each at 0, with what the column is for written beneath it
+% (x², sin 2θ, log(a+x), n·n+1/1·2 ...), and rows of dots for columns left
+% out. A `Store v2 = x` line would say that v2 holds x; the sheet says only
+% that a column is set aside for x and stands at zero. So the columns are
+% kept below as comments, band by band, and the page checks no statements.
+%
+% "⊕" is a circle with + in it; "○" an empty circle; "…" a column of dots.
+% Each column: the circle, four 0s, the label.
+%
+% Band 1 (powers and products). In pencil above the first columns, faint:
+% "v1"(?) over x⁰, "v2" "v3" "v4" "v5" over x, x², x³, x⁴, "v7" (or v6) over
+% the column of dots, "v8" over the second x.
+%   x⁰ (whole column in pencil: "(+)", four 0s, "x⁰")
+%   ⊕ x, ⊕ x², ⊕ x³, ⊕ x⁴, … ("x⁵"? faint in pencil in the label), ⊕ x, ⊕ x²,
+%   ⊕ x³, ⊕ x⁴, …, …, ⊕ a⁰, ⊕ a¹, ⊕ a², ⊕ a³, …, ⊕ b⁰, ⊕ b¹, ⊕ b², ⊕ b³, …,
+%   ⊕ y⁰, ⊕ y¹, ⊕ y², ⊕ y³, …, ⊕ xy, ⊕ x²y, ⊕ xy², ⊕ x³y, ⊕ x²y², ⊕ xy³, …,
+%   ○ z⁰, ○ z¹, ○ z², ○ z³, …, ○ xz, ○ yz, and in pencil "xy/z" (?), …
+%
+% Band 2 (circular functions).
+%   ⊕ sin θ, ⊕ sin 2θ, ⊕ sin 3θ, …, ⊕ sin θ, ⊕ sin 2θ, ○ sin 3θ, …,
+%   ⊕ sin η, ⊕ sin 2η, ⊕ sin 3η, …, …, ⊕ cos θ, ⊕ cos 2θ, ⊕ cos 3θ, …, …,
+%   ⊕ cos θ, ⊕ cos 2θ, ⊕ cos 3θ, …, …, ⊕ sin α, ⊕ sin(α+β), …, ⊕ cos α,
+%   ⊕ cos(α+β), …; then in pencil, labels only: "ε^x" (?), "ε^(−x)/2" (?),
+%   "a√−1", "x√−1", "ε^(x√−1)", "ε^(−x√−1)".
+%
+% Band 3 (logarithms, cosines of cosines).
+%   ○ log x, ○ log(a+x), ○ log((a+x)/(b+x)), …, ○ cos cos θ, ○ cos cos 2θ,
+%   ○ cos cos 3θ, …; then in pencil, labels only: "d/dx x^n" (?), "d/dx x/y",
+%   "d/dx √(1−x²)", "d/dx f(x)".
+%
+% Band 4 (powers of polynomials, binomial coefficients).
+%   ○ (a²−x²)^½, ○ (a²−x²)^(3/2), ○ (a²−x²)^(5/2), …, ○ (b²+2ax+x²)^½,
+%   ○ (b²+2ax+x²)^⅓, ○ (b²+2ax+x²)^¼, …, ○ (a+bx+cx²+∂x³+ex⁴)^½, …,
+%   ○ √((1−x²)/(1+x²)), …, ○ n/1, ○ n·n+1/1·2, ○ n·n+1·n+2/1·2·3, …,
+%   ○ n/1, ○ n·n−1/1·2, ○ n·n−1·n−2/1·2·3, …, ○ 1/(1+a²), ○ 1/(1+4a²),
+%   ○ 1/(1+9a²), …; in pencil a column "○ 0 0 0 0 √−1", and two more pencil
+%   circles; below, faint pencil "28" and "5".
+%
+% Band 5 (a series in three letters). Columns labelled by braces, b-power
+% beneath each column, a-power under the first brace, x-power under the
+% second:
+%   ○ b⁰ a⁰ x⁰ | x¹: ○ b⁰ ; a: ○ b⁰ ○ b¹ | x²: ○ b⁰ ; a: ○ b⁰ ○ b¹ ;
+%   a²: ○ b⁰ ○ b¹ ○ b² | x³: ○ b⁰ ; a: ○ b⁰ ○ b¹ ; a²: ○ b⁰ ○ b¹ ○ b² ;
+%   a³: ○ b⁰ ○ b¹ ○ b² ○ b³ | …
+% and beneath, in ink, the series the columns hold the coefficients of
+% (script capitals; a figure over the letter's left and one under it, here
+% written C[i,j] for the capital with i under and j over):
+%   {Ab⁰} + {Bb⁰ + (B[1,0]b⁰ + B[1,1]b¹)a}x + {Cb⁰ + (C[1,0]b⁰ + C[1,1]b¹)a
+%   + (C[2,0]b⁰ + C[2,1]b¹ + C[2,2]b²)a²}x² + {Db⁰ + (D[1,0]b⁰ + D[1,1]b¹)a
+%   + (D[2,0]b⁰ + D[2,1]b¹ + D[2,2]b²)a² + (D[3,0]b⁰ + D[3,1]b¹ + D[3,2]b²
+%   + D[3,3]b³)a³}x³ + ; continued faintly in pencil: {Eb⁰ + (E[1,0]b⁰ +
+%   E[1,1] … ) a + … }.
+
+Sheet BAB/L/027
+No. 27
+Title "List of Variables their signs & coefficients"
+Image 222/617 cover: "List of Variables their signs & coefficients"; in pencil, top left, "Algebraic Notation" and a second line, perhaps "Also … Notation"; pencil working in the middle (see the notes)
+Image 222/620 the opened sheet: five bands of store columns, no operations
+
+Unrun "222/620: five bands of store columns, each a sign wheel over four figure wheels at 0, labelled with what it is for: powers and products of x, a, b, y, z; sin and cos of θ, 2θ, 3θ, η, α, α+β; log x, log(a+x), log((a+x)/(b+x)), cos cos θ; powers of a²−x², b²+2ax+x², a+bx+cx²+∂x³+ex⁴; binomial coefficients n·n±1…/1·2…; 1/(1+a²) …; and the coefficients of a series in x, a, b, arranged under braces. Given cell for cell in the comments above"
+Unrun "222/620, pencil: v-numbers over the first columns (v2 to v5, v7, v8), and labels without columns: ε^(x√−1), ε^(−x√−1), a√−1, d/dx x/y, d/dx √(1−x²), d/dx f(x), √−1"
+Unrun "222/617, pencil, middle: 'Ciphers' (?) at the left; 'a × b'; 'A = 'a 10^30 + a''', 'B = 'b 10^30 + b''' bracketed; then the partial products 'a''b'' ', ''a b'' 10^30 + …', 'a''b' 10^30 + …' and a total ''a'b 10^60 + ('a b'' + a''b')10^30 + a''b'''; '30' at the right"

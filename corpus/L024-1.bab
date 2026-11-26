@@ -1,0 +1,67 @@
+% BAB/L/024, Science Museum Group Collection, document aa110001732.
+% Two images: 222/605, the cover (right) and a blank page (left, "34" in
+% pencil at its top left); 222/606, the opened sheet with two tables. This
+% page is the upper table. The sheet is not dated; "24" in pencil at the top
+% right of the cover. Rojas 2017 lists program 24 as 10.1838, a recursion.
+% Read from the zoom images at full resolution.
+
+Sheet BAB/L/024
+No. 24.1
+Title "Notations for determining Px+1 from Px, Px+1 = (Wx/Vx).Px, Wx & Vx being both quadratic functions of x"
+Image 222/605 cover: "Notations for determining Px+1 from Px ... If Wx = (s+x)² & Vx = (1+x)² & P0 = 2, bs(0) = P0 + P1η² + P2η⁴ + ... Pxη^2x + ..., η = a/a', a' > a, Mec. Cel. Prem. par. p 271. W0 = s², ΔW0 = 1 + 2s, Δ²W = 2; V0 = 1, ΔV0 = 3, Δ²V = 2"
+Image 222/606 the upper table
+
+% The table is written for any quadratic W and V: its letters are W0, ΔW0,
+% Δ²W, V0, ΔV0, Δ²V and P0, as in the heading of the store. Wk, ΔWk, Vk,
+% ΔVk and Pk, which the cells write, are defined below from those letters
+% and from the cover's Px+1 = (Wx/Vx)·Px, so that every cell is checked
+% against what its symbol means.
+Letters W0 ΔW0 Δ²W V0 ΔV0 Δ²V P0
+Let W1 = W0 + ΔW0
+Let W2 = W0 + 2ΔW0 + Δ²W
+Let W3 = W0 + 3ΔW0 + 3Δ²W
+Let ΔW1 = ΔW0 + Δ²W
+Let ΔW2 = ΔW0 + 2Δ²W
+Let V1 = V0 + ΔV0
+Let V2 = V0 + 2ΔV0 + Δ²V
+Let V3 = V0 + 3ΔV0 + 3Δ²V
+Let ΔV1 = ΔV0 + Δ²V
+Let ΔV2 = ΔV0 + 2Δ²V
+Let P1 = (W0/V0)·P0
+Let P2 = (W1/V1)·P1
+Let P3 = (W2/V2)·P2
+Let P4 = (W3/V3)·P3
+
+% The store's first line: v1 W0, v2 0, v3 ΔW0, v4 0, v5 Δ²W, v6 0, v7 V0,
+% v8 0, v9 ΔV0, v10 0, v11 Δ²V, v12 0, v13 P0, and P0 again in v16 (beyond
+% the column of operation numbers, which stands between v15 and v16).
+% Each number has a column beside it, at 0, into which it is laid as it is
+% read, so that the pairs change places at each use.
+Store v1 = W0, v3 = ΔW0, v5 = Δ²W, v7 = V0, v9 = ΔV0, v11 = Δ²V, v13 = P0, v16 = P0
+Working v2 v4 v6 v8 v10 v12 v14 v15 v17 v18 v19 v20
+
+% No right-hand column. Faint pencil, as if erased or offset from another
+% sheet, stands in many rows (the first line of the store again in row 2;
+% v9 to v20 written small across row 1; P's in v15); only the ink is
+% transcribed.
+Op 1   ÷  | W0/V0       | v1 0, v2 W0, v7 0, v8 V0, v14 W0/V0 |
+Op 2   ×  | (W0/V0)·P0  | v13 0, v14 0, v15 P1, v17 P1 |
+Op 3   +  | W0+ΔW0      | v1 W1, v2 0, v3 0, v4 ΔW0 |
+Op 4   +  | V0+ΔV0      | v7 V1, v8 0, v9 0, v10 ΔV0 |
+Op 5   ÷  | W1/V1       | v1 0, v2 W1, v7 0, v8 V1, v14 W1/V1 |
+Op 6   ×  | (W1/V1)·P1  | v13 P2, v14 0, v15 0, v18 P2 |
+Op 7   +  | ΔW0+Δ²W     | v3 ΔW1, v4 0, v5 0, v6 Δ²W |          % "W2" in v1, struck through
+Op 8   +  | W1+ΔW1      | v1 W2, v2 0, v3 0, v4 ΔW1 |
+Op 9   +  | ΔV0+Δ²V     | v9 ΔV1, v10 0, v11 0, v12 Δ²V |
+Op 10  +  | V1+ΔV1      | v7 V2, v8 0, v9 0, v10 ΔV1 |
+Op 11  ÷  | W2/V2       | v1 0, v2 W2, v7 0, v8 V2, v14 W2/V2 |
+Op 12  ×  | (W2/V2)·P2  | v13 0, v14 0, v15 P2, v19 P3 |        % v15 is written "P2", clearly, where v19 has P3
+Op 13  +  | ΔW1+Δ²W     | v3 ΔW2, v4 0, v5 Δ²W, v6 0 |
+Op 14  +  | W2+ΔW2      | v1 W3, v2 0, v3 0, v4 ΔW2 |
+Op 15  +  | ΔV1+Δ²V     | v9 ΔV2, v10 0, v11 Δ²V, v12 0 |
+Op 16  +  | ΔV2+V2      | v7 V3, v8 0, v9 0, v10 ΔV2 |          % the mill writes ΔV2 first
+Op 17  ÷  | W3/V3       | v2 W3, v7 0, v8 V3, v14 W3/V3 |        % no 0 in v1, from which W3 is taken
+Op 18  ×  | (W3/V3)·P3  | v13 P4, v14 0, v15 0, v20 P4 |
+
+Unrun "cover, further: 'If Wx = (s+x)(1+s+x), Vx = (1+x)(2+x), P0 = 2s then bs(1) = P0η + P1.η³ + P2.η⁵ + Px.η^(2x+1) ... Mec. Cel. Idem. W0 = s + s², ΔW0 = 2 + 2s, Δ²W = 2; V0 = 2, ΔV0 = 4, Δ²V = 2. If Wx = (s+x)²η², W0 = s²η², ΔW0 = (1+2s)η², Δ²W = 2η² then bs(0) = P0 + P1 + P2 + &c. And if Wx = (s+x)(1+s+x)η², W0 = s(1+s)η², ΔW0 = 2(1+s)η², Δ²W = 2η², P0 = 2sη then bs(1) = P0 + P1 + P2 + &c'"
+Unrun "faint pencil throughout the table, as if erased or offset: not transcribed"

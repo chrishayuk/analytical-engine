@@ -44,6 +44,14 @@ L017     BAB/L/017  No. 17, 1 Oct 1838  Notation For computing the elliptic radi
 L018     BAB/L/018  No. 18, 9 Aug 1841  Notation For Computing the Elliptic radius vector by having the eccentricity ε & mean Anomaly Ξ
 L019     BAB/L/019  No. 19, 31 Jul 1840  Notation of the Reduction of the Four Equations
 L020     BAB/L/020  No. 20, 31 Jul 1840  Notation of the Reduction of the Three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and these to ∂z + e = 0 with the solution
+L021     BAB/L/021  No. 21, 15 Aug 1840  Reduction of the four Equations
+L022     BAB/L/022  No. 22, 15 Aug 1840  Reduction of the three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two others viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and of these to ∂z + e = 0
+L024-1   BAB/L/024  No. 24.1,   Notations for determining Px+1 from Px, Px+1 = (Wx/Vx).Px, Wx & Vx being both quadratic functions of x
+L024-2   BAB/L/024  No. 24.2,   bs(i+1) = (Pi.bs(i) − Qi.bs(i−1))/Ri
+L025     BAB/L/025  No. 25,   Algebraic Notation
+L026-1   BAB/L/026  No. 26.1,   Calculation of the numerical value of x = (ab + cd)/(a + c)
+L026-2   BAB/L/026  No. 26.2,   Another method for the same x = (ab + cd)/(a + c) = (ab + bc - bc + cd)/(a + c) = b + (∂ - b)c/(a + c)
+L027     BAB/L/027  No. 27,   List of Variables their signs & coefficients
 ```
 
 ```console
@@ -107,9 +115,34 @@ L018      91 statements,  88 agree
 L019     167 statements, 167 agree
 L020     148 statements, 147 agree
          ✗ line 126: mill: -e/d: the operation gives (-BB′C′D′′ + BB′C′′D′ - B′B′′CD′ + B′B′′C′D + B′^2CD′′ - B′^2C′′D)/(-BB′C′E′′ + BB′C′′E′ - B′B′′CE′ + B′B′′C′E + B′^2CE′′ - B′^2C′′E)
+L021     182 statements, 179 agree
+         ✗ line 88: v26 = C(d′) on its way: no column this row reads holds the number Cd′ is the complement of
+         ✗ line 89: cards (v23 v24)(v14 v26)(v24 v23)(v26 v14)(0 v29): the run needs (v23 v24)(v14 0)(v24 v23)(0 v29)
+         ✗ line 70: 48 cards in all: the count comes to 49
+L022      99 statements,  99 agree
+L024-1    59 statements,  56 agree
+         ✗ line 63: where v1‴ comes from: v1‴ (W0 + 3ΔW0 + 3Δ²W) is not in a column this row leaves at zero
+         ✗ line 63: v2 = W3: the operation of the row gives (W0 + 3ΔW0 + 3Δ²W)/(V0 + 3ΔV0 + 3Δ²V)
+         ✗ line 64: mill: (W3/V3)·P3: the operation gives (3P0W0ΔW0Δ²W + 3P0W0ΔW0^2 + 4P0W0^2ΔW0 + 3P0W0^2Δ²W + P0W0^3)/(3V0ΔV0Δ²V + 3V0ΔV0^2 + 4V0^2ΔV0 + 3V0^2Δ²V + V0^3)
+L024-2    64 statements,  57 agree
+         ✗ line 45: mill: Q1+ΔQ: the operation gives (P1b1 + Q1R1 - Q1b0 + R1ΔQ)/R1
+         ✗ line 47: v15 left at 0: v15 was already zero
+         ✗ line 47: where v15′ comes from: v15′ ((P1b1 - Q1b0)/R1) is not in a column this row leaves at zero
+         ✗ line 47: v17 = b2: the operation of the row gives (-P1Q1b0 + P1b1ΔP + P1^2b1 - Q1b0ΔP)/R1
+         ✗ line 55: v20 = Q3·b3: the operation of the row gives (P1Q1b1 + 2P1b1ΔQ - 2Q1b0ΔQ - Q1^2b0)/R1
+         ✗ line 56: mill: P3·b3 - Q3·b2: the operation gives (-3P1Q1R1b0ΔPΔR + 2P1Q1R1b0ΔQΔR - P1Q1R1b1ΔPΔR - 3P1Q1R1^2b0ΔP + 2P1Q1R1^2b0ΔQ - P1Q1R1^2b1ΔP - P1Q1R1^2b1ΔR - P1Q1R1^3b1 + P1Q1^2R1b0ΔR + P1Q1^2R1^2b0 - 2P1R1b1ΔPΔQΔR + 2P1R1b1ΔP^2ΔR - 2P1R1^2b1ΔPΔQ + 2P1R1^2b1ΔP^2 - P1R1^2b1ΔQΔR - P1R1^3b1ΔQ - P1^2Q1R1b0ΔR - P1^2Q1R1b1ΔR - P1^2Q1R1^2b0 - P1^2Q1R1^2b1 + 3P1^2R1b1ΔPΔR - 2P1^2R1b1ΔQΔR + 3P1^2R1^2b1ΔP - 2P1^2R1^2b1ΔQ + P1^3R1b1ΔR + P1^3R1^2b1 + 2Q1R1b0ΔPΔQΔR - 2Q1R1b0ΔP^2ΔR + 2Q1R1^2b0ΔPΔQ - 2Q1R1^2b0ΔP^2 - 2Q1R1^2b1ΔPΔR + 3Q1R1^2b1ΔQΔR - 2Q1R1^3b1ΔP + 3Q1R1^3b1ΔQ + Q1^2R1b0ΔPΔR + Q1^2R1^2b0ΔP + Q1^2R1^2b1ΔR + Q1^2R1^3b1 - 2R1^2b1ΔPΔQΔR + 2R1^2b1ΔQ^2ΔR - 2R1^3b1ΔPΔQ + 2R1^3b1ΔQ^2)/(R1^2ΔR^2 + 2R1^3ΔR + R1^4)
+         ✗ line 57: where v13‴ comes from: v13‴ ((-3P1Q1R1b0ΔP - P1Q1R1b1ΔR - 2P1Q1R1^2b1 + 2P1R1b1ΔP^2 - 2P1R1b1ΔQΔR - 3P1R1^2b1ΔQ - P1^2Q1R1b0 + 3P1^2R1b1ΔP + P1^3R1b1 - 2Q1R1b0ΔP^2 + 2Q1R1b0ΔQΔR + 2Q1R1^2b0ΔQ - 2Q1R1^2b1ΔP + Q1^2R1b0ΔR + Q1^2R1^2b0 - 2R1^2b1ΔPΔQ)/(R1^2ΔR + R1^3)) is not in a column this row leaves at zero
+L025      93 statements,  89 agree
+         ✗ line 69: v18 = B610: the operation of the row gives 45/64
+         ✗ line 69: v19 = B610: the operation of the row gives 45/64
+         ✗ line 70: v18 at zero to receive: v18 still holds 729/1792a, which would be lost
+         ✗ line 70: v19 at zero to receive: v19 still holds 729/1792a, which would be lost
+L026-1    27 statements,  27 agree
+L026-2    31 statements,  31 agree
+L027       0 statements,   0 agree
 
-26 pages; 1994 statements of the sheets checked, 1961 agree.
-11 page(s) with statements that do not agree.
+34 pages; 2549 statements of the sheets checked, 2499 agree.
+15 page(s) with statements that do not agree.
 ```
 
 ## The rules of the machine
@@ -177,7 +210,7 @@ $ babbage decisions
    BAB/L/015 (23 December 1837), rows 23 to 26: HK′ then MK′ with K′ in no column, and H′K then M′K with K in none. The mill tabulates K′ and K, the factor written second. On sheets with no right-hand column the run makes the table of whichever factor the next multiplication, reading one column, needs.
 
 21. A number may be given off to the mill and retained.
-   BAB/L/016 (June 1838), back: "G.R signifies give off & retain"; BAB/L/019 (July 1840), back: the 0 above means the column is reduced to zero, the letter below that it is "retained at the same place … by means of its Complement previously put out". The run gives the number to the mill and leaves it in its column; its accents do not change. A complement written on its way back ("C.'B 0") is checked to be of the number retained.
+   BAB/L/026 (undated) marks every number going to the mill with an arrow, ←, and clears no column: a and c are each taken twice. BAB/L/016 (June 1838), back: "G.R signifies give off & retain"; BAB/L/019 (July 1840), back: the 0 above means the column is reduced to zero, the letter below that it is "retained at the same place … by means of its Complement previously put out". The run gives the number to the mill and leaves it in its column; its accents do not change. A complement written on its way back ("C.'B 0") is checked to be of the number retained.
 
 22. A complement read into the mill gives the number it is the complement of.
    BAB/L/014, second table: each a is read again and again from a column holding "Comp a", and laid again as "Comp a", with no transfer ever bringing it back.

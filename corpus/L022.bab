@@ -1,0 +1,116 @@
+% BAB/L/022, Science Museum Group Collection, document aa110001723.
+% The cover (222/601): "No 22 being a continuation of 21", "15 Aug 1840";
+% the opened sheet (222/602): two tables and, for the first, the variable
+% cards; the back (340/324): blank. Read from the zoom images at full
+% resolution. See sources/notes/L022.md.
+%
+% DRAFT (hence .bab.draft): rows 8 and 17 do two things in one row, a
+% multiplication and the moving of γ (or 'γ) through a complement column
+% into the column B (or 'B) has left, and the engine takes every column a
+% row leaves at zero as an operand of the operation, so it stops at row 8
+% ("× needs two operands; the row gives 3"). With those two moves written
+% as rows of their own, the run agrees with 99 of 101 statements; the two
+% that do not are the cards of the moves, (v3 v2)(v2 v21), which the
+% engine derives as (v3 v21). See the notes.
+%
+% The sheet writes accents before the letter ('B, ''C, 'γ); here after (B',
+% C'', γ'). Its round ∂ is written d. Products in the mill column are
+% written as the sheet orders them: "B'C" (B times 'C) is BC' here.
+
+Sheet BAB/L/022
+No. 22
+Date 15 Aug 1840          "15 Aug 1840"   % cover
+Title "Reduction of the three Equations Bx + Cy + Dz + E = 0, 'Bx + 'Cy + 'Dz + 'E = 0, ''Bx + ''Cy + ''Dz + ''E = 0 to two others viz γy + δz + ε = 0, 'γy + 'δz + 'ε = 0 and of these to ∂z + e = 0"
+Image 222/601 cover: "No 22 being a continuation of 21"
+Image 222/602 the two tables and the cards of the first
+Image 340/324 back, blank
+
+Letters B C D E B' C' D' E' B'' C'' D'' E''
+Unknowns x y z
+Equation B x + C y + D z + E = 0
+Equation B' x + C' y + D' z + E' = 0
+Equation B'' x + C'' y + D'' z + E'' = 0
+
+% Columns: two numbers to each row, the first (small) running on from No.
+% 21 (37 to 60), the second the row's own (1 to 18; then 19, 20, 3, 4, 5, 6);
+% a brace for each group of three; the two variables the row operates on
+% ("v21 v8"); the operation; the mill's quantity, with "= γ" and the like
+% under each difference; an empty, unheaded column; the store v1 to v15,
+% "&c", v21 to v30 (v16 to v20 not ruled); an empty column; a column of
+% notes ("like C", "like D", "somewhat like E", "not identical with 'C",
+% "not identical with 'D", "not identical with 'E", against the groups of
+% the first table); a column naming each result (γ, δ, ε, 'γ, 'δ, 'ε); then
+% the cards. The first line of the store: v1 0, v2 0, v3 C, v4 D, v5 E,
+% v6 0, v7 0, v8 'C, v9 'D, v10 'E, v11 0, v12 0, v13 ''C, v14 ''D,
+% v15 ''E; v21 B, v22 0, v23 'B, v24 0, v25 ''B, v26 0; v27 to v30 empty.
+% So the B's of the three equations stand in v21, v23, v25, each with a
+% complement column beside it (v22, v24, v26); v29 and v30 hold products.
+Store v3 = C, v4 = D, v5 = E, v8 = C', v9 = D', v10 = E', v13 = C'', v14 = D'', v15 = E'', v21 = B, v23 = B', v25 = B''
+Working v2 v7 v22 v24 v26 v29 v30
+
+% "0 B" below a column: given off and retained; "CB 0" in the column
+% beside it: the complement laid and given back, as on L/019 and L/020.
+Op 1     ×  | BC'            | v21 0 B, v22 CB 0, v8 0 C', v24 C(C') 0, v29 BC' |   % "v21 v8"
+Cards 1 (v21 v22)(v8 v24)(v22 v21)(v24 v8)(0 v29)
+Op 2     ×  | B'C            | v23 0 B', v24 CB' 0, v3 0, v30 B'C |                 % "v23 v3"
+Cards 2 (v23 v24)(v3 0)(v24 v23)(0 v30)
+Op 3     −  | BC'-B'C        | v29 0, v30 0, v3 =γ |                                % the mill: "B'C − 'BC = γ"; notes "like C", "γ"
+Cards 3 (v29 0)(v30 0)(0 v3)
+Op 4     ×  | BD'            | v21 0 B, v22 CB 0, v9 0 D', v24 C(D') 0, v29 BD' |   % "v21 v9"
+Cards 4 (v21 v22)(v9 v24)(v22 v21)(v24 v9)(0 v29)
+Op 5     ×  | B'D            | v23 0 B', v24 CB' 0, v4 0, v30 B'D |                 % "v23 v4"
+Cards 5 (v23 v24)(v4 0)(v24 v23)(0 v30)
+Op 6     −  | BD'-B'D        | v29 0, v30 0, v4 =δ |                                % "= δ"; notes "like D", "δ"
+Cards 6 (v29 0)(v30 0)(0 v4)
+Op 7     ×  | BE'            | v21 0, v10 0 E', v24 C(E') 0, v29 BE' |              % "v21 v10"; B given off, not retained: its last use
+Cards 7 (v21 0)(v10 v24)(v24 v10)(0 v29)
+% Row 8 also moves γ from v3 to v21, which B has left empty, through its
+% complement in v2: "Cγ 0" in v2, "0" in v3, "γ" in v21, and the cards
+% (v3 v2)(v2 v21). A faint pencil curve runs across v2 and v3 here.
+Op 8     ×  | B'E            | v23 0 B', v24 CB' 0, v5 0, v30 B'E, v3 0, v2 Cγ 0, v21 γ |   % "v23 v5"
+Cards 8 (v23 v24)(v5 0)(v24 v23)(0 v30)(v3 v2)(v2 v21)
+Op 9     −  | BE'-B'E        | v29 0, v30 0, v5 =ε |                                % "= ε"; notes "somewhat like E", "ε"
+Cards 9 (v29 0)(v30 0)(0 v5)
+% "37" at the right, at the end of row 9's cards, above a rule across the
+% cards: the cards of rows 1 to 9 (12 + 12 + 13).
+Total 37
+Op 10    ×  | B'C''          | v23 0 B', v24 CB' 0, v13 0, v29 B'C'' |              % "v23 v13"
+Cards 10 (v23 v24)(v13 0)(v24 v23)(0 v29)
+Op 11    ×  | B''C'          | v25 0 B'', v26 CB'' 0, v8 0, v30 B''C' |             % "v25 v8"
+Cards 11 (v25 v26)(v8 0)(v26 v25)(0 v30)
+Op 12    −  | B'C''-B''C'    | v29 0, v30 0, v8 =γ' |                               % "= 'γ"; notes "not identical with 'C", "'γ"
+Cards 12 (v29 0)(v30 0)(0 v8)
+Op 13    ×  | B'D''          | v23 0 B', v24 CB' 0, v14 0, v29 B'D'' |              % "v23 v14"
+Cards 13 (v23 v24)(v14 0)(v24 v23)(0 v29)
+Op 14    ×  | B''D'          | v25 0 B'', v26 CB'' 0, v9 0, v30 B''D' |             % "v25 v9"
+Cards 14 (v25 v26)(v9 0)(v26 v25)(0 v30)
+Op 15    −  | B'D''-B''D'    | v29 0, v30 0, v9 =δ' |                               % "= 'δ"; notes "not identical with 'D", "'δ"
+Cards 15 (v29 0)(v30 0)(0 v9)
+Op 16    ×  | B'E''          | v23 0, v15 0, v29 B'E'' |                            % "v23 v15"; 'B given off at its last use
+Cards 16 (v23 0)(v15 0)(0 v29)
+% Row 17 likewise moves 'γ from v8 to v23 through v7: "C'γ 0" in v7, "0"
+% in v8, "'γ" in v23; cards (v8 v7)(v7 v23).
+Op 17    ×  | B''E'          | v25 0, v10 0, v30 B''E', v8 0, v7 Cγ' 0, v23 γ' |   % "v25 v10"; ''B given off at its last use
+Cards 17 (v25 0)(v10 0)(0 v30)(v8 v7)(v7 v23)
+Op 18    −  | B'E''-B''E'    | v29 0, v30 0, v10 =ε' |                              % "= 'ε"; notes "not identical with 'E", "'ε"
+Cards 18 (v29 0)(v30 0)(0 v10)
+
+% The second table, below a rule, with no cards: under the cards of the
+% first, "&c similar" (read in part). Its rows are numbered 19, 20, then
+% 3, 4, 5, 6 (running numbers 55 to 60).
+Op 19    ×  | γδ'            | v21 0 γ, v22 Cγ 0, v9 0, v29 γδ' |                   % "v21 v9"; the mill "γ'δ"
+Op 20    ×  | γ'δ            | v23 0 γ', v24 Cγ' 0, v4 0, v30 γ'δ |                 % "v23 v4"; the mill "'γδ"
+Op 3     −  | γδ'-γ'δ        | v29 0, v30 0, v4 =d |                                % "γ'δ − 'γδ = ∂"
+Op 4     ×  | γε'            | v21 0, v10 0, v29 γε' |                              % "v21 v10"
+Op 5     ×  | γ'ε            | v23 0, v5 0, v30 γ'ε |                               % "v23 v5"
+Op 6     −  | γε'-γ'ε        | v29 0, v30 0, v5 =e |                                % "γ'ε − 'γε = e"
+
+Remark "like C"
+Remark "like D"
+Remark "somewhat like E"
+Remark "not identical with 'C"
+Remark "not identical with 'D"
+Remark "not identical with 'E"
+Unrun "below the cards of the first table: '&c similar' (read in part)"
+Unrun "a faint pencil curve across v2 and v3 at row 8"
+Unrun "top left of the opened sheet, faint pencil: '22'"

@@ -159,7 +159,7 @@ pub fn decisions() -> Vec<(&'static str, &'static str)> {
         ),
         (
             "A number may be given off to the mill and retained.",
-            "BAB/L/016 (June 1838), back: \"G.R signifies give off & retain\"; BAB/L/019 (July 1840), back: the 0 above means the column is reduced to zero, the letter below that it is \"retained at the same place … by means of its Complement previously put out\". The run gives the number to the mill and leaves it in its column; its accents do not change. A complement written on its way back (\"C.'B 0\") is checked to be of the number retained.",
+            "BAB/L/026 (undated) marks every number going to the mill with an arrow, ←, and clears no column: a and c are each taken twice. BAB/L/016 (June 1838), back: \"G.R signifies give off & retain\"; BAB/L/019 (July 1840), back: the 0 above means the column is reduced to zero, the letter below that it is \"retained at the same place … by means of its Complement previously put out\". The run gives the number to the mill and leaves it in its column; its accents do not change. A complement written on its way back (\"C.'B 0\") is checked to be of the number retained.",
         ),
         (
             "A complement read into the mill gives the number it is the complement of.",
@@ -601,17 +601,29 @@ pub fn run(page: &Page) -> Run {
             // group; `Total g r` says the group so far lists g cards and the
             // running count is r.
             let sum = |a: usize, b: usize| -> i64 { per_row[a.min(b)..b].iter().sum() };
-            let (mut carried, mut carried_at, mut group_at) = (None, 0usize, 0usize);
-            for (after, run_count, group, line) in &page.card_counts {
+            let (mut carried, mut carried_at, mut group_at) = (Some(0i64), 0usize, 0usize);
+            for (after, count, line) in &page.card_counts {
                 let upto = (*after).min(per_row.len());
-                match (group, run_count) {
-                    (None, Some(k)) => {
+                let running = |want: i64, checks: &mut Vec<Check>| {
+                    if let Some(c) = carried {
+                        let got = c + sum(carried_at, upto);
+                        let ok = if want == got {
+                            Ok(())
+                        } else {
+                            Err(format!("the count comes to {got}"))
+                        };
+                        checks.push(check(*line, format!("{want} cards in all"), ok));
+                    }
+                };
+                match count {
+                    crate::page::CardCount::Carried(k) => {
                         carried = Some(*k);
                         carried_at = upto;
                         group_at = upto;
                     }
-                    (None, None) => group_at = upto,
-                    (Some(g), r) => {
+                    crate::page::CardCount::Group => group_at = upto,
+                    crate::page::CardCount::Running(r) => running(*r, &mut checks),
+                    crate::page::CardCount::Total(g, r) => {
                         let n = sum(group_at, upto);
                         let ok = if *g == n {
                             Ok(())
@@ -619,14 +631,8 @@ pub fn run(page: &Page) -> Run {
                             Err(format!("the rows of the group list {n}"))
                         };
                         checks.push(check(*line, format!("{g} cards in the group"), ok));
-                        if let (Some(want), Some(c)) = (r, carried) {
-                            let got = c + sum(carried_at, upto);
-                            let ok = if *want == got {
-                                Ok(())
-                            } else {
-                                Err(format!("the count comes to {got}"))
-                            };
-                            checks.push(check(*line, format!("{want} cards in all"), ok));
+                        if let Some(r) = r {
+                            running(*r, &mut checks);
                         }
                     }
                 }
@@ -853,6 +859,32 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                     }
                     if w.len() == 2 {
                         v = w;
+                    }
+                }
+            }
+            // Reads the operation does not use are moves made in the same row
+            // (BAB/L/022, row 8: × 'BE, and γ moved v3 → v2 → v21): with no
+            // right-hand column, the operands are the reads the mill column
+            // names.
+            if let (Some(Op::Mul | Op::Sub | Op::Div), Some((Expr::Mul(a, b) | Expr::Sub(a, b) | Expr::Div(a, b), _))) =
+                (row.op, &row.mill)
+            {
+                if v.len() > 2 {
+                    let factors: Vec<Value> = [a, b]
+                        .iter()
+                        .filter_map(|e| st.eval(e).ok()?.plain().cloned())
+                        .collect();
+                    let used: Vec<(usize, usize)> = v
+                        .iter()
+                        .copied()
+                        .filter(|(n, p)| {
+                            st.version(*n, *p)
+                                .ok()
+                                .is_some_and(|h| factors.iter().any(|f| h.same(&Held::Plain(f.clone()))))
+                        })
+                        .collect();
+                    if used.len() == 2 {
+                        v = used;
                     }
                 }
             }
@@ -1238,6 +1270,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         h.is_some_and(|h| h.same(&Held::Plain(x.clone())) || h.same(&Held::Complement(x.clone())))
     };
     let mut restores = vec![];
+    let mut moved_to: Vec<usize> = vec![];
     for (c, cell) in &row.cells {
         match cell {
             Cell::Retain(_) => match transits.iter().find(|(_, x)| is(held(*c), x)) {
@@ -1248,10 +1281,25 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
                 None => pairs.push((*c, 0)),
             },
             Cell::Zero if row.op.is_none() => {}
-            Cell::Zero => match laid.iter().find(|(_, x)| is(held(*c), x)) {
-                Some((l, _)) => pairs.push((*c, *l)),
-                None => pairs.push((*c, 0)),
-            },
+            Cell::Zero => {
+                // A move made beside the operation: through a complement
+                // column to the column that receives it, (r t)(t w).
+                let moved = transits.iter().find(|(_, x)| is(held(*c), x)).and_then(|(t, x)| {
+                    writes
+                        .iter()
+                        .find(|(w, h)| h.same(&Held::Plain(x.clone())) && w != c)
+                        .map(|(w, _)| (*t, *w))
+                });
+                match (moved, laid.iter().find(|(_, x)| is(held(*c), x))) {
+                    (Some((t, w)), _) => {
+                        pairs.push((*c, t));
+                        restores.push((t, w));
+                        moved_to.push(w);
+                    }
+                    (None, Some((l, _))) => pairs.push((*c, *l)),
+                    (None, None) => pairs.push((*c, 0)),
+                }
+            }
             _ => {}
         }
     }
@@ -1262,7 +1310,7 @@ fn step(st: &mut State, row: &Row, tally: &mut Tally) -> Result<Step, String> {
         }
     } else {
         for (w, _) in &writes {
-            if !laid.iter().any(|(l, _)| l == w) {
+            if !laid.iter().any(|(l, _)| l == w) && !moved_to.contains(w) {
                 pairs.push((0, *w));
             }
         }

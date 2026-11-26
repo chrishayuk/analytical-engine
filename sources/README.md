@@ -48,10 +48,11 @@ Document `aa110000067`, "Computation of the coefficients of a polynomial
 from those of another divided by a quadratic term". The catalogue record has
 no images. Rojas (2017, Table 3) lists program 3 as not in the archive.
 
-### BAB/L/004 to BAB/L/012
+### BAB/L/004 to BAB/L/027
 
-See `notes/L004.md` to `notes/L012.md` for each sheet's images, cover and
-readings.
+See `notes/L004.md` to `notes/L027.md` for each sheet's images, cover and
+readings, and `checks/L023.py` for the looped program of L/023, run as a
+loop and compared with its 35 rows.
 
 ## Secondary literature
 

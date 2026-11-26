@@ -396,6 +396,7 @@ pub const KEYWORD_HELP: &[(&str, &str)] = &[
     ("Cards", "the sheet's variable cards for the row above: `Cards (v7 v17)(v3 0)(v17 v7)(0 v18) 4`"),
     ("Carried", "the count of cards carried over from the sheet before: `Carried 136`"),
     ("Group", "a group of cards begins, counted afresh"),
+    ("Running", "the sheet's running count of cards alone: `Running 98`"),
     ("Total", "the sheet's count of cards: the group's, and the running total: `Total 12 148`"),
     (
         "Turn",

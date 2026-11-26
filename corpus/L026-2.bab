@@ -1,0 +1,33 @@
+% BAB/L/026, Science Museum Group Collection, document aa110001735.
+% The lower table of the sheet (image 222/615), "Another method for the
+% same". No date. Read from the zoom images at full resolution. See
+% sources/notes/L026.md.
+
+Sheet BAB/L/026
+No. 26.2
+Title "Another method for the same x = (ab + cd)/(a + c) = (ab + bc - bc + cd)/(a + c) = b + (∂ - b)c/(a + c)"
+Image 222/615 lower table and its right-hand column
+
+% The fourth letter is written ∂; here d.
+Letters a b c d
+Find x = (ab+cd)/(a+c)
+
+% The store is headed v1 to v10 again, a b c ∂ in v1 to v4; v10 unused.
+Store v1 = a, v2 = b, v3 = c, v4 = d
+Working v5 v6 v7 v8 v9
+
+% As in the upper table: arrows "←" (all plain here), no 0, no column
+% cleared: b goes to the mill at operations 1 and 5, c at 2 and 3. Written
+% G.R. The right-hand column, without accents: "v5 = v4 − v2", "v6 = v1 +
+% v3", "v7 = v5v3", "v8 = v7/v6", then the composition below.
+Op 1     −  | d-b              | v2 ←, v4 ←, v5 d-b                  | v5 = v4-v2
+Op 2     +  | a+c              | v1 ←, v3 ←, v6 a+c                  | v6 = v1+v3
+Op 3     ×  | (d-b)c           | v3 ←, v5 ←, v7 (d-b)c               | v7 = v5·v3
+Op 4     ÷  | ((d-b)c)/(a+c)   | v6 ←, v7 ←, v8 ((d-b)c)/(a+c)       | v8 = v7/v6
+Op 5     +  | b+((d-b)c)/(a+c) | v2 ←, v8 ←, v9 =x                   | x = v9 = v2+v8   % the mill column writes "b + (∂ − b)c/(a + c) = x"; v9 "b + (∂ − b)c/(a + c)"
+
+% The heading, and the right-hand column's composition:
+Composition x = (ab+cd)/(a+c) = (ab+bc-bc+cd)/(a+c) = b+((d-b)c)/(a+c)
+Composition x = v9 = v2+v8 = v2+v7/v6 = v2+(v5·v3)/(v1+v3) = v2+((v4-v2)v3)/(v1+v3) = b+((d-b)c)/(a+c)
+
+Unrun "pencil, below the right-hand column, struck through: 'x = (ab + ∂)/(a + c) = b/c + ∂/a'"

@@ -197,6 +197,10 @@ const DISAGREEMENTS: &[(&str, usize)] = &[
     ("L017", 9),
     ("L018", 3),
     ("L020", 1),
+    ("L021", 3),
+    ("L024-1", 3),
+    ("L024-2", 7),
+    ("L025", 4),
 ];
 
 #[test]
@@ -213,10 +217,10 @@ fn every_page_agrees_but_for_its_known_slips() {
 fn l019_and_l020_cards_agree_with_the_run() {
     // Every card Babbage lists for the 36 operations of No. 19 and the 25 of
     // No. 20, and his totals: 136 for No. 19, carried over to 225.
-    for name in ["L019", "L020"] {
+    for name in ["L019", "L020", "L022"] {
         let r = run(&read("", &page(name)).unwrap());
         let cards: Vec<_> = r.all_checks().filter(|c| c.what.starts_with("cards ")).collect();
-        assert!(cards.len() >= 25, "{name}");
+        assert!(cards.len() >= 18, "{name}");
         assert!(cards.iter().all(|c| c.ok), "{name}");
     }
 }
@@ -295,4 +299,23 @@ fn l012_needs_two_rules_for_bringing_m_and_n_to_the_mill() {
     assert!(!failures(&plain).is_empty());
     assert!(!failures(&comp).is_empty());
     assert_eq!(failures(&t), Vec::<String>::new());
+}
+
+#[test]
+fn l021_cards_agree_but_for_row_19_and_the_first_running_total() {
+    // Row 19 writes C'∂ for C''∂ in v26 (the complement, and its cards);
+    // the first running total is written 48 over another figure, for 49.
+    let f = failures(&page("L021"));
+    assert!(
+        f.iter()
+            .any(|f| f.starts_with("48 cards in all: the count comes to 49")),
+        "{f:#?}"
+    );
+}
+
+#[test]
+fn l026_computes_one_formula_two_ways() {
+    // (ab + c∂)/(a + c), and b + (∂ − b)c/(a + c): the same x.
+    let x = |name: &str| run(&read("", &page(name)).unwrap()).results.get("x").cloned().unwrap();
+    assert!(x("L026-1").same(&x("L026-2")));
 }

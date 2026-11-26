@@ -1,0 +1,59 @@
+% BAB/L/024, Science Museum Group Collection, document aa110001732.
+% The lower table of the opened sheet (image 222/606), below the heading
+% "bs(i+1) = (Pi.bs(i) − Qi.bs(i−1))/Ri", with "Δ²P = 0", "Δ²Q = 0",
+% "Δ²R = 0" over the columns. The cover (222/605) gives the method, under
+% "2". Not dated. Read from the zoom images at full resolution.
+
+Sheet BAB/L/024
+No. 24.2
+Title "bs(i+1) = (Pi.bs(i) − Qi.bs(i−1))/Ri"
+Image 222/605 cover: "2. If Pi = i(1+η²), Qi = (i+s−1)η, Ri = (i−s)η; P1 = 1+η², Q1 = sη, R1 = (1−s)η; ΔP = 1+η², ΔQ = η, ΔR = η; then bs(i+1) = (Pi.bs(i) − Qi.bs(i−1))/Ri"
+Image 222/606 the lower table
+
+% bs(0), bs(1), ... are written b0, b1, ...: the sheet's b with the index
+% above it in brackets. The letters are the store's first line; Pk, Qk, Rk
+% and bk are defined below from them and from the heading's recurrence.
+% X1, X2, X3 are the sheet's names for the numerators; =X1 marks where it
+% first writes each.
+Letters P1 ΔP Q1 ΔQ R1 ΔR b0 b1
+Let P2 = P1 + ΔP
+Let P3 = P1 + 2ΔP
+Let Q2 = Q1 + ΔQ
+Let Q3 = Q1 + 2ΔQ
+Let R2 = R1 + ΔR
+Let R3 = R1 + 2ΔR
+Let b2 = (P1·b1 - Q1·b0)/R1
+Let b3 = (P2·b2 - Q2·b1)/R2
+Let b4 = (P3·b3 - Q3·b2)/R3
+
+% The store's first line: v1 P1, v2 0, v3 ΔP, v4 0, v5 Q1, v6 0, v7 ΔQ,
+% v8 0, v9 R1, v10 0, v11 ΔR, v12 0, v13 b1, v14 0, v15 b0, v16 0 (fainter),
+% and b0 again in v21. Columns run to v25.
+Store v1 = P1, v3 = ΔP, v5 = Q1, v7 = ΔQ, v9 = R1, v11 = ΔR, v13 = b1, v15 = b0, v21 = b0
+Working v2 v4 v6 v8 v10 v12 v14 v16 v17 v18 v19 v20 v22 v23 v24 v25
+
+% The species column is written only for operation 1 ("×"); for the others
+% the operation is taken from the form of the mill entry (a product, a sum,
+% "1−2", "3/R1"). The mill entries "1−2", "3/R1", "8−9", "10/R2", "15−16",
+% "17/R3" name the results of earlier operations; they are written here in
+% letters.
+Op 1   ×  | P1·b1          | v1 0, v2 P1, v13 0, v14 b1, v17 P1·b1, v22 b1 |
+Op 2   ×  | Q1·b0          | v5 0, v6 Q1, v15 0, v16 b0, v18 Q1·b0 |     % species column empty
+Op 3   −  | P1·b1 - Q1·b0  | v13 =X1, v17 0, v18 0 |                      % mill "1−2"
+Op 4   ÷  | X1/R1          | v9 0, v10 R1, v13 0, v15 b2, v23 b2 |        % mill "3/R1"
+Op 5   +  | P1+ΔP          | v1 P2, v2 0, v3 0, v4 ΔP |
+Op 6   +  | Q1+ΔQ          | v5 Q2, v6 0, v7 0, v8 ΔQ, v15 0 |            % a 0 in v15, clear, read again at full size; v15 holds b2 until operation 8, which writes 0 there again
+Op 7   +  | R1+ΔR          | v9 R2, v10 0, v11 0, v12 ΔR |
+Op 8   ×  | P2·b2          | v1 0, v2 P2, v15 0, v17 b2, v18 P2·b2 |
+Op 9   ×  | Q2·b1          | v5 0, v6 Q2, v14 0, v15 b1, v19 Q2·b1 |
+Op 10  −  | P2·b2 - Q2·b1  | v13 =X2, v18 0, v19 0 |                      % mill "8−9"
+Op 11  ÷  | X2/R2          | v9 0, v10 R2, v13 0, v14 b3, v24 b3 |        % mill "10/R2"
+Op 12  +  | P2+ΔP          | v1 P3, v2 0, v3 ΔP, v4 0 |
+Op 13  +  | Q2+ΔQ          | v5 Q3, v6 0, v7 ΔQ, v8 0 |
+Op 14  +  | R2+ΔR          | v9 R3, v10 0, v11 ΔR, v12 0 |
+Op 15  ×  | P3·b3          | v1 0, v2 P3, v14 0, v18 b3, v19 P3·b3 |
+Op 16  ×  | Q3·b2          | v5 0, v6 Q3, v14 b2, v17 0, v20 Q3·b3 |     % v20 is written "Q3 b(3)", read at full size; the mill has Q3 b(2)
+Op 17  −  | P3·b3 - Q3·b2  | v13 =X3, v19 0, v20 0 |                      % mill "15−16"
+Op 18  ÷  | X3/R3          | v9 0, v10 R3, v17 b4, v25 b4 |               % mill "17/R3", the R written over another letter; no 0 in v13, from which X3 is taken
+
+Remark "Δ²P = 0   Δ²Q = 0   Δ²R = 0"
