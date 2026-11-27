@@ -31,11 +31,11 @@ in `formal/`, and should be made here first.
 | 7 | In Dec 1837 backing goes only to the first card. From 30 May 1838 it goes to any earlier card. | Page | Vol 3 p 162, "to 0 or their commencing point"; Vol 3 reverse pp 74–75, wheels "set to back any No of cards" |
 | 8 | **No combinatorial card among the cards a counted backing sends back over.** | **Reading** | Every arrangement found sets the count before the group it counts (Dec 1837, 30 May 1838, L/023). No page forbids the other arrangement either. Without this rule the machine is the `not-found` configuration. |
 | 9 | A card that writes a result gives off the number in a column. | Page | L/023, and Vol 3 p 162 |
-| 10 | Nothing chooses between cards. No result of the mill acts on a card, on the backing, or on the wheels. | Page (by absence) | Read for this up to April 1842: Vol 2 pp 74–95, Vol 3 pp 137–166 and reverse 74–75, Vol IV pp 2–19, 64–67, 406–417, and F/227. The one exception is Vol IV p 12 (25 June 1839), a variant Babbage does not adopt, which concerns complementing within one long addition (`vol4-control-1839-1840.md`). |
+| 10 | Nothing chooses between cards. No result of the mill acts on a card, on the backing, or on the wheels. | Page (by absence) | Menabrea (Oct 1842) and Lovelace's Note G (1843) state the contrary as a principle ("the mill will order other cards"), later than every configuration here. Read for this up to April 1842: Vol 2 pp 74–95, Vol 3 pp 137–166 and reverse 74–75, Vol IV pp 2–19, 64–67, 406–417, and F/227. The one exception is Vol IV p 12 (25 June 1839), a variant Babbage does not adopt, which concerns complementing within one long addition (`vol4-control-1839-1840.md`). |
 | 11 | Numbers are exact fractions of unbounded size. | Idealisation | The engine's numbers had a fixed number of figures: 40 on Vol IV p 11 (25 June 1839), with numbers of more figures added in parts. |
 | 12 | The store is unbounded. | Idealisation | The store had a fixed number of columns. |
 | 13 | A combinatorial count of 0 or less, a count of 0 or less on the wheels before the first card, or a counted backing with no number on the wheels, is an error. A repetition count of 0 performs no operation. | Idealisation | The pages do not say what happens. |
-| 14a | **A halt is passing the last card.** An operation that fails is an error, not a halt, and nothing given off before it is an output. | Idealisation | The 1843 Sketch says the engine stops at "the passage through zero or infinity". A stop of that kind, counted as a halt, would be a different model (`expressiveness.md` §4 F). |
+| 14a | **A halt is passing the last card.** An operation that fails is an error, not a halt, and nothing given off before it is an output. | Idealisation | Model D (`Trap.lean`) reads the other way: a stop at an operation the mill cannot do ends the run, with the store as its result. No text read treats such a stop as the end of a computation: in Menabrea (1842) the engine rings a bell and "stops until the attendant has again set it in action" (`menabrea-lovelace-1843-control.md`). |
 | 14 | An operation that is undefined, such as division by 0, is an error that ends the run. | Idealisation | The pages do not say. |
 | 15 | An input is a number placed in the store or on the wheels before the first card. | Idealisation | Babbage's numbers came in on number cards. That is the same as a deck that sets its inputs first. |
 
@@ -62,6 +62,9 @@ checked by CI with no `sorry`), except where marked **argued**.
 | Under rule 8, with repetition counts from the store, a halting deck gives off nothing larger than a fixed number of tetrations on its input, and so does not give 2↑↑↑n for every n. | all | `out_le_ptw`, `no_pentation`; applied to `tower-halting` in `tower_below_pentation` |
 | Without rule 8 (`not-found`), a counter machine translates into a deck that halts exactly when the machine does, and gives off its counters; every configuration with rule 8 refuses that deck. | 1–7 | `compile_accepted`, `compile_refused`, `compile_halts`, `machine_halts_of_compile` |
 | With counts from number cards, for every n from some point on, a halting deck gives off nothing as large as 2↑↑n. | all, with `ConstReps` | `no_tetration_eventually` |
+| **Model D**, every backing card counted: the bounds above hold for every state a run reaches, a trap stop included. | all, rule 14a reversed | `reach_le_tower`, `reach_le_ptw`, `no_tetration_reach`, `no_pentation_reach` |
+| **Model D**, with the unconditional backing card: a counter machine translates into a deck of 30 May 1838 that stops at a trap exactly when the machine halts, its counters in the store. | 1–8, rule 14a reversed | `trapDeck_accepted`, `trap_halts`, `machine_halts_of_trap` |
+| **Model D**, December 1837 with repetition counts from the store: the same, with no combinatorial card and no counted backing. | 1–8, 3a as coded, rule 14a reversed | `trapDeck37_accepted`, `trap37_halts`, `machine_halts_of_trap37`; `trapDeck_refused_1837`, `trapDeck37_not_constReps` |
 
 Both whole numbers (`intSized`) and exact fractions satisfy the size
 condition of the growth theorems. For fractions, size is the larger of
@@ -69,3 +72,10 @@ condition of the growth theorems. For fractions, size is the larger of
 `no_pentation_rat`). The fraction results, and `intSized`'s case for ÷,
 rest on core Lean lemmas about `Rat` and `Int` division that use the axiom
 `Classical.choice`. The generic theorems do not.
+
+**Lean against Rust.** `scripts/lean-diff.sh` (in CI) runs the same decks
+through `Babbage.step` on exact fractions (`formal/Diff.lean`) and through
+`src/sketch.rs`, and compares the status, the results and the store: every
+control deck the Lean model has, the counter-machine decks, and 2,000 random
+decks with and without the trap. They agree on all of them. That is a test,
+not a proof of correspondence.

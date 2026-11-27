@@ -256,27 +256,55 @@ universal in the sense of computing every partial computable function.
 **This is a theorem about a configuration no page read gives.** It says
 nothing about whether Babbage's engine, as he went on to design it, was
 universal. Nor does it say that the dated configurations are not universal
-in some other sense (see F).
+in some other sense: under Model D they are (F).
 
-**F. What "halts" means, and a stop by failure.** In all of A–E an
+**F. What "halts" means, and a stop by failure (Model D).** In A–E an
 operation that fails, such as division by 0, is an error. An error is not a
 halt, and what was given off before it is not counted as an output
-(`Res.err` carries no state). This choice matters:
-- Rojas (1998) made the Z3 universal by ending an endless loop with a
-  deliberate undefined operation.
-- The 1843 Sketch of Menabrea says the engine stops at "the passage through
-  zero or infinity".
+(`Res.err` carries no state). Model D reads such a stop the other way: the
+run ends there, and what stands in the store is its result (`TrapStops` in
+`formal/Babbage/Trap.lean`). The cards, the configurations and `step` are
+unchanged; only what counts as the end changes. Rojas (1998) made the Z3
+universal this way, by ending an endless loop with a deliberate undefined
+operation. Proved in Lean:
 
-If such a stop counted as a halt, with the last number given off as the
-result, then the dated configurations could do more:
-- an endless loop can set its counts before its counted groups;
-- a pass could divide by a flag that is 0 only when it is done.
+- **With every backing card counted, a trap adds nothing.** The bounds of
+  A and B hold for every state a run reaches, a trap stop included
+  (`reach_le_tower`, `reach_le_ptw`, `no_tetration_reach`,
+  `no_pentation_reach`). A trap can only end a run sooner.
+- **With the unconditional backing card, a trap is enough.** A counter
+  machine translates into a deck that the configuration of 30 May 1838
+  accepts (`trapDeck_accepted`). Each pass is one step; the pass ends with
+  W := W − 1, 1 ÷ W and an unconditional backing to card 0, and W is 0 only
+  once the machine has halted. The deck stops at its trap exactly when the
+  machine halts, with the counters in the store (`trap_halts`,
+  `machine_halts_of_trap`). No combinatorial card stands in a group it
+  counts, so rule 8 holds; the repetition counts are not used, so this holds
+  under either reading of rule 3a.
+- **December 1837 as well, if a repetition count is read from the store.**
+  December 1837 backs only to card 0, so the flag groups cannot be used
+  (`trapDeck_refused_1837`). Each flag [c > 0] is instead one operation
+  repeated c times: F := 1; F := F × 0, c times; F := 1 − F. That deck has no
+  combinatorial card and no counted backing at all, and every configuration
+  with backing cards accepts it (`trapDeck37_accepted`, `trap37_halts`,
+  `machine_halts_of_trap37`). It needs the store reading of rule 3a
+  (`trapDeck37_not_constReps`). Whether December 1837 with counts from
+  number cards only becomes general under Model D is open.
 
-That would be a while loop, and so probably general, though this has not
-been checked. The theorems A–C are therefore about halting by passing the
-last card, as rule 1 gives it. A stop on an undefined operation is a fourth
-model, not formalised here. No page of 1836–1838 read so far describes such
-a stop.
+So under Model D the dated configurations of 1837 and 1838 are general,
+given Minsky's theorem, without the step of `not-found`. That is a second
+route to generality, through what counts as the end of a run rather than
+through a new card.
+
+**What the texts say about such a stop** (`sources/notes/menabrea-lovelace-1843-control.md`):
+nothing read treats it as the end of a computation. In Menabrea (1842, in
+Lovelace's translation p. 685), at "the passage through zero or infinity"
+the engine rings a bell and "stops until the attendant has again set it in
+action", or, if the case was foreseen, presents other cards. Division by 0
+is not named. The only deliberate end described is in Note G (p. 728),
+where after B₁ is placed the engine is "either to stop altogether, or to
+begin Operations 1, 2…7 all over again", without saying what decides. Model
+D is therefore an idealisation, not a reading of any page.
 
 **Not shown:** that `maximum` or `gcd` cannot be done in the dated
 configurations. No deck was found for either, and no proof that none exists
@@ -308,6 +336,8 @@ taken on 27 November 2026, and no person has checked them.
 | Vol IV p 65 | Aug 1838 | "The Running up of the Comb.l Counting App. ungears Y and gears Z so that the cards in that case are backed by Z." | No. The combinatorial counter, not the mill, chooses how far to back. This is the found configuration's own mechanism. |
 | Vol IV pp 406–417 | 30 July – 18 Aug 1840 (Turin) | Each set of cards has a card counting apparatus: cards "moved on" or "moved back through the same number"; counts from cards or from the store (p 412, two-figure indices); "The R.g up of the first index … directs its barrel to … put the second index upon it". | No. The counts come from cards or the store, loaded before use; the running up is the card counter's own. |
 | BAB/F/227 | April 1842 | Tests: "′F Runs up ∴ Vₙ > 0", "F R[uns up] ∴ Vₙ has a − sign". | No. Both outcomes have the same card columns and orders ("Same … without exception"). The only running up that orders a card is the index counter's. |
+| Menabrea, *Notions sur la machine analytique* | Oct 1842 (Lovelace's translation, 1843) | "if the remainder is nothing … the mill will order other cards" (p. 687); at "the passage through zero or infinity", if foreseen, the engine "will so dispose itself as to present the new cards" (p. 685). | **Yes, as a principle**, with no mechanism described. Later than every configuration above (`menabrea-lovelace-1843-control.md`). |
+| Lovelace, Note G | 1843 | "V₁₀ always decides which of two courses the succeeding processes are to follow, by feeling for the value of n through means of a subtraction" (pp. 730–731). | **Yes**: one worked case, a zero test choosing the cards. No passage loads a repetition count with a value computed during the run. |
 
 So no new configuration is added. The Turin pages may add counts read from
 the store (two-figure indices), which bears on rule 3a. They do not add a

@@ -83,9 +83,31 @@ impl Layout {
     }
 }
 
+/// How the deck ends each pass and how it computes [c_r > 0].
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub enum Ending {
+    /// `not-found`: the loop's count is set inside the loop (`compile` in
+    /// `Minsky.lean`).
+    CountInLoop,
+    /// Model D, 30 May 1838: the flag groups as above; the pass ends
+    /// `W := W − 1; 1 ÷ W; back to card 0 always`, which the mill cannot do
+    /// once the machine has halted (`trapDeck` in `Trap.lean`).
+    Trap1838,
+    /// Model D, December 1837: backing only to card 0, so each flag is one
+    /// operation repeated c_r times, its count read from the store
+    /// (`trapDeck37`). No combinatorial card and no counted backing.
+    Trap1837,
+}
+
 /// The deck, as text for `sketch::read`. The machine starts in state 0 with
 /// the counters `regs`; the deck's results are the counters when it halts.
 pub fn compile(name: &str, prog: &[Ins], regs: &[i64]) -> String {
+    compile_with(name, prog, regs, Ending::CountInLoop)
+}
+
+/// The deck for a given ending. With a trap, the results are the counters
+/// left in the store (`Expect column`), and the deck says `Trap halts`.
+pub fn compile_with(name: &str, prog: &[Ins], regs: &[i64], ending: Ending) -> String {
     let l = Layout {
         k: regs.len(),
         n: prog.len(),
@@ -93,6 +115,12 @@ pub fn compile(name: &str, prog: &[Ins], regs: &[i64]) -> String {
     let (was, cnt, t, w) = (Layout::WAS, Layout::CNT, Layout::T, Layout::W);
     let mut cards: Vec<String> = vec!["step:".into()];
     for r in 0..l.k {
+        if ending == Ending::Trap1837 {
+            cards.push(format!("+ 0 1 > v{}", l.f(r)));
+            cards.push(format!("repeat × v{} 0 times v{}", l.f(r), l.c(r)));
+            cards.push(format!("− 1 v{} > v{}", l.f(r), l.f(r)));
+            continue;
+        }
         cards.push(format!("× v{was} 0 > v{was}"));
         cards.push(format!("+ v{} 1 > v{cnt}", l.c(r)));
         cards.push(format!("set v{cnt}"));
@@ -128,16 +156,24 @@ pub fn compile(name: &str, prog: &[Ins], regs: &[i64]) -> String {
     for (j, _) in prog.iter().enumerate().filter(|(_, i)| matches!(i, Ins::Halt)) {
         cards.push(format!("− v{w} v{} > v{w}", l.s(j)));
     }
-    cards.push(format!("set v{w}"));
-    cards.push("back step counted".into());
-    for r in 0..l.k {
-        cards.push(format!("result v{}", l.c(r)));
+    let mut head = String::new();
+    if ending == Ending::CountInLoop {
+        cards.push(format!("set v{w}"));
+        cards.push("back step counted".into());
+        for r in 0..l.k {
+            cards.push(format!("result v{}", l.c(r)));
+        }
+    } else {
+        cards.push(format!("− v{w} 1 > v{w}"));
+        cards.push(format!("÷ 1 v{w} > v{t}"));
+        cards.push("back step always".into());
+        head.push_str("Trap halts\n");
     }
     let store: Vec<String> = std::iter::once(format!("v{} = 1", l.s(0)))
         .chain(regs.iter().enumerate().map(|(r, v)| format!("v{} = {v}", l.c(r))))
         .collect();
     format!(
-        "Deck {name}\nTitle \"counter machine {name}, translated\"\nStore {}\nCards\n{}\n",
+        "Deck {name}\nTitle \"counter machine {name}, translated\"\nStore {}\n{head}Cards\n{}\n",
         store.join(", "),
         cards.join("\n")
     )

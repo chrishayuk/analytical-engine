@@ -107,6 +107,10 @@ pub enum Place {
 pub enum Expect {
     Halts,
     Endless,
+    /// Stops at an operation the mill cannot do (Model D).
+    Trapped,
+    /// The number in a column when the run ends.
+    Column(usize, String),
     /// The first results, in order.
     Results(Vec<String>),
     Last(String),
@@ -124,6 +128,10 @@ pub struct Deck {
     pub wheels: Option<i64>,
     pub stop_results: Option<usize>,
     pub stop_cards: usize,
+    /// Model D (`formal/Babbage/Trap.lean`): an operation the mill cannot do
+    /// ends the run, and what stands in the store is its result. No page read
+    /// says so; the deck must ask for it (`Trap halts`).
+    pub trap: bool,
     pub expect: Vec<Expect>,
     pub cards: Vec<Card>,
 }
@@ -258,6 +266,7 @@ pub fn read(text: &str) -> Result<Deck, String> {
         wheels: None,
         stop_results: None,
         stop_cards: 1_000_000,
+        trap: false,
         expect: vec![],
         cards: vec![],
     };
@@ -299,6 +308,7 @@ pub fn read(text: &str) -> Result<Deck, String> {
                     });
                 }
                 "Wheels" => d.wheels = Some(rest.parse().map_err(|_| err("a number"))?),
+                "Trap" if rest == "halts" => d.trap = true,
                 "Stop" => {
                     let (n, what) = rest.split_once(' ').ok_or_else(|| err("Stop N results|cards"))?;
                     let n: usize = n.parse().map_err(|_| err("a number"))?;
@@ -313,6 +323,11 @@ pub fn read(text: &str) -> Result<Deck, String> {
                     d.expect.push(match w {
                         "halts" => Expect::Halts,
                         "endless" => Expect::Endless,
+                        "trap" => Expect::Trapped,
+                        "column" => {
+                            let (c, v) = r.split_once('=').ok_or_else(|| err("Expect column vN = value"))?;
+                            Expect::Column(col(c.trim()).ok_or_else(|| err("a column"))?, v.trim().to_string())
+                        }
                         "results" => Expect::Results(r.split(',').map(|s| s.trim().to_string()).collect()),
                         "last" => Expect::Last(r.trim().to_string()),
                         "count" => Expect::Count(r.trim().parse().map_err(|_| err("a number"))?),
@@ -439,6 +454,10 @@ pub fn accepts(c: &Config, d: &Deck) -> Result<(), String> {
 pub struct Outcome {
     pub results: Vec<Value>,
     pub halted: bool,
+    /// Model D: the operation the mill could not do, which ended the run.
+    pub trapped: Option<String>,
+    /// The store when the run ended.
+    pub store: BTreeMap<usize, Value>,
     /// Why the run stopped short, if it did: a card count reached, or an
     /// error.
     pub stopped: Option<String>,
@@ -471,7 +490,7 @@ fn arith(op: Op, a: &Value, b: &Value) -> Result<Value, String> {
     }
 }
 
-fn as_rat(v: &Value) -> Option<Rat> {
+pub(crate) fn as_rat(v: &Value) -> Option<Rat> {
     Some(v.num.as_constant()? / v.den.as_constant()?)
 }
 
@@ -482,8 +501,15 @@ fn whole(v: &Value) -> Result<i64, String> {
     }
 }
 
-/// Run a deck under a configuration that accepts it.
+/// Run a deck under a configuration that accepts it, a trap ending the run
+/// only if the deck asks for it.
 pub fn run(c: &Config, d: &Deck) -> Result<Outcome, String> {
+    run_model(c, d, d.trap)
+}
+
+/// Run a deck; with `trap`, an operation the mill cannot do (division by 0)
+/// ends the run with the store as it stands (Model D), instead of an error.
+pub fn run_model(c: &Config, d: &Deck, trap: bool) -> Result<Outcome, String> {
     accepts(c, d)?;
     let mut store: BTreeMap<usize, Value> = d.store.iter().cloned().collect();
     // A count on the wheels is a whole number ≥ 1, as a combinatorial card
@@ -540,6 +566,10 @@ pub fn run(c: &Config, d: &Deck) -> Result<Outcome, String> {
                     .map_err(|e| format!("{at}: {e}"));
                 let r = match r {
                     Ok(r) => r,
+                    Err(e) if trap && e.ends_with("division by zero") => {
+                        o.trapped = Some(e);
+                        break Ok(());
+                    }
                     Err(e) => break Err(e),
                 };
                 *o.mill.entry(op.sign()).or_default() += 1;
@@ -560,6 +590,8 @@ pub fn run(c: &Config, d: &Deck) -> Result<Outcome, String> {
                 };
                 let mut x = get(&store, *col);
                 for _ in 0..n {
+                    // A repeated operation that fails is an error in every
+                    // model: the traps of Trap.lean are operation cards only.
                     x = match arith(*op, &x, &bv) {
                         Ok(v) => v,
                         Err(e) => return Err(format!("{at}: {e}")),
@@ -611,6 +643,7 @@ pub fn run(c: &Config, d: &Deck) -> Result<Outcome, String> {
             }
         }
     };
+    o.store = store;
     result.map(|_| o)
 }
 
@@ -620,6 +653,14 @@ pub fn expected(d: &Deck, o: &Outcome) -> Vec<String> {
     for e in &d.expect {
         match e {
             Expect::Halts if !o.halted => bad.push("does not halt".into()),
+            Expect::Trapped if o.trapped.is_none() => bad.push("does not stop at a trap".into()),
+            Expect::Column(c, r) => match value(r, &d.letters) {
+                Ok(w) if o.store.get(c).cloned().unwrap_or_else(Value::zero).same(&w) => {}
+                _ => bad.push(format!(
+                    "v{c}: {r} expected, {}",
+                    o.store.get(c).cloned().unwrap_or_else(Value::zero)
+                )),
+            },
             Expect::Endless if o.halted => bad.push("halts".into()),
             Expect::Results(rs) => {
                 for (i, r) in rs.iter().enumerate() {

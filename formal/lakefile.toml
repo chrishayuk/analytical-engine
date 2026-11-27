@@ -3,3 +3,7 @@ defaultTargets = ["Babbage"]
 
 [[lean_lib]]
 name = "Babbage"
+
+[[lean_exe]]
+name = "diff"
+root = "Diff"

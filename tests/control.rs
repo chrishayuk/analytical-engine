@@ -148,3 +148,76 @@ fn counter_machines_under_not_found() {
         assert_eq!(got, want, "{name} {regs:?}");
     }
 }
+
+/// Model D (`formal/Babbage/Trap.lean`): the same machines, translated with a
+/// trap at the end of each pass and an unconditional backing card. The 1838
+/// deck is accepted by 30 May 1838 and refused by December 1837; the 1837
+/// deck, whose flags are repeated operations with counts from the store, is
+/// accepted by both. Each stops at its trap with the machine's counters in
+/// the store, and without `Trap halts` it is an error; a machine that never
+/// halts gives a deck that runs on.
+#[test]
+fn counter_machines_with_a_trap() {
+    use babbage::minsky::Ins;
+    use babbage::minsky::{compile_with, simulate, Ending, Layout};
+    use babbage::sketch::run_model;
+    let add = [Ins::Dec(1, 1, 2), Ins::Inc(0, 0), Ins::Halt];
+    let mul = [
+        Ins::Dec(0, 1, 6),
+        Ins::Dec(1, 2, 4),
+        Ins::Inc(2, 3),
+        Ins::Inc(3, 1),
+        Ins::Dec(3, 5, 0),
+        Ins::Inc(1, 4),
+        Ins::Halt,
+    ];
+    let cases: [(&str, &[Ins], Vec<i64>); 5] = [
+        ("add", &add, vec![3, 4]),
+        ("add", &add, vec![0, 0]),
+        ("mul", &mul, vec![3, 4, 0, 0]),
+        ("mul", &mul, vec![0, 7, 0, 0]),
+        ("mul", &mul, vec![6, 1, 0, 0]),
+    ];
+    for (name, prog, regs) in cases {
+        let want = simulate(prog, &regs, 10_000).unwrap();
+        let l = Layout {
+            k: regs.len(),
+            n: prog.len(),
+        };
+        for (ending, ok, refused) in [
+            (
+                Ending::Trap1838,
+                &["1838-05", "not-found"][..],
+                &["1836-03", "1837-12"][..],
+            ),
+            (
+                Ending::Trap1837,
+                &["1837-12", "1838-05", "not-found"][..],
+                &["1836-03"][..],
+            ),
+        ] {
+            let d = read(&compile_with(name, prog, &regs, ending)).unwrap();
+            assert!(d.trap);
+            for k in refused {
+                assert!(accepts(config(k), &d).is_err(), "{name} {ending:?} under {k}");
+            }
+            for k in ok {
+                let o = run(config(k), &d).unwrap_or_else(|e| panic!("{name} {ending:?} under {k}: {e}"));
+                assert!(!o.halted && o.trapped.is_some(), "{name} {regs:?} {ending:?} under {k}");
+                for (r, w) in want.iter().enumerate() {
+                    let got = o.store.get(&l.c(r)).map(|v| v.to_string()).unwrap_or("0".into());
+                    assert_eq!(got, w.to_string(), "{name} {regs:?} {ending:?} counter {r}");
+                }
+                // Without the trap read as the end, the same stop is an error.
+                assert!(run_model(config(k), &d, false).is_err());
+            }
+        }
+    }
+    // A machine that never halts: the deck runs on until the observer stops it.
+    let forever = [Ins::Inc(0, 0)];
+    for ending in [Ending::Trap1838, Ending::Trap1837] {
+        let text = compile_with("forever", &forever, &[0], ending).replace("Cards\n", "Stop 5000 cards\nCards\n");
+        let o = run(config("1838-05"), &read(&text).unwrap()).unwrap();
+        assert!(o.trapped.is_none() && !o.halted && o.stopped.is_some());
+    }
+}

@@ -6,3 +6,4 @@ import Babbage.Separation
 import Babbage.GrowthStore
 import Babbage.RatSize
 import Babbage.Minsky
+import Babbage.Trap

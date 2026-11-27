@@ -5,6 +5,7 @@
 
 pub mod algebra;
 pub mod corpus;
+pub mod difftest;
 pub mod expr;
 pub mod history;
 pub mod json;

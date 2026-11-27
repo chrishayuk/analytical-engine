@@ -311,6 +311,21 @@ fn main() {
             println!("\nFigures and words are Babbage's; the checks compare his figures with his words. Nothing simulates the mechanism, and no mark");
             println!("is given a meaning no source gives it (docs/f-cycles.md, docs/f-concordance.md). babbage mechanical [F001|F013|F018] [band]");
         }
+        ["control", "lean-cases", dir, n] => {
+            // The cases of the differential test against the Lean model
+            // (scripts/lean-diff.sh): DIR/NAME.deck for Lean, DIR/NAME.rust.
+            let n: usize = n.parse().unwrap_or_else(|_| {
+                eprintln!("babbage control lean-cases DIR N");
+                exit(2)
+            });
+            std::fs::create_dir_all(dir).unwrap();
+            let cases = babbage::difftest::cases(n);
+            for (name, deck, rust) in &cases {
+                std::fs::write(format!("{dir}/{name}.deck"), deck).unwrap();
+                std::fs::write(format!("{dir}/{name}.rust"), rust).unwrap();
+            }
+            println!("{} cases written to {dir}", cases.len());
+        }
         ["control", ..] => {
             use babbage::sketch::{accepts, expected, read, run, CONFIGS, DECKS};
             println!("The control mechanisms of the Sketch Books, by date: which decks each accepts (docs/expressiveness.md).\n");

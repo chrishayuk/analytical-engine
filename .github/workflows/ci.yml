@@ -46,6 +46,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - uses: dtolnay/rust-toolchain@stable
+
       - name: Install elan
         run: |
           curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
@@ -69,6 +71,17 @@ jobs:
           #print axioms Babbage.Minsky.compile_halts
           #print axioms Babbage.Minsky.machine_halts_of_compile
           #print axioms Babbage.Minsky.compile_refused
+          #print axioms Babbage.Minsky.trap_halts
+          #print axioms Babbage.Minsky.machine_halts_of_trap
+          #print axioms Babbage.Minsky.trap37_halts
+          #print axioms Babbage.Minsky.machine_halts_of_trap37
+          #print axioms Babbage.Minsky.trapDeck_accepted
+          #print axioms Babbage.Minsky.trapDeck37_accepted
+          #print axioms Babbage.no_tetration_reach
+          #print axioms Babbage.no_pentation_reach
           LEAN
           lake env lean /tmp/Axioms.lean | tee /tmp/axioms.txt
           ! grep -v -E "\[propext, (Classical.choice, )?Quot.sound\]" /tmp/axioms.txt | grep -q .
+
+      - name: Lean against Rust (the same decks run by Babbage.step and by src/sketch.rs)
+        run: scripts/lean-diff.sh 2000
