@@ -237,6 +237,50 @@ is inferred from the motions.
 
 Both misses are kept as misses; neither transcription is corrected here.
 
+## The second archival pass (`sources/notes/platforms-1835-1836.md`)
+
+Read at full resolution from Vol XIII (the history of the new engine), Vol II
+and drawings A/029–031; no person has checked the readings.
+
+- **Three parts, as Babbage distinguishes them.** Travelling platforms raise
+  the axes bolted or locked to them (early 1835 – Feb 1836). Locking plates
+  hold a raised axis at a fixed point between platforms: Vol XIII's history,
+  on its entry of 5 March 1835, "This sketch is the origin of what I have
+  called locking plates". Ordinary sectors, toothed and driven from the
+  central drum, give vertical motion from 6 Feb 1836 ("1st Plan of raising
+  axes by sectors moved by central drum"), drawn on A/030–031 (27 Feb 1836).
+- **"Bolt" with platforms from 1835.** The history: barrels "when pushed
+  inward they bolted the necessary axes to travelling platforms".
+- **A/029** ("Method of bolting to platforms for vertical motion of Axes", 4
+  Feb 1836), read in full, has no platform numbers, no lifts, no B or U. It
+  draws two pivoted arms carrying stepped plates round groups of the same axes
+  the F sheets name, and a table pairing axes (g1/SA1, SA2/g3, S1/g2, …). Two
+  readings, neither stated: lift by distance from the pivot, or seven stacked
+  plates each serving two axes.
+- **No source other than F/013's heads numbers platforms 1–12 with lifts.**
+  A/031 (27 Feb 1836) numbers sectors 1–4 with the same magnitudes (1.1, .6,
+  .4, .2) but gives each sector several lifts ("lifts 1.1 ins. or .4 ins. or
+  .45 ins."), and its numbers are not F/013's.
+- **The 20 Feb 1836 decision** (Vol II p 69) is about making tables, and gives
+  no reason. After it, "platform", "bolt" and "lock … to" do not occur in Vol
+  II to 3 April 1836, and sectors are sketched. That sectors replaced
+  platforms for all vertical motion is an inference from the dates, not a
+  sentence in the sources.
+
+**Against, or limiting, P.**
+- **One platform, several heights.** Vol XIII, 6 Oct 1835: "to make one
+  platform move axes to various [?heights] in same time". If the January 1836
+  platforms worked so, "platform k has a fixed lift" holds only per sheet, as
+  F/013's heads give it, and is not a property of the platform as such. On
+  F/013 and F/018–019 each figure does carry one lift (above).
+- **Another "B".** Vol II p 81 (1 Mar 1836) marks barrel advances "4A", "5B",
+  "12B4", "9A", where B is the barrel going back, not bolting. A letter "B" in
+  these weeks is not always bolting.
+- **Lock against bolt.** The December 1835 sequence (Vol II p 42) says "lock";
+  the history uses "bolted" of platforms in 1835 and "locking plates" for a
+  different part. Whether F/013's U is unbolt or unlock is not settled by any
+  source.
+
 ## What would settle it
 
 A page that describes bolting plates or platforms in the mill of 1835–1836,
