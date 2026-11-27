@@ -93,7 +93,9 @@ jobs:
           #print axioms Babbage.tet_exp_halts_1838
           LEAN
           lake env lean /tmp/Axioms.lean | tee /tmp/axioms.txt
-          ! grep -v -E "\[propext, (Classical.choice, )?Quot.sound\]" /tmp/axioms.txt | grep -q .
+          # every theorem printed, and each depends only on standard axioms
+          test "$(grep -c 'depends on axioms\|does not depend on any axioms' /tmp/axioms.txt)" -eq "$(grep -c '^#print axioms' /tmp/Axioms.lean)"
+          ! grep 'depends on axioms' /tmp/axioms.txt | sed -E 's/.*\[(.*)\]/\1/' | tr ',' '\n' | tr -d ' ' | grep -v -E '^(propext|Classical\.choice|Quot\.sound)$' | grep -q .
 
       - name: Lean against Rust (the same decks run by Babbage.step and by src/sketch.rs)
         run: scripts/lean-diff.sh 2000
