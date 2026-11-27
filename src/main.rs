@@ -367,12 +367,15 @@ fn main() {
                 exit(2)
             });
             std::fs::create_dir_all(dir).unwrap();
-            let cases = babbage::difftest::cases(n);
+            let (cases, t) = babbage::difftest::cases_counted(n);
             for (name, deck, rust) in &cases {
                 std::fs::write(format!("{dir}/{name}.deck"), deck).unwrap();
                 std::fs::write(format!("{dir}/{name}.rust"), rust).unwrap();
             }
-            println!("{} cases written to {dir}", cases.len());
+            println!(
+                "{} runs generated: {} compared; left out: {} refused by every configuration, {} outside the Lean model, {} too large for i128 fractions",
+                t.generated, t.compared, t.refused, t.not_modelled, t.overflow
+            );
         }
         ["control", ..] => {
             use babbage::sketch::{accepts, expected, read, run, CONFIGS, DECKS};

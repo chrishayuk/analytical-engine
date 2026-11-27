@@ -225,9 +225,31 @@ fn random_deck(rng: &mut Rng) -> Deck {
 /// under the first configuration that accepts them; the counter-machine decks
 /// of `minsky.rs`; and `n` random decks, each with and without the trap.
 pub fn cases(n: usize) -> Vec<(String, String, String)> {
+    cases_counted(n).0
+}
+
+/// Why runs were generated and not compared, and how many were compared.
+#[derive(Default, Debug)]
+pub struct Tally {
+    pub generated: usize,
+    pub compared: usize,
+    /// No configuration accepts the deck.
+    pub refused: usize,
+    /// Outside the Lean model: rows of letter cards, `result … off`, a count
+    /// of 0 on the wheels before the first card, or a symbolic number.
+    pub not_modelled: usize,
+    /// A number grew too large for the Rust machine's i128 fractions.
+    pub overflow: usize,
+}
+
+/// The cases, and the tally of what was left out and why.
+pub fn cases_counted(n: usize) -> (Vec<(String, String, String)>, Tally) {
     let mut all = vec![];
+    let mut tally = Tally::default();
     let mut push = |name: String, d: &Deck, fuel: usize, trap: bool| {
+        tally.generated += 1;
         let Some(c) = CONFIGS.iter().find(|c| crate::sketch::accepts(c, d).is_ok()) else {
+            tally.refused += 1;
             return;
         };
         let mut d2 = read("Deck x\nCards\nresult v0\n").unwrap();
@@ -236,9 +258,15 @@ pub fn cases(n: usize) -> Vec<(String, String, String)> {
         d2.rows = d.rows.clone();
         d2.wheels = d.wheels;
         d2.stop_cards = fuel;
-        let (Some(l), Some(r)) = (lean_form(d, fuel, trap), outcome_form(&run_model(c, &d2, trap))) else {
+        let Some(l) = lean_form(d, fuel, trap) else {
+            tally.not_modelled += 1;
             return;
         };
+        let Some(r) = outcome_form(&run_model(c, &d2, trap)) else {
+            tally.overflow += 1;
+            return;
+        };
+        tally.compared += 1;
         all.push((name, l, r));
     };
     for (name, text) in DECKS {
@@ -280,5 +308,6 @@ pub fn cases(n: usize) -> Vec<(String, String, String)> {
             );
         }
     }
-    all
+    drop(push);
+    (all, tally)
 }

@@ -88,8 +88,11 @@ The translation (`deck43`, and `Ending::Cond1843` in `src/minsky.rs`):
   given off.
 
 Tested in Rust (`tests/control.rs`, `counter_machines_in_1843`), and the Lean
-model and the Rust machine agree on the decks of `scripts/lean-diff.sh`: 3,720
-runs, among them random decks with `back … if` and with forward courses, the counter-machine decks of
+model and the Rust machine agree on the decks of `scripts/lean-diff.sh`: of
+4,026 runs generated, 3,720 are compared and all agree; 292 are left out
+because no configuration accepts the deck, 3 because they are outside the
+Lean model, and 11 because a number grows too large for the Rust machine's
+i128 fractions (the script prints this tally). The compared runs include random decks with `back … if` and with forward courses, the counter-machine decks of
 both readings, and the three Note G decks (§4). That is a test, not a proof.
 
 ## 3B. Reading B: a forward course chosen by a result
