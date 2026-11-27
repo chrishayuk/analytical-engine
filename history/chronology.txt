@@ -24,18 +24,25 @@ table-kept | conceived | 1835-03-12 | BAB/N/001 draft 223/666 | direct | Plan of
 table-kept | designed | 1837-11-07 | BAB/N/004 | related | Stepping on Table axes 7 [58]
 table-kept | revised | 1839-12-06 | BAB/N/006 | direct | Table made in 5 turns by Subt. from 10[?ⁿ] p 269 Vol. IV. 6
 
+transfer | conceived | 1836-07-25 | BAB/S/1/02 p 172 | direct | if a number is given off from a store to a store the compliment of each digit is received
+give-off-retain | conceived | 1838-03-13 | BAB/S/1/03 reverse p 60 | direct | No. of small operations … Sub.n — Give off and retain
+
 read-to-zero | conceived | 1836-05-23 | BAB/N/003 | related | Decided on absolute independence of Mill & Store Vol 2 p 120 23
 
 complement | conceived | 1834-11 | BAB/N/001 | related | first indication of … change of a number from positive to negative as a mode of dividing … had been planned before 27
 complement | conceived | 1836-08 | BAB/N/003 | related | Mill taught the rule of algebraic signs / Sign Sh. directive
-complement | designed | 1839-12 | BAB/N/006 | direct | Selecting App. for number and Comp. p 271. Vol IV 82 83
+complement | conceived | 1836-03-11 | BAB/S/1/02 p 88 (Sketch Book Vol 2) | related | p = 19 +p = 0019 −p = 9981 (a ten's complement, for a negative number)
+complement | conceived | 1836-07-25 | BAB/S/1/02 p 172 | direct | if a number is given off from a store to a store the compliment of each digit is received. (4) If the compliment of each figure is given off from a store to a store the number received is the original number
+complement | conceived | 1836-08-11 | BAB/S/1/02 pp 188–189 | direct | when numbers are received from Store into Mill their numerical compliments may be retained on any axes of the Store
+complement | designed | 1839-12 | BAB/N/006 | related | Selecting App. for number and Comp. p 271. Vol IV 82 83
 complement-read | designed | 1839-12 | BAB/N/006 | related | Selecting App. for number and Comp. p 271. Vol IV 82 83
 
 sign-changed | conceived | 1834-11 | BAB/N/001 | related | first indication of … change of a number from positive to negative as a mode of dividing … had been planned before 27
 sign-changed | conceived | 1839-12-13 | BAB/N/006 | related | Mode of reversing the sign of Carr. p 278 Vol. IV . 13
 sign-changed | conceived | 1840-06 | BAB/N/007 | direct | Order to Mill to give out the Result of any opern with its sign changed p. 406 V.IV
 
-many-addends | conceived | 1838-07 | BAB/N/005 | direct | Principles of Compound Addn Vol 4 p 17
+many-addends | conceived | 1837-11-24 | BAB/S/1/03 p 141 | related | A enters / A transfers B enters / A+B added C enters / … / D added (a running sum)
+many-addends | conceived | 1838-03-13 | BAB/S/1/03 reverse p 60 | direct | The Oper.n cards order a certain oper.n — say Add.n which goes on as long as variables are supplied
 many-addends | conceived | 1838-07-27 | BAB/N/005 | direct | Put all numbers to be added on A connected with a Pos. & Neg. Carr. 27
 
 input | conceived | 1837-09-07 | BAB/N/004 | related | Proposed to use number cards for tables Vol 3 p 89 [7]
@@ -43,9 +50,12 @@ input | conceived | 1837-09-13 | BAB/N/004 | related | Giving off from fig. card
 
 loop | conceived | 1834-11-21 | BAB/N/001 | related | Running up 21
 loop | conceived | 1836-03-07 | BAB/N/003 | related | Running up applied to order any Opn 7
+loop | conceived | 1836-03-01 | BAB/S/1/02 pp 80–81 | related | The barrel then backs to −1 and steps up again … These alternations are continued q−d times when stop of q−d counting wh.
 loop | conceived | 1836-03-07 | BAB/N/003 | direct | To repeat an Opn any variable No of times . Vol 2 p 84 7
+loop | conceived | 1836-03-07 | BAB/S/1/02 p 84 | direct | When any operation is to be terminated after a given variable number of repetitions, let the number of rep.ns be put on an axis having a carriage connected with it. Then by a register axis subtr.g unity previous to each operation a running up will take place at end and thus the op.n be suspended
+loop | conceived | 1838-05-30 | BAB/S/1/03 reverse p 75 (year inferred) | direct | Last card is combin.l and orders backing but if running up in Combin.l Axis occur this order is destroyed
 loop | conceived | 1836-06 | BAB/N/003 | related | Cards first suggested
-loop | conceived | 1836-07-30 | BAB/N/003 | related | Two or three sets of cards one before the other. Vol 2 p 173 30
+loop | conceived | 1836-07-30 | BAB/N/003 | related | Two or three sets of cards one before the other. Vol 2 p 173 30 (the passage is on Vol 2 pp 178–179, 30–31 July)
 loop | conceived | 1837-12-11 | BAB/N/004 | direct | Combinatorial Cards. 11 Vol 3 p 161
 loop | designed | 1838-06-18 | BAB/N/005 | related | Plans for Cards 18 64
 loop | conceived | 1837-12 | BAB/S/1/03 pp 161–162 (Sketch Book Vol 3; dated only by N/004) | direct | a card … which orders the backing of operation cards … but, this order becomes ineffective if the combinatorial wheels have run up. At the end of the second group another card must be inserted (b) which always orders the backing of operation cards

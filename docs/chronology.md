@@ -65,15 +65,16 @@ against each other.
 | Two sets of cards (letter cards) | "Two sets of variable cards … for Comb. Analys." 18 Nov 1837 | L/023, 7 Jun 1838 | record first |
 | Combinatorial cards | "Combinatorial Cards" 11 Dec 1837 | L/023, 7 Jun 1838 | record first |
 | Card backing | Sketch Book Vol 3 pp 161–162 (Dec 1837): one backing card "ineffective if the combinatorial wheels have run up", another that "always orders the backing" | L/023's Y and Z, 7 Jun 1838 | record first, by six months. The history sheets name a "Card backing App." only in Feb 1839. |
-| Many numbers added at once | "Principles of Compound Addn" Jul 1838 | L/011, 28 Aug 1837 | program first, by 11 months |
-| Complement apparatus | "Selecting App. for number and Comp." Dec 1839 | L/001 No. 2, 5 Aug 1837 | program first, by over 2 years |
+| Many numbers added at once | Sketch Book Vol 3 p 141, a running sum, 24 Nov 1837; reverse p 60, "Add.n which goes on as long as variables are supplied", 13 Mar 1838 | L/011, 28 Aug 1837 | program first, by about 3 months (the history's "Principles of Compound Addn", Jul 1838, is about numbers of more than 40 figures, not many addends) |
+| Complements, given off store to store | Sketch Book Vol 2 p 172, 25 Jul 1836; pp 188–189, Aug 1836 | L/001 No. 2, 5 Aug 1837 | record first, by about a year (the history's Dec 1839 entry is a selector that uses complements) |
 | Sign changed | "Order to Mill to give out the Result of any opern with its sign changed" Jun 1840 | L/020, 31 Jul 1840 | record first, by a month |
 
 - **The order runs both ways.** Some capabilities were written down long
   before any program used them: repetition by more than two years,
   multiplication by table by more than two, the backing of L/023 by six
-  months (in the Sketch Book). Others appear in a program first: compound
-  addition and complements, as far as the record read so far goes.
+  months, complements by a year (all in the Sketch Books). One still
+  appears in a program first, as far as the pages read go: adding many
+  numbers at once, by about three months.
   So the first surviving evidence of a capability is not its date of
   invention, in either direction.
 - **A slip that was not.** L/020's last operation, "−e/∂ = z", had been

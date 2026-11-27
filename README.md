@@ -232,13 +232,19 @@ the result. `--as-of DATE` lists what each page needs that the machine, as
 evidenced by that date, does not yet have. See [`docs/chronology.md`](docs/chronology.md).
 
 The order runs both ways:
-- Some capabilities are recorded before any program uses them. "Plan of
-  Mult. by Table" is recorded on 12 March 1835, and "To repeat an Opn any
-  variable No of times" on 7 March 1836.
-- Others appear in a program first. L/011's addition of many
-  numbers comes 11 months before "Principles of Compound Addn". The
-  complements of August 1837 come two years before the history records an
-  apparatus for them.
+- Most are recorded before any program uses them. "Plan of Mult. by
+  Table" is recorded on 12 March 1835 and "To repeat an Opn any variable No
+  of times" on 7 March 1836. The complements and transfers of August 1837
+  are in the Sketch Book of July and August 1836. L/023's backing scheme is
+  there in December 1837.
+- One still appears in a program first, as far as the pages read go. L/011
+  adds many numbers at once on 28 August 1837; the Sketch Book's first
+  account is a running sum on 24 November 1837, and "Add.n which goes on as
+  long as variables are supplied" comes on 13 March 1838.
+
+The history sheets are an index to the Sketch Books, not the record itself.
+Three "program first" results drawn from the history sheets alone did not
+survive reading the pages they cite (`sources/notes/sketchbooks-control.md`).
 
 L/020's "−e/∂ = z", once counted as a slip, is the mill giving out a result
 with its sign changed, which the history records the month before. And the
@@ -254,9 +260,13 @@ with what it rests on):
    operation comes between.
 3. The first factor written is the multiplicand.
 4. A number taken from a column may at the same time be laid in another as
-   its complement (Ca, defined on the back of the sheet).
+   its complement (Ca, defined on the back of the sheet). Babbage, August
+   1836: "when numbers are received from Store into Mill their numerical
+   compliments may be retained on any axes of the Store".
 5. A transfer from one column to another complements; complementing twice
-   restores. (The sheet shows Ca in and a out; the mechanism is Rojas's.)
+   restores. Babbage, 25 July 1836: "if a number is given off from a store
+   to a store the compliment of each digit is received" and, given off
+   again, "the number received is the original number".
 6. A transfer does not touch the mill. (A choice; nothing here depends on it.)
 7. Accents count the numbers a column has been given.
 8. An accented name means that number, wherever it now is.

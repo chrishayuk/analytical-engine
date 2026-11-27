@@ -171,10 +171,10 @@ $ babbage decisions
    The remark names the table of b′ for b′a and b′c, written v5·v1 and v5·v3: the factor the table is of is written first.
 
 4. A number taken from a column may at the same time be laid in another as its complement.
-   Back of BAB/L/001: "C … before any number signifies the Complement of that number as Ca means complement of a". No. 2 writes Ca, Cc and Cb in v8, v5 and v9 in the rows where a, c and b are read. The run requires the complemented number to be one read in that row.
+   Back of BAB/L/001: "C … before any number signifies the Complement of that number as Ca means complement of a". No. 2 writes Ca, Cc and Cb in v8, v5 and v9 in the rows where a, c and b are read. The run requires the complemented number to be one read in that row. Sketch Book Vol 2 p 189, August 1836: "when numbers are received from Store into Mill their numerical compliments may be retained on any axes of the Store".
 
 5. A transfer from one column to another complements; complementing twice restores.
-   No. 2, operations 8 to 10: v8, v5, v9 (Ca, Cc, Cb) are left at zero and v1, v3, v2 receive a, c, b, with no operation of the mill. The mechanism (the receiving wheels turned the opposite way) is Rojas's explanation (2023), not stated on the sheet; the sheet shows only Ca in and a out.
+   No. 2, operations 8 to 10: v8, v5, v9 (Ca, Cc, Cb) are left at zero and v1, v3, v2 receive a, c, b, with no operation of the mill. The mechanism (the receiving wheels turned the opposite way) is Rojas's explanation (2023), not stated on the sheet; the sheet shows only Ca in and a out. Babbage states it himself in Sketch Book Vol 2 p 172, 25 July 1836: "if a number is given off from a store to a store the compliment of each digit is received … If the compliment of each figure is given off from a store to a store the number received is the original number" (sources/notes/sketchbooks-control.md). His complement there is figure by figure, each digit to 10.
 
 6. A transfer does not touch the mill, and leaves its table standing.
    Not shown by BAB/L/001 either way: no multiplication there follows a transfer and reuses a table. A choice, which no result here depends on.

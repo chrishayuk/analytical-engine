@@ -170,3 +170,17 @@ the ids after that.
   and no post found cites these pages. The SMG archive catalogue is also at
   `https://archives.sciencemuseumgroup.ac.uk/Details/archive/<priref>`
   (e.g. 110001324 for Vol III).
+
+## Corrections from reading the pages (sources/notes/sketchbooks-control.md)
+
+- "Two or three sets of cards one before the other. Vol 2 p 173": the
+  passage is on Vol 2 pp 178–179 (30–31 July 1836).
+- Vol 3 image 87 has a second loose insert; p 159 is on image 88.
+- Vol IV pp 270/271 are image 132, not 136.
+- Vol IV p 17's "Compound Add.n" (25–26 June 1839) is the addition of
+  numbers of more than 40 figures in a head and a tail. It is not an
+  addition of many numbers.
+- Vol IV p 271 (Dec 1839) is a selector that uses complements. The first
+  description of complements is earlier: Vol 2 p 88 (11 March 1836, ten's
+  complements), p 172 (25 July 1836) and pp 188–189 (August 1836, the
+  "numerical compliment", figure by figure).
