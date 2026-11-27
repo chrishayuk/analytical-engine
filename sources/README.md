@@ -108,3 +108,14 @@ their own size; all 266 tiles of 259 were fetched and stitched. See
 "Bolting plates for multiplication by table.", document `aa110000498`,
 undated. Two images: `216/260` the cover, `216/261` the table. See
 `notes/F014.md` and `../mechanical/F014-plates.txt`.
+
+## The image cache
+
+`scripts/smg_cache.py` keeps the Science Museum Group's full-resolution tiles
+in `sources/downloads/smg/tiles/` (not committed), each fetched once, exactly
+as the server sent it. Readers take regions from it (`crop(path, x, y, w, h)`),
+and a tile is fetched only if it is not there. `sources/smg-cache.json`
+(committed) lists what is cached: each image's source, size and whether every
+tile is present. Fill it with `python3 scripts/smg_cache.py fill`; it pauses
+between requests and backs off when the server refuses.
+

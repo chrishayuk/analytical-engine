@@ -1,0 +1,15 @@
+{
+  "cache": "sources/downloads/smg/tiles (not committed)",
+  "server": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/",
+  "tile": 512,
+  "images": [
+    {
+      "image": "216/259",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F259%2FBabbage_Papers__Table_Multiplication_1836_Jan_5.ptif",
+      "width": 9581,
+      "height": 6933,
+      "tiles": 1,
+      "complete": false
+    }
+  ]
+}
