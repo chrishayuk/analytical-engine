@@ -17,6 +17,8 @@ a mark a mechanical meaning.**
 
 - `scripts/bu_audit.py`: coverage, and predictions P1–P4.
 - `scripts/bu_bracket.py`: what each column's part does between a B and its U.
+- `scripts/bu_platforms.py`: whether each figure carries one motion, as the
+  platform reading predicts (below).
 
 *Corrected 27 Nov 2026.* The first version of `bu_audit.py` never recorded a
 U standing over an arrow, did not parse "B N.o 9", "U&B" or "U2.", and could
@@ -116,10 +118,11 @@ all 74 and 103 of their tokens are untestable.
   part's motion and its return, in order B, motion, return, U, and the U comes
   in a later band. On F/013 the same holds wherever the column draws a
   return.
-- **The figure belongs to its column.** P4 fails on every sheet, so if B/U is
-  bolting, "n" does not name one physical plate of the mill: it names
-  something of that axis or column, such as one of its own plates, a position
-  or a setting. The sheets do not say which.
+- **P4 tests the wrong thing.** It assumes one plate per part. The archival
+  search (below) finds Babbage locking two different parts to the same
+  numbered platform in one sequence, so several columns bolted to one figure
+  at once is what the platform reading predicts. The earlier reading here,
+  that the figure belongs to its column, is withdrawn.
 
 ## Hypotheses, not adopted
 
@@ -141,6 +144,60 @@ all 74 and 103 of their tokens are untestable.
   "B 4" over "Gears with 2 in bottom Cage", "B 10" over "Gears with N.o 4 in
   Top Cage" and "B 9" over "Gears with 3 in Top Cage": the B figure and the
   gear number are not the same, so the figure is not the gear named.
+
+## The platform reading, from the sources
+
+`sources/notes/bolting-plates-sources.md` (read at full resolution; no person
+has checked it) finds no definition of B or U, but:
+- **Vol II p 42 (between 21 and 23 Dec 1835)** writes a multiplication by
+  table as parts locked to and unlocked from numbered platforms: "Lock —
+  centre pinion ⟨to N.o 3⟩ — carr. pin.s — on platform N.o 1 … Lock — the 2
+  centre pin.ns to Pl. 4 … Unlock — the 2 cent. pinion from P[?l]. 2". The verb
+  there is lock, and two parts go to Pl. 4 in one sequence.
+- **Vol II p 7 (Nov 1835)**: "Pin.s 1.1 .6 −.6 −1.1 / Axis .4 .2 −.2 −.4", the
+  lifts in F/013's platform heads; **pp 23–24 (5 Dec 1835)**: "Lock or Unlock
+  to Travell. Platforms 2/3", and every B/U label on F/013 is in its row "2/3".
+- **BAB/A/029**, titled "Method of bolting to platforms for vertical motion of
+  Axes. 4 Feb.y 1836", names the same axes as the F sheets' column heads.
+- **BAB/N/002, Feb 1835**: "Barrels to bolt axes to travelling platforms".
+
+**Hypothesis P.** "B k" is the part in that column bolted to travelling
+platform k; "U k" unbolted from it. Platform k has a fixed lift, which every
+part bolted to it shares.
+
+### The test of P (`scripts/bu_platforms.py`)
+
+P predicts that a figure means the same motion wherever it stands. Observed,
+for each B k over a motion with a written figure:
+
+| k | F/013 | F/018–019 |
+|---|---|---|
+| 1 | — | up 1.1 |
+| 2 | — | up .6 |
+| 3 | up 1.1 (and one "[?.6]", an uncertain reading) | up 1.1 |
+| 4 | up .6 | up .6 (one transcribed "6") |
+| 5 | up .4 | up .4 |
+| 6 | up .2 | up .2 |
+| 7 | down .2 | — |
+| 8 | down .4 | — |
+| 9 | down .6 | — |
+
+- Where two or more parts are bolted to the same figure and move in the same
+  row, they move alike: 7 of 7 groups on F/018–019; on F/013, 1 of 2, the
+  other differing only by the uncertain "[?.6]".
+- Each figure has one direction and one lift on each sheet, and the lifts are
+  those of Vol II p 7. F/013 numbers its platforms differently from F/018–019
+  (figure 1 is 1.1 on one, 3 on the other is 1.1 too), so the numbering is
+  per sheet; the lifts agree.
+
+**Reading.** P survives a test it could have failed: the figure predicts the
+size and direction of the part's motion. With B and U bracketing the
+excursion (above), the picture is a part bolted to a platform before the
+platform rises or falls, carried with it and back, and unbolted after.
+**Not adopted as established**: no source spells out B or U; in Dec 1835 the
+verb is lock; F/014 and F/020 say "plates", and Babbage also had "locking
+plates"; the figureless "B" and "B′", the B's never unbolted and F/020's
+repeated U's are not explained; and the transcriptions are unchecked.
 
 ## What would settle it
 
