@@ -88,8 +88,8 @@ The translation (`deck43`, and `Ending::Cond1843` in `src/minsky.rs`):
   given off.
 
 Tested in Rust (`tests/control.rs`, `counter_machines_in_1843`), and the Lean
-model and the Rust machine agree on the decks of `scripts/lean-diff.sh`: 3,916
-runs, among them random decks with `back … if` (none with forward courses), the counter-machine decks of
+model and the Rust machine agree on the decks of `scripts/lean-diff.sh`: 3,720
+runs, among them random decks with `back … if` and with forward courses, the counter-machine decks of
 both readings, and the three Note G decks (§4). That is a test, not a proof.
 
 ## 3B. Reading B: a forward course chosen by a result
@@ -228,8 +228,7 @@ mechanism is known only through Rojas.
   fractions, in Lean and Rust: they agree. That is a test of these decks, not
   a theorem about them. The counter-machine theorems are over whole numbers.
 - Much in the comparison for the new cards: only the counter machine `add`,
-  on two inputs, for each reading, besides the random decks (random decks
-  with forward courses are not generated).
+  on two inputs, for each reading, besides the random decks.
 - That a configuration accepts the same older decks: `step43_lift` proves
   they run the same; that `Accepts43` agrees with `Accepts` on them is
   evident from the definitions, not a theorem.

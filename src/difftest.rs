@@ -174,6 +174,11 @@ fn random_deck(rng: &mut Rng) -> Deck {
             } else {
                 Src::Num(rng.int(0, 3))
             }),
+            8 if rng.below(3) == 0 => Card::AheadIf {
+                to: i + 1 + rng.below((len - i) as u64) as usize,
+                label: String::new(),
+                col: col(rng),
+            },
             8 if i > 0 && rng.below(2) == 0 => Card::BackIf {
                 to: rng.below(i as u64 + 1) as usize,
                 label: String::new(),

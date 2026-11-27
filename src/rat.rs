@@ -65,7 +65,9 @@ impl Rat {
 impl Rat {
     fn try_new(n: Option<i128>, d: Option<i128>) -> Option<Rat> {
         let (n, d) = (n?, d?);
-        if d == 0 {
+        // i128::MIN has no positive counterpart: its absolute value and its
+        // negation overflow, so a result that lands on it does not fit.
+        if d == 0 || n == i128::MIN || d == i128::MIN {
             return None;
         }
         let g = gcd(n, d).max(1);
@@ -175,5 +177,20 @@ mod tests {
         assert_eq!(Rat::int(21) / Rat::int(6), Rat::new(7, 2));
         assert!(Rat::new(2, 3) > Rat::new(1, 2));
         assert_eq!(Rat::new(7, 2).floor(), 3);
+    }
+}
+
+#[cfg(test)]
+mod min_tests {
+    use super::Rat;
+
+    /// A product that lands exactly on i128::MIN is "too large", not a panic
+    /// (found by the differential test's random decks).
+    #[test]
+    fn a_product_of_i128_min_does_not_fit() {
+        let a = Rat::int(-(1i128 << 126));
+        assert_eq!(a.try_mul(Rat::int(2)), None);
+        assert_eq!(Rat::int(1i128 << 126).try_mul(Rat::int(-2)), None);
+        assert!(a.try_add(a).is_none());
     }
 }
