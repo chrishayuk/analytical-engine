@@ -32,6 +32,122 @@ pub const CYCLES: &[(&str, u8, &str)] = &[
     ("BAB/F/002", 6, include_str!("../mechanical/F002-cycle6.txt")),
 ];
 
+/// The designs transcribed: a name, and each band as (sheet, number, text).
+pub struct Design {
+    pub key: &'static str,
+    pub name: &'static str,
+    pub bands: &'static [(&'static str, u8, &'static str)],
+}
+
+pub const DESIGNS: &[Design] = &[
+    Design {
+        key: "F001",
+        name: "Multiply a, b, c, d by 1021, without table (F/001-002, about 1835)",
+        bands: CYCLES,
+    },
+    Design {
+        key: "F013",
+        name: "Table multiplication (F/013, 5 Jan 1836)",
+        bands: &[
+            ("BAB/F/013", 1, include_str!("../mechanical/F013-cycle1.txt")),
+            ("BAB/F/013", 2, include_str!("../mechanical/F013-cycle2.txt")),
+            ("BAB/F/013", 3, include_str!("../mechanical/F013-cycle3.txt")),
+            ("BAB/F/013", 4, include_str!("../mechanical/F013-cycle4.txt")),
+            ("BAB/F/013", 5, include_str!("../mechanical/F013-cycle5.txt")),
+        ],
+    },
+    Design {
+        key: "F018",
+        name: "1028 × 201, without table (F/018-019, 11 Jan 1836)",
+        bands: &[
+            ("BAB/F/018", 1, include_str!("../mechanical/F018-cycle1.txt")),
+            ("BAB/F/018", 2, include_str!("../mechanical/F018-cycle2.txt")),
+            ("BAB/F/018", 3, include_str!("../mechanical/F018-cycle3.txt")),
+            ("BAB/F/019", 4, include_str!("../mechanical/F019-cycle4.txt")),
+            ("BAB/F/019", 5, include_str!("../mechanical/F019-cycle5.txt")),
+            ("BAB/F/019", 6, include_str!("../mechanical/F019-cycle6.txt")),
+        ],
+    },
+];
+
+/// A figure Babbage wrote in a column (by its id, `e33`) in a band's own
+/// rows (not the repeated top rows), of the given number of places (the
+/// product is written to six; F/019 band 5 also writes a working "1028"
+/// under it).
+pub fn written(marks: &[Mark], col: &str, places: usize) -> Option<String> {
+    marks
+        .iter()
+        .filter(|m| !m.top && m.kind == Kind::Figure)
+        .filter(|m| m.column.split_whitespace().next() == Some(col))
+        .filter_map(|m| m.mark.split('"').nth(1).map(str::to_string))
+        .find(|f| f.chars().all(|c| c.is_ascii_digit()) && f.len() == places)
+}
+
+/// The recorded states of F/018-019, checked against the words of each
+/// band: where a band says "Add", the product it writes is the one before
+/// plus the multiplicand it writes; where it says "Step up", the one before
+/// times ten. This checks Babbage's own figures against his own words. It
+/// is not a simulation of the mechanism, and no mark is given a meaning.
+/// A band of F/018-019: its number, its word, the product written, and
+/// whether the product follows from the one before by that word.
+pub type BandState = (u8, String, Option<i64>, Result<(), String>);
+
+pub fn f018_states() -> Vec<BandState> {
+    let d = &DESIGNS[2];
+    let mut out = vec![];
+    let mut prev: Option<i64> = None;
+    for (_, n, text) in d.bands {
+        let marks = read(text).unwrap_or_default();
+        let words: Vec<&str> = marks
+            .iter()
+            .filter(|m| m.kind == Kind::Words)
+            .map(|m| m.mark.as_str())
+            .collect();
+        let add = words.iter().any(|w| w.contains("Add"));
+        let step = words.iter().any(|w| w.contains("Step up"));
+        let product = written(&marks, "e33", 6).and_then(|p| p.parse::<i64>().ok());
+        let mult = written(&marks, "e13", 4)
+            .and_then(|p| p.parse::<i64>().ok())
+            .unwrap_or(1028);
+        let said = if add {
+            "Add"
+        } else if step {
+            "Step up"
+        } else {
+            "neither"
+        };
+        let r = match (prev, product) {
+            (None, Some(p)) => {
+                if p == 0 {
+                    Ok(())
+                } else {
+                    Err(format!("starts at {p}"))
+                }
+            }
+            (Some(a), Some(p)) => {
+                let want = if add {
+                    a + mult
+                } else if step {
+                    a * 10
+                } else {
+                    a
+                };
+                if p == want {
+                    Ok(())
+                } else {
+                    Err(format!("{said}: {a} gives {want}, the sheet writes {p}"))
+                }
+            }
+            (_, None) => Err("no product written".into()),
+        };
+        out.push((*n, said.to_string(), product, r));
+        if product.is_some() {
+            prev = product;
+        }
+    }
+    out
+}
+
 /// The figures written on the multiplier's wheels (n to n-3) in a cycle,
 /// as written, in order of the columns; "" where a wheel has none.
 pub fn multiplier(marks: &[Mark]) -> String {
@@ -146,7 +262,7 @@ pub fn read(text: &str) -> Result<Vec<Mark>, String> {
 
 /// The column's number on the sheet, `c18` → 18, for ordering.
 fn col_no(c: &str) -> u32 {
-    c.trim_start_matches(['c', 'd'])
+    c.trim_start_matches(['c', 'd', 'e', 't'])
         .chars()
         .take_while(|c| c.is_ascii_digit())
         .collect::<String>()
@@ -171,17 +287,19 @@ pub fn chart(marks: &[Mark]) -> String {
         Kind::Unknown => '?',
         Kind::Stray => ' ',
     };
+    let (lo, hi) = span(marks);
+    let n = (hi - lo + 1) as usize;
     let mut out = String::new();
     out.push_str(&format!(
         "{:<52} {}\n",
         "column",
-        (1..=13).map(|r| format!("{r:>3}")).collect::<String>()
+        (lo..=hi).map(|r| format!("{r:>3}")).collect::<String>()
     ));
     for ((_, name), ms) in &cols {
-        let mut cells = vec![String::new(); 13];
+        let mut cells = vec![String::new(); n];
         for m in ms {
-            for r in m.from..=m.to.min(13) {
-                let c = &mut cells[(r - 1) as usize];
+            for r in m.from.max(lo)..=m.to.min(hi) {
+                let c = &mut cells[(r - lo) as usize];
                 let s = if r == m.from {
                     sym(m)
                 } else if m.kind == Kind::Arrow {
@@ -205,8 +323,18 @@ pub fn chart(marks: &[Mark]) -> String {
 
 /// For each time unit of the complete cycle, the columns in which some
 /// motion (an arrow) is under way.
+/// The first and last time unit of a band (F/013 has a row 0, "2/3", and
+/// rows past 13).
+pub fn span(marks: &[Mark]) -> (u8, u8) {
+    let rows = marks.iter().filter(|m| !m.top && m.kind != Kind::Stray);
+    let lo = rows.clone().map(|m| m.from).min().unwrap_or(1).min(1);
+    let hi = rows.map(|m| m.to).max().unwrap_or(13).max(13);
+    (lo, hi)
+}
+
 pub fn in_motion(marks: &[Mark]) -> Vec<usize> {
-    (1..=13u8)
+    let (lo, hi) = span(marks);
+    (lo..=hi)
         .map(|r| {
             let mut cols: Vec<&str> = marks
                 .iter()

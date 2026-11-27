@@ -1,0 +1,63 @@
+% BAB/F/018, 216/271: the partial rows 14-16 above the first heavy rule
+% ("top-") and the first band, pencil/ink "1" in the right margin, rows
+% 1-16, as transcribed in sources/notes/F018.md. No person has checked
+% the transcription. Read at half resolution (scaled IIIF tiles), with
+% the lower rows checked at full scale where noted in F018.md.
+% Columns e01-e43 are F/018's own, numbered left to right (F018.md
+% section 2). A bracketed [?=cNN] is an inference from the head's
+% letter only; F/018 shares no full head with F/001.
+% Labels such as "B3", "U5" are written as words: they are Babbage's
+% writing, meaning not given on the sheet. row | column | mark | note
+top-14 | e13 [Figures upon Axis A] | number "1028" | 
+top-14 | e33 [Figures upon Axis B] | number "000000" | 
+top-15 | e34 [R2] | words "B3" | label above the arrow
+top-16 | e34 [R2] | up arrow | 
+top-16 | e34 [R2] | number "1.1" | 
+top-15 | e35 [Axis C Ver; ?=c06-type Ver] | words "B5" | label above the arrow
+top-16 | e35 [Axis C Ver] | up arrow | 
+top-16 | e35 [Axis C Ver] | number ".4" | 
+top-15 | e40 ["S1] | words "B3" | label above the arrow
+top-16 | e40 ["S1] | up arrow | 
+top-16 | e40 ["S1] | number "1.1" | 
+1-9 | e36 [Axis C Cir] | long arrow down, head at end | from the rule to the row 9/10 boundary
+1-9 | e37 [Axis C Fig wheel No1] | stepped shaft down, head at end | 
+10 | e37 [Axis C Fig wheel No1] | word "Zeros" | 
+1-9 | e38 [Axis C Fig wheel No2] | stepped shaft up, head at top | head at the rule
+10 | e38 [Axis C Fig wheel No2] | word "Figs" | 
+3-4 | e35-e39 [Multiplier] | words "Step up from one to two" | "one" and "two" underlined
+11 | e34 [R2] | down arrow, double head | two stacked heads at the lower end
+11 | e34 [R2] | number "1.1" | 
+11 | e35 [Axis C Ver] | down arrow, double head | 
+11 | e35 [Axis C Ver] | number ".4" | 
+11 | e40 ["S1] | down arrow, double head | 
+11 | e40 ["S1] | number "1.1" | 
+14 | e13 [Figures upon Axis A] | number "1028" | 
+14 | e33 [Figures upon Axis B] | number "000000" | 
+15 | e01 [Axis A Ver; ?=c01 A Ver.] | words "B5" | 
+16 | e01 [Axis A Ver] | up arrow | 
+16 | e01 [Axis A Ver] | number ".4" | 
+15 | e05 [P; ?=c44 P] | words "B3" | 
+16 | e05 [P] | up arrow | 
+16 | e05 [P] | number "1.1" | 
+15 | e07 [ap] | words "B4" | 
+16 | e07 [ap] | up arrow | 
+16 | e07 [ap] | number ".6" | 
+15 | e08 [g] | words "B4" | 
+16 | e08 [g] | up arrow | 
+16 | e08 [g] | number ".6" | 
+15 | e19 ['p'p] | words "B3" | 
+16 | e19 ['p'p] | up arrow | 
+16 | e19 ['p'p] | number "1.1" | 
+15 | e21 ['g1] | words "B1" | [?B1]
+16 | e21 ['g1] | up arrow | 
+16 | e21 ['g1] | number "1.1" | 
+15 | e22 [02] | words "B" | no figure after the B seen
+16 | e22 [02] | up arrow | 
+16 | e22 [02] | number ".45" | 
+15 | e25 [03] | words "B" | no figure after the B seen
+16 | e25 [03] | up arrow | 
+16 | e25 [03] | number ".45" | 
+15 | e34 [R2] | words "U3" | no arrow
+15 | e35 [Axis C Ver] | words "U5" | no arrow
+15 | e40 ["S1] | words "U3" | no arrow
+~9 | margin e43 | figure "1" | band number, lighter ink [?pencil]

@@ -664,3 +664,157 @@ rules) and S18 (dashed rules).
   different multiplier. These would separate the "boundary" hypothesis for IF
   from the "abbreviation" one, and the "rotation" reading of S16 from others.
 - **The unpublished keys** listed in `F001.md` section 6, item 3.
+
+## 5. BAB/F/013, "Table multiplication." (5 January 1836)
+
+**No person has checked the transcription** (`sources/notes/F013.md`,
+`mechanical/F013-cycle1.txt` … `F013-cycle5.txt`). F/013's columns are its
+own, t01–t47; none is identified with an F/001 column (`F013.md` section 2),
+so every comparison below is by the form of the mark, not by part. F/013 has
+four complete bands (15, 11, 15, 11 numbered rows, each with a "2/3" row
+before and a "1/3" row after) and the opening rows of a fifth.
+
+### 5a. Which S-marks occur in F/013
+
+| Mark | In F/013? | Where, and how it differs from F/001–002 |
+|---|---|---|
+| S1 short down arrow / S2 short up arrow | yes | Opening arrows in row 1 (and row 2/3) of most columns; the locks t28–t30, each with a letter "L" (down) or "U" (up) beside it (S26). Up/down pairs in t27 (rows 12–13) and t46 (rows 2/3–1). |
+| S3 Y mark, S4 staggered Y marks | no | |
+| S5 long vertical arrow | yes | Only in the two axes' "Cir" columns (t02, t17), rows 2–10, solid, head at the lower end (on F/001–002 the head is often part-way down). |
+| S6 / S7 converging / diverging double arrow | no | F/001–002 have them only at the ends of the run, with "IF". |
+| S8 dashed shaft | yes, 2 | Short down arrows in row 14: t03 band 1 (no word) and t04 band 3 (with "Carry"). |
+| S9 dotted line, no head | no | |
+| S10 hatched (struck) arrows | no | |
+| S11 / S12 "IF" | no | |
+| S13 words | yes | New kinds: whole sentences across columns ("Receive Addition upon N.<sup>os</sup> one", "Step down Product from one to two", "Step down multiplier from 2 to 1"); "Figures", "Figs", "Zeros"; "Gears with N.<sup>o</sup> 1 in bottom Cage"; "ca moves at same time"; labels "B N.<sup>o</sup> 5", "U 6 B 7", "U&B". "Carry" as on F/001–002. None of F/001–002's "Put in/out", "Rest", "Feels upon", "lowered upon", "Last.", "Single". |
+| S14 digits on wheels | no | No multiplier, complement or other number is written on any wheel. |
+| S15 decimal beside an arrow | yes, often | ".2", ".4", ".6", "1.1" (F/001–002: only ".5", in c52). In the platform heads they carry a sign ("+1.1" … "−1.1"; S27). |
+| S16 stepped broken shaft | yes, 28 | Rows 2–10 under the figure wheels, ″S2/′S2 Cir, the "Carr." wheels c/′c, Back Cen wheel, Lifters Cir: never under a "Ver" head, as on F/001–002. The head is at the lower end, except band 1 t03, whose head is in row 7 and whose lower end has none. "Figures" or "Zeros" is written under most of them in row 11. |
+| S17 heavy band rule | yes | Bands of 15 and 11 numbered rows alternately, with the rule falling between a "1/3" and a "2/3" row. A second heavy rule under row 1 in bands 1 and 3. |
+| S18 dashed rule between Ver and Cir | not checked | |
+| S19 erased mark | no | |
+| S20 pencil band number in the margin | no | The bands are unnumbered. |
+| S21 staggered up pair | no | |
+| S22 up arrow, two stacked heads | yes, 28 | The closing up-arrow of every column that opened with a down arrow (t37–t42 in every band; t16, t22, t23 where they open downward), at the band's end. On F/001–002 it is only in c52. |
+| S23 ink dot | incidental blots only | |
+
+### 5b. New marks
+
+| # | Mark | Occurrences | Where |
+|---|---|---|---|
+| S25 | **Down arrow with two stacked heads**, the downward form of S22 | 44 | Closing arrow of every column that opened with an up arrow (t01, t07–t10, t13, t15, t16, t22, t23, t25, t31–t36), at the end of the band; with the opening figure in band 1 and in some columns later. |
+| S26 | **Short arrow with a capital letter beside it**: ↓ L, ↑ U | 36 | Only in the three "Lock" columns t28–t30, staggered a little lower from left to right. Bands 2, 4: ↑U row 1, ↓L row 10–11. Bands 1, 3: also ↑U row 13, ↓L row 14–15 (band 1 has no row-1 ↑U). |
+| S27 | **Signed displacement in a head**: "+1.1", "+.6", "+.4", "+.2", "−.2" … "−1.1" | 12 | The heads of platforms N.<sup>o</sup> 1–12 (t31–t42), written in band 1's "2/3" row. |
+| S28 | **Three horizontal strokes** | 1 | Band (5), t25, under "B 4", which is written on the band rule above. |
+| S29 | **Vertical stroke with no head**, beside "U&B" | 1 | Band 4, t43 (bands 2, 3, (5) have a down arrow there). |
+
+Counts are of lines in the data files; for S26 each arrow with its letter
+counts once.
+
+**HYPOTHESIS (S22/S25):** the stacked double head marks the return of the
+part that the band's opening arrow moved. *For:* every column with an
+opening arrow has one, of the opposite direction, at the end of the band
+(`F013.md` section 5.2); this is also Bromley's 1838 sense ("double
+arrowheads indicate a return to the inactive position", Br1982 p. 207),
+and it fits S22 on F/001–002 (c52, where c06 says "Out."). *Against:* the
+source is of 1838; and on F/013 the closing arrow is sometimes in row 12,
+sometimes in row 15, of the same band. Not adopted.
+
+**HYPOTHESIS (S26):** "L" and "U" are "Lock" and "Unlock", the column heads
+being "Lock". *For:* the heads; the alternation U … L in every band.
+*Against:* nothing on the sheet expands the letters, and the arrows point up
+for U and down for L, which the sources do not explain. Not adopted.
+
+### 5c. Differences from F/001–002 (reading)
+
+- No mark F/001–002 leave unexplained recurs on F/013 except the stepped
+  shaft (S16) and the stacked double head (S22): no IF, no Y marks, no
+  converging or diverging double arrows, no hatching, no dotted rest lines.
+- F/013 writes no figure on a wheel. F/001–002's one varying figure, the
+  multiplier counted down a unit a cycle, has nothing corresponding: nothing
+  on F/013 changes from band to band except which numbered figure wheels the
+  words and the "Figures"/"Zeros" name, and which platform the opening
+  labels name.
+- No feeder, feeler, snail or "lowered upon"/"Feels upon" exists on F/013.
+- F/013's bands alternate between two patterns (15-row bands with "Receive
+  Addition" and "Step down multiplier"; 11-row bands with "Step down
+  Product"); F/001–002's six bands repeat one.
+- Arrows carry figures far more often on F/013 (".2" … "1.1") than on
+  F/001–002 (".5" in c52 only).
+
+## 6. BAB/F/018–020, "Multiplication without table" (11 January 1836)
+
+**No person has checked the transcription** (`sources/notes/F018.md`,
+`mechanical/F018-cycle{1,2,3}.txt`, `mechanical/F019-cycle{4,5,6}.txt`). It
+was read from half-scale images, with spot checks at full scale. The
+columns are F/018's own, **e01–e43** (`F018.md` section 2). No head names a
+part of F/001. The letters A and P and the word "Carry" are shared, but
+that does not make them the same parts. New marks are numbered from S40, to
+keep clear of the numbers the BAB/F/013 transcription may add.
+
+### 6a. Marks of S1–S24 present
+
+| Mark | On F/018–019 | Where |
+|---|---|---|
+| S1 short ↓ / S2 short ↑ | yes | ↑ in row 16 under a "B" label, with a figure; ↑ + "Carry" in e20 row 13; ↑ in rows 15–16 of the partial rows |
+| S5 long arrow | yes | the axis Cir column (e02, e15 or e36), rows 1–9, head at the lower end, in each stepping or give-off cycle (not in cycle 6) |
+| S13 words | yes | "Step up from one to two" / "two to one", "Give off and retain", "Add to N.<sup>os</sup> one", "Carry", "Zeros", "Figs" |
+| S14 figures | changed use | multiplicand "1028" and product "000000" … "206628" in "Figures upon Axis A/B", row 14; no multiplier figures, no complements |
+| S15 decimal beside an arrow | yes, extended | "1.1", ".4", ".6", ".2", ".45" (F/001: ".5" only) |
+| S16 stepped shaft | yes | the two figure-wheel columns of an axis, rows 1–9: one down with "Zeros", one up (head at the top rule) with "Figs" |
+| S20 band number | yes | e43, "1"–"6", ink ("1" lighter, [?pencil]) |
+| S3/S4 Y, S6/S7 double arrows, S8 dashed, S9 dotted, S10 hatched, S11/S12 IF, S21, S22, S23 | **absent** | — |
+
+### 6b. New marks
+
+**S40 down arrow with two stacked heads** (`down arrow, double head`; 47 in
+cycles 1–6). In row 11 in any column, and in rows 14–15 in e21, e22, e24
+and e25 ('g1, 02, 'g2/'g3, 03). **Reading:** every S40 is in a column that
+had a single ↑ in row 16 of the band before, and it carries the same figure
+where one is written (".4" → ".4", "1.1" → "1.1"). There are no exceptions
+in the six cycles. It is the down-pointing counterpart of S22 (F/001–002's
+↑ with stacked heads in c52, also with ".5"). **HYPOTHESIS** (Br1982 p. 207,
+"double arrowheads indicate a return to the inactive position"): the part
+raised in row 16 is returned. *For:* the one-to-one pairing; S22's
+hypothesis. *Against:* the source is from 1838.
+
+**S41 B/U labels** ("B3", "U5", "U5 B6"; written as `words`). They are in
+row 15, at the foot of each band and in the partial rows. "B n" stands over
+a row-16 ↑. "U n" has no arrow, and always follows a "B n" in the same
+column in an earlier band. The numbers 1–6 repeat across columns. F/020,
+"Bolting plates to multiply without table", lists the same labels in the
+same order without the time rows. **HYPOTHESIS:** numbered plates, bolted
+(B) and unbolted (U). *For:* F/020's title, and the pairing. *Against:* no
+sheet defines B or U. Compare F/013's "B N.<sup>o</sup> 5", "U N.<sup>o</sup> 3"
+(seen on its preview only).
+
+**S42 working figures.** In cycle 5, e33, "1028" is written small under
+"205600". It is a figure, not a motion. **HYPOTHESIS:** Babbage's own sum
+for the next cycle (206628).
+
+### 6c. Differences from F/001–002 (reading)
+
+- Cycle of **16** units, not 13. The row column has a second, offset
+  numbering (2…15, "⅓", "⅔", 1).
+- Three titled groups (Multiplicand, Product, Multiplier), each with axis
+  Ver/Cir and two figure wheels, in place of F/001's single row of 56 part
+  heads.
+- No feeders, snails, feeler, registering tooth or complements. Neither of
+  the two methods F/002's notes name (section 0) can be identified.
+- The place changes by **stepping the product** ("Step up from one to two",
+  figures ×10 in cycles 4 and 5), not by the multiplying pinions'
+  "Gears with n−k".
+- Additions are written ("Add to N.<sup>os</sup> one", cycles 2, 3, 6), and
+  the product's figures show each one (+1028).
+- None of the marks that F/001–002 leave unexplained (IF, Y, S6/S7,
+  hatching, dashed and dotted shafts) is used.
+
+Per cycle (multiplicand / product / multiplier group):
+1 — / ↑ only / step one→two;
+2 give off / add + Carry / —;
+3 give off / add + Carry / —;
+4 — / step one→two / step two→one;
+5 — / step two→one / step one→two;
+6 give off (no axis arrow) / add + Carry / —.
+Product: 000000, 001028, 002056, 020560, 205600, 206628.
+

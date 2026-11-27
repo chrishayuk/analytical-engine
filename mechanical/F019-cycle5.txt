@@ -1,0 +1,62 @@
+% BAB/F/019, 216/273: the second band, "5" in the right margin, rows
+% 1-16, as transcribed in sources/notes/F018.md. No person has checked
+% the transcription. Columns e01-e43 as in F019-cycle4.txt.
+% row | column | mark | note
+1-9 | e15 [Axis B Cir] | long arrow down, head at end | 
+1-9 | e16 [Axis B Fig wheel No1] | stepped shaft up, head at top | 
+10 | e16 [Axis B Fig wheel No1] | word "Figs" | 
+1-9 | e17 [Axis B Fig wheel No2] | stepped shaft down, head at end | 
+10 | e17 [Axis B Fig wheel No2] | word "Zeros" | 
+4 | e19-e24 [Product] | words "Step up from two to one" | "two" and "one" underlined
+1-9 | e36 [Axis C Cir] | long arrow down, head at end | 
+1-9 | e37 [Axis C Fig wheel No1] | stepped shaft down, head at end | 
+10 | e37 [Axis C Fig wheel No1] | word "Zeros" | 
+1-9 | e38 [Axis C Fig wheel No2] | stepped shaft up, head at top | 
+10 | e38 [Axis C Fig wheel No2] | word "Figs" | 
+4 | e35-e39 [Multiplier] | words "Step up from one to two" | "one" and "two" underlined
+11 | e07 [ap] | down arrow, double head | no figure
+11 | e14 [Axis B Ver] | down arrow, double head | 
+11 | e14 [Axis B Ver] | number ".2" | 
+11 | e26 ['S'S] | down arrow, double head | 
+11 | e26 ['S'S] | number "1.1" | 
+11 | e34 [R2] | down arrow, double head | 
+11 | e34 [R2] | number "1.1" | 
+11 | e35 [Axis C Ver] | down arrow, double head | 
+11 | e35 [Axis C Ver] | number ".4" | 
+11 | e40 ["S1] | down arrow, double head | 
+11 | e40 ["S1] | number "1.1" | 
+14-15 | e21 ['g1] | down arrow, double head | 
+14-15 | e22 [02] | down arrow, double head | 
+14-15 | e24 ['g3] | down arrow, double head | 
+14-15 | e24 ['g3] | number ".6" | 
+14-15 | e25 [03] | down arrow, double head | 
+14 | e13 [Figures upon Axis A] | number "1028" | 
+14 | e33 [Figures upon Axis B] | number "205600" | 
+14-15 | e33 [Figures upon Axis B] | number "1028" | smaller, under the last four figures of 205600
+15 | e01 [Axis A Ver] | words "B5" | 
+16 | e01 [Axis A Ver] | up arrow | 
+16 | e01 [Axis A Ver] | number ".4" | 
+15 | e05 [P] | words "B3" | 
+16 | e05 [P] | up arrow | 
+16 | e05 [P] | number "1.1" | 
+16 | e07 [ap] | up arrow | no label
+16 | e07 [ap] | number ".6" | 
+15 | e08 [g] | words "B4" | 
+16 | e08 [g] | up arrow | 
+16 | e08 [g] | number ".6" | 
+15 | e14 [Axis B Ver] | words "U6" | no arrow
+15 | e19 ['p'p] | words "B3" | 
+16 | e19 ['p'p] | up arrow | 
+16 | e19 ['p'p] | number "1.1" | 
+16 | e21 ['g1] | up arrow | 
+16 | e21 ['g1] | number "1.1" | 
+16 | e22 [02] | up arrow | 
+16 | e22 [02] | number ".45" | 
+15 | e24 ['g3] | words "U2." | no arrow
+16 | e25 [03] | up arrow | 
+16 | e25 [03] | number ".45" | 
+15 | e26 ['S'S] | words "U3" | no arrow
+15 | e34 [R2] | words "U3" | no arrow
+15 | e35 [Axis C Ver] | words "U5" | no arrow
+15 | e40 ["S1] | words "U3" | no arrow
+~7 | margin e43 | figure "5" | band number

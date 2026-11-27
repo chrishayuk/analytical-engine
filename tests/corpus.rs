@@ -511,3 +511,26 @@ fn f001_f002_six_cycles() {
     let seq: Vec<String> = CYCLES.iter().map(|(_, _, t)| multiplier(&read(t).unwrap())).collect();
     assert_eq!(seq, ["1021", "0021", "0021", "0011", "0001", "0000"]);
 }
+
+/// F/018-019 (11 Jan 1836): every product Babbage wrote follows from the
+/// one before by his band's own word, "Add" (the multiplicand written) or
+/// "Step up" (times ten): 1028 × 201 = 206628. And every band of the three
+/// multiplication designs reads.
+#[test]
+fn series_f_designs() {
+    use babbage::mechanical::{f018_states, read, DESIGNS};
+    for d in DESIGNS {
+        for (sheet, n, t) in d.bands {
+            assert!(read(t).is_ok(), "{sheet} band {n}");
+        }
+    }
+    let s = f018_states();
+    assert_eq!(s.len(), 6);
+    assert!(
+        s.iter().all(|x| x.3.is_ok()),
+        "{:?}",
+        s.iter().map(|x| &x.3).collect::<Vec<_>>()
+    );
+    assert_eq!(s.last().unwrap().2, Some(206628));
+    assert_eq!(1028 * 201, 206628);
+}

@@ -1,0 +1,43 @@
+% BAB/F/019, 216/273: the third band, "6" in the right margin, rows
+% 1-16, as transcribed in sources/notes/F018.md. No person has checked
+% the transcription. Columns e01-e43 as in F019-cycle4.txt. Nothing is
+% written below this band.
+% row | column | mark | note
+4-5 | e08-e12 [Multiplicand] | words "Give off and retain" | no arrow or stepped shaft in e02-e04 in this band
+4-5 | e18-e22 [Product] | words "Add to N.os one." | [?N.o or N.os]; "one" underlined; no stepped shaft in e16 in this band
+11 | e01 [Axis A Ver] | down arrow, double head | 
+11 | e01 [Axis A Ver] | number ".4" | 
+11 | e05 [P] | down arrow, double head | 
+11 | e05 [P] | number "1.1" | 
+11 | e07 [ap] | down arrow, double head | no figure
+11 | e08 [g] | down arrow, double head | 
+11 | e08 [g] | number ".6" | 
+11 | e19 ['p'p] | down arrow, double head | 
+11 | e19 ['p'p] | number "1.1" | 
+13 | e20 [Carriage b] | up arrow | 
+13 | e20 [Carriage b] | word "Carry" | 
+13 | e23 [Carriage 'b] | word "Zeros" | 
+14-15 | e21 ['g1] | down arrow, double head | 
+14-15 | e22 [02] | down arrow, double head | 
+14-15 | e25 [03] | down arrow, double head | 
+14 | e13 [Figures upon Axis A] | number "1028" | 
+14 | e33 [Figures upon Axis B] | number "206628" | 
+15 | e01 [Axis A Ver] | words "U5 B6" | 
+16 | e01 [Axis A Ver] | up arrow | 
+16 | e01 [Axis A Ver] | number ".2" | 
+15 | e05 [P] | words "U3" | no arrow
+16 | e07 [ap] | up arrow | no label
+16 | e07 [ap] | number ".6" | 
+15 | e08 [g] | words "U4" | no arrow
+15 | e09 [g1] | words "B3" | 
+16 | e09 [g1] | up arrow | 
+16 | e09 [g1] | number "1.1" | 
+16 | e19 ['p'p] | up arrow | 
+16 | e19 ['p'p] | number "1.1" | 
+16 | e21 ['g1] | up arrow | 
+16 | e21 ['g1] | number "1.1" | 
+16 | e22 [02] | up arrow | 
+16 | e22 [02] | number ".45" | 
+16 | e25 [03] | up arrow | 
+16 | e25 [03] | number ".45" | 
+~7 | margin e43 | figure "6" | band number

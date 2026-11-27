@@ -85,3 +85,19 @@ which.
 "Multiply a, b, c, d by 1021", about 1835, in the mechanical notation:
 documents `aa110000050` and `aa110000051`. See `notes/F001.md`,
 `notes/F002.md`, the data in `../mechanical/` and `../docs/f-concordance.md`.
+
+### BAB/F/018 to BAB/F/020
+
+"Multiplication without table", sheets 1 and 2, dated "11 Jan 1836" on the
+covers, "1028 × 201" (documents `aa110000502`, `aa110000503`; images
+216/270–273), and "Bolting plates to multiply without table"
+(`aa110000504`; 216/277–278). See `notes/F018.md` and
+`../mechanical/F018-cycle*.txt`, `F019-cycle*.txt`.
+
+### BAB/F/013
+
+"Table multiplication.", document `aa110000497`, dated on its cover "5 Jan.y
+1836". Two images: `216/258` the cover, `216/259` (9581 × 6933) the whole
+opened table. The zoom server served it only as aligned 512-px tiles at
+their own size; all 266 tiles of 259 were fetched and stitched. See
+`notes/F013.md` and `../mechanical/F013-cycle*.txt`.

@@ -24,7 +24,7 @@ babbage history              each capability: conceived, designed, used, revised
 babbage history pages        each page's capabilities against the record before its date
 babbage history pages --as-of 1837-08-04
                              each page against the machine as evidenced by that date: what it needs that is not yet
-babbage mechanical [N]       BAB/F/001-002, the multiplication in the mechanical notation: six cycles, and cycle N's timing
+babbage mechanical [D] [N]   multiplication in the mechanical notation: F001 (1835), F013 (by table), F018 (Jan 1836); band N's timing
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground
@@ -247,49 +247,54 @@ fn main() {
                 }
             }
         }
-        ["mechanical"] | ["mechanical", _] => {
-            use babbage::mechanical::{chart, in_motion, multiplier, read, Kind, CYCLES};
-            let want: Option<u8> = rest.get(1).and_then(|c| c.parse().ok());
-            let all: Vec<_> = CYCLES
-                .iter()
-                .map(|(sheet, n, text)| {
+        ["mechanical", ..] => {
+            use babbage::mechanical::{chart, f018_states, in_motion, multiplier, read, Kind, DESIGNS};
+            let key = rest.get(1).map(String::as_str).unwrap_or("F001");
+            let band: u8 = rest.get(2).and_then(|c| c.parse().ok()).unwrap_or(1);
+            println!("Multiplication in the mechanical notation, three designs (Series F).\n");
+            println!("design  band  sheet       rows  marks  unknown  most columns in motion");
+            for d in DESIGNS {
+                for (sheet, n, text) in d.bands {
                     let marks = read(text).unwrap_or_else(|e| {
-                        eprintln!("{sheet} cycle {n}: {e}");
+                        eprintln!("{sheet} band {n}: {e}");
                         exit(2)
                     });
-                    (sheet, *n, marks)
-                })
+                    let unknown = marks.iter().filter(|m| m.kind == Kind::Unknown).count();
+                    let (lo, hi) = babbage::mechanical::span(&marks);
+                    let peak = in_motion(&marks).into_iter().max().unwrap_or(0);
+                    println!(
+                        "{:<6}  {n:>4}  {sheet}  {:>4}  {:>5}  {unknown:>7}  {peak:>3}",
+                        d.key,
+                        hi - lo + 1,
+                        marks.len()
+                    );
+                }
+            }
+            println!("\nF001: the multiplier's figures as written, band by band:");
+            let seq: Vec<String> = DESIGNS[0]
+                .bands
+                .iter()
+                .map(|(_, _, t)| multiplier(&read(t).unwrap_or_default()))
                 .collect();
-            println!("\"Multiply a, b, c, d by 1021\": BAB/F/001 and F/002, six cycles of 13 time units.\n");
-            println!("cycle  sheet       marks  unknown  multiplier  most columns in motion");
-            for (sheet, n, marks) in &all {
-                let unknown = marks.iter().filter(|m| m.kind == Kind::Unknown).count();
-                let peak = in_motion(marks).into_iter().max().unwrap_or(0);
-                let mult = multiplier(marks);
-                println!(
-                    "{n:>5}  {sheet}  {:>5}  {unknown:>7}  {:>10}  {peak:>3}",
-                    marks.len(),
-                    if mult.is_empty() { "-".into() } else { mult }
-                );
+            println!("  {}", seq.join(" → "));
+            println!("\nF018: each product written, against the band's own words (Add: + the multiplicand written, 1028; Step up: × 10):");
+            for (n, said, p, r) in f018_states() {
+                let p = p.map(|p| format!("{p:06}")).unwrap_or_else(|| "-".into());
+                match r {
+                    Ok(()) => println!("  band {n}  {said:<8} {p}  ✓"),
+                    Err(e) => println!("  band {n}  {said:<8} {p}  ✗ {e}"),
+                }
             }
-            let n = want.unwrap_or(1);
-            if let Some((sheet, _, marks)) = all.iter().find(|c| c.1 == n) {
-                println!("\nCycle {n} ({sheet}):\n");
-                print!("{}", chart(marks));
-                println!("\n↓ ↑ arrow (a motion), | its continuation, · rest, w words, ? a mark no source explains, figures as written.");
-                println!(
-                    "Columns with a motion under way, by time unit: {}",
-                    in_motion(marks)
-                        .iter()
-                        .map(|x| x.to_string())
-                        .collect::<Vec<_>>()
-                        .join(" ")
-                );
+            if let Some(d) = DESIGNS.iter().find(|d| d.key.eq_ignore_ascii_case(key)) {
+                if let Some((sheet, _, text)) = d.bands.iter().find(|b| b.1 == band) {
+                    let marks = read(text).unwrap_or_default();
+                    println!("\n{}, band {band} ({sheet}):\n", d.name);
+                    print!("{}", chart(&marks));
+                    println!("\n↓ ↑ arrow (a motion), | its continuation, · rest, w words, ? a mark no source explains, figures as written.");
+                }
             }
-            println!(
-                "\nThe multiplier's figures are as written; nothing here gives a mark a meaning no source gives it."
-            );
-            println!("Layers built: the notation, the timing. Not built: the mechanical state and the arithmetic (docs/f001-pilot.md).");
+            println!("\nFigures and words are Babbage's; the checks compare his figures with his words. Nothing simulates the mechanism, and no mark");
+            println!("is given a meaning no source gives it (docs/f-cycles.md, docs/f-concordance.md). babbage mechanical [F001|F013|F018] [band]");
         }
         ["uses"] => {
             let names: Vec<&str> = babbage::history::CAPABILITIES.iter().map(|c| c.0).collect();

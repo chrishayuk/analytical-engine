@@ -115,3 +115,56 @@ has not done that.
 The multiplicand's figures, any product, and any carriage of tens shown as
 figures. "Carry" is written in F's circular motion in some cycles, but
 nothing records a carried figure.
+
+## Three designs: 1835, and January 1836
+
+F/013 ("Table multiplication", 5 January 1836) and F/018–019
+("Multiplication without table", 11 January 1836) are now transcribed to
+the same standard (`sources/notes/F013.md`, `F018.md`). `babbage mechanical`
+lists all three designs.
+
+| | F/001–002 (about 1835) | F/013, by table (5 Jan 1836) | F/018–019, without table (11 Jan 1836) |
+|---|---|---|---|
+| Operands written | "Multiply a, b, c, d by 1021" | none on any wheel | "1028 × 201"; the multiplicand and each product, to six places |
+| Columns | 56 | 47 | 43, in Multiplicand, Product and Multiplier groups |
+| Rows in a band | 13 | 11 to 15, with rows "2/3" and "1/3" before and after | 16 |
+| Bands | 6 | 4, and the start of a fifth | 6 |
+| Most columns in motion at once | 10 | 21–22 | 10 |
+| Multiplier | its figures written, counted down a unit at a time | "stepped down" from one numbered wheel to another; no figure | "Step[ped] up"; its figures never written |
+| Sensing a figure | snail feeders "lowered upon" a figure; a feeler "Feels upon n" | none named | none named |
+| Complements | figure by figure, counted up | none | none |
+| Unexplained marks of F/001 | — | only the stepped shaft and the stacked double head recur | none recur |
+
+**What F/018–019 records, checked against its own words.** Each band says
+"Add" or "Step up", and writes the product. Every product written follows
+from the one before. Where the band says "Add", it is the one before plus
+the multiplicand written (1028). Where it says "Step up", it is ten times
+the one before:
+
+000000 → 001028 → 002056 → 020560 → 205600 → 206628 = 1028 × 201.
+
+So the order is: two additions for the 2, the product shifted twice, and
+one addition for the 1. The highest figure is taken first, and the product
+is shifted rather than the gearing moved on (compare F/001's "Gears with
+n−1"). This check compares Babbage's figures with his own words. It does
+not simulate the mechanism and gives no mark a meaning. It is the first
+place in Series F where a calculation can be followed from the record
+alone.
+
+**What it bears on.** In F/001–002, H1 (one addition for each unit of a
+figure) was the leading reading, but no product was written to test it.
+F/018–019 shows that very scheme, written out with its figures, six days
+after the table design: one addition for each unit of a figure, the
+highest first. That supports H1 as a reading of Babbage's method in
+January 1836. It does not prove that F/001–002, a year earlier and a
+different mechanism, worked the same way.
+
+**What F/013 does not show.** No figure is written on any of its wheels, and
+nothing in it is said to feel a figure. So whether the table design
+multiplies by a figure at once cannot be read from it. Its notes (one dated
+6 February 1836) and its "Platforms" with signed figures are described in
+`sources/notes/F013.md`.
+
+**Not the same design redrawn.** The three differ in their parts, cycle
+length, symbols and how they move to the next place. Nothing on the sheets
+supports merging them into one machine.

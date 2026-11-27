@@ -20,7 +20,7 @@ babbage history              each capability: conceived, designed, used, revised
 babbage history pages        each page's capabilities against the record before its date
 babbage history pages --as-of 1837-08-04
                              each page against the machine as evidenced by that date: what it needs that is not yet
-babbage mechanical [N]       BAB/F/001-002, the multiplication in the mechanical notation: six cycles, and cycle N's timing
+babbage mechanical [D] [N]   multiplication in the mechanical notation: F001 (1835), F013 (by table), F018 (Jan 1836); band N's timing
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground

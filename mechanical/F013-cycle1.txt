@@ -1,0 +1,103 @@
+% BAB/F/013 "Table multiplication.", 216/259: the first band (rows 2/3, 1-15,
+% 1/3), as transcribed in sources/notes/F013.md section 4a. No person has
+% checked the transcription. The sheet does not number its bands; they are
+% numbered here in order. In this band's "2/3" row Babbage wrote heads
+% (Ver/Cir, and the platforms' +1.1 ... -1.1); those are in the column heads,
+% not here.
+% Rows are numbered as the left margin numbers them, except the two
+% fractional rows: the "2/3" row that opens every band is written 0, and the
+% "1/3" row that closes it is written as the last numbered row + 1 (16 in
+% bands 1 and 3, 12 in bands 2 and 4). The band rule falls between the "1/3"
+% and the next "2/3". Columns t01-t47 are F/013's own, left to right
+% (sources/notes/F013.md section 2); none is identified with an F/001 column.
+% "across tNN-tMM" is a line of words written across several columns.
+% row | column | mark | note
+1 | t07 Cen Pin ″P | up arrow, short | from the rule below row 1
+1 | t07 Cen Pin ″P | number "1.1" |
+12 | t07 Cen Pin ″P | down arrow, double head | two stacked heads
+12 | t07 Cen Pin ″P | number "1.1" |
+2-10 | t03 Figure wheels N.o1 (left) | stepped shaft down, head row 7 | no head at the lower end; ends at the row 10/11 boundary
+11 | t03 Figure wheels N.o1 (left) | words "Figures" |
+14 | t03 Figure wheels N.o1 (left) | down arrow, dashed shaft | short; no word beside it
+11 | t04 Figure wheels N.o2 (left) | words "Zeros" |
+4 | across t05-t10 | words "Receive Addition upon N.os one" | "one" underlined
+2-10 | t12 Carr.e c | stepped shaft down, head at end |
+11 | t12 Carr.e c | words "Figures" | runs into t13
+14 | t12 Carr.e c | down arrow, short |
+14 | t12 Carr.e c | words "Carry" |
+1 | t13 Carr.d pin.gs [?] Ver | up arrow, short |
+1 | t13 Carr.d pin.gs [?] Ver | number "1.1" |
+2-4 | t13 Carr.d pin.gs [?] Ver | words "ca moves at same time" | a faint pencil "0" above "ca"
+15-16 | t13 Carr.d pin.gs [?] Ver | down arrow, double head | head at the band rule
+15-16 | t13 Carr.d pin.gs [?] Ver | number "1.1" |
+11 | t14 Carr.d ′c | words "Zeros" |
+1 | t15 Car pin ″g2 Ver | up arrow, short |
+1 | t15 Car pin ″g2 Ver | number ".6" |
+2-4 | t15 Car pin ″g2 Ver | words "′ca moves at same time" | a faint pencil "01" above "ca"
+15-16 | t15 Car pin ″g2 Ver | down arrow, double head | head at the band rule
+15-16 | t15 Car pin ″g2 Ver | number ".6" |
+1 | t16 Axis B Ver | up arrow, short |
+1 | t16 Axis B Ver | number ".2" |
+12 | t16 Axis B Ver | down arrow, double head |
+12 | t16 Axis B Ver | number ".2" |
+2-10 | t17 Axis B Cir | long arrow down, head at end | solid shaft
+13 | t17 Axis B Cir | down arrow, short |
+2-10 | t18 Figure wheels N.o1 (right) | stepped shaft down, head at end |
+11 | t18 Figure wheels N.o1 (right) | words "Figures" |
+2-10 | t19 Figure wheels N.o2 (right) | stepped shaft down, head at end |
+11 | t19 Figure wheels N.o2 (right) | words "Zeros" |
+5 | across t17-t24 | words "Step down multiplier from [struck: ?0 to ?4] 2 to 1" | "2" and "1" underlined; the last "1" heavy, perhaps written over another figure; an ink blot at "Step"
+1 | t23 ′S1 Ver | up arrow, short |
+1 | t23 ′S1 Ver | number "1.1" |
+12 | t23 ′S1 Ver | down arrow, double head |
+12 | t23 ′S1 Ver | number "1.1" |
+1 | t25 ′R Ver | up arrow, short |
+1 | t25 ′R Ver | number ".6" |
+3-5 | t25 ′R Ver | words "Gears with N.o 2" | no arrow
+12 | t25 ′R Ver | down arrow, double head |
+12 | t25 ′R Ver | number ".6" |
+12 | t27 Wire Axes E | up arrow, short |
+13 | t27 Wire Axes E | down arrow, short |
+10 | t28 Lock Cen.l | down arrow, short | with letter L
+10 | t28 Lock Cen.l | words "L" |
+13 | t28 Lock Cen.l | up arrow, short | with letter U
+13 | t28 Lock Cen.l | words "U" |
+14 | t28 Lock Cen.l | down arrow, short |
+14 | t28 Lock Cen.l | words "L" |
+11 | t29 Lock Fig wh | down arrow, short |
+11 | t29 Lock Fig wh | words "L" |
+13 | t29 Lock Fig wh | up arrow, short |
+13 | t29 Lock Fig wh | words "U" |
+14 | t29 Lock Fig wh | down arrow, short | [?row 15]
+14 | t29 Lock Fig wh | words "L" |
+11 | t30 Lock Carr.e | down arrow, short |
+11 | t30 Lock Carr.e | words "L" |
+13 | t30 Lock Carr.e | up arrow, short |
+13 | t30 Lock Carr.e | words "U" |
+15 | t30 Lock Carr.e | down arrow, short | [?row 14]
+15 | t30 Lock Carr.e | words "L" |
+15-16 | t31 Platforms N.o1 +1.1 | down arrow, double head | head at the band rule
+15-16 | t31 Platforms N.o1 +1.1 | number "1.1" |
+15-16 | t32 Platforms N.o2 +.6 | down arrow, double head | head at the band rule
+15-16 | t32 Platforms N.o2 +.6 | number ".6" |
+12 | t33 Platforms N.o3 +1.1 | down arrow, double head |
+12 | t33 Platforms N.o3 +1.1 | number "1.1" |
+12 | t34 Platforms N.o4 +.6 | down arrow, double head |
+12 | t34 Platforms N.o4 +.6 | number ".6" |
+12 | t35 Platforms N.o5 +.4 | down arrow, double head |
+12 | t35 Platforms N.o5 +.4 | number ".4" |
+12 | t36 Platforms N.o6 +.2 | down arrow, double head |
+12 | t36 Platforms N.o6 +.2 | number ".2" |
+12 | t37 Platforms N.o7 −.2 | up arrow, double head |
+12 | t37 Platforms N.o7 −.2 | number ".2" |
+12 | t38 Platforms N.o8 −.4 | up arrow, double head |
+12 | t38 Platforms N.o8 −.4 | number ".4" |
+12 | t39 Platforms N.o9 −.6 | up arrow, double head |
+12 | t39 Platforms N.o9 −.6 | number ".6" |
+12 | t40 Platforms N.o10 −1.1 | up arrow, double head |
+12 | t40 Platforms N.o10 −1.1 | number "1.1" |
+15-16 | t41 Platforms N.o11 −.6 | up arrow, double head | foot at the band rule
+15-16 | t41 Platforms N.o11 −.6 | number ".6" |
+15-16 | t42 Platforms N.o12 −1.1 | up arrow, double head | foot at the band rule
+15-16 | t42 Platforms N.o12 −1.1 | number "1.1" |
+2-10 | t47 Lifters Cir | stepped shaft down, head at end |

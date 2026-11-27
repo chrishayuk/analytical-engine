@@ -1,0 +1,49 @@
+% BAB/F/018, 216/271: the second band, "2" in the right margin, rows
+% 1-16, as transcribed in sources/notes/F018.md. No person has checked
+% the transcription. Columns e01-e43 as in F018-cycle1.txt.
+% row | column | mark | note
+1-9 | e02 [Axis A Cir; ?=c02 A Cir.Mo.] | long arrow down, head at end | from the rule to the row 9/10 boundary
+1-9 | e03 [Axis A Fig wheel No1] | stepped shaft down, head at end | 
+10 | e03 [Axis A Fig wheel No1] | word "Zeros" | 
+1-9 | e04 [Axis A Fig wheel No2] | stepped shaft up, head at top | head at the rule
+10 | e04 [Axis A Fig wheel No2] | word "Figs" | 
+4-5 | e08-e12 [Multiplicand] | words "Give off and retain" | 
+1-9 | e16 [Axis B Fig wheel No1] | stepped shaft up, head at top | head at the rule
+4-5 | e19-e23 [Product] | words "Add to N.os one" | "N" with superscript "os" over two dots (read "Nos"); "one" underlined
+11 | e01 [Axis A Ver] | down arrow, double head | 
+11 | e01 [Axis A Ver] | number ".4" | 
+11 | e05 [P] | down arrow, double head | 
+11 | e05 [P] | number "1.1" | 
+11 | e07 [ap] | down arrow, double head | no figure
+11 | e08 [g] | down arrow, double head | 
+11 | e08 [g] | number ".6" | 
+11 | e19 ['p'p] | down arrow, double head | 
+11 | e19 ['p'p] | number "1.1" | 
+13 | e20 [Carriage b] | up arrow | 
+13 | e20 [Carriage b] | word "Carry" | across the arrow
+13 | e23 [Carriage 'b] | word "Zeros" | no arrow
+14-15 | e21 ['g1] | down arrow, double head | from about the middle of row 14 into row 15
+14-15 | e22 [02] | down arrow, double head | 
+14-15 | e25 [03] | down arrow, double head | 
+14 | e13 [Figures upon Axis A] | number "1028" | 
+14 | e33 [Figures upon Axis B] | number "001028" | 
+15 | e01 [Axis A Ver] | words "U5 B6" | 
+16 | e01 [Axis A Ver] | up arrow | 
+16 | e01 [Axis A Ver] | number ".2" | 
+15 | e05 [P] | words "U3" | no arrow
+15 | e06 [pp] | words "B4" | 
+16 | e06 [pp] | up arrow | 
+16 | e06 [pp] | number ".6" | 
+16 | e07 [ap] | up arrow | no label above
+16 | e07 [ap] | number ".6" | 
+15 | e08 [g] | words "U4" | no arrow
+15 | e09 [g1] | words "B3" | 
+16 | e09 [g1] | up arrow | 
+16 | e09 [g1] | number "1.1" | 
+16 | e19 ['p'p] | up arrow | no label above
+16 | e19 ['p'p] | number "1.1" | 
+16 | e21 ['g1] | up arrow | no label above
+16 | e21 ['g1] | number "1.1" | 
+16 | e22 [02] | up arrow | no label, no figure
+16 | e25 [03] | up arrow | no label, no figure
+~8 | margin e43 | figure "2" | band number
