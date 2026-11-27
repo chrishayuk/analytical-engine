@@ -21,17 +21,26 @@ principle (no worked case), or not described.
 | Backing the cards, to repeat a card or a set of cards "any number of times" | Note C, p. 706 | Explicit; the circumstances ("at pleasure, under the requisite circumstances") are not said |
 | A cycle repeated a number of times fixed in advance ("limits 1 to n … regulate how often") | Note E, p. 720 | Explicit; the count is the person's choice |
 | A counter ("registering-apparatus") loaded with n − 1 and run down to zero | Menabrea p. 686 | Explicit; n is given data, not computed during the run |
-| **A cycle repeated until a result of the mill comes to zero** | Note G, pp. 728–731: "V₁₀ always decides which of two courses the succeeding processes are to follow, by feeling for the value of n through means of a subtraction" | **Explicit**, with one worked case (Operations 7, 12, 23); Reading A of the archive note. The mechanism is not described |
+| **A result of the mill, zero or greater than zero, chooses between two courses** | Note G, pp. 728, 730–731: "the engine follows the one or the other of the two courses … contingently on the one or the other result of Operation 7"; "V₁₀ always decides which of two courses the succeeding processes are to follow, by feeling for the value of n through means of a subtraction" | **Explicit**, with one worked case (Operations 7, 12, 23). The mechanism is not described |
+| **That this test ends the repetition of (13…23)**, a cycle repeated until a result comes to zero | Note G, pp. 728–730, read with the diagram (V₁₀ falling by one at each test) | **Reading A** of the archive note, rated moderate there: inferred, not stated. Reading B: the repetition is a counted backing (Σ(+1)ⁿ⁻², "limits"), and the test only chooses a forward course |
 | Other cards brought into play when a remainder is zero ("the mill will order other cards") | Menabrea p. 687 | Stated as a principle; which cards, and how they are reached, is not said |
-| The sign of a datum choosing × or ÷ | Menabrea p. 686 | Stated as a principle; a choice of operation, inside the mill's work, not of cards |
-| A stop at "the passage through zero or infinity" | Menabrea p. 685 | A bell and a wait for the attendant: an alarm, not an end (Model D is not this) |
+| The sign of a datum choosing × or ÷ | Menabrea p. 686 | Stated as a principle. Reading A of the archive note: a choice of operation; Reading B, different cards presented ("the cards … would order its division"), is not excluded |
+| At "the passage through zero or infinity", if the case "has been foreseen", the engine "will so dispose itself as to present the new cards", which come "into play contingently" | Menabrea p. 685 | Stated as a principle: a choice of cards on a result; which cards, and how, is not said |
+| The same stop, if not foreseen: a bell, and the engine "stops until the attendant has again set it in action" | Menabrea p. 685 | An alarm, not an end (Model D is not this) |
+| The engine can "change its processes … on the occurrence of any specified contingency" | Notes E (p. 715) and G (p. 723) | Stated as a principle |
+
+So what is explicit is a test that chooses between two courses. That the
+test ends a repetition, rather than choosing a forward course after a counted
+one, is a reading. Everything below that needs a cycle ended by a result
+holds **under Reading A**.
 
 Two kinds of control are kept apart:
 - **Control of the cards**: what decides which card acts next (backing, a
   counted cycle, the Note G test). This page is about that.
 - **Control inside the mill**: the sign choosing a mill cycle within one
-  division (22 March 1836) or × against ÷ (Menabrea p. 686). It changes what
-  one operation does, not which cards follow, and is not used here.
+  division (22 March 1836), and, on Reading A of Menabrea p. 686, × against
+  ÷. It changes what one operation does, not which cards follow, and is not
+  used here.
 
 ## 2. The configuration `1843`
 
@@ -43,11 +52,12 @@ with this card. Nothing else is added.
 
 | Rule | Kind | Source |
 |---|---|---|
-| The backing is effective while the tested number is greater than zero, and ineffective when it is zero. | **Reading** | Note G, p. 728: "a result equal to zero … or a result greater than zero … and the engine follows the one or the other of the two courses". Reading A of the archive note: the repetition of (13…23) is ended by the test at Operation 23. Reading B (a counted backing with the count n − 2, V₁₀ only choosing between "finished" and "go on") is the alternative; the text describes no counter in Note G. |
+| The backing is effective while the tested number is greater than zero, and ineffective when it is zero. | **Reading** (Reading A) | Note G, p. 728: "a result equal to zero … or a result greater than zero … and the engine follows the one or the other of the two courses". Reading A of the archive note: the repetition of (13…23) is ended by the test at Operation 23. Reading B (a counted backing with the count n − 2, V₁₀ only choosing between "finished" and "go on") is the alternative; the text describes no counter in Note G. |
 | The backing goes back. | Reading | The repeated cycle (13…23) is earlier cards. A forward course ("the mill will order other cards"; the n = 1 and n = 2 courses of Operations 7 and 12) is not given a card: the texts do not say how it is reached. |
-| A negative tested number lets the cards go on. | Idealisation | In the intended run of Note G the tested number is never negative. The theorems below test no negative number, so they hold if a negative number backs instead. |
+| A negative tested number lets the cards go on. | Idealisation | In the intended run of Note G the tested number is never negative. The theorems below test no negative number, so they hold if a negative number backs instead. The Note G decks for n = 1 and n = 2 do use it (§4). |
 
-Every other rule is that of `docs/semantics.md`. Under rule 14a a halt is
+Every other rule is that of `docs/semantics.md`, except rule 10 ("nothing
+chooses between cards"), which this card replaces. Under rule 14a a halt is
 still passing the last card.
 
 ## 3. What follows
@@ -60,10 +70,10 @@ in CI), except where marked.
 | The new card is a conservative extension: a deck of the Sketch Books runs exactly as before. | `step43_lift`, `run43_lift` |
 | A counter machine translates into a deck that **halts, by passing its last card, exactly when the machine halts**, and gives off its counters. | `halts43`, `machine_halts_of_43` |
 | That deck has only operation cards, result cards and the new backing: no combinatorial card, no counted or unconditional backing, no repetition card. | `deck43_plain` |
-| The configuration `1843` accepts it; no configuration without the new backing does. | `deck43_accepted`, `deck43_refused` |
+| The configuration `1843` accepts it; no configuration without the new backing does (near-definitional: the deck contains the card). | `deck43_accepted`, `deck43_refused` |
 
-So, given Minsky's theorem (cited, not formalised), the configuration of the
-published accounts is general under the ordinary meaning of a halt, with no
+So, given Minsky's theorem (cited, not formalised), and **under Reading A**,
+the configuration of the published accounts is general under the ordinary meaning of a halt, with no
 count set inside its own loop and no trap. Only the Note G test is needed. The
 counted mechanisms of 1837 and 1838, Menabrea's counter and the combinatorial
 wheels, are not used at all.
@@ -79,7 +89,8 @@ The translation (`deck43`, and `Ending::Cond1843` in `src/minsky.rs`):
 
 Tested in Rust (`tests/control.rs`, `counter_machines_in_1843`), and the Lean
 model and the Rust machine agree on the decks of `scripts/lean-diff.sh`, which
-now include the new card: 3,911 runs, among them 814 random decks with it, the
+now include the new card: 3,911 runs, among them 814 runs of 407 random decks
+with it (each with and without the trap), the
 counter-machine decks of `1843`, and the earlier ones. That is a test, not a
 proof.
 
@@ -88,11 +99,11 @@ proof.
 `control/note-g-printed.txt` and `control/note-g-corrected.txt` are Lovelace's
 table of 25 operations for B₇ (her numbering; −1/30, B₈ today), with the
 repetition of (13…23) as `back op13 if v10` (`tests/note_g.rs`). Only `1843`
-accepts them. Read from a camera image of the plate at 4,368 px
+accepts them. Read from a camera image 4,368 px wide (the plate about 2,200 px of it)
 (`sources/notes/note-g-table.md`, which has the row-by-row transcription and
 the uncertain cells).
 
-| Deck | V₂₄ | Passes of (13…23) |
+| Deck | Result (V₂₄; V₂₅ for n = 5, V₂₃ for n = 3) | Passes of (13…23) |
 |---|---|---|
 | As printed, n = 4 | −95/126 | 2 |
 | Corrected, n = 4 | −1/30 | 2 |
@@ -101,11 +112,13 @@ the uncertain cells).
 
 The three corrections, each with its source in the table note:
 1. Operation 4 is printed V₅ ÷ V₄; the plate's own statement of results gives
-   V₄ ÷ V₅. That the division is swapped is widely reported (secondary).
+   V₄ ÷ V₅. Also stated by Wikipedia, "Note G" §Error (secondary), whose
+   figure for the uncorrected program, −25621/630, was not reproduced.
 2. Operation 21 must take B₅ from V₂₃ on the repetition (text, p. 728); the
    plate shows the first pass only. This machine cannot advance a variable
-   card, so the deck copies B₃, B₅, B₇ to working columns and shifts them: five
-   cards not in the table, right for n ≤ 5.
+   card, so the deck copies V₂₂, V₂₃, V₂₄ to three working columns and shifts
+   them down after each Operation 21: six cards not in the table, right for
+   n ≤ 5.
 3. Operation 24 adds; by equation (9), B₇ = −V₁₃. The text says the table
    leaves the signs aside (p. 727).
 
@@ -113,7 +126,9 @@ The cycle runs n − 2 times, as "Σ(+1)ⁿ⁻²" on p. 730 says, and V₁₀ en
 
 **Limitations.** The tests at Operations 7 and 12 are not expressed: their
 other course goes forward, and the machine has only the backward test. The
-deck takes the course for n > 2. The zeroing of columns is done by extra mill
+deck takes the course for n > 2. For n = 1 and 2 the values still come out
+right, but V₁₀ ends at −2 or −1, and those runs halt only because a negative
+number lets the cards go on (§2). The zeroing of columns is done by extra mill
 operations, where the engine's variable cards would do it. Superscripts and
 the series of Numbers are not modelled.
 
@@ -152,3 +167,14 @@ mechanism is known only through Rojas.
   this machine does not have; whether a general machine follows from Reading B
   alone has not been worked out.
 - Anything about the dated configurations of 1836–1838, which are unchanged.
+- That the Note G decks run the same in Lean. Operation 1 writes three
+  columns, which the Lean model's operation card cannot, so the Note G decks
+  are not in the Lean–Rust comparison and their results rest on the Rust
+  machine alone. The Lean theorems are over whole numbers; Note G needs
+  fractions, which only the Rust and the random fraction decks of the
+  comparison exercise.
+- Much in the comparison for `1843`: only the counter machine `add`, on two
+  inputs, besides the random decks.
+- That a configuration accepts the same older decks: `step43_lift` proves
+  they run the same; that `Accepts43` agrees with `Accepts` on them is
+  evident from the definitions, not a theorem.

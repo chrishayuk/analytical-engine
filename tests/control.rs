@@ -268,10 +268,10 @@ fn counter_machines_in_1843() {
             .map(|v| v.to_string())
             .collect();
         let d = read(&compile_with(name, prog, &regs, Ending::Cond1843)).unwrap();
-        assert!(!d
-            .cards
-            .iter()
-            .any(|c| matches!(c, babbage::sketch::Card::Set(_) | babbage::sketch::Card::Repeat { .. })));
+        assert!(!d.cards.iter().any(|c| matches!(
+            c,
+            babbage::sketch::Card::Set(_) | babbage::sketch::Card::Repeat { .. } | babbage::sketch::Card::Back { .. }
+        )));
         for k in ["1836-03", "1837-12", "1838-05", "not-found"] {
             assert!(accepts(config(k), &d).is_err(), "{name} under {k}");
         }

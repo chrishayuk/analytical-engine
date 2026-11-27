@@ -355,8 +355,9 @@ backing.
 
 **After April 1842.** The control the published accounts of 1842–1843
 describe, Note G's cycle ended by a result of the mill, is a separate
-configuration: `published-control-1843.md`. With it alone, and a halt as
-passing the last card, counter machines translate (`Note43.lean`).
+configuration: `published-control-1843.md`. With it alone, read as ending a
+repetition (Reading A), and a halt as passing the last card, counter machines
+translate (`Note43.lean`).
 
 ## 7. Leads, and what has been read since
 

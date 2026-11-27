@@ -195,7 +195,7 @@ pub const CONFIGS: &[Config] = &[
     Config {
         key: "1843",
         date: "1842–1843, published",
-        source: "Menabrea (1842) and Lovelace's Note G (1843): as 30 May 1838, and a cycle repeated until a result of the mill (V10) comes to zero; the mechanism is not described",
+        source: "Menabrea (1842) and Lovelace's Note G (1843): as 30 May 1838, and a backing made effective by a result of the mill, read (Reading A) as Note G's cycle repeated until V10 comes to zero; the mechanism is not described",
         backing: true,
         any_target: true,
         set_in_group: false,

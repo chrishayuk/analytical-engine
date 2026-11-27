@@ -11,8 +11,8 @@
 %    need B5 (from V23) instead of B3 (from V22)"; pp. 729-730: the cycle of
 %    Variable-cards provides for it). This machine's operation card carries
 %    its own columns, so the advancing Variable-card is encoded by copying
-%    B3, B5, B7 to V14, V15, V16 before the cycle and shifting them down one
-%    column after each Operation 21: five cards that are not operations of
+%    V22, V23, V24 (B3, B5, and B7 when n = 5) to V14, V15, V16 before the cycle and shifting them down one
+%    column after each Operation 21: six cards that are not operations of
 %    the table. Three slots: right for n = 3, 4, 5.
 % 3. Operation 24: 0V24 - 4V13. By equation (9), 0 = A0 + A1B1 + A3B3 + ...
 %    + B(2n-1), so B7 = -V13. The printed + gives -B7 = +1/30, which is

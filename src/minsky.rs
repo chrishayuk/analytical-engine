@@ -8,7 +8,8 @@
 //! machines (`tests/control.rs`), not proved correct, and `not-found` is
 //! not a configuration any page read gives.
 //!
-//! The deck has no card that chooses between cards. One pass of a loop is one
+//! With `compile` and the trap endings, the deck has no card that chooses
+//! between cards; `Ending::Cond1843` has one, the backing of Note G. One pass of a loop is one
 //! step of the machine, and everything is done with + − ×, on whole numbers:
 //! - the state is held one-hot: column S_j is 1 if the machine is in state j,
 //!   and 0 otherwise;
@@ -16,7 +17,7 @@
 //!   group passed c_r + 1 times, which writes 0 on its first pass and 1 after;
 //! - each instruction i adds its effect times S_i into new state columns N_j
 //!   and into the counters, so only the instruction of the current state acts;
-//! - the loop's backing is counted, and its count is set inside the loop to
+//! - (`compile`) the loop's backing is counted, and its count is set inside the loop to
 //!   2 − (S_j summed over halt states j): the backing is effective until the
 //!   machine halts. That is the step no page read gives.
 //!
