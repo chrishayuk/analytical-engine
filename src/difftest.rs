@@ -308,6 +308,5 @@ pub fn cases_counted(n: usize) -> (Vec<(String, String, String)>, Tally) {
             );
         }
     }
-    drop(push);
     (all, tally)
 }
