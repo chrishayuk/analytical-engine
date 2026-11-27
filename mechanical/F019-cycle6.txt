@@ -2,6 +2,7 @@
 % 1-16, as transcribed in sources/notes/F018.md. No person has checked
 % the transcription. Columns e01-e43 as in F019-cycle4.txt. Nothing is
 % written below this band.
+rows | 1-16
 % row | column | mark | note
 4-5 | e08-e12 [Multiplicand] | words "Give off and retain" | no arrow or stepped shaft in e02-e04 in this band
 4-5 | e18-e22 [Product] | words "Add to N.os one." | [?N.o or N.os]; "one" underlined; no stepped shaft in e16 in this band

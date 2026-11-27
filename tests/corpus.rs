@@ -467,10 +467,10 @@ fn chronology_against_the_corpus() {
 #[test]
 fn f001_cycle_reads() {
     use babbage::mechanical::{in_motion, read, Kind, F001};
-    let marks = read(F001).unwrap();
-    assert_eq!(marks.len(), 87);
-    assert_eq!(marks.iter().filter(|m| m.kind == Kind::Unknown).count(), 34);
-    assert_eq!(in_motion(&marks).iter().max(), Some(&10));
+    let b = read(F001).unwrap();
+    assert_eq!(b.marks.len(), 87);
+    assert_eq!(b.marks.iter().filter(|m| m.kind == Kind::Unknown).count(), 34);
+    assert_eq!(in_motion(&b), [3, 1, 1, 3, 1, 2, 4, 2, 4, 10, 5, 7, 9]);
 }
 
 /// Competing models of the complement (docs/discrepancies.md, item 1): a
@@ -508,29 +508,105 @@ fn competing_complement_models() {
 #[test]
 fn f001_f002_six_cycles() {
     use babbage::mechanical::{multiplier, read, CYCLES};
-    let seq: Vec<String> = CYCLES.iter().map(|(_, _, t)| multiplier(&read(t).unwrap())).collect();
+    let seq: Vec<String> = CYCLES
+        .iter()
+        .map(|(_, _, t)| multiplier(&read(t).unwrap().marks))
+        .collect();
     assert_eq!(seq, ["1021", "0021", "0021", "0011", "0001", "0000"]);
 }
 
 /// F/018-019 (11 Jan 1836): every product Babbage wrote follows from the
 /// one before by his band's own word, "Add" (the multiplicand written) or
 /// "Step up" (times ten): 1028 × 201 = 206628. And every band of the three
-/// multiplication designs reads.
+/// multiplication designs reads, with the rows its sheet rules.
 #[test]
 fn series_f_designs() {
-    use babbage::mechanical::{f018_states, read, DESIGNS};
+    use babbage::mechanical::{f018_states, read, Row, DESIGNS};
     for d in DESIGNS {
         for (sheet, n, t) in d.bands {
-            assert!(read(t).is_ok(), "{sheet} band {n}");
+            assert!(read(t).is_ok(), "{sheet} band {n}: {:?}", read(t).err());
         }
     }
-    let s = f018_states();
+    let s = f018_states().unwrap();
     assert_eq!(s.len(), 6);
     assert!(
         s.iter().all(|x| x.3.is_ok()),
         "{:?}",
         s.iter().map(|x| &x.3).collect::<Vec<_>>()
     );
-    assert_eq!(s.last().unwrap().2, Some(206628));
+    let products: Vec<i64> = s.iter().map(|x| x.2.unwrap()).collect();
+    assert_eq!(products, [0, 1028, 2056, 20560, 205600, 206628]);
     assert_eq!(1028 * 201, 206628);
+    // F/013 keeps its "2/3" and "1/3" rows, and its fifth band is not
+    // padded into a cycle: it has the two rows the sheet rules, and says so.
+    let f013 = &DESIGNS[1];
+    let b1 = read(f013.bands[0].2).unwrap();
+    assert_eq!(b1.rows.first(), Some(&Row::TwoThirds));
+    assert_eq!(b1.rows.last(), Some(&Row::OneThird));
+    assert_eq!(b1.rows.len(), 17);
+    assert_eq!(read(f013.bands[1].2).unwrap().rows.len(), 13);
+    let b5 = read(f013.bands[4].2).unwrap();
+    assert_eq!(b5.rows, [Row::TwoThirds, Row::N(1)]);
+    assert!(b5.incomplete.is_some());
+    assert!(d_complete(f013, 4));
+}
+
+fn d_complete(d: &babbage::mechanical::Design, n: usize) -> bool {
+    use babbage::mechanical::read;
+    d.bands[..n].iter().all(|b| read(b.2).unwrap().incomplete.is_none())
+}
+
+/// Mutations of the record must be caught, not absorbed: an altered product,
+/// a removed multiplicand, a changed word, a band that cannot be read, and a
+/// mark outside the rows ruled.
+#[test]
+fn series_f_mutations() {
+    use babbage::mechanical::{read, recorded_states, DESIGNS};
+    let bands: Vec<(u8, String)> = DESIGNS[2].bands.iter().map(|(_, n, t)| (*n, t.to_string())).collect();
+    let check = |bs: &[(u8, String)]| {
+        let v: Vec<(u8, &str)> = bs.iter().map(|(n, t)| (*n, t.as_str())).collect();
+        recorded_states(&v)
+    };
+    let failures = |bs: &[(u8, String)]| check(bs).unwrap().iter().filter(|x| x.3.is_err()).count();
+    assert_eq!(failures(&bands), 0);
+    let with = |i: usize, from: &str, to: &str| {
+        let mut b = bands.clone();
+        assert!(b[i].1.contains(from), "{from}");
+        b[i].1 = b[i].1.replacen(from, to, 1);
+        b
+    };
+    // An altered product (band 3 writes 002056).
+    let m = with(2, "number \"002056\"", "number \"002057\"");
+    let r = check(&m).unwrap();
+    assert!(r[2].3.is_err(), "{:?}", r[2]);
+    // The multiplicand removed from a band that says Add (band 2): an
+    // explicit failure, not 1028 supplied in its place.
+    let m = with(1, "14 | e13 [Figures upon Axis A] | number \"1028\" |", "");
+    let r = check(&m).unwrap();
+    assert_eq!(r[1].3, Err("says Add, and writes no multiplicand".into()));
+    // A wrong multiplicand written.
+    let m = with(1, "number \"1028\"", "number \"1029\"");
+    assert!(check(&m).unwrap()[1].3.is_err());
+    // A band's word changed: band 2 made to say "Step up" (0 × 10 is not
+    // 1028), and to say nothing.
+    let m = with(1, "words \"Add to N.os one\"", "words \"Step up\"");
+    assert!(check(&m).unwrap()[1].3.is_err());
+    let m = with(1, "words \"Add to N.os one\"", "words \"to N.os one\"");
+    assert!(check(&m).unwrap()[1].3.is_err());
+    // The product removed.
+    let m = with(5, "number \"206628\"", "");
+    assert_eq!(check(&m).unwrap()[5].3, Err("no product written".into()));
+    // A band that cannot be read is an error of the whole check.
+    let m = with(0, "rows | 1-16", "rows | 16-1");
+    assert!(check(&m).is_err());
+    let m = with(0, "rows | 1-16", "");
+    assert!(check(&m).is_err());
+    // A mark outside the rows ruled.
+    let mut t = bands[0].1.clone();
+    t.push_str("\n17 | e13 | up arrow |\n");
+    assert!(read(&t).is_err());
+    // A fractional row in a band that does not rule one.
+    let mut t = bands[0].1.clone();
+    t.push_str("\n2/3 | e13 | up arrow |\n");
+    assert!(read(&t).is_err());
 }

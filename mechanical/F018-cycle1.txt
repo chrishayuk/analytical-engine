@@ -8,6 +8,7 @@
 % letter only; F/018 shares no full head with F/001.
 % Labels such as "B3", "U5" are written as words: they are Babbage's
 % writing, meaning not given on the sheet. row | column | mark | note
+rows | 1-16
 top-14 | e13 [Figures upon Axis A] | number "1028" | 
 top-14 | e33 [Figures upon Axis B] | number "000000" | 
 top-15 | e34 [R2] | words "B3" | label above the arrow

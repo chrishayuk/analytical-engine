@@ -2,6 +2,7 @@
 % pencil "6" in the right margin, rows 1-13, as transcribed in
 % sources/notes/F002.md. No person has checked the transcription.
 % Columns d01-d56 = F/001's c01-c56 by the ruling (no heads on F/002).
+rows | 1-13
 % row | column | mark | note
 % Below this band the ruling runs on for one partial row (row 1 of a
 % seventh band). Its only mark is commented out here because the parser

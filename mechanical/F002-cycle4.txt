@@ -5,6 +5,7 @@
 % c01-c56 by the ruling (same dashed and heavy rules, same widths), not by
 % any head; the bracketed name after each id is F/001's head, for reading
 % only. row | column | mark | note
+rows | 1-13
 1 | d04 [=c04] | up arrow, head top | just below rule
 1 | d05 [=c05 F Cir.Mo.] | up arrow, head top | just below rule
 1-10 | d02 [=c02 A Cir.Mo.] | long arrow down, head row 5 | ends at row 10/11 boundary

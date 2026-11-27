@@ -1,6 +1,7 @@
 % BAB/F/019, 216/273: the second band, "5" in the right margin, rows
 % 1-16, as transcribed in sources/notes/F018.md. No person has checked
 % the transcription. Columns e01-e43 as in F019-cycle4.txt.
+rows | 1-16
 % row | column | mark | note
 1-9 | e15 [Axis B Cir] | long arrow down, head at end | 
 1-9 | e16 [Axis B Fig wheel No1] | stepped shaft up, head at top | 

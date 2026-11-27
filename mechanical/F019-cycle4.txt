@@ -4,6 +4,7 @@
 % sources/notes/F018.md. No person has checked the transcription. Read at
 % half resolution. Columns e01-e43 as on F/018 (F/019 has the same heads
 % and ruling; its product head e24 reads 'g3 where F/018's reads 'g2).
+rows | 1-16
 % row | column | mark | note
 top-14 | e13 [Figures upon Axis A] | number "1028" | 
 top-14 | e33 [Figures upon Axis B] | number "002056" | 

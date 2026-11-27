@@ -1,6 +1,7 @@
 % BAB/F/018, 216/271: the third band, "3" in the right margin, rows
 % 1-16, as transcribed in sources/notes/F018.md. No person has checked
 % the transcription. Columns e01-e43 as in F018-cycle1.txt.
+rows | 1-16
 % row | column | mark | note
 1-9 | e02 [Axis A Cir; ?=c02 A Cir.Mo.] | long arrow down, head at end | 
 1-9 | e03 [Axis A Fig wheel No1] | stepped shaft up, head at top | reversed from cycle 2

@@ -252,21 +252,29 @@ fn main() {
             let key = rest.get(1).map(String::as_str).unwrap_or("F001");
             let band: u8 = rest.get(2).and_then(|c| c.parse().ok()).unwrap_or(1);
             println!("Multiplication in the mechanical notation, three designs (Series F).\n");
+            let band_of = |sheet: &str, n: u8, text: &str| {
+                read(text).unwrap_or_else(|e| {
+                    eprintln!("{sheet} band {n}: {e}");
+                    exit(2)
+                })
+            };
             println!("design  band  sheet       rows  marks  unknown  most columns in motion");
             for d in DESIGNS {
                 for (sheet, n, text) in d.bands {
-                    let marks = read(text).unwrap_or_else(|e| {
-                        eprintln!("{sheet} band {n}: {e}");
-                        exit(2)
-                    });
-                    let unknown = marks.iter().filter(|m| m.kind == Kind::Unknown).count();
-                    let (lo, hi) = babbage::mechanical::span(&marks);
-                    let peak = in_motion(&marks).into_iter().max().unwrap_or(0);
+                    let b = band_of(sheet, *n, text);
+                    let unknown = b.marks.iter().filter(|m| m.kind == Kind::Unknown).count();
+                    let peak = in_motion(&b).into_iter().max().unwrap_or(0);
+                    let first = b.rows.first().map(|r| r.to_string()).unwrap_or_default();
+                    let last = b.rows.last().map(|r| r.to_string()).unwrap_or_default();
                     println!(
-                        "{:<6}  {n:>4}  {sheet}  {:>4}  {:>5}  {unknown:>7}  {peak:>3}",
+                        "{:<6}  {n:>4}  {sheet}  {:>4}  {:>5}  {unknown:>7}  {peak:>3}    {first}…{last}{}",
                         d.key,
-                        hi - lo + 1,
-                        marks.len()
+                        b.rows.len(),
+                        b.marks.len(),
+                        b.incomplete
+                            .as_ref()
+                            .map(|w| format!("  incomplete: {w}"))
+                            .unwrap_or_default()
                     );
                 }
             }
@@ -274,11 +282,15 @@ fn main() {
             let seq: Vec<String> = DESIGNS[0]
                 .bands
                 .iter()
-                .map(|(_, _, t)| multiplier(&read(t).unwrap_or_default()))
+                .map(|(s, n, t)| multiplier(&band_of(s, *n, t).marks))
                 .collect();
             println!("  {}", seq.join(" → "));
-            println!("\nF018: each product written, against the band's own words (Add: + the multiplicand written, 1028; Step up: × 10):");
-            for (n, said, p, r) in f018_states() {
+            println!("\nF018: each product written, against the band's own words (Add: + the multiplicand the band writes; Step up: × 10):");
+            let states = f018_states().unwrap_or_else(|e| {
+                eprintln!("F018: {e}");
+                exit(2)
+            });
+            for (n, said, p, r) in states {
                 let p = p.map(|p| format!("{p:06}")).unwrap_or_else(|| "-".into());
                 match r {
                     Ok(()) => println!("  band {n}  {said:<8} {p}  ✓"),
@@ -287,9 +299,12 @@ fn main() {
             }
             if let Some(d) = DESIGNS.iter().find(|d| d.key.eq_ignore_ascii_case(key)) {
                 if let Some((sheet, _, text)) = d.bands.iter().find(|b| b.1 == band) {
-                    let marks = read(text).unwrap_or_default();
+                    let b = band_of(sheet, band, text);
                     println!("\n{}, band {band} ({sheet}):\n", d.name);
-                    print!("{}", chart(&marks));
+                    print!("{}", chart(&b));
+                    if let Some(w) = &b.incomplete {
+                        println!("(incomplete: {w})");
+                    }
                     println!("\n↓ ↑ arrow (a motion), | its continuation, · rest, w words, ? a mark no source explains, figures as written.");
                 }
             }

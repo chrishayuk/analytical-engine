@@ -1,62 +1,63 @@
 % BAB/F/013 "Table multiplication.", 216/259: the second band (rows 2/3,
 % 1-11, 1/3), as transcribed in sources/notes/F013.md section 4b. No person
 % has checked the transcription.
-% Rows are numbered as the left margin numbers them, except the two
-% fractional rows: the "2/3" row that opens every band is written 0, and the
-% "1/3" row that closes it is written as the last numbered row + 1 (16 in
-% bands 1 and 3, 12 in bands 2 and 4). The band rule falls between the "1/3"
+% Rows are numbered as the left margin numbers them. The two
+% fractional rows are written as the sheet writes them: "2/3", which opens
+% every band, and "1/3", which closes it. The `rows` line gives the rows the
+% sheet rules for this band. The band rule falls between the "1/3"
 % and the next "2/3". Columns t01-t47 are F/013's own, left to right
 % (sources/notes/F013.md section 2); none is identified with an F/001 column.
 % "across tNN-tMM" is a line of words written across several columns.
+rows | 2/3, 1-11, 1/3
 % row | column | mark | note
-0 | t01 Axis C Ver | words "B N.o 5" |
+2/3 | t01 Axis C Ver | words "B N.o 5" |
 1 | t01 Axis C Ver | up arrow, short |
 1 | t01 Axis C Ver | number ".4" |
-11-12 | t01 Axis C Ver | down arrow, double head | head at the band rule
+11-1/3 | t01 Axis C Ver | down arrow, double head | head at the band rule
 2-10 | t02 Axis C Cir | long arrow down, head at end | solid shaft
 2-10 | t03 Figure wheels N.o1 (left) | stepped shaft down, head at end |
 11 | t03 Figure wheels N.o1 (left) | words "Zeros" |
 2-10 | t04 Figure wheels N.o2 (left) | stepped shaft down, head at end |
 11 | t04 Figure wheels N.o2 (left) | words "Figures" |
 4-5 | across t05-t09 | words "Step down Product from one to two" | "one" and "two" underlined
-0 | t07 Cen Pin ″P | words "U N.o 3" |
-0 | t09 ″S″S Ver | words "B N.o 3" |
+2/3 | t07 Cen Pin ″P | words "U N.o 3" |
+2/3 | t09 ″S″S Ver | words "B N.o 3" |
 1 | t09 ″S″S Ver | up arrow, short |
 1 | t09 ″S″S Ver | number "1.1" |
-11-12 | t09 ″S″S Ver | down arrow, double head | head at the band rule
-11-12 | t09 ″S″S Ver | number "1.1" |
-0 | t11 ″S2 Cir | words "B 3" |
+11-1/3 | t09 ″S″S Ver | down arrow, double head | head at the band rule
+11-1/3 | t09 ″S″S Ver | number "1.1" |
+2/3 | t11 ″S2 Cir | words "B 3" |
 2-10 | t11 ″S2 Cir | stepped shaft down, head at end |
 3-8 | t11 ″S2 Cir | words "Gears with N.o 1 in bottom Cage" | written down the shaft
 2-10 | t12 Carr.e c | stepped shaft down, head at end |
 11 | t12 Carr.e c | words "Zeros" |
 1 | t13 Carr.d pin.gs [?] Ver | up arrow, short |
 1 | t13 Carr.d pin.gs [?] Ver | number "1.1" |
-11-12 | t13 Carr.d pin.gs [?] Ver | down arrow, double head | no figure
+11-1/3 | t13 Carr.d pin.gs [?] Ver | down arrow, double head | no figure
 2-10 | t14 Carr.d ′c | stepped shaft down, head at end |
 11 | t14 Carr.d ′c | words "Figures" |
 1 | t15 Car pin ″g2 Ver | up arrow, short |
 1 | t15 Car pin ″g2 Ver | number ".6" |
-11-12 | t15 Car pin ″g2 Ver | down arrow, double head | no figure
-0 | t16 Axis B Ver | words "U 6 B 7" |
+11-1/3 | t15 Car pin ″g2 Ver | down arrow, double head | no figure
+2/3 | t16 Axis B Ver | words "U 6 B 7" |
 1 | t16 Axis B Ver | down arrow, short |
 1 | t16 Axis B Ver | number ".2" |
-11-12 | t16 Axis B Ver | up arrow, double head | no figure
+11-1/3 | t16 Axis B Ver | up arrow, double head | no figure
 2-10 | t17 Axis B Cir | long arrow down, head at end | solid shaft
 4-5 | across t17-t24 | words "Step Down product from 3 to 4" | "Down" underlined
 2-10 | t20 Figure wheels N.o3 (right) | stepped shaft down, head at end |
 11 | t20 Figure wheels N.o3 (right) | words "Zeros" |
 2-10 | t21 Figure wheels N.o4 (right) | stepped shaft down, head at end |
 11 | t21 Figure wheels N.o4 (right) | words "Figs" |
-0 | t22 ′S′S Ver | words "B N.o 9" |
+2/3 | t22 ′S′S Ver | words "B N.o 9" |
 1 | t22 ′S′S Ver | down arrow, short |
 1 | t22 ′S′S Ver | number ".6" |
-11-12 | t22 ′S′S Ver | up arrow, double head | no figure
-0 | t23 ′S1 Ver | words "U N.o 3" |
-0 | t24 ′S2 Cir | words "B 10" |
+11-1/3 | t22 ′S′S Ver | up arrow, double head | no figure
+2/3 | t23 ′S1 Ver | words "U N.o 3" |
+2/3 | t24 ′S2 Cir | words "B 10" |
 2-10 | t24 ′S2 Cir | stepped shaft down, head at end |
 3-8 | t24 ′S2 Cir | words "Gears with N.o 4 in [?] Top Cage" | written down the shaft, running into t25; "in" has an extra stroke
-0 | t25 ′R Ver | words "U 4" |
+2/3 | t25 ′R Ver | words "U 4" |
 1 | t28 Lock Cen.l | up arrow, short | with letter U
 1 | t29 Lock Fig wh | up arrow, short | with letter U
 1 | t30 Lock Carr.e | up arrow, short | with letter U
@@ -75,24 +76,24 @@
 1 | t34 Platforms N.o4 +.6 | up arrow, short | no figure
 1 | t35 Platforms N.o5 +.4 | up arrow, short | no figure
 1 | t36 Platforms N.o6 +.2 | up arrow, short | no figure
-11-12 | t31 Platforms N.o1 +1.1 | down arrow, double head | no figure; head at the band rule
-11-12 | t32 Platforms N.o2 +.6 | down arrow, double head | no figure; head at the band rule
-11-12 | t33 Platforms N.o3 +1.1 | down arrow, double head | no figure; head at the band rule
-11-12 | t34 Platforms N.o4 +.6 | down arrow, double head | no figure; head at the band rule
-11-12 | t35 Platforms N.o5 +.4 | down arrow, double head | no figure; head at the band rule
-11-12 | t36 Platforms N.o6 +.2 | down arrow, double head | no figure; head at the band rule
+11-1/3 | t31 Platforms N.o1 +1.1 | down arrow, double head | no figure; head at the band rule
+11-1/3 | t32 Platforms N.o2 +.6 | down arrow, double head | no figure; head at the band rule
+11-1/3 | t33 Platforms N.o3 +1.1 | down arrow, double head | no figure; head at the band rule
+11-1/3 | t34 Platforms N.o4 +.6 | down arrow, double head | no figure; head at the band rule
+11-1/3 | t35 Platforms N.o5 +.4 | down arrow, double head | no figure; head at the band rule
+11-1/3 | t36 Platforms N.o6 +.2 | down arrow, double head | no figure; head at the band rule
 1 | t37 Platforms N.o7 −.2 | down arrow, short | no figure
 1 | t38 Platforms N.o8 −.4 | down arrow, short | no figure
 1 | t39 Platforms N.o9 −.6 | down arrow, short | no figure
 1 | t40 Platforms N.o10 −1.1 | down arrow, short | no figure
 1 | t41 Platforms N.o11 −.6 | down arrow, short | no figure
 1 | t42 Platforms N.o12 −1.1 | down arrow, short | no figure
-11-12 | t37 Platforms N.o7 −.2 | up arrow, double head | no figure; foot at the band rule
-11-12 | t38 Platforms N.o8 −.4 | up arrow, double head | no figure; foot at the band rule
-11-12 | t39 Platforms N.o9 −.6 | up arrow, double head | no figure; foot at the band rule
-11-12 | t40 Platforms N.o10 −1.1 | up arrow, double head | no figure; foot at the band rule
-11-12 | t41 Platforms N.o11 −.6 | up arrow, double head | no figure; foot at the band rule
-11-12 | t42 Platforms N.o12 −1.1 | up arrow, double head | no figure; foot at the band rule
-0 | t43 Bolt to platforms | down arrow, short |
-0 | t43 Bolt to platforms | words "U&B" |
+11-1/3 | t37 Platforms N.o7 −.2 | up arrow, double head | no figure; foot at the band rule
+11-1/3 | t38 Platforms N.o8 −.4 | up arrow, double head | no figure; foot at the band rule
+11-1/3 | t39 Platforms N.o9 −.6 | up arrow, double head | no figure; foot at the band rule
+11-1/3 | t40 Platforms N.o10 −1.1 | up arrow, double head | no figure; foot at the band rule
+11-1/3 | t41 Platforms N.o11 −.6 | up arrow, double head | no figure; foot at the band rule
+11-1/3 | t42 Platforms N.o12 −1.1 | up arrow, double head | no figure; foot at the band rule
+2/3 | t43 Bolt to platforms | down arrow, short |
+2/3 | t43 Bolt to platforms | words "U&B" |
 2-10 | t44 Back Cen wheel | stepped shaft down, head at end |

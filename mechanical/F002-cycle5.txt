@@ -2,6 +2,7 @@
 % right margin, rows 1-13, as transcribed in sources/notes/F002.md.
 % No person has checked the transcription. Columns d01-d56 = F/001's
 % c01-c56 by the ruling (no heads on F/002). row | column | mark | note
+rows | 1-13
 1 | d04 [=c04] | up arrow, head top | just below rule
 1 | d05 [=c05 F Cir.Mo.] | up arrow, head top | just below rule
 1-10 | d02 [=c02 A Cir.Mo.] | long arrow down, head row 6 | ends at row 10/11 boundary

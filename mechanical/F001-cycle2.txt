@@ -4,6 +4,7 @@
 % No person has checked the transcription. row | column | mark | note
 % Hatched marks are struck-through arrows (direction in the note); stroke
 % counts are approximate. "stepped shaft" is S16 (no source explains it).
+rows | 1-13
 1 | c04 | up arrow, head top | just below rule
 1 | c05 F Cir.Mo. | up arrow, head top | just below rule
 1-10 | c02 A Cir.Mo. | long arrow down, head row 6 | ends at row 10/11 boundary

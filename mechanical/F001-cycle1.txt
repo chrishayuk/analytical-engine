@@ -2,6 +2,7 @@
 % and the first complete cycle, rows 1-13, as transcribed in
 % sources/notes/F001.md section 5 (machine-readable form). No person has
 % checked the transcription. row | column | mark | note
+rows | 1-13
 top-11 | c01 A Ver. | erased mark | illegible
 top-11 | c04 | hatched x3 | 
 top-11 | c06 C1 Ver.Mo. | double arrow converging | 
