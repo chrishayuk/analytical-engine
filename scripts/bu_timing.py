@@ -1,4 +1,5 @@
-"""The test of docs/predictions/platform-timing.md (written before this script):
+"""The test of docs/predictions/platform-timing.md (written before this script),
+excursions compared only with those that begin in the same row of the same band:
 on F/018-019, does a part bolted to a long-time platform (B 1, B 2) return later
 than one bolted to a short-time platform (B 3 - B 6) in the same cycle? A
 return is the first double-headed arrow in the part's column after its B.
@@ -33,16 +34,18 @@ for order, col, kind, fig, row, name, comp in labels:
     later = [r for r in returns.get(col, []) if r[0] > pos]
     ret = later[0] if later else None
     group = "long" if int(fig) <= 2 else "short"
-    by_cycle[name].append((group, fig, col, row, ret))
+    # An excursion begins with the motion in the row after its B; compare
+    # only excursions that begin in the same row of the same band.
+    by_cycle[f"{name} motion row {A.next_row(row)}"].append((group, fig, col, row, ret))
 
 against = tested = 0
-for name in files:
-    items = by_cycle.get(name, [])
+for name in sorted(by_cycle, key=lambda k: (files.index(k.split()[0]), k)):
+    items = by_cycle[name]
     longs = [i for i in items if i[0] == "long" and i[4]]
     shorts = [i for i in items if i[0] == "short" and i[4]]
     def show(i):
         return f"B{i[1]} {i[2]} (B row {i[3]}) returns {i[4][1]} row {i[4][2]}" if i[4] else f"B{i[1]} {i[2]}: no return found"
-    print(f"== cycle of {name}: {len(longs)} long-time, {len(shorts)} short-time parts with a return")
+    print(f"== excursions beginning in {name}: {len(longs)} long-time, {len(shorts)} short-time parts with a return")
     for i in items:
         print("   ", i[0], show(i))
     if not longs or not shorts:
@@ -55,4 +58,4 @@ for name in files:
         print(f"    AGAINST the prediction: {len(bad)} pair(s), e.g. {show(bad[0][0])} vs {show(bad[0][1])}")
     else:
         print("    as predicted: every long-time return is later than every short-time return")
-print(f"\ncycles tested: {tested}; against the prediction: {against}")
+print(f"\ngroups of excursions tested: {tested}; against the prediction: {against}")

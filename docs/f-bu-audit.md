@@ -210,12 +210,12 @@ to 3–6.
 
 | Cycle (sheet of the B) | Long-time parts | Short-time parts | Result |
 |---|---|---|---|
-| F/018 cycle 1 | B1 e21: returns row 14 of the next band | 8, all return row 11 of the next band (3 from the top rows: row 11 of the same band) | as predicted |
+| F/018 cycle 1, excursions beginning in row 16 | B1 e21: returns row 14 of the next band | 5, all return row 11 of the next band | as predicted |
 | F/018 cycle 3 | B2 e24: row 14 of the next band | 5, all row 11 of the next band | as predicted |
-| cycles 2, 4, 5 | none | 3, 5, 4, all row 11 of the next band | untestable |
+| F/018 cycle 1, excursions beginning in the top rows; cycles 2, 4, 5 | none | 3 (row 11 of the same band), 3, 5, 4 (row 11 of the next band) | untestable |
 | cycle 6 | none | 2, no return transcribed | untestable |
 
-**Two cycles testable, none against.** Weak evidence: two long-time parts in
+**Two groups testable, none against** (compared only with excursions beginning in the same row of the same band; corrected from a first version that grouped by sheet). Weak evidence: two long-time parts in
 all, on sheets whose lifts (not timing) had been seen before the prediction was
 written. It could have failed and did not. Every short-time part on F/018–019
 returns at row 11, so the short-time group is uniform there; F/013's
