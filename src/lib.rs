@@ -12,6 +12,7 @@ pub mod loops;
 pub mod lsp;
 pub mod machine;
 pub mod mechanical;
+pub mod minsky;
 pub mod page;
 pub mod play;
 pub mod rat;

@@ -376,12 +376,17 @@ what was hard to read in [`sources/notes/L001.md`](sources/notes/L001.md).
   (about 1835), F/013 by table (5 Jan 1836) and F/018–019 without table
   (11 Jan 1836). `babbage mechanical` shows each, and checks F/018–019's
   written products against Babbage's own words for each band. See
-  [`docs/f-cycles.md`](docs/f-cycles.md). Next are the bolting-plate sheets
-  F/014 and F/020, and a viewer for the marks.
+  [`docs/f-cycles.md`](docs/f-cycles.md). The bolting-plate sheets F/014
+  and F/020 are transcribed; next is a viewer for the marks.
 - Control flow: `babbage control` runs the Sketch Books' control
-  mechanisms, configuration by date, on a suite of decks. A deck that halts
-  in the arrangements found cannot compute every primitive recursive
-  function. See [`docs/expressiveness.md`](docs/expressiveness.md).
+  mechanisms, configuration by date, on a suite of decks. The rules, and
+  which are readings rather than what a page says, are fixed in
+  [`docs/semantics.md`](docs/semantics.md). Theorems in Lean
+  ([`formal/`](formal/)) show that a deck that halts always ends, and that
+  what it can compute depends on where a repetition count comes from. With
+  counts from number cards, no halting deck gives 2↑↑n for every n. With
+  counts from the store, one of December 1837 does. See
+  [`docs/expressiveness.md`](docs/expressiveness.md).
 - A person to check the transcriptions against the scans.
 - Liu Hui and Babbage on the same equations: the counting board of
   [nine-chapters](../nine-chapters) and these tables, run on the same

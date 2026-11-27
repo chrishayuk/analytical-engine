@@ -2,3 +2,4 @@ target
 .DS_Store
 # the images and catalogue records are not kept: see sources/README.md
 sources/downloads/
+formal/.lake/

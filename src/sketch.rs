@@ -195,6 +195,7 @@ pub const DECKS: &[(&str, &str)] = &[
     ("collatz-halting", include_str!("../control/collatz-halting.txt")),
     ("maximum", include_str!("../control/maximum.txt")),
     ("gcd", include_str!("../control/gcd.txt")),
+    ("tower-halting", include_str!("../control/tower-halting.txt")),
 ];
 
 fn op(s: &str) -> Option<Op> {

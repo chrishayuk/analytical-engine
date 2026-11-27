@@ -1,0 +1,21 @@
+% 2↑↑n (2 raised to itself n times) by a deck that halts, with n on the
+% combinatorial wheels. It refutes the first statement of argument C in
+% docs/expressiveness.md. One pass of the counted group computes 2^x by one
+% multiplication repeated x times, and the repetition count is read from the
+% store: 7 March 1836 gives a "given variable number of repetitions" but does
+% not say where the number comes from (see multiply-1836). With n = 4 the
+% deck gives 65536; n = 5 is beyond this machine's numbers.
+Deck tower-halting
+Title "2↑↑4 by a deck that halts"
+Store v1 = 1, v3 = 0
+Wheels 4
+Expect halts
+Expect results 65536
+Cards
+pass:
+× v3 0 > v3
++ v3 1 > v3
+repeat × v3 2 times v1
++ v3 0 > v1
+back pass counted
+result v1

@@ -32,6 +32,9 @@ fn which_configurations_accept_which_decks() {
         ("collatz-halting", "not-found"),
         ("maximum", "not-found"),
         ("gcd", "not-found"),
+        // Refutes argument C as first written: the repetition count is read
+        // from the store (formal/Babbage/Tower.lean proves it for every n).
+        ("tower-halting", "1837-12"),
     ];
     assert_eq!(want.len(), DECKS.len());
     for (name, key) in want {
@@ -102,4 +105,43 @@ fn control_mutations() {
     let tower = DECKS.iter().find(|d| d.0 == "tower-table").unwrap().1;
     let five = read(&tower.replace("Stop 4 results", "Stop 5 results")).unwrap();
     assert!(run(config("1837-12"), &five).is_err());
+}
+
+/// Counter machines translated into decks (src/minsky.rs) and run under the
+/// configuration labelled as not found: the same counters as the machine run
+/// directly. Every configuration of the pages refuses the decks. A test on
+/// these machines, not a proof that the translation is correct for all.
+#[test]
+fn counter_machines_under_not_found() {
+    use babbage::minsky::{compile, simulate, Ins};
+    let add = [Ins::Dec(1, 1, 2), Ins::Inc(0, 0), Ins::Halt];
+    let mul = [
+        Ins::Dec(0, 1, 6),
+        Ins::Dec(1, 2, 4),
+        Ins::Inc(2, 3),
+        Ins::Inc(3, 1),
+        Ins::Dec(3, 5, 0),
+        Ins::Inc(1, 4),
+        Ins::Halt,
+    ];
+    let cases: [(&str, &[Ins], Vec<i64>); 6] = [
+        ("add", &add, vec![3, 4]),
+        ("add", &add, vec![0, 0]),
+        ("add", &add, vec![5, 0]),
+        ("mul", &mul, vec![3, 4, 0, 0]),
+        ("mul", &mul, vec![0, 7, 0, 0]),
+        ("mul", &mul, vec![6, 1, 0, 0]),
+    ];
+    for (name, prog, regs) in cases {
+        let want = simulate(prog, &regs, 10_000).unwrap();
+        let d = read(&compile(name, prog, &regs)).unwrap();
+        for c in CONFIGS.iter().filter(|c| c.found) {
+            assert!(accepts(c, &d).is_err(), "{name} under {}", c.key);
+        }
+        let o = run(config("not-found"), &d).unwrap();
+        assert!(o.halted, "{name} {regs:?}");
+        let got: Vec<String> = o.results.iter().map(|v| v.to_string()).collect();
+        let want: Vec<String> = want.iter().map(|v| v.to_string()).collect();
+        assert_eq!(got, want, "{name} {regs:?}");
+    }
 }

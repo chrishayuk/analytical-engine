@@ -40,3 +40,30 @@ jobs:
           npm ci
           npm run build
           npm test
+
+  lean:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Build the theorems (formal/)
+        working-directory: formal
+        run: lake build
+
+      - name: No sorry, no added axioms
+        working-directory: formal
+        run: |
+          ! grep -rnw --include='*.lean' -e sorry -e admit -e axiom Babbage
+          cat > /tmp/Axioms.lean <<'LEAN'
+          import Babbage
+          #print axioms Babbage.no_tetration
+          #print axioms Babbage.tower_halts
+          #print axioms Babbage.halting_dichotomy
+          LEAN
+          lake env lean /tmp/Axioms.lean | tee /tmp/axioms.txt
+          ! grep -v "propext, Quot.sound\]" /tmp/axioms.txt | grep -q .
