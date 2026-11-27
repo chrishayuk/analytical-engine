@@ -185,10 +185,11 @@ for each B k over a motion with a written figure:
 - Where two or more parts are bolted to the same figure and move in the same
   row, they move alike: 7 of 7 groups on F/018–019; on F/013, 1 of 2, the
   other differing only by the uncertain "[?.6]".
-- Each figure has one direction and one lift on each sheet, and the lifts are
-  those of Vol II p 7. F/013 numbers its platforms differently from F/018–019
-  (figure 1 is 1.1 on one, 3 on the other is 1.1 too), so the numbering is
-  per sheet; the lifts agree.
+- Each figure has one direction and one lift, and the lifts are those of
+  Vol II p 7. Figures 3–6 carry the same lift on both sheets (1.1, .6, .4,
+  .2). F/018–019 also uses 1 and 2 (1.1 and .6 again: two platforms of each
+  of the pinions' lifts); F/013 also uses 7–9 (the downward lifts −.2, −.4,
+  −.6). So one numbering of platforms fits both sheets, so far.
 
 **Reading.** P survives a test it could have failed: the figure predicts the
 size and direction of the part's motion. With B and U bracketing the
