@@ -236,6 +236,15 @@ is inferred from the motions.
 | F/018–019 (table from F/013; lifts seen before: not blind) | 29 / 29 | 28 / 29 | B4 e34 cycle 3: chart "6", transcribed without the point | 2 B's with no figure |
 
 Both misses are kept as misses; neither transcription is corrected here.
+Rechecked at full resolution (`sources/notes/f-rechecks-and-heldout.md`),
+both stand:
+- **F/013 band 5, t23**: the label is certainly "U 9 B 3", and the figure is
+  ".6" in heavy ink, point and 6 certain. Before it is a faint grey oblique
+  stroke, the shape of this hand's thin "1", with no "1.1" written under or
+  over the 6. Not 1.1: a real miss, with the stroke unexplained.
+- **F/018 cycle 3, e34**: "6" with no point, at 5× with a contrast stretch.
+  F/019's top rows restate the same cell, and there it reads ".6" with a
+  clear point.
 
 ## The second archival pass (`sources/notes/platforms-1835-1836.md`)
 
