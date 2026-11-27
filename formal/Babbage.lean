@@ -7,3 +7,4 @@ import Babbage.GrowthStore
 import Babbage.RatSize
 import Babbage.Minsky
 import Babbage.Trap
+import Babbage.Classes

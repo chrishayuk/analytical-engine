@@ -79,6 +79,11 @@ jobs:
           #print axioms Babbage.Minsky.trapDeck37_accepted
           #print axioms Babbage.no_tetration_reach
           #print axioms Babbage.no_pentation_reach
+          #print axioms Babbage.halt_within_1837
+          #print axioms Babbage.no_triple_exp_1837
+          #print axioms Babbage.no_tet_exp_1837
+          #print axioms Babbage.triple_halts_1838
+          #print axioms Babbage.tet_exp_halts_1838
           LEAN
           lake env lean /tmp/Axioms.lean | tee /tmp/axioms.txt
           ! grep -v -E "\[propext, (Classical.choice, )?Quot.sound\]" /tmp/axioms.txt | grep -q .

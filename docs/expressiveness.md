@@ -134,7 +134,10 @@ only + − × and counted groups.
 - **Halting.** Every deck that halts with a number not fixed in advance is
   accepted only by `not-found`: the product with its own end, Collatz to 1,
   the maximum and Euclid. Each needs the count it stops on to be computed
-  inside the loop.
+  inside the loop. **Corrected, 27 Nov 2026:** that is so of these decks, not
+  of the functions. `control/max-1838.txt` gives the maximum in the
+  configuration of 30 May 1838, every count set before its group
+  (`tests/classes.rs`, x, y ≤ 4).
 
 ## 4. Arguments
 
@@ -306,11 +309,14 @@ where after B₁ is placed the engine is "either to stop altogether, or to
 begin Operations 1, 2…7 all over again", without saying what decides. Model
 D is therefore an idealisation, not a reading of any page.
 
-**Not shown:** that `maximum` or `gcd` cannot be done in the dated
-configurations. No deck was found for either, and no proof that none exists
-has been attempted. With counts from the store, the flag of section 3 still
-needs its count set before the group. So the question remains open under
-both readings.
+**The maximum and Euclid.** The maximum can be done in the configuration
+of 30 May 1838 (`control/max-1838.txt`): a counted group makes
+P = y(y − 1)…(y − x), which is 0 exactly when y ≤ x, and the flag of
+section 3, passed P² + 1 times, turns it into [y > x]. It is tested, not
+proved. Under December 1837, whose one loop leaves the result a rational
+function of the inputs for each count on the wheels, the maximum is argued
+to be out of reach (`docs/growth-classes.md`). Whether gcd, or x mod y, can
+be done in May 1838 is open.
 
 ## 5. What this changes in `docs/control-flow.md`
 

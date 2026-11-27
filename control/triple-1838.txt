@@ -1,0 +1,22 @@
+% 2^2^2^n with repetition counts from number cards only, in the configuration
+% of 30 May 1838: two counted groups one after the other. The first doubles
+% v1 n times; its result is put on the wheels; the second squares v2 that many
+% times. formal/Babbage/Classes.lean proves it for every n ≥ 1
+% (`triple_halts_1838`), and proves that no deck of December 1837 with counts
+% from number cards gives 2^2^2^n for every n (`no_triple_exp_1837`).
+% With n = 2 the deck gives 65536.
+Deck triple-1838
+Title "2^2^2^2 by two loops one after the other"
+Store v1 = 1, v2 = 2
+Wheels 2
+Expect halts
+Expect results 65536
+Cards
+pass:
++ v1 v1 > v1
+back pass counted
+set v1
+square:
+× v2 v2 > v2
+back square counted
+result v2

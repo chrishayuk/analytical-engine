@@ -1,0 +1,32 @@
+% The greater of x and y, for whole numbers x, y ≥ 0, in the configuration of
+% 30 May 1838: every count is set before the group it counts. A counted group
+% passed x + 1 times makes P = y(y − 1)…(y − x), which is 0 exactly when
+% y ≤ x. The flag of docs/expressiveness.md, a group passed P² + 1 times,
+% makes F = [P ≠ 0] = [y > x], and the maximum is x + F(y − x).
+% The second group is passed P² + 1 times, so the deck is slow: with x = 3 and
+% y = 4 it is passed 577 times. formal/Babbage/Classes.lean and
+% docs/growth-classes.md say what this changes.
+Deck max-1838
+Title "max(3, 4) with every count set before its group"
+Store v1 = 3, v2 = 4, v10 = 1
+Expect halts
+Expect results 4
+Cards
++ v1 1 > v12
+set v12
+prod:
+− v2 v11 > v13
+× v10 v13 > v10
++ v11 1 > v11
+back prod counted
+× v10 v10 > v14
++ v14 1 > v15
+set v15
+flag:
++ v16 0 > v17
++ 0 1 > v16
+back flag counted
+− v2 v1 > v18
+× v17 v18 > v18
++ v1 v18 > v19
+result v19
