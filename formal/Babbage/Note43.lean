@@ -14,10 +14,14 @@ means of a subtraction". Read as the repository reads it
 (`sources/notes/menabrea-lovelace-1843-control.md` §8, Reading A), the cycle
 (13…23) is repeated until V₁₀ comes to zero, and no counter is loaded.
 
-This file adds one card to the machine of `Machine.lean`, without changing it:
-`backIf t c`, a backing to card `t` made effective while the number in column
-`c` is greater than zero (`pos`). Every other card acts as in `step`
-(`step43_lift`).
+This file adds two cards to the machine of `Machine.lean`, without changing it:
+`backIf t c` (Reading A), a backing to card `t` made effective while the
+number in column `c` is greater than zero (`pos`); and `aheadIf t c`
+(Reading B), a forward course to card `t` taken when it is zero (`zero`).
+Every other card acts as in `step` (`step43_lift`). Reading B's theorems
+(`haltsB`, `machine_halts_of_B`, `deckB_plain`, `deckB_accepted`,
+`deckB_refused`) are at the end; the halting arguments are generic (`haltsG`,
+`machineG`).
 
 * `deck43_plain`: the deck below has only operation cards, result cards and
   `backIf`: no combinatorial card, no counted or unconditional backing, no

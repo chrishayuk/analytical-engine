@@ -473,6 +473,12 @@ Note G, p. 727 (djvu/739):
   "this B is finished" and "go on". The text does not describe a counter in
   Note G. It does describe a test that is repeated at each pass (Card 23
   "has the office of" Cards 12 and 7). Reading A fits the text better.
+  (Amended 27 Nov 2026: the Reading B deck, `control/note-g-reading-b.txt`,
+  takes the count n − 2 from V₁₀ after Operation 12, a number computed in the
+  run and put on the wheels from the store, as rule 4 of `docs/semantics.md`
+  allows. The text does not say where the count comes from; a number card
+  would mean changing the deck for each n. So the sentence that follows holds
+  of the text, not of that encoding.)
   Neither reading has the engine load a count computed during the run into a
   counter.
 - **How the whole computation ends.** "Either to stop altogether, or to begin

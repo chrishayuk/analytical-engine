@@ -41,7 +41,9 @@ in `formal/`, and should be made here first.
 
 **Not modelled:** a result card that leaves its column at zero (`result … off`, which the L/023 decks use); the letters and rows of letter cards of `src/sketch.rs`,
 which are used only by the L/023 decks; and operation cards that write
-several columns at once. Neither changes what can be computed with numbers.
+several columns at once, which `formal/Babbage/Multi.lean` (`run_expand`)
+proves equal to the operation into the first column and a copy into each
+other. Neither changes what can be computed with numbers.
 
 **Undecided by the pages, and not used:** whether a result of the mill can
 make a counted backing effective or ineffective. No page read does (rule 10).

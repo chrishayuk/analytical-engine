@@ -6,7 +6,8 @@
 //! each and compares. This is a test on the decks generated, not a proof that
 //! the two agree on every deck.
 //!
-//! The decks are those the Lean model has: one destination for an operation,
+//! The decks are those the Lean model has (an operation with several
+//! destinations expanded as `formal/Babbage/Multi.lean` proves equivalent),
 //! no letters or rows of letter cards, no `result … off`, and no count of 0 on
 //! the wheels before the first card. The Rust machine computes in `i128`
 //! fractions and stops with an error when a number is too large; those cases
@@ -45,7 +46,8 @@ fn rat(r: crate::rat::Rat) -> String {
 /// first and a copy into each of the others (`run_expand` in
 /// `formal/Babbage/Multi.lean`: the same store), and the targets of backing
 /// and forward cards move with the cards. The Lean side is given fuel for the
-/// extra cards; decks with such cards are compared only when they halt.
+/// extra cards; a deck with such cards that does not halt within the fuel may
+/// be reported as differing, never as agreeing falsely.
 pub fn lean_form(d: &Deck, fuel: usize, trap: bool) -> Option<String> {
     if !d.rows.is_empty() || d.wheels.is_some_and(|w| w < 1) {
         return None;

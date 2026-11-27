@@ -89,7 +89,7 @@ The translation (`deck43`, and `Ending::Cond1843` in `src/minsky.rs`):
 
 Tested in Rust (`tests/control.rs`, `counter_machines_in_1843`), and the Lean
 model and the Rust machine agree on the decks of `scripts/lean-diff.sh`: 3,916
-runs, among them random decks with the new cards, the counter-machine decks of
+runs, among them random decks with `back … if` (none with forward courses), the counter-machine decks of
 both readings, and the three Note G decks (§4). That is a test, not a proof.
 
 ## 3B. Reading B: a forward course chosen by a result
@@ -104,7 +104,7 @@ cards go on from a later card, otherwise from the next. No `back … if`.
 |---|---|
 | A counter machine translates into a deck that **halts, by passing its last card, exactly when the machine halts**, and gives off its counters. | `haltsB`, `machine_halts_of_B` |
 | That deck has only operation cards, result cards, the forward course, and one **unconditional** backing to card 0: no combinatorial card, counted backing, repetition card or `back … if`. | `deckB_plain` |
-| Every configuration with backing cards, **December 1837 included**, accepts it with the new card; none without the card does. | `deckB_accepted`, `deckB_refused` |
+| Every configuration with backing cards, **December 1837 included**, accepts it with the new card (in Lean, `Accepts43 c1837 false true`; `1843-B` in Rust is 30 May 1838 with the card); none without the card does (definitional: the deck contains the card). | `deckB_accepted`, `deckB_refused` |
 
 So, given Minsky's theorem, **Reading B gives a general machine as well**,
 provided the unconditional backing card is used: the card that "always orders
@@ -113,9 +113,21 @@ c_r is zero; F := 1. The loop is the unconditional backing, passed over by a
 forward course once W − 1 = 1 − [halted] is zero.
 
 **Argued, not proved:** without the unconditional backing, Reading B is not
-general. A forward course only shortens a run, so with every backing counted
-the run's length, and the bounds of Models A and B, are as before. That
-argument has not been formalised for the new card.
+general. A forward course moves the card number forward and leaves the store
+and wheels unchanged, so the measures of `Termination.lean` and `Growth.lean`
+(`setsFrom`, `phi`) still fall at every step; with every backing counted, the
+bounds of Models A and B hold as before. Not formalised for the new card
+(`step_measure` would need its last case loosened from pc + 1 to any later
+card).
+
+**What "either reading" rests on.** Under Reading B the deck needs a card
+the 1842–1843 texts do not themselves give: the unconditional backing of the
+Sketch Books (Vol 3 p 162, December 1837; the texts describe backing only in
+general, Note C). Once that card is admitted, a forward course over it does
+what `back … if` does, so the Reading B result is close to immediate, and it
+uses none of Reading B's own feature, the counted repetition. Both `1843`
+configurations are 30 May 1838 plus one card, so the older card is available
+in both.
 
 So the conclusion holds under either reading: the explicit test of Note G
 with a backward course (Reading A), or with a forward course and the
@@ -158,10 +170,10 @@ repetition is `set v10` straight after Operation 12, which has just put n − 2
 on V₁₀, and `back op13 counted`; the tests at Operations 7 and 12 are
 `ahead op24 if v10 zero`, the "stop altogether" course for n = 1 and 2.
 Three cards more than the Reading A deck. It gives 1/6, −1/30, 1/42, −1/30
-and 5/66 for n = 1 to 5, the group passed exactly n − 2 times, and V₁₀ ends
+and 5/66 for n = 1 to 5, the group passed n − 2 times for n ≥ 3 and never for n = 1, 2, and V₁₀ ends
 at 0 each time (under Reading A the n = 1 and 2 runs end at −2 and −1).
-Without the two forward courses, 30 May 1838 alone accepts the deck and
-gives B₇ for n = 4; the forward courses are needed only for n = 1 and 2,
+Without the two forward courses, the configuration of 30 May 1838 already
+accepts the deck and gives B₇ for n = 4; the forward courses are needed only for n = 1 and 2,
 where the count would be 0 or −1 (an error, rule 13). Which column, card or
 time sets the count is not in the text; taking it from V₁₀ after Operation
 12 is a choice. Operation 23's test needs no card: V₁₀ reaches 0 on the same
