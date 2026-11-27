@@ -168,3 +168,57 @@ multiplies by a figure at once cannot be read from it. Its notes (one dated
 **Not the same design redrawn.** The three differ in their parts, cycle
 length, symbols and how they move to the next place. Nothing on the sheets
 supports merging them into one machine.
+
+**In modern terms.** The order of F/018–019's bands (multiply the product
+by ten, then add the multiplicand once for each unit of the next figure,
+highest figure first) is the order of Horner's rule, with each
+multiplication by a figure done as repeated addition. This is a
+description in later terms, not a word of Babbage's.
+
+## The bolting-plate sheets: F/014 and F/020
+
+Both are transcribed (`sources/notes/F014.md`, `F020.md`;
+`mechanical/F014-plates.txt`, `F020-plates.txt`), and no person has checked
+them. Neither is a time chart. Neither has time rows, arrows or figures.
+Each is a schedule of labels ("B3", "U5") and short sentences, in braced
+blocks. Neither sheet is dated; the 11 January 1836 for F/020 is only in
+the image file names. They are kept as tables and are not run.
+(Concordance sections 7 and 8.)
+
+**F/014 against F/013 (reading).**
+- **Labels.** F/014's blocks 3–7 hold, label for label and column for
+  column, the labels of F/013's bands 1–4 and the opening of band 5. They
+  supply the band-1 labels F/013 lacks.
+- **Words.** The block words are F/013's band words in another form:
+  "Add to N.os one" for F/013's "Receive Addition upon N.os one", and the
+  same "Step down product / multiplier" lines.
+- **Blocks and bands.** Two blocks come before F/013's band 1 and two after
+  its band 5. The margin figures 16 and 12 stand beside the "Add" and the
+  "Step down product" blocks. Those are F/013's 15-row and 11-row bands,
+  and 16 and 12 are their rows counted with "2/3" and "1/3". That the
+  figures count time units is an inference; the sheet does not say so.
+- **The open question.** F/014 says nothing of which figure of the
+  multiplier is felt, and nothing of how much is added. It has exactly one
+  "Add to" between product steps, never two in a row.
+
+**F/020 against F/018–019 (reading).**
+- **Labels.** F/018's top rows and cycles 1–3 appear in F/020 label for
+  label and in order. F/019's cycles 4–6 do not: F/020 never steps the
+  product "two to one", which F/019's cycle 5 does.
+- **Each "add".** Every "add" shares a line with "Give off from N.o one
+  Retain on N.o two" or its converse, and the two alternate. F/018 says
+  only "Give off and retain".
+- **New words.** "Notice given of Stepping up", underlined twice, is
+  written with the addition just before each step.
+- **The same steps.** The same labels come before the same steps on all
+  three sheets.
+
+**What they bear on.** The difference that matters is one "Add" between
+product steps by table (F/014), against several in a row without table
+(F/018–020). It fits a table design that adds a whole multiple for each
+figure of the multiplier. It is **not adopted**: F/014 never says what is
+added, and it may set out a pattern rather than one run. The question F/013
+leaves open is narrowed, not settled. F/020 reads as a general schedule
+rather than the run 1028 × 201 (an inference). Three of F/020's readings
+differ from the half-scale reading in `F018.md`; they are listed in
+`F020.md` section 7 and have not been merged.

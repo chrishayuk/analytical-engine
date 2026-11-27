@@ -1,0 +1,144 @@
+% BAB/F/020 "Bolting plates to multiply without table.", 216/278: the whole
+% table, as transcribed in sources/notes/F020.md section 4. No person has
+% checked the transcription. The sheet is undated (the date 1836 Jan 11 is
+% only in the museum's image file names). Read from full-resolution tiles.
+% This is NOT a time chart. It numbers no rows and has no arrows; its ruled
+% verticals carry small tick marks about 106 px apart (the spacing of
+% F/018-019's rows), but no entry is tied to them. Its entries are labels
+% ("B3", "U5", "U5B6") and lines of words, grouped by braces in the left
+% margin into three blocks separated by two heavy horizontal rules.
+% So the first field is NOT a row. It is "bN.lM": block N (1-3, top to
+% bottom, numbered here, not by Babbage) and line M within the block
+% (numbered here, top to bottom; a line is one height of writing, labels
+% or words). Block 1 has lines l1-l11, block 2 l1-l8, block 3 l1-l7.
+% The note field gives the line's height on 278 (full-resolution y, +-30
+% px) where useful, and which brace it is in.
+% Columns f01-f24 are F/020's own, left to right (sources/notes/F020.md
+% section 2); f07, f08, f18, f19 and f24 have no head. None is identified
+% with an F/018 column in this file (the note, section 6, gives the
+% correspondences, by label, as reading and inference).
+% "across fNN-fMM" is a line of words written across several columns
+% (approximate extent). Labels are closed up as Babbage wrote them
+% ("U5B6"). Underlined words are listed in the note.
+rows | none: no time rows and no row numbers; 3 blocks between heavy rules (lines b1.l1-l11, b2.l1-l8, b3.l1-l7, numbered here)
+% line | column | entry | note
+b1.l1 | f20 R2 | label "B3" | y 860; brace 1 (no multiplicand entry in this brace)
+b1.l1 | f21 C | label "B5" | y 860
+b1.l1 | f23 "S1 | label "B3" | y 860
+b1.l1 | across f20-f24 | words "Step up from one to two" | y 935; "one" and "two" underlined
+b1.l2 | f01 Turns A. | label "B5" | y 1040; brace 2 opens
+b1.l2 | f02 P | label "B3" |
+b1.l2 | f04 ap | label "B4" |
+b1.l2 | f05 g | label "B4" |
+b1.l2 | f11 'p'p | label "B3" | y 1060
+b1.l2 | f12 'g1 | label "B1" |
+b1.l2 | f13 02 | label "B′" | a short stroke above right of the B, like a prime or acute; no figure (S44)
+b1.l2 | f15 03 | label "B" | no figure
+b1.l2 | f20 R2 | label "U3" | y 1070; same height as the B labels to the left, so placed in this line
+b1.l2 | f21 C | label "U5" |
+b1.l2 | f23 "S1 | label "U3" |
+b1.l3 | across f01-f07 | words "Give off from N.o one Retain on N.o two" | y 1150; "one" and "two" underlined
+b1.l3 | across f11-f13 | words "add to N.os one" | "one" underlined; initial a/A not certain
+b1.l4 | f01 Turns A. | label "U5B6" | y 1255; brace 3
+b1.l4 | f02 P | label "U3" |
+b1.l4 | f03 pp | label "B4" |
+b1.l4 | f05 g | label "U4" |
+b1.l4 | f06 g1 | label "B3" |
+b1.l5 | across f01-f07 | words "Give off from N.o two Retain on N.o one" | y 1350; "two" and "one" underlined
+b1.l5 | f12 'g1 | words "add" |
+b1.l6 | f01 Turns A. | label "U6B5" | y 1445; brace 4
+b1.l6 | f02 P | label "B3" |
+b1.l6 | f03 pp | label "U4" |
+b1.l6 | f05 g | label "B4" |
+b1.l6 | f06 g1 | label "U3" |
+b1.l7 | across f01-f07 | words "Give off from N.o one Retain on N.o two" | y 1540; "one" and "two" underlined
+b1.l7 | f12 'g1 | words "add" |
+b1.l8 | f01 Turns A. | label "U5B6" | y 1690; brace 5
+b1.l8 | f02 P | label "U3" |
+b1.l8 | f03 pp | label "B4" |
+b1.l8 | f05 g | label "U4" |
+b1.l8 | f06 g1 | label "B3" |
+b1.l9 | across f01-f07 | words "Give off from N.o two Retain on N.o one" | y 1775; "two" and "one" underlined
+b1.l9 | f12 'g1 | words "add" |
+b1.l10 | f01 Turns A. | label "U6B5" | y 1890; brace 6
+b1.l10 | f02 P | label "B3" |
+b1.l10 | f03 pp | label "U4" |
+b1.l10 | f05 g | label "B4" |
+b1.l10 | f06 g1 | label "U3" |
+b1.l11 | across f01-f08 | words "Give off from N.o one Retain on N.o two" | y 1975, just above the first heavy rule (y 2045); "one" and "two" underlined
+b1.l11 | f12 'g1 | words "add" |
+b2.l1 | f01 Turns A. | label "U5B6" | y 2100; brace 1 of block 2
+b2.l1 | f02 P | label "U3" |
+b2.l1 | f03 pp | label "B4" |
+b2.l1 | f05 g | label "U4" |
+b2.l1 | f06 g1 | label "B3" |
+b2.l2 | across f01-f07 | words "Give off from N.o two Retain on N.o one" | y 2180; "two" and "one" underlined
+b2.l2 | across f11-f17 | words "add — Notice given of Stepping up" | "Notice given of Stepping up" double underlined (S45)
+b2.l3 | f01 Turns A. | label "U6" | y 2310; brace 2
+b2.l3 | f03 pp | label "U4" |
+b2.l3 | f06 g1 | label "U3" |
+b2.l3 | f09 B | label "B5" |
+b2.l3 | f11 'p'p | label "U3" |
+b2.l3 | f14 'g2 | label "B2" |
+b2.l3 | f17 'S1 | label "B3" |
+b2.l3 | f20 R2 | label "B4" | y 2340
+b2.l3 | f21 C | label "B6" |
+b2.l3 | f22 "S"S | label "B3" |
+b2.l4 | across f11-f15 | words "Step up from one to two" | y 2400; product group; "one" and "two" underlined; no multiplicand words
+b2.l4 | across f20-f24 | words "Step up from two to one" | multiplier group; "two" and "one" underlined
+b2.l5 | f01 Turns A. | label "B5" | y 2520; brace 3
+b2.l5 | f02 P | label "B3" |
+b2.l5 | f04 ap | label "B4" |
+b2.l5 | f05 g | label "B4" |
+b2.l5 | f09 B | label "U5" |
+b2.l5 | f10 'P | label "B4" |
+b2.l5 | f12 'g1 | label "U1" |
+b2.l5 | f17 'S1 | label "U3" |
+b2.l5 | f20 R2 | label "U4" | y 2550
+b2.l5 | f21 C | label "U6" |
+b2.l5 | f22 "S"S | label "U3" |
+b2.l6 | across f01-f07 | words "Give off from N.o one Retain on N.o two" | y 2610; "one" and "two" underlined
+b2.l6 | across f11-f14 | words "add to N.os two" | "two" underlined; initial a/A not certain
+b2.l7 | f01 Turns A. | label "U5B6" | y 2740; brace 4, which runs on below with nothing in it
+b2.l7 | f02 P | label "U3" |
+b2.l7 | f03 pp | label "B4" |
+b2.l7 | f05 g | label "U4" |
+b2.l7 | f06 g1 | label "B3" |
+b2.l8 | across f01-f07 | words "Give off from N.o two Retain on N.o one" | y 3040, in no brace, after a blank gap, just above the second heavy rule (y 3110); "two" and "one" underlined
+b2.l8 | f12 'g1 | words "add" |
+b3.l1 | f01 Turns A. | label "U6B5" | y 3160; brace 1 of block 3
+b3.l1 | f02 P | label "B3" |
+b3.l1 | f03 pp | label "U4" |
+b3.l1 | f05 g | label "B4" |
+b3.l1 | f06 g1 | label "U3" |
+b3.l2 | across f01-f08 | words "Give off from N.o one Retain on N.o two" | y 3240; "one" and "two" underlined
+b3.l2 | across f10-f16 | words "Add — Notice given of stepping up" | "Notice given of stepping up" double underlined (S45)
+b3.l3 | f01 Turns A. | label "U5" | y 3360; brace 2
+b3.l3 | f02 P | label "U3" |
+b3.l3 | f05 g | label "U4" |
+b3.l3 | f09 B | label "B5" |
+b3.l3 | f11 'p'p | label "U3" |
+b3.l3 | f14 'g2 | label "B2" |
+b3.l3 | f17 'S1 | label "B3" |
+b3.l3 | f20 R2 | label "B4" | y 3400
+b3.l3 | f21 C | label "B6" |
+b3.l3 | f22 "S"S | label "B3" |
+b3.l4 | across f10-f14 | words "Step up from one to two" | y 3460; product group; "one" and "two" underlined
+b3.l4 | across f20-f24 | words "Step up from two to one" | multiplier group; "two" and "one" underlined
+b3.l5 | f01 Turns A. | label "B6" | y 3590; brace 3
+b3.l5 | f03 pp | label "B4" |
+b3.l5 | f06 g1 | label "B3" |
+b3.l5 | f09 B | label "U5" |
+b3.l5 | f10 'P | label "B4" |
+b3.l5 | f12 'g1 | label "U1" |
+b3.l5 | f17 'S1 | label "U3" |
+b3.l5 | f20 R2 | label "U4" | y 3610
+b3.l5 | f21 C | label "U6" |
+b3.l5 | f22 "S"S | label "U3" |
+b3.l6 | across f01-f07 | words "Give off from N.o two Retain on N.o one" | y 3670; "two" and "one" underlined
+b3.l6 | across f10-f14 | words "Add to N.os two" | "two" underlined
+b3.l7 | f01 Turns A. | label "U6B5" | y 3790; brace 4, open below, nothing after it
+b3.l7 | f02 P | label "B3" |
+b3.l7 | f03 pp | label "U4" |
+b3.l7 | f05 g | label "B4" |
+b3.l7 | f06 g1 | label "U3" |

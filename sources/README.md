@@ -91,8 +91,9 @@ documents `aa110000050` and `aa110000051`. See `notes/F001.md`,
 "Multiplication without table", sheets 1 and 2, dated "11 Jan 1836" on the
 covers, "1028 × 201" (documents `aa110000502`, `aa110000503`; images
 216/270–273), and "Bolting plates to multiply without table"
-(`aa110000504`; 216/277–278). See `notes/F018.md` and
-`../mechanical/F018-cycle*.txt`, `F019-cycle*.txt`.
+(`aa110000504`; 216/277–278). See `notes/F018.md`, `notes/F020.md`,
+`../mechanical/F018-cycle*.txt`, `F019-cycle*.txt` and `F020-plates.txt`.
+F/020 has no date of its own; the date is in the image file names only.
 
 ### BAB/F/013
 
@@ -101,3 +102,9 @@ covers, "1028 × 201" (documents `aa110000502`, `aa110000503`; images
 opened table. The zoom server served it only as aligned 512-px tiles at
 their own size; all 266 tiles of 259 were fetched and stitched. See
 `notes/F013.md` and `../mechanical/F013-cycle*.txt`.
+
+### BAB/F/014
+
+"Bolting plates for multiplication by table.", document `aa110000498`,
+undated. Two images: `216/260` the cover, `216/261` the table. See
+`notes/F014.md` and `../mechanical/F014-plates.txt`.

@@ -1,0 +1,116 @@
+% BAB/F/014 "Bolting plates for multiplication by table.", 216/261: the whole
+% table, as transcribed in sources/notes/F014.md section 4. No person has
+% checked the transcription. The sheet is undated.
+% This is NOT a time chart. It rules no time rows and has no arrows. Its
+% entries are labels ("B3", "U5", "U6B7") and lines of words, grouped by
+% braces into nine blocks. Each block is bracketed on both sides, with a
+% figure "16" or "12" beside each brace, and numbered 1-9 by Babbage in the
+% unheaded column k12. So the first field here is Babbage's block number,
+% not a row. Each block has a line of labels and, under it, a line of words
+% (blocks 2 and 9 have labels only); "labels" / "words" in the note field
+% say which line.
+% Columns k01-k17 are F/014's own, left to right (sources/notes/F014.md
+% section 2); k11, k12 and the columns right of k17 have no head. None is
+% identified with an F/013 column in this file (the note, section 6, gives
+% the correspondences as inference).
+% "across kNN-kMM" is a line of words written across several columns.
+% Labels are written as Babbage spaced them ("B 3" and "B3" both occur);
+% here they are closed up: "B3".
+rows | none: no time rows; 9 bracketed blocks, margin figures 16, 12, 16, 12, 16, 12, 16, 12, 16
+% block | column | entry | note
+1 | margin | brace "16" | both sides
+1 | k12 | figure "1" | block number
+1 | k13 B | label "B5" | labels
+1 | k14 ′S′S | label "B3" | labels
+1 | k17 ′R | label "B3" | labels
+1 | across k13-k18 | words "Step down multiplier from one to two" | words; "one" and "two" underlined; right brace drawn square at its top
+2 | margin | brace "12" | both sides
+2 | k12 | figure "2" | block number
+2 | k13 B | label "U5" | labels
+2 | k14 ′S′S | label "U3" | labels
+2 | k17 ′R | label "U3" | labels; no words in this block
+3 | margin | brace "16" | both sides
+3 | k12 | figure "3" | block number
+3 | k02 ″P | label "B3" | labels
+3 | k07 ″g1 | label "B1" | labels
+3 | k08 ca | label "B" | labels; no number
+3 | k09 ″g2 | label "B2" | labels
+3 | k10 ′ca | label "B" | labels; no number
+3 | k13 B | label "B6" | labels
+3 | k15 ′S1 | label "B3" | labels
+3 | k17 ′R | label "B4" | labels
+3 | across k03-k06 | words "Add to N.os one" | words; "one" underlined
+3 | across k13-k18 | words "Step down multiplier from two to one" | words; "one" underlined
+4 | margin | brace "12" | both sides
+4 | k12 | figure "4" | block number
+4 | k01 C | label "B5" | labels
+4 | k02 ″P | label "U3" | labels
+4 | k04 ″S″S | label "B3" | labels
+4 | k06 wheel on ″S2 | label "B3" | labels
+4 | k13 B | label "U6B7" | labels
+4 | k14 ′S′S | label "B9" | labels
+4 | k15 ′S1 | label "U3" | labels
+4 | k16 wheel on ′S2 | label "B10" | labels
+4 | k17 ′R | label "U4" | labels
+4 | across k01-k07 | words "Step down product from one to two" | words; "one" and "two" underlined
+4 | across k13-k18 | words "Step down product from three to four" | words; "three" and "four" underlined
+5 | margin | brace "16" | both sides
+5 | k12 | figure "5" | block number
+5 | k01 C | label "U5" | labels
+5 | k03 ″p″p | label "B4" | labels
+5 | k04 ″S″S | label "U3" | labels
+5 | k06 wheel on ″S2 | label "U3" | labels
+5 | k13 B | label "U7B5" | labels
+5 | k14 ′S′S | label "U9B3" | labels
+5 | k16 wheel on ′S2 | label "U10" | labels
+5 | k17 ′R | label "B3" | labels
+5 | across k03-k05 | words "Add to N.os two" | words; "two" underlined
+5 | across k13-k18 | words "Step down multiplier from one to two" | words; "one" and "two" underlined
+6 | margin | brace "12" | both sides
+6 | k12 | figure "6" | block number
+6 | k01 C | label "B6" | labels
+6 | k03 ″p″p | label "U4" | labels
+6 | k05 ″S1 | label "B3" | labels
+6 | k06 wheel on ″S2 | label "B4" | labels
+6 | k13 B | label "U5B8" | labels
+6 | k14 ′S′S | label "U3" | labels
+6 | k15 ′S1 | label "B9" | labels; a dot after it ("B9.")
+6 | k16 wheel on ′S2 | label "B9" | labels
+6 | k17 ′R | label "U3" | labels
+6 | across k01-k08 | words "Step down product from two to one" | words; "two" and "one" underlined
+6 | across k13-k18 | words "Step down product from four to three" | words; "four" and "three" underlined
+7 | margin | brace "16" | both sides
+7 | k12 | figure "7" | block number
+7 | k01 C | label "U6" | labels
+7 | k02 ″P | label "B3" | labels
+7 | k05 ″S1 | label "U3" | labels
+7 | k06 wheel on ″S2 | label "U4" | labels
+7 | k13 B | label "U8B6" | labels
+7 | k15 ′S1 | label "U9B3" | labels
+7 | k16 wheel on ′S2 | label "U9" | labels
+7 | k17 ′R | label "B4" | labels
+7 | across k01-k04 | words "Add to N.os one" | words; "one" not underlined
+7 | across k13-k18 | words "Step down multiplier from two to one" | words; "two" and "one" underlined
+8 | margin | brace "12" | both sides
+8 | k12 | figure "8" | block number
+8 | k01 C | label "B5" | labels
+8 | k02 ″P | label "U3" | labels
+8 | k04 ″S″S | label "B3" | labels
+8 | k06 wheel on ″S2 | label "B3" | labels
+8 | k13 B | label "U6B7" | labels
+8 | k14 ′S′S | label "B9" | labels
+8 | k15 ′S1 | label "U3" | labels
+8 | k16 wheel on ′S2 | label "B10" | labels
+8 | k17 ′R | label "U4" | labels
+8 | across k01-k08 | words "Step down product from one to two" | words; "one" and "two" underlined
+8 | across k13-k18 | words "Step down product from three to four" | words; "three" and "four" underlined; an ink spot on "product"
+9 | margin | brace "16" | both sides; the left brace ends below in a few short hatched strokes (S31)
+9 | k12 | figure "9" | block number
+9 | k01 C | label "U5" | labels
+9 | k03 ″p″p | label "B4" | labels
+9 | k04 ″S″S | label "U3" | labels
+9 | k06 wheel on ″S2 | label "U3" | labels
+9 | k13 B | label "U7B5" | labels
+9 | k14 ′S′S | label "U9B3" | labels
+9 | k16 wheel on ′S2 | label "U10" | labels
+9 | k17 ′R | label "B3" | labels; no words in this block; the table ends

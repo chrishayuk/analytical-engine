@@ -818,3 +818,99 @@ Per cycle (multiplicand / product / multiplier group):
 6 give off (no axis arrow) / add + Carry / —.
 Product: 000000, 001028, 002056, 020560, 205600, 206628.
 
+## 7. BAB/F/014, "Bolting plates for multiplication by table." (undated)
+
+**No person has checked the transcription** (`sources/notes/F014.md`,
+`mechanical/F014-plates.txt`). F/014 is **not a time chart**: no time rows,
+no arrows. It is a table of labels ("B3", "U5", "U6B7") and phrases in
+nine braced blocks, numbered 1–9 by Babbage. Its columns are its own,
+k01–k17 (`F014.md` section 2); ten heads are, letter for letter, heads on
+F/013 and two more (C, B) are letters of its axis groups, and blocks 3–7 hold, label for label, the labels of F/013's
+bands 1–(5) (`F014.md` section 6a). That is a reading of both sheets; the
+identification of the parts is not made.
+
+### 7a. Marks of S1–S29, S40–S42 present
+
+| Mark | On F/014 | Where |
+|---|---|---|
+| S13 words | yes | "Add to N.<sup>os</sup> one/two", "Step down product from one to two" etc., "Step down multiplier from one to two / two to one"; footer "Bolting plates. Multiplication by Table." |
+| S20 band number | yes, ink | "1"–"9", small, in the unheaded column k12 (as F/018's e43) |
+| S41 B/U labels | yes | every block; numbers 1–10; "U j B k" only in k13 (B) and k14, k15 (′S′S, ′S1) |
+| all arrows (S1, S2, S5–S8, S21, S22, S25, S26, S40), S3/S4, S9–S12, S14–S16, S27–S29, S42 | **absent** | — |
+
+### 7b. New marks
+
+| # | Mark | Occurrences | Where |
+|---|---|---|---|
+| S30 | **Brace with a figure beside it**, "16" or "12", grouping one block | 18 (9 left, 9 right) | Both margins of every block; the figures alternate 16, 12, 16 … from block 1 to block 9, the same on both sides. |
+| S31 | **Brace ending in short hatched strokes** | 1 | The left brace of block 9, the last block, at its lower end. |
+| S32 | **"B" with no number** | 2 | Block 3, columns ca (k08) and ′ca (k10), beside "B1" (″g1) and "B2" (″g2). |
+
+**HYPOTHESIS (S30):** the figure is the number of time units of the
+corresponding band of F/013 (16 = "2/3", 1–15, "1/3"; 12 = "2/3", 1–11,
+"1/3"). *For:* the counts, and the 16s stand where F/013's 15-row bands
+("Addition", "Step down multiplier") stand. *Against:* nothing on either
+sheet says so. Not adopted.
+
+S31 and S32: unknown. *Note on S32:* F/013 writes "ca moves at same time"
+and "′ca Moves at same time" in t13 and t15, the columns whose band-1
+arrows carry the figures of platforms 1 and 2; whether the bare "B" means
+the same thing is not established.
+
+### 7c. Differences from F/013 (reading)
+
+- No time rows, arrows or displacement figures; 17 heads to F/013's 47.
+- No axis "Cir" columns, figure wheels, "Carr." heads, locks, platforms,
+  "Wire Axes E", "Bolt to platforms", "Back Cen wheel" or "Lifters".
+- Heads ″g1, ca, ′ca, which F/013 does not have as heads.
+- Two blocks before F/013's band 1 (block 1: "Step down multiplier from one
+  to two", B5, B3, B3; block 2: U5, U3, U3) and two after its band (5)
+  (blocks 8, 9 = blocks 4, 5).
+- Labels never carry "N.<sup>o</sup>"; F/013's often do.
+
+## 8. BAB/F/020, "Bolting plates to multiply without table" (undated)
+
+**No person has checked the transcription** (`sources/notes/F020.md`,
+`mechanical/F020-plates.txt`). F/020 is not a time chart: no time rows, no
+arrows. Its columns are its own, f01–f24 (`F020.md` section 2). Lines are
+numbered bN.lM by this transcription.
+
+### Marks of S1–S42 present
+
+| Mark | On F/020 | Where |
+|---|---|---|
+| S13 words | yes | "Give off from N.<sup>o</sup> one Retain on N.<sup>o</sup> two" and converse (10), "add to N.<sup>os</sup> one", "add" (5), "add — Notice given of Stepping up" (2), "Add to N.<sup>os</sup> two" (2), "Step up from one to two" / "two to one" (5) |
+| S41 B/U labels | yes, the whole content | f01–f06, f09–f15, f17, f20–f23 (none in f07, f08, f16, f18, f19, f24); pairs written closed up ("U5B6", "U6B5"), only in Turns A.; 02 and 03 carry a B with no figure |
+| S1/S2, S5, S14–S16, S20, S40, S42 and all others | **absent** | no arrows, no figures, no stepped shafts, no band numbers |
+
+### New marks
+
+| # | Mark | Occurrences | Where |
+|---|---|---|---|
+| S43 | **Brace in the left margin**, enclosing one line of labels and the line of words under it; no figure beside it | 14 | 6 in block 1 (the first enclosing only the multiplier's line), 4 in block 2, 4 in block 3; the last brace of blocks 2 and 3 runs on empty below its label line |
+| S44 | **Label with a stroke above right**, "B′" | 1 | b1.l2, f13 (02). F/018 cycle 1 has a bare "B" in the same column (e22) |
+| S45 | **Double underline** | 2 | under "Notice given of Stepping up" (b2.l2, b3.l2) |
+
+Not numbered: the cross-ticks on every ruled vertical, about 106 px apart
+(a feature of the ruled paper, at the spacing of F/018–019's rows; not
+Babbage's notation, and unused by the entries).
+
+**HYPOTHESIS (S41 on F/020)**, as for F/018–019: "B n" and "U n" are a
+numbered plate bolted and unbolted, from the title "Bolting plates". *For:*
+the title; every U follows a B of the same figure in the same column
+(section 4, note 2). *Against:* nothing on the sheet expands B or U; ap
+B4, 'g2 B2, 'P B4, 02 B′, 03 B are never followed by a U. Not adopted.
+
+### Differences from F/018–019 (reading)
+
+- No time, no arrows, no figures: only labels, words and braces.
+- One column per axis ("Turns A.", "B", "C") in place of Ver, Cir and two
+  figure-wheel columns.
+- The give-off is directional ("Give off from N.<sup>o</sup> one Retain on
+  N.<sup>o</sup> two" and converse), where F/018–019 say "Give off and
+  retain".
+- "Add to N.<sup>os</sup> two" occurs (F/018–019: only "one").
+- "Notice given of Stepping up" occurs, double underlined.
+- The product is never stepped "two to one".
+- F/018's top rows and cycles 1–3 match F/020's lines label for label;
+  F/019's cycles 4–6 do not (section 6b).
