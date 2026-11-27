@@ -290,6 +290,26 @@ and drawings A/029–031; no person has checked the readings.
   different part. Whether F/013's U is unbolt or unlock is not settled by any
   source.
 
+## A held-out test: F/015–016 ("Table division", 8 Jan 1836)
+
+Predictions committed before the arrows were read
+(`docs/predictions/f015-f016-arrows.md`, c4277ea); arrows then transcribed by
+a reader not shown them (`sources/notes/F015-F016-arrows.md`); scored in
+`docs/predictions/f015-f016-result.md`.
+
+| Rule (committed) | Result |
+|---|---|
+| A part labelled B k moves in row 1 in the direction of platform k's lift | **42 / 42** |
+| … by platform k's lift | **38 / 42**; the 4 misses are the right digits without a point; no wrong digit |
+| It returns at row 11–1/3 of the band (from F/013) | **18 / 30**: failed as stated |
+| A lone U has no row-1 motion | **23 / 23** |
+
+After the test, not as a prediction: on F/015 the return follows the
+platform's own return, which alternates between bands (11–1/3, or row 12 for
+platforms 3–10), and fits all 21 of its testable returns; F/016 band 2, where
+most parts show no return, is not explained. The prediction file missed two
+stacked labels of F/015 band 1 (42 scored, not 44).
+
 ## What would settle it
 
 A page that describes bolting plates or platforms in the mill of 1835–1836,
