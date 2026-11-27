@@ -593,6 +593,20 @@ theorem trapDeck_accepted (P : Prog) (k : Nat) : Accepts c1838 (trapDeck P k) :=
   refine groupOK_append (groupOK_append (groupOK_flags k k) (groupOK_ops (straight_ops P k))) ?_
   exact groupOK_tail _
 
+/-- The 1838 deck has no repetition card, so it is a deck of Model A: it does
+not need a repetition count from the store. (Its combinatorial counts do come
+from the store, as rule 4 allows in every model.) -/
+theorem trapDeck_constReps (P : Prog) (k : Nat) : ConstReps (trapDeck P k) := by
+  intro i o c b n h
+  have hg := groupOK_flags k k
+  have hmem := List.mem_of_getElem? h
+  simp only [trapDeck, List.mem_append] at hmem
+  rcases hmem with (hm | hm) | hm
+  · obtain ⟨j, _, hj⟩ := mem_upTo hm
+    simp [flagBlock] at hj
+  · have := straight_ops P k _ hm; simp [IsOp] at this
+  · simp [trapTail] at hm
+
 /-- December 1837, which backs only to card 0, refuses the 1838 deck (with a
 counter): its flag groups back to card 3. -/
 theorem trapDeck_refused_1837 (P : Prog) {k : Nat} (hk : 0 < k) :

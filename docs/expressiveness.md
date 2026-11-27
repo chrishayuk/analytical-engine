@@ -181,7 +181,7 @@ and let K bound the number cards.
 
 The theorem holds for any numbers whose single operation makes nothing
 larger than the cube of its operands. Whole numbers are shown to satisfy
-that (`intSized`). Fractions are not.
+that (`intSized`), and so are exact fractions (`ratSized`).
 
 *C2. With repetition counts from the store, as `src/sketch.rs` reads 7
 March 1836* (`tower_halts`). `tower-halting` is accepted by the configuration
@@ -272,9 +272,11 @@ universal this way, by ending an endless loop with a deliberate undefined
 operation. Proved in Lean:
 
 - **With every backing card counted, a trap adds nothing.** The bounds of
-  A and B hold for every state a run reaches, a trap stop included
+  C1 and C3 (Models A and B) hold for every state a run reaches, a trap stop included
   (`reach_le_tower`, `reach_le_ptw`, `no_tetration_reach`,
-  `no_pentation_reach`). A trap can only end a run sooner.
+  `no_pentation_reach`). A trap can only end a run sooner. The bounds
+  particular to December 1837 (`Classes.lean`) have not been restated for
+  every state reached.
 - **With the unconditional backing card, a trap is enough.** A counter
   machine translates into a deck that the configuration of 30 May 1838
   accepts (`trapDeck_accepted`). Each pass is one step; the pass ends with
@@ -282,8 +284,9 @@ operation. Proved in Lean:
   once the machine has halted. The deck stops at its trap exactly when the
   machine halts, with the counters in the store (`trap_halts`,
   `machine_halts_of_trap`). No combinatorial card stands in a group it
-  counts, so rule 8 holds; the repetition counts are not used, so this holds
-  under either reading of rule 3a.
+  counts, so rule 8 holds. It has no repetition card (`trapDeck_constReps`),
+  so it holds under either reading of rule 3a; its combinatorial counts come
+  from the store, as rule 4 allows.
 - **December 1837 as well, if a repetition count is read from the store.**
   December 1837 backs only to card 0, so the flag groups cannot be used
   (`trapDeck_refused_1837`). Each flag [c > 0] is instead one operation
@@ -294,8 +297,8 @@ operation. Proved in Lean:
   (`trapDeck37_not_constReps`). Whether December 1837 with counts from
   number cards only becomes general under Model D is open.
 
-So under Model D the dated configurations of 1837 and 1838 are general,
-given Minsky's theorem, without the step of `not-found`. That is a second
+So under Model D the configuration of 30 May 1838 is general, and so is
+December 1837 with repetition counts from the store, given Minsky's theorem, without the step of `not-found`. That is a second
 route to generality, through what counts as the end of a run rather than
 through a new card.
 

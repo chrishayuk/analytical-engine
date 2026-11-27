@@ -31,10 +31,10 @@ in `formal/`, and should be made here first.
 | 7 | In Dec 1837 backing goes only to the first card. From 30 May 1838 it goes to any earlier card. | Page | Vol 3 p 162, "to 0 or their commencing point"; Vol 3 reverse pp 74–75, wheels "set to back any No of cards" |
 | 8 | **No combinatorial card among the cards a counted backing sends back over.** | **Reading** | Every arrangement found sets the count before the group it counts (Dec 1837, 30 May 1838, L/023). No page forbids the other arrangement either. Without this rule the machine is the `not-found` configuration. |
 | 9 | A card that writes a result gives off the number in a column. | Page | L/023, and Vol 3 p 162 |
-| 10 | Nothing chooses between cards. No result of the mill acts on a card, on the backing, or on the wheels. | Page (by absence) | Menabrea (Oct 1842) and Lovelace's Note G (1843) state the contrary as a principle ("the mill will order other cards"), later than every configuration here. Read for this up to April 1842: Vol 2 pp 74–95, Vol 3 pp 137–166 and reverse 74–75, Vol IV pp 2–19, 64–67, 406–417, and F/227. The one exception is Vol IV p 12 (25 June 1839), a variant Babbage does not adopt, which concerns complementing within one long addition (`vol4-control-1839-1840.md`). |
+| 10 | Nothing chooses between cards. No result of the mill acts on a card, or makes a backing effective or ineffective. A number the mill has computed may go on the wheels, by a combinatorial card from the store (rule 4), before the group it counts (rule 8). | Page (by absence) | Menabrea (Oct 1842) and Lovelace's Note G (1843) state the contrary as a principle ("the mill will order other cards"), later than every configuration here. Read for this up to April 1842: Vol 2 pp 74–95, Vol 3 pp 137–166 and reverse 74–75, Vol IV pp 2–19, 64–67, 406–417, and F/227. The one exception is Vol IV p 12 (25 June 1839), a variant Babbage does not adopt, which concerns complementing within one long addition (`vol4-control-1839-1840.md`). |
 | 11 | Numbers are exact fractions of unbounded size. | Idealisation | The engine's numbers had a fixed number of figures: 40 on Vol IV p 11 (25 June 1839), with numbers of more figures added in parts. |
 | 12 | The store is unbounded. | Idealisation | The store had a fixed number of columns. |
-| 13 | A combinatorial count of 0 or less, a count of 0 or less on the wheels before the first card, or a counted backing with no number on the wheels, is an error. A repetition count of 0 performs no operation. | Idealisation | The pages do not say what happens. |
+| 13 | A combinatorial count of 0 or less, a count of 0 or less on the wheels before the first card, or a counted backing with no number on the wheels, is an error. A repetition count of 0 performs no operation. | Idealisation | The pages do not say what happens. The Lean model holds the wheels as a natural number and takes the initial state as given: wheels at 0 there are an error only when a counted backing card is reached. The Rust refuses them at once. No theorem depends on the difference. |
 | 14a | **A halt is passing the last card.** An operation that fails is an error, not a halt, and nothing given off before it is an output. | Idealisation | Model D (`Trap.lean`) reads the other way: a stop at an operation the mill cannot do ends the run, with the store as its result. No text read treats such a stop as the end of a computation: in Menabrea (1842) the engine rings a bell and "stops until the attendant has again set it in action" (`menabrea-lovelace-1843-control.md`). |
 | 14 | An operation that is undefined, such as division by 0, is an error that ends the run. | Idealisation | The pages do not say. |
 | 15 | An input is a number placed in the store or on the wheels before the first card. | Idealisation | Babbage's numbers came in on number cards. That is the same as a deck that sets its inputs first. |
@@ -44,9 +44,14 @@ which are used only by the L/023 decks; and operation cards that write
 several columns at once. Neither changes what can be computed with numbers.
 
 **Undecided by the pages, and not used:** whether a result of the mill can
-make a counted backing effective or ineffective, or put a count on the
-wheels. No page read does either (rule 10). The `not-found` configuration
-adds only the second, by dropping rule 8.
+make a counted backing effective or ineffective. No page read does (rule 10).
+
+**Used, and given by the pages:** a computed number put on the wheels from
+the store (rule 4, "computed by the constant part of formula cards"), before
+the group it counts. The theorems use it in every model: "Model A" (counts
+from number cards, `ConstReps`) restricts only *repetition* counts (rule 3),
+never combinatorial counts. The `not-found` configuration adds only a
+combinatorial card *inside* the group it counts, by dropping rule 8.
 
 ## What follows from the rules
 

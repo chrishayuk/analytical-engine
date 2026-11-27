@@ -14,7 +14,10 @@ The numbers are any `Arith` with a size such that one operation of the mill
 makes nothing larger than the cube of the larger operand (or of 2), and a
 count is no larger than the size of the number it is read from. Whole numbers
 are such (`intSized` in `Separation.lean`), and so, with size the larger of
-numerator and denominator, are exact fractions; that last is not proved here.
+numerator and denominator, are exact fractions (`ratSized` in `RatSize.lean`).
+
+"Repetition counts are number cards" (`ConstReps`) restricts only `rep`
+cards: a combinatorial card may still put a computed number on the wheels.
 -/
 
 namespace Babbage

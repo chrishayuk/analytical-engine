@@ -23,7 +23,7 @@ the theorems mean for Babbage's mechanisms is in `docs/expressiveness.md`
 | `Babbage/GrowthStore.lean` | C3, with repetition counts from the store: one card's growth (`step_invS`), `out_le_ptw` (at most 2(L + 1) tetrations on the input plus a constant) and `no_pentation`: no deck of the pages halts with 2↑↑↑n for every n. `tower_below_pentation` applies it to the deck of `tower_halts`. |
 | `Babbage/RatSize.lean` | `ratSized`: exact fractions (core `Rat`, size the larger of the absolute numerator and the denominator) satisfy the size condition; `no_tetration_rat`, `no_pentation_rat`. |
 | `Babbage/Separation.lean` | `out_le_tower` and `no_tetration` (C1): with repetition counts from number cards, no deck of the pages halts with 2↑↑n for every n. `intSized`: whole numbers satisfy the size condition. `towerDeck_not_constReps`: the deck of `tower_halts` differs only in where its count comes from. `no_tetration_eventually`: the same, for every n from some point on. |
-| `Babbage/Classes.lean` | December 1837 against 30 May 1838. `halt_within_1837`: where backing goes only to the first card, a halting run passes its cards in one loop, at most (w + 1)(L + 1) of them with w on the wheels at the start. `out_le_dexp_1837` and `no_triple_exp_1837`: with counts from number cards, nothing beyond 2^2^(linear), so no 2^2^2^n. `out_le_tet_1837` and `no_tet_exp_1837`: with counts from the store, nothing beyond a tetration of linear height, so no 2↑↑2ⁿ. `triple_halts_1838` and `tet_exp_halts_1838`: decks of May 1838 (refused by Dec 1837) that give 2^2^2^n and 2↑↑2ⁿ. |
+| `Babbage/Classes.lean` | December 1837 against 30 May 1838. `halt_within_1837`: where backing goes only to the first card, a halting run passes its cards in one loop, at most (w + 1)(L + 1) of them with w on the wheels at the start. `out_le_dexp_1837` and `no_triple_exp_1837`: with counts from number cards, nothing beyond 2^2^(linear), so no 2^2^2^n. `out_le_tet_1837` and `no_tet_exp_1837`: with counts from the store, nothing beyond a tetration of linear height, so no 2↑↑2ⁿ. `triple_halts_1838` and `tet_exp_halts_1838`: decks of May 1838 that give 2^2^2^n and 2↑↑2ⁿ (`tripleDeck_refused_1837`; the second follows from `no_tet_exp_1837`). |
 | `Babbage/Minsky.lean` | Counter machines translated into decks (`compile`, as `src/minsky.rs`): `compile_accepted` by `not-found`, `compile_refused` by every configuration with rule 8, `compile_halts` and `machine_halts_of_compile`, so the deck halts exactly when the machine does and gives off its counters. |
 | `Babbage/Trap.lean` | Model D, a stop at an operation the mill cannot do read as the end (`TrapStops`). With every backing counted a trap adds nothing (`reach_le_tower`, `reach_le_ptw`, `no_tetration_reach`, `no_pentation_reach`). With the unconditional backing card a counter machine translates into a deck of 30 May 1838 (`trapDeck_accepted`, `trap_halts`, `machine_halts_of_trap`), and, with repetition counts from the store, of December 1837 (`trapDeck37_accepted`, `trap37_halts`, `machine_halts_of_trap37`). |
 | `Diff.lean` | Not theorems: `lake exe diff` runs decks with `Babbage.step` on fractions, for the differential test against Rust (`scripts/lean-diff.sh`). |
@@ -51,6 +51,15 @@ the theorems mean for Babbage's mechanisms is in `docs/expressiveness.md`
 - `result … off`, operations with several destinations, and letters are not
   modelled. They can be simulated, so the theorems are unaffected.
 
-**Axioms.** The generic theorems use only `propext` and `Quot.sound`. The
-whole-number and fraction instances, and the two Minsky halting theorems,
-also use `Classical.choice`, through core Lean lemmas and case analysis.
+**Axioms.** The generic bounds use only `propext` and `Quot.sound`. The
+whole-number and fraction instances, and the theorems about the Minsky and
+trap decks (`compile_halts`, `machine_halts_of_compile`, `trap_halts`,
+`machine_halts_of_trap`, the 1837 versions, `trapDeck_accepted`,
+`trapDeck_refused_1837`, `trapDeck37_not_constReps`) and
+`tower_below_pentation`, also use `Classical.choice`: through core Lean's
+lemmas on division and case analysis, and in `machine_halts_gen` through a
+proof by contradiction.
+
+**"Counts from number cards"** (`ConstReps`) means *repetition* counts.
+Combinatorial cards may put a computed number on the wheels in every model
+(rule 4), and the May 1838 constructions use it.
