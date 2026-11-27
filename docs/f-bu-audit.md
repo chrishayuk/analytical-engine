@@ -1,90 +1,150 @@
 # The B/U labels of Series F, tested against every occurrence
 
-The labels "B3", "U5", "U5 B6" stand in Babbage's multiplication sheets of
-January 1836: the time charts F/013 (by table) and F/018–019 (without table),
-and the schedules F/014 and F/020 ("Bolting plates for multiplication by
-table", "… to multiply without table"). No sheet says what B, U or the figure
-means. The working hypothesis (`f-concordance.md`, S41) is:
+The labels "B3", "U5", "U5 B6", "B N.o 9" stand in Babbage's multiplication
+sheets of January 1836: the time charts F/013 (by table) and F/018–019
+(without table), and the schedules F/014 and F/020 ("Bolting plates for
+multiplication by table", "… to multiply without table"). No sheet says what
+B, U or the figure means. The working hypothesis (`f-concordance.md`, S41):
 
 **H.** "B n" is a numbered plate n bolted, and "U n" the same plate unbolted,
 in the column where the label stands.
 
-`scripts/bu_audit.py` reads every label in the transcriptions
-(`mechanical/*.txt`, no person has checked them) and tests four predictions
-of H. It prints every counterexample. This page records what it found, as
-observation, reading and hypothesis. Nothing here gives a mark a mechanical
-meaning; it tests what H predicts.
+Two scripts read every label in the transcriptions (`mechanical/*.txt`; no
+person has checked them) and test what H predicts. They print every
+counterexample and every occurrence they could not test. This page records
+what they found, as observation, reading and hypothesis. **Nothing here gives
+a mark a mechanical meaning.**
+
+- `scripts/bu_audit.py`: coverage, and predictions P1–P4.
+- `scripts/bu_bracket.py`: what each column's part does between a B and its U.
+
+*Corrected 27 Nov 2026.* The first version of `bu_audit.py` never recorded a
+U standing over an arrow, did not parse "B N.o 9", "U&B" or "U2.", and could
+not find the row after F/013's "2/3", so F/013 was not tested at all on
+arrows. This page was written from the first version and said otherwise; it
+is rewritten from the corrected one.
+
+## Coverage
+
+| Sheet | Texts with a standalone B or U | Parsed as B/U labels | Set aside | Not parsed |
+|---|---|---|---|---|
+| F/013 | 56 | 38 | 18 "U" in the Lock columns (below) | 0 |
+| F/014 | 65 | 65 | 0 | 0 |
+| F/018–019 | 59 | 59 | 0 | 0 |
+| F/020 | 95 | 95 | 0 | 0 |
+
+**The Lock columns of F/013** (t28 Lock Cen.l, t29 Lock Fig wh, t30 Lock
+Carr.e) carry a "U" with no figure in row 1 of every band, standing on an up
+arrow transcribed "with letter U", and a down arrow "with letter L" in row 10
+or 10–11. *Hypothesis, not adopted:* U and L are unlock and lock there. They
+are another use of the letter, not tested as B/U.
 
 ## The predictions
 
 - **P1.** Every "U n" follows a "B n" of the same figure in the same column,
   with no other U of that figure between.
 - **P2.** No column has a "B n" while n is already bolted there.
-- **P3.** In the time charts, every "B n" stands over an up arrow in the next
-  row of its column.
+- **P3.** On the time charts, every "B n" stands at the start of a motion of
+  its column's part, and a U standing alone does not. (A compound label such
+  as "U5 B6" stands over its B's motion, so its U is not a test.)
 - **P4.** If the figure names one physical plate, no figure is bolted in two
   columns at once.
 
-## What the audit found
+## Observations
 
-### Observations
+### P1, P2, P4
 
-| Sheet | Labels | P1 | P2 | P3 | P4 |
-|---|---|---|---|---|---|
-| F/018–019, every label as an event | 63 | 3 fail | 6 fail | **0 fail** | 20 fail |
-| F/018–019, F/019's top row as a restatement (below) | 54 | **0 fail** | **0 fail** | **0 fail** | 17 fail |
-| F/013 | 43 | 22 fail | 0 fail | **0 fail** | 2 fail |
-| F/014 | 74 | 0 fail | 0 fail | no arrows | 12 fail |
-| F/020, in order | 103 | 2 fail | 3 fail | no arrows | 33 fail |
+| Sheet | B/U tokens | P1 fails | P2 fails | P4 fails |
+|---|---|---|---|---|
+| F/013 | 44 | 4 | 0 | 7 |
+| F/014 | 74 | 0 | 0 | 12 |
+| F/018–019, every label as an event | 64 | 3 | 6 | 20 |
+| F/018–019, F/019's top row as a restatement (below) | 55 | 0 | 0 | 17 |
+| F/020, in order | 103 | 2 | 3 | 33 |
 
-- **F/019 opens by restating F/018's last row.** Its partial top row 15 has,
-  column for column, the labels of F/018 cycle 3's row 15 (all but one, U4 in
-  e06; and the head of e24 is read 'g3 on F/019, 'g2 on F/018). Every P1 and
-  P2 failure in F/018–019 is in that row. Read as a restatement of the state
-  at the foot of the previous sheet, F/018–019 satisfies P1, P2 and P3
-  without exception.
-- **P3 holds everywhere it can be tested.** Every "B n" in F/013 and
-  F/018–019 stands over an up arrow in the next row; no "U n" does.
-- **P4 fails on every sheet.** The same figure is "bolted" in several columns
-  at once (for instance B3 in e34, e40, e05 and e19 of F/018 cycle 1).
-- **F/013's P1 failures** are of two kinds: "U" with no figure (columns t28–t30,
-  in every band), and "U n" in band 2 or later whose B would be in band 1,
-  which carries few labels. F/014 has the band-1 labels F/013 lacks
-  (`f-cycles.md`, "The bolting-plate sheets").
+- **F/013's P1 failures** are four "U n" in band 2 (t07, t16, t23, t25) whose
+  B would be in band 1, which carries few labels. F/014 has the band-1 labels
+  F/013 lacks (`f-cycles.md`, "The bolting-plate sheets").
+- **F/019's top row 15 against F/018's last row 15.** Nine labels are the same
+  in both. F/018's U4 in e06 is not on F/019. Column e24 is headed 'g2 on
+  F/018 and 'g3 on F/019. Every P1 and P2 failure on F/018–019 is in that
+  top row; *reading* it as a restatement of the state at the foot of F/018
+  (with those two differences), F/018–019 has none.
 - **F/020's failures**: block 3 unbolts in f11 and f12 what block 2 has
   already unbolted, with no B between (P1); and three B's come while their
   figure is already bolted in the column, at b2.l5 f04, b3.l3 f14 and b3.l5
-  f10 (P2). Reading the
-  blocks as alternatives that each start from the end of block 1 makes this
-  worse (three U's with no B), so that reading is not taken.
-- **Some B's are never followed by a U**: 8 on each sheet, among them the
-  figureless "B" and "B′" of the columns 02 and 03.
+  f10 (P2). Reading the blocks as alternatives that each start from the end of
+  block 1 gives more failures, not fewer.
+- **P4 fails on every sheet.** The same figure stands "bolted" in several
+  columns at once (B3 in e34, e40, e05 and e19 of F/018 cycle 1).
+- **Never followed by a U**: 4 on F/013, 8 on F/014, 7 on F/018–019 (with the
+  restatement), 8 on F/020, among them the figureless "B" and "B′".
 
-### Readings
+### P3 (the time charts only)
 
-- **The figure is relative to its column.** P4 fails on every sheet, so if B/U
-  is bolting, "n" does not name one physical plate of the mill. It names
-  something of that axis or column: one of its own plates, a position, or a
-  setting. Which of these the sheets do not say.
-- **B and its up arrow are one event.** P3 without exception supports B
-  marking the moment a part is raised or engaged, written as a label over the
-  arrow; U has no arrow, so it marks something that the arrow notation does
-  not show, or shows elsewhere.
-- **F/020 is a pattern, not one run.** Block 3's repeated unbolts fit a sheet
-  that sets out the schedule for one figure of the multiplier, to be gone
-  through again, rather than a single run (as `f-cycles.md` already infers).
+| | F/013 | F/018–019 (restatement) |
+|---|---|---|
+| B over an up arrow in the next row | 11 | 31 |
+| B over a down arrow in the next row | 4 | 0 |
+| B over a stepped shaft beginning one row later (Cir columns t11, t24) | 4 | 0 |
+| B over no motion | **0** | **0** |
+| B whose next row the sheet does not give (untestable) | 1 | 0 |
+| U standing alone over no motion | 14 | 19 |
+| U standing alone over a motion | **0** | **0** |
+| U in a compound label (not a test) | 6 | 5 |
+| "U&B" (F/013's "Bolt to platforms" column; not tested) | 4 | 0 |
 
-### Hypotheses, not adopted
+F/014 and F/020 have no arrows and no rows, so P3 cannot be tested on them:
+all 74 and 103 of their tokens are untestable.
 
-- **H as stated** survives P1–P3 on the time charts and fails P4. Restated with
-  the figure relative to its column ("plate n of that axis"), it survives all
-  four on F/018–019. On F/013 it needs F/014's band-1 labels; on F/020 it
-  needs the pattern reading.
-- **U without a figure** (F/013, t28–t30) is not explained by H.
+### Between a B and its U
+
+| | F/013 | F/018–019 |
+|---|---|---|
+| Matched B…U pairs | 16 | 24 |
+| A return (double-headed arrow) between B and U | 12 | **24** |
+| A motion but no return (the stepped shafts of t11, t24) | 4 | 0 |
+| The U in the band after its B | 16 | 19 (2 two bands on, 3 in the same band) |
+
+## Readings
+
+- **A B stands at the start of a motion of its part, in either direction.**
+  P3 holds on both time charts without exception once motion is read as any
+  of the column's motion marks (up arrow, down arrow, stepped shaft), not only
+  an up arrow. A U standing alone never does.
+- **B and U bracket a whole excursion.** On F/018–019 every B…U encloses the
+  part's motion and its return, in order B, motion, return, U, and the U comes
+  in a later band. On F/013 the same holds wherever the column draws a
+  return.
+- **The figure belongs to its column.** P4 fails on every sheet, so if B/U is
+  bolting, "n" does not name one physical plate of the mill: it names
+  something of that axis or column, such as one of its own plates, a position
+  or a setting. The sheets do not say which.
+
+## Hypotheses, not adopted
+
+- **H, with the figure relative to its column** ("plate n of that axis"), fits
+  P1–P4 on F/018–019 under the restatement reading, and P2–P4 on F/013; F/013's
+  P1 needs F/014's band-1 labels.
+- **Transient motion against persistent configuration.** The arrows record a
+  motion that goes out and comes back; B and U open before it and close after
+  it, and the closing U falls in a later band. That fits B/U recording a
+  state that lasts across the motion (a part connected, or held) and the
+  arrows recording the motion itself. It is a pattern in the sheets, not a
+  mechanism; nothing on them says what is connected or held.
+- **F/020 as a pattern for one figure of the multiplier**, gone through again
+  for each, rather than a single run: it would explain block 3's repeated
+  unbolts. It is not established; other explanations (a slip, a sheet copied
+  from another) are not excluded.
+- **Local component, position or setting** for the figure: not distinguished.
+  On F/013 the Cir columns write "B 3" over "Gears with N.o 1 in bottom Cage",
+  "B 4" over "Gears with 2 in bottom Cage", "B 10" over "Gears with N.o 4 in
+  Top Cage" and "B 9" over "Gears with 3 in Top Cage": the B figure and the
+  gear number are not the same, so the figure is not the gear named.
 
 ## What would settle it
 
 A page that describes bolting plates or platforms in the mill of 1835–1836,
-a drawing of Series A that shows numbered plates on the axes, or Babbage's
-own definition of the notation. The archival search for these is in
+a drawing of Series A that shows numbered plates on an axis, or Babbage's own
+definition of the notation. The archival search for these is in
 `sources/notes/bolting-plates-sources.md`.
