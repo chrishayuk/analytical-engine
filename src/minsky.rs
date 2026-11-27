@@ -97,6 +97,13 @@ pub enum Ending {
     /// operation repeated c_r times, its count read from the store
     /// (`trapDeck37`). No combinatorial card and no counted backing.
     Trap1837,
+    /// The published accounts, 1842–1843: no combinatorial card, no counted
+    /// backing and no repetition count. Each flag is a cycle that a result of
+    /// the mill ends (Note G's V₁₀), and so is the loop: it backs while
+    /// W − 1 = 1 − [halted] is greater than zero, and then the counters are
+    /// given off and the deck halts by passing its last card (`deck43` in
+    /// `formal/Babbage/Note43.lean`).
+    Cond1843,
 }
 
 /// The deck, as text for `sketch::read`. The machine starts in state 0 with
@@ -115,6 +122,16 @@ pub fn compile_with(name: &str, prog: &[Ins], regs: &[i64], ending: Ending) -> S
     let (was, cnt, t, w) = (Layout::WAS, Layout::CNT, Layout::T, Layout::W);
     let mut cards: Vec<String> = vec!["step:".into()];
     for r in 0..l.k {
+        if ending == Ending::Cond1843 {
+            cards.push(format!("+ 0 0 > v{was}"));
+            cards.push(format!("flag{r}:"));
+            cards.push(format!("+ v{was} 0 > v{}", l.f(r)));
+            cards.push(format!("+ 0 1 > v{was}"));
+            cards.push(format!("− 1 v{} > v{cnt}", l.f(r)));
+            cards.push(format!("× v{} v{cnt} > v{cnt}", l.c(r)));
+            cards.push(format!("back flag{r} if v{cnt}"));
+            continue;
+        }
         if ending == Ending::Trap1837 {
             cards.push(format!("+ 0 1 > v{}", l.f(r)));
             cards.push(format!("repeat × v{} 0 times v{}", l.f(r), l.c(r)));
@@ -160,6 +177,12 @@ pub fn compile_with(name: &str, prog: &[Ins], regs: &[i64], ending: Ending) -> S
     if ending == Ending::CountInLoop {
         cards.push(format!("set v{w}"));
         cards.push("back step counted".into());
+        for r in 0..l.k {
+            cards.push(format!("result v{}", l.c(r)));
+        }
+    } else if ending == Ending::Cond1843 {
+        cards.push(format!("− v{w} 1 > v{w}"));
+        cards.push(format!("back step if v{w}"));
         for r in 0..l.k {
             cards.push(format!("result v{}", l.c(r)));
         }

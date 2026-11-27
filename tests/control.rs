@@ -235,3 +235,49 @@ fn report_json_for_the_notebook() {
     );
     assert!(out.contains(r#""config":"1837-12","date":"December 1837","found":true,"accepted":true,"status":"halts","results":["65536"]"#), "{out}");
 }
+
+/// The configuration of the published accounts (1842–1843): a backing made
+/// effective while a result of the mill is greater than zero (Note G). The
+/// counter machines translate with nothing else: no combinatorial card, no
+/// counted backing, no repetition count, and the deck halts by passing its
+/// last card, giving off the counters. Every earlier configuration refuses it.
+#[test]
+fn counter_machines_in_1843() {
+    use babbage::minsky::{compile_with, simulate, Ending, Ins};
+    let add = [Ins::Dec(1, 1, 2), Ins::Inc(0, 0), Ins::Halt];
+    let mul = [
+        Ins::Dec(0, 1, 6),
+        Ins::Dec(1, 2, 4),
+        Ins::Inc(2, 3),
+        Ins::Inc(3, 1),
+        Ins::Dec(3, 5, 0),
+        Ins::Inc(1, 4),
+        Ins::Halt,
+    ];
+    let cases: [(&str, &[Ins], Vec<i64>); 5] = [
+        ("add", &add, vec![3, 4]),
+        ("add", &add, vec![0, 0]),
+        ("mul", &mul, vec![3, 4, 0, 0]),
+        ("mul", &mul, vec![0, 7, 0, 0]),
+        ("mul", &mul, vec![6, 1, 0, 0]),
+    ];
+    for (name, prog, regs) in cases {
+        let want: Vec<String> = simulate(prog, &regs, 10_000)
+            .unwrap()
+            .iter()
+            .map(|v| v.to_string())
+            .collect();
+        let d = read(&compile_with(name, prog, &regs, Ending::Cond1843)).unwrap();
+        assert!(!d
+            .cards
+            .iter()
+            .any(|c| matches!(c, babbage::sketch::Card::Set(_) | babbage::sketch::Card::Repeat { .. })));
+        for k in ["1836-03", "1837-12", "1838-05", "not-found"] {
+            assert!(accepts(config(k), &d).is_err(), "{name} under {k}");
+        }
+        let o = run(config("1843"), &d).unwrap();
+        assert!(o.halted, "{name} {regs:?}");
+        let got: Vec<String> = o.results.iter().map(|v| v.to_string()).collect();
+        assert_eq!(got, want, "{name} {regs:?}");
+    }
+}

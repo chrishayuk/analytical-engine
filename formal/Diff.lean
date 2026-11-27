@@ -4,7 +4,9 @@ import Babbage
 # The Lean model, run: one side of the differential test
 
 `lake exe diff FILE…` reads each deck written by `babbage control lean-cases`
-(`src/difftest.rs`), runs it with `Babbage.step` on exact fractions
+(`src/difftest.rs`), runs it with `Babbage.step43` on exact fractions, which is
+`Babbage.step` on every card of `Machine.lean` (`step43_lift`) and adds the
+backing of Note G
 (`ratArith`, `RatSize.lean`), and writes FILE.lean in the form the Rust side
 writes FILE.rust. `scripts/lean-diff.sh` compares the two.
 
@@ -37,7 +39,7 @@ def parseOp : String → Option Op
   | _ => none
 
 structure Case where
-  cards : Array Card := #[]
+  cards : Array Card43 := #[]
   store : List (Nat × Rat) := []
   wheels : Option Nat := none
   fuel : Nat := 0
@@ -55,28 +57,33 @@ def parseLine (c : Case) (l : String) : Option Case :=
     some { c with store := c.store ++ [(i, v)] }
   | ["op", o, a, b, d] => do
     let card := Card.op (← parseOp o) (← parseSrc a) (← parseSrc b) (← d.toNat?)
-    some { c with cards := c.cards.push card }
+    some { c with cards := c.cards.push (Card43.c card) }
   | ["rep", o, col, b, n] => do
     let card := Card.rep (← parseOp o) (← col.toNat?) (← parseSrc b) (← parseSrc n)
-    some { c with cards := c.cards.push card }
-  | ["set", s] => do some { c with cards := c.cards.push (Card.set (← parseSrc s)) }
+    some { c with cards := c.cards.push (Card43.c card) }
+  | ["set", s] => do some { c with cards := c.cards.push (Card43.c (Card.set (← parseSrc s))) }
   | ["back", t, b] => do
     let t ← t.toNat?
-    some { c with cards := c.cards.push (Card.back t (b == "1")) }
-  | ["result", i] => do some { c with cards := c.cards.push (Card.result (← i.toNat?)) }
+    some { c with cards := c.cards.push (Card43.c (Card.back t (b == "1"))) }
+  | ["backif", t, col] => do
+    some { c with cards := c.cards.push (Card43.backIf (← t.toNat?) (← col.toNat?)) }
+  | ["result", i] => do some { c with cards := c.cards.push (Card43.c (Card.result (← i.toNat?))) }
   | _ => none
 
 /-- The card at `s` is an operation the mill cannot do (`Trapped`, decided). -/
-def trapAt (d : Deck) (s : State Rat) : Bool :=
+def trapAt (d : Deck43) (s : State Rat) : Bool :=
   match d[s.pc]? with
-  | some (.op o a b _) => (ratArith.op o (fetch ratArith s a) (fetch ratArith s b)).isNone
+  | some (.c (.op o a b _)) => (ratArith.op o (fetch ratArith s a) (fetch ratArith s b)).isNone
   | _ => false
 
-/-- `run`, card by card, saying how it ended. -/
-def exec (d : Deck) (trap : Bool) : Nat → State Rat → String × Option (State Rat)
+/-- Note G: the backing is effective while the number is greater than zero. -/
+def posRat (q : Rat) : Bool := decide (0 < q)
+
+/-- `run43`, card by card, saying how it ended. -/
+def exec (d : Deck43) (trap : Bool) : Nat → State Rat → String × Option (State Rat)
   | 0, s => (if d.length ≤ s.pc then "halt" else "running", some s)
   | n + 1, s =>
-    match step ratArith d s with
+    match step43 ratArith posRat d s with
     | .run s' => exec d trap n s'
     | .halt s' => ("halt", some s')
     | .err => if trap && trapAt d s then ("trap", some s) else ("err", none)
@@ -88,12 +95,13 @@ def srcCols : Src → List Nat
   | .col i => [i]
   | .num _ => []
 
-def cols : Card → List Nat
-  | .op _ a b d => d :: srcCols a ++ srcCols b
-  | .rep _ c b n => c :: srcCols b ++ srcCols n
-  | .set s => srcCols s
-  | .result c => [c]
-  | .back _ _ => []
+def cols : Card43 → List Nat
+  | .c (.op _ a b d) => d :: srcCols a ++ srcCols b
+  | .c (.rep _ c b n) => c :: srcCols b ++ srcCols n
+  | .c (.set s) => srcCols s
+  | .c (.result c) => [c]
+  | .c (.back _ _) => []
+  | .backIf _ c => [c]
 
 def report (c : Case) : String :=
   let d := c.cards.toList

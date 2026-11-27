@@ -62,6 +62,7 @@ pub fn lean_form(d: &Deck, fuel: usize, trap: bool) -> Option<String> {
             Card::Repeat { op: o, col, b, n } => format!("rep {} {col} {} {}", op(*o), src(b)?, src(n)?),
             Card::Set(s) => format!("set {}", src(s)?),
             Card::Back { to, counted, .. } => format!("back {to} {}", u8::from(*counted)),
+            Card::BackIf { to, col, .. } => format!("backif {to} {col}"),
             Card::Result { col, off: false } => format!("result {col}"),
             Card::Result { off: true, .. } => return None,
         });
@@ -151,6 +152,11 @@ fn random_deck(rng: &mut Rng) -> Deck {
             } else {
                 Src::Num(rng.int(0, 3))
             }),
+            8 if i > 0 && rng.below(2) == 0 => Card::BackIf {
+                to: rng.below(i as u64 + 1) as usize,
+                label: String::new(),
+                col: col(rng),
+            },
             6 | 7 => Card::Back {
                 to: rng.below(i as u64 + 1) as usize,
                 label: String::new(),
@@ -162,6 +168,18 @@ fn random_deck(rng: &mut Rng) -> Deck {
             },
         };
         d.cards.push(card);
+    }
+    // A backing made effective by a result can pass a card many times, and a
+    // repetition count read from a column it has grown would take too long to
+    // run: in those decks the repetition counts are number cards.
+    if d.cards.iter().any(|c| matches!(c, Card::BackIf { .. })) {
+        for c in d.cards.iter_mut() {
+            if let Card::Repeat { n, .. } = c {
+                if matches!(n, Src::Col(_)) {
+                    *n = Src::Num(2);
+                }
+            }
+        }
     }
     for c in 0..5 {
         if rng.below(2) == 0 {
@@ -205,6 +223,7 @@ pub fn cases(n: usize) -> Vec<(String, String, String)> {
         (Ending::CountInLoop, "loop"),
         (Ending::Trap1838, "trap1838"),
         (Ending::Trap1837, "trap1837"),
+        (Ending::Cond1843, "cond1843"),
     ] {
         for regs in [[3, 4], [0, 2]] {
             let d = read(&compile_with("add", &add, &regs, e)).unwrap();

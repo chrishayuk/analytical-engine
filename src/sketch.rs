@@ -79,6 +79,14 @@ pub enum Card {
     /// the order is ineffective when they come to 0. Otherwise it always
     /// backs.
     Back { to: usize, label: String, counted: bool },
+    /// A backing card made effective by a result of the mill: it backs while
+    /// the number in column `col` is greater than zero, and lets the cards
+    /// go on when it is zero or less. Lovelace's Note G (1843): "the engine
+    /// follows the one or the other of the two courses … contingently on" a
+    /// result "equal to zero" or "greater than zero"; V₁₀ "decides which of
+    /// two courses the succeeding processes are to follow". Only the
+    /// configuration of the published accounts, 1842–1843, has it.
+    BackIf { to: usize, label: String, col: usize },
     /// A result: the number in the column, given off and retained, or
     /// given off and the column left at zero (`off`).
     Result { col: usize, off: bool },
@@ -147,6 +155,8 @@ pub struct Config {
     pub any_target: bool,
     /// A combinatorial card among the cards a counted backing repeats.
     pub set_in_group: bool,
+    /// A backing made effective or not by a result of the mill (`BackIf`).
+    pub cond_back: bool,
     /// Beyond the pages read.
     pub found: bool,
 }
@@ -159,6 +169,7 @@ pub const CONFIGS: &[Config] = &[
         backing: false,
         any_target: false,
         set_in_group: false,
+        cond_back: false,
         found: true,
     },
     Config {
@@ -168,6 +179,7 @@ pub const CONFIGS: &[Config] = &[
         backing: true,
         any_target: false,
         set_in_group: false,
+        cond_back: false,
         found: true,
     },
     Config {
@@ -177,6 +189,17 @@ pub const CONFIGS: &[Config] = &[
         backing: true,
         any_target: true,
         set_in_group: false,
+        cond_back: false,
+        found: true,
+    },
+    Config {
+        key: "1843",
+        date: "1842–1843, published",
+        source: "Menabrea (1842) and Lovelace's Note G (1843): as 30 May 1838, and a cycle repeated until a result of the mill (V10) comes to zero; the mechanism is not described",
+        backing: true,
+        any_target: true,
+        set_in_group: false,
+        cond_back: true,
         found: true,
     },
     Config {
@@ -186,6 +209,7 @@ pub const CONFIGS: &[Config] = &[
         backing: true,
         any_target: true,
         set_in_group: true,
+        cond_back: false,
         found: false,
     },
 ];
@@ -372,6 +396,14 @@ pub fn read(text: &str) -> Result<Deck, String> {
                     counted,
                 }
             }
+            ["back", l, "if", c] => {
+                backs.push((d.cards.len(), l.to_string(), ln));
+                Card::BackIf {
+                    to: 0,
+                    label: l.to_string(),
+                    col: col(c).ok_or_else(|| err("back LABEL if vN"))?,
+                }
+            }
             ["result", c] => Card::Result {
                 col: col(c).ok_or_else(|| err("a column"))?,
                 off: false,
@@ -404,7 +436,7 @@ pub fn read(text: &str) -> Result<Deck, String> {
         if t > i {
             return Err(format!("line {ln}: backing goes back, and `{l}` is ahead"));
         }
-        if let Card::Back { to, .. } = &mut d.cards[i] {
+        if let Card::Back { to, .. } | Card::BackIf { to, .. } = &mut d.cards[i] {
             *to = t;
         }
     }
@@ -424,6 +456,12 @@ pub fn accepts(c: &Config, d: &Deck) -> Result<(), String> {
         match card {
             Card::Set(_) if !c.backing => return Err(format!("card {}: a combinatorial card", i + 1)),
             Card::Back { .. } if !c.backing => return Err(format!("card {}: a backing card", i + 1)),
+            Card::BackIf { .. } if !c.cond_back => {
+                return Err(format!(
+                    "card {}: a backing made effective by a result of the mill",
+                    i + 1
+                ))
+            }
             Card::Back { to, label, .. } if !c.any_target && *to != 0 => {
                 return Err(format!(
                     "card {}: backing to `{label}` (card {}), not \"to 0 or their commencing point\"",
@@ -634,6 +672,14 @@ pub fn run_model(c: &Config, d: &Deck, trap: bool) -> Result<Outcome, String> {
                     pc += 1;
                 }
             }
+            Card::BackIf { to, col, .. } => match as_rat(&get(&store, *col)) {
+                None => break Err(format!("{at}: v{col} is not a number")),
+                Some(r) if r > Rat::ZERO => {
+                    o.backings += 1;
+                    pc = *to;
+                }
+                Some(_) => pc += 1,
+            },
             Card::Result { col, off } => {
                 o.results.push(get(&store, *col));
                 if *off {

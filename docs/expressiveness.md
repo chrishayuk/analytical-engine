@@ -353,6 +353,11 @@ the store (two-figure indices), which bears on rule 3a. They do not add a
 count set inside its own group, or a result of the mill acting on a
 backing.
 
+**After April 1842.** The control the published accounts of 1842–1843
+describe, Note G's cycle ended by a result of the mill, is a separate
+configuration: `published-control-1843.md`. With it alone, and a halt as
+passing the last card, counter machines translate (`Note43.lean`).
+
 ## 7. Leads, and what has been read since
 
 Read on 27 November 2026 (`sources/notes/repetition-count-1836-1842.md`):

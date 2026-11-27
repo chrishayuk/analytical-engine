@@ -84,3 +84,8 @@ through `Babbage.step` on exact fractions (`formal/Diff.lean`) and through
 control deck the Lean model has, the counter-machine decks, and 2,000 random
 decks with and without the trap. They agree on all of them. That is a test,
 not a proof of correspondence.
+
+**The published accounts, 1842–1843.** A separate configuration, `1843`, adds
+one card, a backing made effective by a result of the mill (Note G). Its rules
+and what follows from them are in `published-control-1843.md`; nothing above
+changes.
