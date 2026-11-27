@@ -1,0 +1,21 @@
+% A table of 2, 4, 16, 65536, ...: each result is 2 raised to the one
+% before, by a counted group of doublings whose count is the result before.
+% docs/expressiveness.md uses it: a deck that halts, with no count set inside
+% the group it counts, cannot compute this for every n, but a table can give
+% it term by term. The fifth term (2^65536) is beyond this machine's numbers.
+Deck tower-table
+Title "2, 2^2, 2^2^2, ... as a table"
+Store v1 = 1
+Wheels 1
+Stop 4 results
+Expect endless
+Expect results 2, 4, 16, 65536
+Cards
+double:
+× v1 2 > v1
+back double counted
+result v1
+set v1
+× v1 0 > v1
++ v1 1 > v1
+back double always

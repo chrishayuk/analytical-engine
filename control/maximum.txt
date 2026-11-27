@@ -1,0 +1,30 @@
+% The greater of a and b, for whole numbers a, b ≥ 1, without a choice
+% between cards. x and y count down together while x·y is not 0 (the count
+% x·y + 1 put on the wheels inside the group); then g = [x > 0] by a group
+% passed x + 1 times; the maximum is b + g(a − b).
+Deck maximum
+Title "max(17, 42)"
+Store v1 = 17, v2 = 42
+Expect halts
+Expect results 42
+Cards
++ v1 0 > v3
++ v2 0 > v4
+down:
+− v3 1 > v3
+− v4 1 > v4
+× v3 v4 > v8
++ v8 1 > v8
+set v8
+back down counted
+× v5 0 > v5
++ v3 1 > v8
+set v8
+flag:
++ v5 0 > v6
++ 0 1 > v5
+back flag counted
+− v1 v2 > v8
+× v6 v8 > v8
++ v2 v8 > v9
+result v9

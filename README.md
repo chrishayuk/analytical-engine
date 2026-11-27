@@ -372,12 +372,16 @@ what was hard to read in [`sources/notes/L001.md`](sources/notes/L001.md).
 - Rojas (2021, IEEE Annals, closed access) and Bromley (1982, 2000), read
   in full, before any result is called new. See
   [`docs/literature-mechanical-notation.md`](docs/literature-mechanical-notation.md).
-- Series F: the pilot on F/001 ("Multiply a, b, c, d by 1021", about
-  1835) has its notation and timing for one cycle (`babbage mechanical`),
-  and stops before the mechanism: 34 of its 87 marks have no known meaning,
-  and the drawing it cites has no number. See
-  [`docs/f001-pilot.md`](docs/f001-pilot.md). The later cycles and F/002
-  come next.
+- Series F: three multiplication designs are transcribed: F/001–002
+  (about 1835), F/013 by table (5 Jan 1836) and F/018–019 without table
+  (11 Jan 1836). `babbage mechanical` shows each, and checks F/018–019's
+  written products against Babbage's own words for each band. See
+  [`docs/f-cycles.md`](docs/f-cycles.md). Next are the bolting-plate sheets
+  F/014 and F/020, and a viewer for the marks.
+- Control flow: `babbage control` runs the Sketch Books' control
+  mechanisms, configuration by date, on a suite of decks. A deck that halts
+  in the arrangements found cannot compute every primitive recursive
+  function. See [`docs/expressiveness.md`](docs/expressiveness.md).
 - A person to check the transcriptions against the scans.
 - Liu Hui and Babbage on the same equations: the counting board of
   [nine-chapters](../nine-chapters) and these tables, run on the same

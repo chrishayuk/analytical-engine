@@ -1,0 +1,16 @@
+% The same product with the December 1837 cards: the group subject to
+% repetition first, its backing card after it, the count on the
+% combinatorial wheels from a combinatorial card turned first ("Any numbers
+% may be transferred from the combinatorial cards to the combinatorial
+% wheels", Vol 3 p 161).
+Deck multiply-1837
+Title "1028 × 201: a group of one card backed 200 times"
+Store v1 = 1028, v3 = 0
+Wheels 201
+Expect halts
+Expect results 206628
+Cards
+add:
++ v3 v1 > v3
+back add counted
+result v3

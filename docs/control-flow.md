@@ -57,11 +57,13 @@ would need something not found (N).
 - **A count that varies, from cards or computed.** S. Counts come "from the
   combinatorial cards" or are "computed by the constant part of formula
   cards". So a count can depend on data computed before the loop starts.
-- **A loop inside a loop.** S for two levels: L/023's Y inside Z, and Dec
-  1837's two backing cards. The May 1838 plan has three backing wheels,
-  each with its own combinatorial card. So three groups can repeat
-  independently, which suggests three levels. Arbitrary depth would need
-  one set of wheels per level: F, if wheels can be added; not specified.
+- **A loop inside a loop.** One counted group (or several in sequence)
+  inside an endless loop: L/023's Y inside Z, Dec 1837's two backing cards,
+  and the 30 May 1838 plan's groups 3 and 5 inside 6. Counted inside
+  counted is not found: there is one combinatorial axis, and every count is
+  set before the group it counts (`docs/expressiveness.md`, section 2). An
+  earlier version of this page said "two levels" and "suggests three";
+  that is withdrawn.
 - **Repeat for ever.** S: the card that "always orders the backing". L/023
   never stops of itself; its table ends partway through the fifth
   coefficient.
@@ -75,21 +77,24 @@ would need something not found (N).
 - **Choose between alternative groups of cards.** N in the pages read. The
   choice of 22 March 1836 is between mechanical cycles inside one
   operation, not between groups of operation cards.
-- **General computation.** With unbounded store, counted loops whose counts
-  are fixed before each loop, nested to a fixed depth, compute what are now
-  called primitive recursive functions (a LOOP program). That is F: it
-  follows from the primitives above. More would need a loop that runs
-  until a computed condition holds. It could come from a running up in the
-  mill cancelling a backing order, or from the counter being set again,
-  from within the loop, by a number the loop computes. Neither is stated
-  in the pages read. That is N, and it is the precise point at which a
-  claim of full generality for 1836–1838 would go beyond the record.
+- **General computation.** See `docs/expressiveness.md`, which runs these
+  primitives as a machine and argues the bounds. A deck that halts in the
+  arrangements found has every number bounded by a tower of exponentials of
+  fixed height. So it cannot compute 2↑↑n for every n, and the arrangements
+  found do not compute every primitive recursive function. (An earlier
+  version of this page said they did; that is withdrawn.) Going further
+  needs a count set inside the group it counts, which no page read gives.
+  That is N, and it is the point at which a claim of full generality for
+  1836–1838 would go beyond the record.
 
 These are modern categories applied to his specification. They describe
 what the primitives allow, not what Babbage said about them.
 
 ## What to read next
 
+- Vol IV p 12, 25 June 1839, at full resolution: "the running up or non
+  running up must turn a card over before it acts" may be a mill result
+  acting on a card.
 - Vol 3 pp 143–155 (Nov 1837) in full: the three-way orders on running up
   are the nearest thing to a choice, and were read only partly at full
   resolution.

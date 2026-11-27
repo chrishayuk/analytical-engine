@@ -1,0 +1,26 @@
+% L/023's computation in the December 1837 arrangement (Vol 3 pp 161-162):
+% "it is necessary to divide the operation cards into two groups, the first
+% the one subject to repetition; the second the constant group", a backing
+% card between them, "ineffective if the combinatorial wheels have run up",
+% and at the end "another card ... which always orders the backing"; both
+% back "to 0 or their commencing point". The combinatorial number is
+% "computed by the constant part of formula cards".
+Deck L023-1837
+Title "L/023's product of series, in the December 1837 arrangement"
+Letters A B C D a b c d
+Store v1 = 1, v2 = 1, v5 = 0, v6 = 0
+Row Γ = A B C D at v2 - w
+Row γ = a b c d at w - 1
+Wheels 1
+Stop 4 results
+Expect endless
+Expect results Aa, Ab + Ba, Ac + Bb + C a, Ad + Bc + C b + Da
+Cards
+formula:
+× Γ γ > v6
++ v5 v6 > v5
+back formula counted
+result v5 off
++ v2 v1 > v2
+set v2
+back formula always

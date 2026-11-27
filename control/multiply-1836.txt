@@ -1,0 +1,15 @@
+% Multiplication by repeated addition, as one operation repeated a given
+% number of times. 7 March 1836 (Vol 2 p 84): "When any operation is to be
+% terminated after a given variable number of repetitions, let the number of
+% rep.ns be put on an axis ... subtr.g unity previous to each operation a
+% running up will take place at end and thus the op.n be suspended". Where the
+% number comes from is not said; here it is read from the store. 1028 × 201
+% are F/018-019's figures (11 Jan 1836), used only as test numbers.
+Deck multiply-1836
+Title "1028 × 201: one addition repeated 201 times"
+Store v1 = 1028, v2 = 201, v3 = 0
+Expect halts
+Expect results 206628
+Cards
+repeat + v3 v1 times v2
+result v3

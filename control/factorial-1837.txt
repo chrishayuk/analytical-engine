@@ -1,0 +1,13 @@
+% 10!: a product and a count carried together through a counted group.
+Deck factorial-1837
+Title "10!"
+Store v1 = 1, v2 = 1
+Wheels 10
+Expect halts
+Expect results 3628800
+Cards
+mult:
+× v1 v2 > v1
++ v2 1 > v2
+back mult counted
+result v1

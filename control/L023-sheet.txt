@@ -1,0 +1,31 @@
+% BAB/L/023 (7 June 1838), its three groups as the cover gives them: "The
+% first makes the combinatorial numbers ... The second relates to the
+% operations on the coeffts ... The third group relates to the use of the
+% combinatorial numbers. The backing apparatus Y backs the cards to the
+% beginning of the formulae cards. The backing apparatus Z backs them to the
+% beginning of the cards forming the combinatorial numbers." Here the count
+% is on the combinatorial wheels, as the Sketch Books have it, not in a
+% store column as the sheet's table has it ("This ought not to be in Store
+% but on Prisms"); so the third group, a mill subtraction on the table, is
+% the wheels' own subtraction of unity at Y. Where the letter cards stand is
+% read from Tab and the wheels, as loops.rs reads it from Tab and Comb: the
+% sheet does not say. v1 = Δ′, v2 = Tab, v5 = S, v6 = P.
+Deck L023-sheet
+Title "L/023: (A + Bx + ...)(a + bx + ...), the cover's three groups, the count on the wheels"
+Letters A B C D a b c d
+Store v1 = 1, v2 = 0, v5 = 0, v6 = 0
+Row Γ = A B C D at v2 - w
+Row γ = a b c d at w - 1
+Stop 4 results
+Expect endless
+Expect results Aa, Ab + Ba, Ac + Bb + C a, Ad + Bc + C b + Da
+Cards
+make:
++ v2 v1 > v2
+set v2
+formula:
+× Γ γ > v6
++ v5 v6 > v5
+back formula counted          % Y
+result v5 off
+back make always              % Z

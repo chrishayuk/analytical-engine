@@ -311,6 +311,59 @@ fn main() {
             println!("\nFigures and words are Babbage's; the checks compare his figures with his words. Nothing simulates the mechanism, and no mark");
             println!("is given a meaning no source gives it (docs/f-cycles.md, docs/f-concordance.md). babbage mechanical [F001|F013|F018] [band]");
         }
+        ["control", ..] => {
+            use babbage::sketch::{accepts, expected, read, run, CONFIGS, DECKS};
+            println!("The control mechanisms of the Sketch Books, by date: which decks each accepts (docs/expressiveness.md).\n");
+            for c in CONFIGS {
+                println!(
+                    "  {:<10} {}{}",
+                    c.key,
+                    c.source,
+                    if c.found { "" } else { "  [NOT FOUND in the pages read]" }
+                );
+            }
+            for (name, text) in DECKS {
+                let d = read(text).unwrap_or_else(|e| {
+                    eprintln!("{name}: {e}");
+                    exit(2)
+                });
+                println!("\n{name}: {}", d.title);
+                for c in CONFIGS {
+                    let line = match accepts(c, &d) {
+                        Err(e) => format!("not accepted: {e}"),
+                        Ok(()) => match run(c, &d) {
+                            Err(e) => format!("fails: {e}"),
+                            Ok(o) => {
+                                let bad = expected(&d, &o);
+                                let shown: Vec<String> = o.results.iter().take(4).map(|v| v.to_string()).collect();
+                                format!(
+                                    "{} {}; {} result{}: {}{}; mill {}; wheels −1 ×{}{}",
+                                    if bad.is_empty() { "✓" } else { "✗" },
+                                    if o.halted { "halts" } else { "runs on" },
+                                    o.results.len(),
+                                    if o.results.len() == 1 { "" } else { "s" },
+                                    shown.join(", "),
+                                    if o.results.len() > 4 { ", …" } else { "" },
+                                    o.mill
+                                        .iter()
+                                        .map(|(k, v)| format!("{k}{v}"))
+                                        .collect::<Vec<_>>()
+                                        .join(" "),
+                                    o.wheel_steps,
+                                    if bad.is_empty() {
+                                        String::new()
+                                    } else {
+                                        format!("  ✗ {}", bad.join("; "))
+                                    }
+                                )
+                            }
+                        },
+                    };
+                    println!("  {:<10} {line}", c.key);
+                }
+            }
+            println!("\nA deck runs on only where the observer stops it (Stop), as L/023's table does. Nothing here chooses between cards.");
+        }
         ["uses"] => {
             let names: Vec<&str> = babbage::history::CAPABILITIES.iter().map(|c| c.0).collect();
             for (n, t) in corpus::PAGES {

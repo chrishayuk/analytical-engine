@@ -1,0 +1,27 @@
+% Collatz from 27, stopping at 1: the next term is put on the wheels before
+% the outer backing card, which is then ineffective exactly when that term is
+% 1. That is a loop ended by a number computed inside it.
+Deck collatz-halting
+Title "Collatz from 27, until 1"
+Store v1 = 27, v2 = 0
+Expect halts
+Expect results 82, 41, 124
+Expect last 1
+Expect count 111
+Cards
+step:
+set v1
+× v2 0 > v2
+parity:
+− 1 v2 > v2
+back parity counted
+× v1 3 > v3
++ v3 1 > v3
+× v3 v2 > v3
+÷ v1 2 > v4
+− 1 v2 > v5
+× v4 v5 > v4
++ v3 v4 > v1
+result v1
+set v1
+back step counted

@@ -1,0 +1,25 @@
+% L/023's product, made to stop after four coefficients. The outer count is
+% kept in the store (v7) and put on the wheels before the outer backing card,
+% so a combinatorial card stands inside the group that backing repeats.
+% No page read does this.
+Deck product-halting
+Title "L/023's product, stopping after four coefficients"
+Letters A B C D a b c d
+Store v1 = 1, v2 = 0, v5 = 0, v6 = 0, v7 = 4
+Row Γ = A B C D at v2 - w
+Row γ = a b c d at w - 1
+Expect halts
+Expect results Aa, Ab + Ba, Ac + Bb + C a, Ad + Bc + C b + Da
+Expect count 4
+Cards
+make:
++ v2 v1 > v2
+set v2
+formula:
+× Γ γ > v6
++ v5 v6 > v5
+back formula counted
+result v5 off
+set v7
+− v7 1 > v7
+back make counted

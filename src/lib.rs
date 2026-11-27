@@ -16,3 +16,4 @@ pub mod page;
 pub mod play;
 pub mod rat;
 pub mod report;
+pub mod sketch;

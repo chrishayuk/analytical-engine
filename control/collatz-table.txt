@@ -1,0 +1,28 @@
+% A table of the Collatz sequence from 27, in the December 1837
+% arrangement. The parity of n is found by a counted group passed n times
+% that turns p between 0 and 1; the next term is then p(3n + 1) + (1 − p)(n/2),
+% so nothing is chosen: both are computed and one is multiplied by 0. The
+% table never ends of itself (L/023 does not either); the run is stopped
+% after twelve results.
+Deck collatz-table
+Title "Collatz from 27, as a table"
+Store v1 = 27, v2 = 0
+Wheels 27
+Stop 12 results
+Expect endless
+Expect results 82, 41, 124, 62, 31, 94, 47, 142, 71, 214, 107, 322
+Cards
+parity:
+− 1 v2 > v2
+back parity counted
+× v1 3 > v3
++ v3 1 > v3
+× v3 v2 > v3
+÷ v1 2 > v4
+− 1 v2 > v5
+× v4 v5 > v4
++ v3 v4 > v1
+result v1
+× v2 0 > v2
+set v1
+back parity always
