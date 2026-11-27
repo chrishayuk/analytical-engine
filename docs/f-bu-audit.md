@@ -222,6 +222,21 @@ returns at row 11, so the short-time group is uniform there; F/013's
 short-time platform columns close at row 12 and its long-time ones at row 15,
 so the two sheets agree in order, not in row.
 
+## A provisional platform model (`scripts/platform_model.py`)
+
+**A hypothesis, not a reconstruction.** Inputs: the B/U labels, and F/013's
+head table of twelve platforms and their signed lifts. Output: for each "B k",
+the predicted motion of the part in the next row (direction and lift); scored
+against the arrows the charts record, which are not an input. No arithmetic
+is inferred from the motions.
+
+| | Direction right | Lift right | Misses | Untested |
+|---|---|---|---|---|
+| F/013 (table from its own heads: a consistency check) | 15 / 15 | 14 / 15 | B3 t23 band 5: chart "[?.6]", an uncertain reading | 4 stepped shafts (no figure), 1 with no next row |
+| F/018–019 (table from F/013; lifts seen before: not blind) | 29 / 29 | 28 / 29 | B4 e34 cycle 3: chart "6", transcribed without the point | 2 B's with no figure |
+
+Both misses are kept as misses; neither transcription is corrected here.
+
 ## What would settle it
 
 A page that describes bolting plates or platforms in the mill of 1835–1836,
