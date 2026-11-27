@@ -58,10 +58,12 @@ checked by CI with no `sorry`), except where marked **argued**.
 | Under rule 8, a deck whose backing cards are all counted always ends: it halts or an operation fails. | 1, 4–8, 13 | `ends_of_counted`, `halting_dichotomy` |
 | Under rule 8, **with repetition counts from number cards only**, a halting deck gives off nothing larger than a fixed tower of exponentials on its input, and so does not give 2↑↑n for every n. | all, with `ConstReps` | `out_le_tower`, `no_tetration` |
 | Under rule 8, **with repetition counts from the store** (rule 3a as coded), a deck of Dec 1837 halts with 2↑↑n for every n ≥ 1. | all | `tower_halts` |
-| Under rule 8, with repetition counts from the store, a halting deck does not give 2↑↑↑n (2↑↑2↑↑…2, n times) for every n. | all | **argued** in `expressiveness.md` §4, not formalised |
+| Under rule 8, with repetition counts from the store, a halting deck gives off nothing larger than a fixed number of tetrations on its input, and so does not give 2↑↑↑n for every n. | all | `out_le_ptw`, `no_pentation`; applied to `tower-halting` in `tower_below_pentation` |
 | Without rule 8 (`not-found`), counter machines can be translated into decks. | 1–7 | **tested** on two machines (`src/minsky.rs`); not proved |
 
-The whole-number arithmetic `intArith` satisfies the size condition of the
-growth theorem (`intSized`). Exact fractions are expected to satisfy it too,
-with size taken as the larger of numerator and denominator, but that is not
-proved in `formal/`.
+Both whole numbers (`intSized`) and exact fractions satisfy the size
+condition of the growth theorems. For fractions, size is the larger of
+|numerator| and denominator (`ratSized`, `no_tetration_rat`,
+`no_pentation_rat`). The fraction results, and `intSized`'s case for ÷,
+rest on core Lean lemmas about `Rat` and `Int` division that use the axiom
+`Classical.choice`. The generic theorems do not.

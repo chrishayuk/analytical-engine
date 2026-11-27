@@ -187,22 +187,38 @@ hypothesis. The step that failed in the first version is the one that bounded
 a repetition count by the numbers at the start of a phase: a count read
 from the store is the number the phase has just made.
 
-*C3. The bound with counts from the store* (argued, not formalised). One
-card now makes at most a double exponential, so one pass is a tower of
-height at most about 2L. A counted group passed w ≤ X times is then at most
-2↑↑(cX), for a constant c of the deck. There are at most L + 1 phases, so a
-halting deck is bounded by a fixed number of iterations of x ↦ 2↑↑(cx).
-That falls below 2↑↑↑n for large n. So, if the argument is right, these
-decks also miss some primitive recursive functions.
+*C3. The bound with counts from the store* (`out_le_ptw`, `no_pentation`,
+machine-checked in `formal/Babbage/GrowthStore.lean`).
+1. With a count within X, one card makes nothing larger than X^(3^X)
+   (`step_invS`), which is at most a tower of three 2s on X + 2
+   (`growS_le`).
+2. One phase is then a tower of height linear in X, so at most one
+   tetration, 2↑↑((5L + 6)(X + 1)) (`H_growS_le`).
+3. With at most L + 1 phases, a halting deck gives off nothing larger than
+   2(L + 1) tetrations on X + (L + 1)(5L + 6).
+4. That falls below 2↑↑↑n at an explicit n. So no such deck gives 2↑↑↑n
+   for every n.
+
+Here 2↑↑↑0 = 1 and 2↑↑↑(n + 1) = 2↑↑(2↑↑↑n), so 2↑↑↑3 = 65536.
+`tower_below_pentation` applies the theorem to `tower-halting` itself,
+which shows that its hypotheses can be met by a deck that reaches
+tetration.
+
+Both C1 and C3 hold for exact fractions as well as whole numbers, with size
+the larger of numerator and denominator (`ratSized`, `no_tetration_rat`,
+`no_pentation_rat`).
 
 **What C settles.** The question raised against `docs/control-flow.md` was
 whether the dated configurations compute every primitive recursive
-function. Under either reading of 7 March 1836 they do not: C1 is
-machine-checked, and C3 is argued. Where the line falls depends on the
-reading:
+function. Under either reading of 7 March 1836 they do not, and both
+halves are machine-checked. Where the line falls depends on the reading:
 - **counts from number cards only:** tetration is not computed;
-- **counts from the store:** tetration is computed, and pentation, by
-  argument C3, is not.
+- **counts from the store:** tetration is computed, and pentation is
+  not.
+
+Where these classes sit among the subrecursive hierarchies (Grzegorczyk,
+Meyer–Ritchie) is in `docs/growth-classes.md`. That placement is argued,
+not proved.
 
 The pages do not decide between the two readings (`semantics.md`, rule 3a).
 
