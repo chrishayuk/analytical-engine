@@ -41,11 +41,25 @@ fn rat(r: crate::rat::Rat) -> String {
 }
 
 /// The deck in the form `formal/Diff.lean` reads, if the Lean model has it.
+/// An operation card with several destinations becomes the operation into the
+/// first and a copy into each of the others (`run_expand` in
+/// `formal/Babbage/Multi.lean`: the same store), and the targets of backing
+/// and forward cards move with the cards. The Lean side is given fuel for the
+/// extra cards; decks with such cards are compared only when they halt.
 pub fn lean_form(d: &Deck, fuel: usize, trap: bool) -> Option<String> {
     if !d.rows.is_empty() || d.wheels.is_some_and(|w| w < 1) {
         return None;
     }
-    let mut out = vec![format!("fuel {fuel}")];
+    let size = |c: &Card| match c {
+        Card::Op { to, .. } => to.len().max(1),
+        _ => 1,
+    };
+    let mut at = vec![0usize];
+    for c in &d.cards {
+        at.push(at.last().unwrap() + size(c));
+    }
+    let widest = d.cards.iter().map(size).max().unwrap_or(1);
+    let mut out = vec![format!("fuel {}", fuel * widest)];
     if trap {
         out.push("trap".into());
     }
@@ -56,17 +70,22 @@ pub fn lean_form(d: &Deck, fuel: usize, trap: bool) -> Option<String> {
         out.push(format!("store {c} {}", rat(as_rat(v)?)));
     }
     for card in &d.cards {
-        out.push(match card {
-            Card::Op { op: o, a, b, to } if to.len() == 1 => format!("op {} {} {} {}", op(*o), src(a)?, src(b)?, to[0]),
-            Card::Op { .. } => return None,
-            Card::Repeat { op: o, col, b, n } => format!("rep {} {col} {} {}", op(*o), src(b)?, src(n)?),
-            Card::Set(s) => format!("set {}", src(s)?),
-            Card::Back { to, counted, .. } => format!("back {to} {}", u8::from(*counted)),
-            Card::BackIf { to, col, .. } => format!("backif {to} {col}"),
-            Card::AheadIf { to, col, .. } => format!("aheadif {to} {col}"),
-            Card::Result { col, off: false } => format!("result {col}"),
+        match card {
+            Card::Op { op: o, a, b, to } => {
+                let (first, rest) = to.split_first()?;
+                out.push(format!("op {} {} {} {first}", op(*o), src(a)?, src(b)?));
+                for t in rest {
+                    out.push(format!("op add c{first} n0 {t}"));
+                }
+            }
+            Card::Repeat { op: o, col, b, n } => out.push(format!("rep {} {col} {} {}", op(*o), src(b)?, src(n)?)),
+            Card::Set(s) => out.push(format!("set {}", src(s)?)),
+            Card::Back { to, counted, .. } => out.push(format!("back {} {}", at[*to], u8::from(*counted))),
+            Card::BackIf { to, col, .. } => out.push(format!("backif {} {col}", at[*to])),
+            Card::AheadIf { to, col, .. } => out.push(format!("aheadif {} {col}", at[*to])),
+            Card::Result { col, off: false } => out.push(format!("result {col}")),
             Card::Result { off: true, .. } => return None,
-        });
+        }
     }
     Some(out.join("\n") + "\n")
 }
@@ -218,6 +237,16 @@ pub fn cases(n: usize) -> Vec<(String, String, String)> {
     for (name, text) in DECKS {
         let d = read(text).unwrap();
         push(format!("deck-{name}"), &d, d.stop_cards.min(200_000), d.trap);
+    }
+    // Note G, as printed and corrected (operation cards with several
+    // destinations, fractions, the backing of Note G).
+    for (name, text) in [
+        ("note-g-printed", include_str!("../control/note-g-printed.txt")),
+        ("note-g-corrected", include_str!("../control/note-g-corrected.txt")),
+        ("note-g-reading-b", include_str!("../control/note-g-reading-b.txt")),
+    ] {
+        let d = read(text).unwrap();
+        push(format!("deck-{name}"), &d, 100_000, false);
     }
     let add = [Ins::Dec(1, 1, 2), Ins::Inc(0, 0), Ins::Halt];
     for (e, tag) in [

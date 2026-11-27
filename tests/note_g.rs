@@ -179,3 +179,145 @@ fn corrected_n1_n2_fall_through() {
     assert_eq!(col(&o, 22), "-1/30");
     assert_eq!(col(&o, 10), "-1");
 }
+
+// Reading B (menabrea-lovelace-1843-control.md §8): the repetition of
+// 13…23 is a counted backing of count n − 2, set from Operation 12's result
+// on V10, and the zero test on V10 at Operations 7 and 12 chooses a forward
+// course to Operation 24 (sources/notes/note-g-table.md, "Reading B deck").
+
+const READING_B: &str = include_str!("../control/note-g-reading-b.txt");
+
+fn go_b(d: &Deck) -> Outcome {
+    run(config("1843-B"), d).unwrap()
+}
+
+/// The Reading B deck for n, with Operation 24's result column moved to
+/// V(20 + n) and B1 … B(2n−3) as data, as in the tests above.
+fn reading_b(n: usize) -> Deck {
+    let stores = [
+        "Store v1 = 1, v2 = 2, v3 = 1",
+        "Store v1 = 1, v2 = 2, v3 = 2, v21 = 1/6",
+        "Store v1 = 1, v2 = 2, v3 = 3, v21 = 1/6, v22 = -1/30",
+        STORE4,
+        "Store v1 = 1, v2 = 2, v3 = 5, v21 = 1/6, v22 = -1/30, v23 = 1/42, v24 = -1/30",
+    ];
+    if n == 4 {
+        return read(READING_B).unwrap();
+    }
+    let c = 20 + n;
+    edit(
+        READING_B,
+        &[
+            (STORE4, stores[n - 1]),
+            ("- v24 v13 > v24", &format!("- v{c} v13 > v{c}")),
+            ("Expect column v24 = -1/30", ""),
+        ],
+    )
+}
+
+/// Only 1843-B accepts it: the other configurations have no forward course
+/// chosen by a result of the mill, and refuse at the card after Operation 7.
+#[test]
+fn only_1843_b_accepts_reading_b() {
+    let d = read(READING_B).unwrap();
+    let ok: Vec<_> = CONFIGS
+        .iter()
+        .filter(|c| accepts(c, &d).is_ok())
+        .map(|c| c.key)
+        .collect();
+    assert_eq!(ok, ["1843-B"]);
+    for c in CONFIGS.iter().filter(|c| c.key != "1843-B") {
+        assert!(accepts(c, &d)
+            .unwrap_err()
+            .contains("card 11: a forward course chosen by a result of the mill"));
+    }
+}
+
+/// n = 4: B7 = −1/30, the group passed twice (n − 2: two subtractions from
+/// the wheels, one backing), V10 = 0 at the end. Three cards more than the
+/// Reading A deck: two forward courses and the combinatorial card.
+#[test]
+fn reading_b_gives_b7() {
+    let d = read(READING_B).unwrap();
+    let o = go_b(&d);
+    assert!(o.halted);
+    assert_eq!(expected(&d, &o), Vec::<String>::new());
+    assert_eq!(col(&o, 24), "-1/30");
+    assert_eq!(col(&o, 10), "0");
+    assert_eq!(col(&o, 3), "5");
+    assert_eq!(o.wheel_steps, 2);
+    assert_eq!(o.backings, 1);
+    assert_eq!(o.cards, 63);
+    assert_eq!(go(&read(CORRECTED).unwrap()).cards, 60);
+}
+
+/// n = 1 … 5: the right Number each time, V10 ends at 0 (under Reading A,
+/// n = 1, 2 end at −2, −1), and the group passes n − 2 times for n ≥ 3.
+/// n = 1 and n = 2 take the forward course to Operation 24 and never reach
+/// the combinatorial card.
+#[test]
+fn reading_b_n1_to_n5() {
+    // (n, B(2n−1), cards, passes of 13…23)
+    for (n, b, cards, passes) in [
+        (1, "1/6", 16, 0),
+        (2, "-1/30", 23, 0),
+        (3, "1/42", 45, 1),
+        (4, "-1/30", 63, 2),
+        (5, "5/66", 81, 3),
+    ] {
+        let o = go_b(&reading_b(n));
+        assert!(o.halted, "n = {n}");
+        assert_eq!(col(&o, 20 + n), b, "n = {n}");
+        assert_eq!(col(&o, 10), "0", "n = {n}");
+        assert_eq!(col(&o, 3), (n + 1).to_string(), "n = {n}");
+        assert_eq!(o.cards, cards, "n = {n}");
+        assert_eq!(o.wheel_steps, passes, "n = {n}");
+        assert_eq!(o.backings, passes.saturating_sub(1), "n = {n}");
+    }
+}
+
+/// Without the forward courses: n = 2 would put a count of 0 on the wheels,
+/// and n = 1 a count of −1 (rule 13: an error). For n ≥ 3 the deck without
+/// them is a deck of 30 May 1838: a counted backing set from a computed
+/// number is all it needs.
+#[test]
+fn reading_b_needs_the_forward_courses() {
+    let strip = |d: &str| -> String {
+        d.lines()
+            .filter(|l| !l.starts_with("ahead "))
+            .map(|l| format!("{l}\n"))
+            .collect()
+    };
+    let d = read(&strip(READING_B)).unwrap();
+    assert!(accepts(config("1838-05"), &d).is_ok());
+    assert!(accepts(config("1837-12"), &d)
+        .unwrap_err()
+        .contains("backing to `op13`"));
+    let o = run(config("1838-05"), &d).unwrap();
+    assert_eq!(col(&o, 24), "-1/30");
+    for (n, count) in [(1, "-1"), (2, "0")] {
+        let text = strip(READING_B).replace(STORE4, &format!("Store v1 = 1, v2 = 2, v3 = {n}"));
+        let e = run(config("1843-B"), &read(&text).unwrap()).err().unwrap();
+        assert!(e.contains(&format!("a count of {count}")), "{e}");
+    }
+}
+
+/// A forward course on Operation 23's result as well (not in the deck):
+/// the same B7, but the last pass leaves by that course and never reaches
+/// the backing card, so the wheels are left at 1 and the count is not what
+/// ends the cycle. Under Reading B the deck therefore has no card for
+/// Operation 23's test.
+#[test]
+fn reading_b_test_at_23_would_bypass_the_count() {
+    let d = edit(
+        READING_B,
+        &[(
+            "% (Operation 23's test: under Reading B",
+            "ahead op24 if v10 zero\n% (Operation 23's test: under Reading B",
+        )],
+    );
+    let o = go_b(&d);
+    assert_eq!(col(&o, 24), "-1/30");
+    assert_eq!(o.wheel_steps, 1);
+    assert_eq!(o.backings, 1);
+}

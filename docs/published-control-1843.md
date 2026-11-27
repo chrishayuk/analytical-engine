@@ -88,11 +88,40 @@ The translation (`deck43`, and `Ending::Cond1843` in `src/minsky.rs`):
   given off.
 
 Tested in Rust (`tests/control.rs`, `counter_machines_in_1843`), and the Lean
-model and the Rust machine agree on the decks of `scripts/lean-diff.sh`, which
-now include the new card: 3,911 runs, among them 814 runs of 407 random decks
-with it (each with and without the trap), the
-counter-machine decks of `1843`, and the earlier ones. That is a test, not a
-proof.
+model and the Rust machine agree on the decks of `scripts/lean-diff.sh`: 3,916
+runs, among them random decks with the new cards, the counter-machine decks of
+both readings, and the three Note G decks (§4). That is a test, not a proof.
+
+## 3B. Reading B: a forward course chosen by a result
+
+Under Reading B the repetition of (13…23) is a counted backing, and V₁₀'s
+test only chooses a forward course: on zero, the Number is finished. The
+configuration `1843-B` is the configuration of 30 May 1838 with one card,
+`ahead LABEL if vN zero` (`Card43.aheadIf`): when the number is zero the
+cards go on from a later card, otherwise from the next. No `back … if`.
+
+| Statement | Lean |
+|---|---|
+| A counter machine translates into a deck that **halts, by passing its last card, exactly when the machine halts**, and gives off its counters. | `haltsB`, `machine_halts_of_B` |
+| That deck has only operation cards, result cards, the forward course, and one **unconditional** backing to card 0: no combinatorial card, counted backing, repetition card or `back … if`. | `deckB_plain` |
+| Every configuration with backing cards, **December 1837 included**, accepts it with the new card; none without the card does. | `deckB_accepted`, `deckB_refused` |
+
+So, given Minsky's theorem, **Reading B gives a general machine as well**,
+provided the unconditional backing card is used: the card that "always orders
+the backing" (Vol 3 p 162, December 1837). Each flag is F := 0; ahead if
+c_r is zero; F := 1. The loop is the unconditional backing, passed over by a
+forward course once W − 1 = 1 − [halted] is zero.
+
+**Argued, not proved:** without the unconditional backing, Reading B is not
+general. A forward course only shortens a run, so with every backing counted
+the run's length, and the bounds of Models A and B, are as before. That
+argument has not been formalised for the new card.
+
+So the conclusion holds under either reading: the explicit test of Note G
+with a backward course (Reading A), or with a forward course and the
+unconditional backing of 1837 (Reading B), makes the machine general. What
+differs is which older card is also needed: none under Reading A, the
+unconditional backing under Reading B.
 
 ## 4. Note G, run
 
@@ -124,7 +153,22 @@ The three corrections, each with its source in the table note:
 
 The cycle runs n − 2 times, as "Σ(+1)ⁿ⁻²" on p. 730 says, and V₁₀ ends at 0.
 
-**Limitations.** The tests at Operations 7 and 12 are not expressed: their
+**Reading B** (`control/note-g-reading-b.txt`, configuration `1843-B`): the
+repetition is `set v10` straight after Operation 12, which has just put n − 2
+on V₁₀, and `back op13 counted`; the tests at Operations 7 and 12 are
+`ahead op24 if v10 zero`, the "stop altogether" course for n = 1 and 2.
+Three cards more than the Reading A deck. It gives 1/6, −1/30, 1/42, −1/30
+and 5/66 for n = 1 to 5, the group passed exactly n − 2 times, and V₁₀ ends
+at 0 each time (under Reading A the n = 1 and 2 runs end at −2 and −1).
+Without the two forward courses, 30 May 1838 alone accepts the deck and
+gives B₇ for n = 4; the forward courses are needed only for n = 1 and 2,
+where the count would be 0 or −1 (an error, rule 13). Which column, card or
+time sets the count is not in the text; taking it from V₁₀ after Operation
+12 is a choice. Operation 23's test needs no card: V₁₀ reaches 0 on the same
+pass as the wheels run up. Only the "stop altogether" course is encoded, not
+"begin Operations 1…7 all over again".
+
+**Limitations of the Reading A decks.** The tests at Operations 7 and 12 are not expressed: their
 other course goes forward, and the machine has only the backward test. The
 deck takes the course for n > 2. For n = 1 and 2 the values still come out
 right, but V₁₀ ends at −2 or −1, and those runs halt only because a negative
@@ -161,20 +205,19 @@ mechanism is known only through Rojas.
 - That the 1843 engine was built to do this. The texts describe the
   conditional course as a principle with one worked case; the mechanism is
   first described in Babbage's *Passages* (1864, p. 134), which is later.
-- That Reading A of Note G is right. Under Reading B, the cycle (13…23) is a
-  counted backing and V₁₀ only chooses whether a Number is finished. Then the
-  explicit test still decides between two courses, but a forward one, which
-  this machine does not have; whether a general machine follows from Reading B
-  alone has not been worked out.
+- Which reading of Note G is right. Both are worked out (§§3, 3B); under
+  Reading B the result also needs the unconditional backing card.
 - Anything about the dated configurations of 1836–1838, which are unchanged.
-- That the Note G decks run the same in Lean. Operation 1 writes three
-  columns, which the Lean model's operation card cannot, so the Note G decks
-  are not in the Lean–Rust comparison and their results rest on the Rust
-  machine alone. The Lean theorems are over whole numbers; Note G needs
-  fractions, which only the Rust and the random fraction decks of the
-  comparison exercise.
-- Much in the comparison for `1843`: only the counter machine `add`, on two
-  inputs, besides the random decks.
+- A proof that the Note G decks run the same in Lean. Operation 1 writes
+  three columns; the Lean card writes one. `run_expand`
+  (`formal/Babbage/Multi.lean`) proves that the operation into the first
+  column followed by copies leaves the same store, for whole numbers and
+  fractions, and the comparison runs the three Note G decks so expanded, on
+  fractions, in Lean and Rust: they agree. That is a test of these decks, not
+  a theorem about them. The counter-machine theorems are over whole numbers.
+- Much in the comparison for the new cards: only the counter machine `add`,
+  on two inputs, for each reading, besides the random decks (random decks
+  with forward courses are not generated).
 - That a configuration accepts the same older decks: `step43_lift` proves
   they run the same; that `Accepts43` agrees with `Accepts` on them is
   evident from the definitions, not a theorem.

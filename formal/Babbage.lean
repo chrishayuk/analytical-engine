@@ -9,3 +9,4 @@ import Babbage.Minsky
 import Babbage.Trap
 import Babbage.Classes
 import Babbage.Note43
+import Babbage.Multi

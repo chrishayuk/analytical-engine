@@ -1,0 +1,146 @@
+% Lovelace's Note G table (Scientific Memoirs vol. 3, 1843, plate after
+% p. 722) under Reading B of sources/notes/menabrea-lovelace-1843-control.md
+% §8, with the three corrections of control/note-g-corrected.txt (each
+% marked CORRECTION below, documented as there). The 25 operations of the
+% table are as in control/note-g-printed.txt, card for card (see that deck's
+% comments for the encoding: one card per operation, `x vN 0 > vN` for each
+% column the "Indication of change" sets to zero).
+%
+% Reading B. The repetition of Operations 13...23 is a COUNTED backing, of
+% count n - 2 (p. 730: "Σ(+1)^(n-2) (13...23)"; Note E: the limits
+% "regulate how often this backward rotation is to be repeated"). The
+% zero / greater-than-zero test on V10 (Operations 7, 12, 23) only chooses a
+% FORWARD course: "this B is finished".
+%
+% Where the count comes from. Operation 12 puts n - 2 on V10. A
+% combinatorial card `set v10` after it puts that number on the wheels,
+% before the group (rule 8 of docs/semantics.md). The count is thus a
+% number computed in the run, Operation 12's result, put on the wheels from
+% the store (rule 4: "computed by the constant part of formula cards"). No
+% operation is added for it. The table's Operation 23 still subtracts unity
+% from V10 on each pass, so V10 ends at 0 (p. 729: "V10 = 0"), but under
+% this reading nothing reads it there: V10 comes to 0 on the pass on which
+% the wheels run up, so Operation 23's "finished" course and the end of the
+% count are the same event, and the deck has no card for it.
+%
+% The forward courses. For n = 1 Operation 7 gives 0, and "the engine,
+% instead of continuing its processes, would have to put B1 on V21; and
+% then either to stop altogether, or to begin ... all over again", having
+% first made V3 = n + 1 (p. 728). For n = 2, Operation 12 does "the same
+% office" (B3). Both are encoded as `ahead op24 if v10 zero`: Operation 24
+% puts B on its result column and Operation 25 adds unity to V3 and zeroes
+% V6, V7; the deck then ends ("stop altogether"). The course for n = 2 also
+% goes round `set v10`, which would otherwise put a count of 0 on the wheels
+% (an error here, rule 13). Operation 24's result column is fixed in the
+% deck (V24 for n = 4) and is moved by hand for other n (tests/note_g.rs).
+%
+% Cards that are not operations of the table: the zeroing cards; the six
+% cards of correction 2; `ahead op24 if v10 zero` after Operations 7 and
+% 12; `set v10`; and `back op13 counted`, which stands for the table's line
+% "Here follows a repetition of Operations thirteen to twenty-three". Each
+% is under a comment saying so. Accepted by configuration 1843-B only.
+Deck note-g-reading-b
+Title "Note G, Reading B: B7, n = 4"
+Store v1 = 1, v2 = 2, v3 = 4, v21 = 1/6, v22 = -1/30, v23 = 1/42
+Expect halts
+Expect column v10 = 0
+Expect column v24 = -1/30
+Cards
+% 1   x   1V2 x 1V3        -> 1V4, 1V5, 1V6           = 2n
+× v2 v3 > v4 v5 v6
+% 2   -   1V4 - 1V1        -> 2V4                     = 2n - 1
+- v4 v1 > v4
+% 3   +   1V5 + 1V1        -> 2V5                     = 2n + 1
++ v5 v1 > v5
+% 4   ÷   2V5 ÷ 2V4        -> 1V11  {2V5 = 0V5, 2V4 = 0V4}   = (2n-1)/(2n+1)
+% CORRECTION 1: V4 ÷ V5, not V5 ÷ V4.
+÷ v4 v5 > v11
+× v5 0 > v5
+× v4 0 > v4
+% 5   ÷   1V11 ÷ 1V2       -> 2V11                    = 1/2 . (2n-1)/(2n+1)
+÷ v11 v2 > v11
+% 6   -   0V13 - 2V11      -> 1V13  {2V11 = 0V11}     = -1/2 . (2n-1)/(2n+1) = A0
+- v13 v11 > v13
+× v11 0 > v11
+% 7   -   1V3 - 1V1        -> 1V10                    = n - 1 (= 3)
+- v3 v1 > v10
+% NOT IN THE TABLE: the course chosen by Operation 7's result. Zero (n = 1):
+% B1 is complete on V13; go on from Operation 24 (put B1 on its column, add
+% unity to V3) and end. Greater than zero: go on with Operation 8.
+ahead op24 if v10 zero
+% 8   +   1V2 + 0V7        -> 1V7                     = 2 + 0 = 2
++ v2 v7 > v7
+% 9   ÷   1V6 ÷ 1V7        -> 3V11                    = 2n/2 = A1
+÷ v6 v7 > v11
+% 10  x   1V21 x 3V11      -> 1V12                    = B1 . 2n/2 = B1A1
+× v21 v11 > v12
+% 11  +   1V12 + 1V13      -> 2V13  {1V12 = 0V12}     = -1/2 . (2n-1)/(2n+1) + B1 . 2n/2
++ v12 v13 > v13
+× v12 0 > v12
+% 12  -   1V10 - 1V1       -> 2V10                    = n - 2 (= 2)
+- v10 v1 > v10
+% NOT IN THE TABLE: the course chosen by Operation 12's result ("the same
+% office as Card 7", p. 728). Zero (n = 2): B3 is complete on V13; go on
+% from Operation 24. This course also passes round `set v10`, whose count
+% would be 0.
+ahead op24 if v10 zero
+% NOT IN THE TABLE: the combinatorial card. It puts Operation 12's result,
+% n - 2, on the combinatorial wheels, before the group it counts:
+% "Σ(+1)^(n-2) (13...23)" (p. 730).
+set v10
+% CORRECTION 2, set-up: the B used by Operation 21 on each pass, in order,
+% on working columns V14, V15, V16 (not columns of the table).
++ v22 0 > v14
++ v23 0 > v15
++ v24 0 > v16
+op13:
+% 13  -   1V6 - 1V1        -> 2V6                     = 2n - 1
+- v6 v1 > v6
+% 14  +   1V1 + 1V7        -> 2V7                     = 2 + 1 = 3
++ v1 v7 > v7
+% 15  ÷   2V6 ÷ 2V7        -> 1V8                     = (2n-1)/3
+÷ v6 v7 > v8
+% 16  x   1V8 x 3V11       -> 4V11  {1V8 = 0V8}       = 2n/2 . (2n-1)/3
+× v8 v11 > v11
+× v8 0 > v8
+% 17  -   2V6 - 1V1        -> 3V6                     = 2n - 2
+- v6 v1 > v6
+% 18  +   1V1 + 2V7        -> 3V7                     = 3 + 1 = 4
++ v1 v7 > v7
+% 19  ÷   3V6 ÷ 3V7        -> 1V9                     = (2n-2)/4
+÷ v6 v7 > v9
+% 20  x   1V9 x 4V11       -> 5V11  {1V9 = 0V9}       = 2n/2 . (2n-1)/3 . (2n-2)/4 = A3
+× v9 v11 > v11
+× v9 0 > v9
+% 21  x   1V22 x 5V11      -> 0V12 (sic)  {0V12 = 2V12}   = B3 . 2n/2 . (2n-1)/3 . (2n-2)/3 (sic) = B3A3
+% CORRECTION 2: Operation 21 takes its factor "from a column one in advance
+% of that which it used the previous time" (pp. 728, 730): V22 on the first
+% pass, V23 on the second, V24 on the third. Read from V14, then shift.
+× v14 v11 > v12
++ v15 0 > v14
++ v16 0 > v15
+× v16 0 > v16
+% 22  +   2V12 + 2V13      -> 3V13  {2V12 = 0V12}     = A0 + B1A1 + B3A3
++ v12 v13 > v13
+× v12 0 > v12
+% 23  -   2V10 - 1V1       -> 3V10                    = n - 3 (= 1)
+- v10 v1 > v10
+% (Operation 23's test: under Reading B its "B finished" course is the
+% running up of the wheels below, on the same pass; no card.)
+% "Here follows a repetition of Operations thirteen to twenty-three."
+% NOT IN THE TABLE: the counted backing card. Unity is subtracted from the
+% wheels; it backs to Operation 13 unless they have run up, so the group
+% passes n - 2 times.
+back op13 counted
+op24:
+% 24  +   4V13 + 0V24      -> 1V24  {4V13 = 0V13}     = B7
+% CORRECTION 3: 0V24 - 4V13, not 4V13 + 0V24: by (9), B7 = -(A0 + A1B1 +
+% A3B3 + A5B5); the printed + gives the magnitude only (signs "not
+% considered", p. 727).
+- v24 v13 > v24
+× v13 0 > v13
+% 25  +   1V1 + 1V3        -> 1V3                     = n + 1 = 4 + 1 = 5
+%         {5V6 = 0V6, 5V7 = 0V7 "by a Variable-card"}
++ v1 v3 > v3
+× v6 0 > v6
+× v7 0 > v7

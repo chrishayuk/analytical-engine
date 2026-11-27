@@ -84,6 +84,12 @@ jobs:
           #print axioms Babbage.Minsky.deck43_accepted
           #print axioms Babbage.Minsky.deck43_refused
           #print axioms Babbage.step43_lift
+          #print axioms Babbage.Minsky.haltsB
+          #print axioms Babbage.Minsky.machine_halts_of_B
+          #print axioms Babbage.Minsky.deckB_plain
+          #print axioms Babbage.Minsky.deckB_accepted
+          #print axioms Babbage.Minsky.deckB_refused
+          #print axioms Babbage.run_expand
           #print axioms Babbage.no_tetration_reach
           #print axioms Babbage.no_pentation_reach
           #print axioms Babbage.halt_within_1837

@@ -67,6 +67,8 @@ def parseLine (c : Case) (l : String) : Option Case :=
     some { c with cards := c.cards.push (Card43.c (Card.back t (b == "1"))) }
   | ["backif", t, col] => do
     some { c with cards := c.cards.push (Card43.backIf (← t.toNat?) (← col.toNat?)) }
+  | ["aheadif", t, col] => do
+    some { c with cards := c.cards.push (Card43.aheadIf (← t.toNat?) (← col.toNat?)) }
   | ["result", i] => do some { c with cards := c.cards.push (Card43.c (Card.result (← i.toNat?))) }
   | _ => none
 
@@ -79,11 +81,14 @@ def trapAt (d : Deck43) (s : State Rat) : Bool :=
 /-- Note G: the backing is effective while the number is greater than zero. -/
 def posRat (q : Rat) : Bool := decide (0 < q)
 
+/-- Reading B: the forward course is taken when the number is zero. -/
+def zeroRat (q : Rat) : Bool := decide (q = 0)
+
 /-- `run43`, card by card, saying how it ended. -/
 def exec (d : Deck43) (trap : Bool) : Nat → State Rat → String × Option (State Rat)
   | 0, s => (if d.length ≤ s.pc then "halt" else "running", some s)
   | n + 1, s =>
-    match step43 ratArith posRat d s with
+    match step43 ratArith posRat zeroRat d s with
     | .run s' => exec d trap n s'
     | .halt s' => ("halt", some s')
     | .err => if trap && trapAt d s then ("trap", some s) else ("err", none)
@@ -102,6 +107,7 @@ def cols : Card43 → List Nat
   | .c (.result c) => [c]
   | .c (.back _ _) => []
   | .backIf _ c => [c]
+  | .aheadIf _ c => [c]
 
 def report (c : Case) : String :=
   let d := c.cards.toList

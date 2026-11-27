@@ -231,3 +231,91 @@ mill").
 - Text pp. 724–727 and 729 were read from the Wikisource transcription and
   not checked against the scan here.
 - No other secondary literature was consulted.
+
+## 10. Reading B deck
+
+`control/note-g-reading-b.txt` is the corrected program (§6, corrections
+1–3, documented as in `note-g-corrected.txt`) under Reading B of
+`menabrea-lovelace-1843-control.md` §8. The repetition of (13…23) is a
+counted backing of count n − 2 (p. 730, "Σ(+1)ⁿ⁻²(13…23)"; Note E, the
+limits "regulate how often this backward rotation is to be repeated"). The
+zero test on V₁₀ only chooses a forward course. The 25 operations and their
+zeroing cards are those of the corrected deck, card for card.
+
+**Where the count comes from.** Operation 12 puts n − 2 on V₁₀. A
+combinatorial card `set v10` straight after it puts that number on the
+wheels, before the group it counts (rule 8 of `docs/semantics.md`). So the
+count is a number computed in the run, Operation 12's result, taken from
+the store (rule 4). No operation is added to make it. Operation 23 still
+subtracts unity from V₁₀ on each pass, so V₁₀ ends at 0, as p. 729 says.
+
+**Cards not in the table** (each under a comment in the deck), besides the
+zeroing cards and the six cards of correction 2:
+
+| Card | After | Why |
+|---|---|---|
+| `ahead op24 if v10 zero` | Op 7 | For n = 1, "instead of continuing its processes, would have to put B₁ on V₂₁; and then either to stop altogether, or to begin … all over again", having made V₃ = 2 (p. 728). The course goes to Op 24 (B on its column) and Op 25 (V₃ + 1, V₆ and V₇ zeroed), and the deck then ends: "stop altogether". |
+| `ahead op24 if v10 zero` | Op 12 | "Card 12 has to perform the same office as Card 7" (p. 728), for n = 2. It also goes round `set v10`, whose count would be 0. |
+| `set v10` | the card above | Puts n − 2 on the wheels. |
+| `back op13 counted` | Op 23 | Stands for the table's line "Here follows a repetition of Operations thirteen to twenty-three". It subtracts unity from the wheels and backs to Op 13 unless they have run up. |
+
+So the deck has 3 cards more than the Reading A deck: the two forward
+courses and the combinatorial card. The counted backing takes the place of
+`back op13 if v10`.
+
+**Operation 23's test has no card.** Under this reading, V₁₀ comes to 0 on
+the same pass on which the wheels run up, so the "B finished" course of
+Card 23 and the end of the count are one event. A forward course on Op 23's
+result would take the last pass out before the backing card, leaving the
+wheels at 1. The cycle would then be ended by the test, not by the count,
+which is Reading A in effect. `tests/note_g.rs`
+(`reading_b_test_at_23_would_bypass_the_count`) shows this: the same B₇,
+one subtraction from the wheels instead of two.
+
+**Results** (configuration `1843-B`, Op 24's column moved to V₂₀₊ₙ as in §7):
+
+| n | Result | V₁₀ at end | Passes of 13…23 (wheel steps) | Backings | Cards |
+|---|---|---|---|---|---|
+| 1 | V₂₁ = 1/6 = B₁ | 0 | 0 (forward course at Op 7) | 0 | 16 |
+| 2 | V₂₂ = −1/30 = B₃ | 0 | 0 (forward course at Op 12) | 0 | 23 |
+| 3 | V₂₃ = 1/42 = B₅ | 0 | 1 | 0 | 45 |
+| 4 | **V₂₄ = −1/30 = B₇** | 0 | 2 | 1 | 63 |
+| 5 | V₂₅ = 5/66 = B₉ | 0 | 3 | 2 | 81 |
+
+The group passes exactly n − 2 times. V₁₀ takes the values n − 1, n − 2, …
+down to 0 and never goes below zero. Under Reading A the n = 1 and n = 2
+runs end with V₁₀ at −2 and −1 (§8). For every n, V₃ ends at n + 1.
+
+**Which configurations accept it.** Only `1843-B`. Every other
+configuration, `1843` included, refuses at card 11, the forward course
+after Op 7 ("a forward course chosen by a result of the mill"). `1843`
+does not have that card. Under Reading B the deck has no `back … if`.
+
+**Without the forward courses** the deck is a deck of 30 May 1838
+(`1838-05` accepts it, and it gives B₇ for n = 4). A counted backing whose
+count is set from a computed number is all the repetition needs. Without
+them, n = 2 puts a count of 0 on the wheels and n = 1 puts a count of −1;
+both are errors (rule 13). So under Reading B, the only thing Note G needs
+beyond the Sketch Books is the forward course on a zero result, and that
+course is needed only for n = 1 and n = 2.
+
+**Limitations.**
+
+- The forward course ends the deck after Op 25 ("stop altogether"). The
+  other course, "begin Operations 1, 2…7 all over again", is not
+  expressed, and neither is the outer cycle Σ(+1)ⁿ of p. 730. Each run
+  computes one Number from data, as in §8.
+- Op 24's result column is fixed in the deck and moved by hand for each n.
+  The advancing Variable-card of Op 21 is encoded as in correction 2, and is
+  right for n ≤ 5 only.
+- The count is taken from V₁₀ because Op 12 has just put n − 2 there. The
+  text gives the count only as "Σ(+1)ⁿ⁻²". It does not say which column
+  or card sets it, or when. A count from n by a number card would need the
+  deck to be changed for each n, against the footnote to p. 729 (V₃ is the
+  only datum that changes from one Number to the next).
+- With the count on the wheels, V₁₀'s subtraction at Op 23 does nothing to
+  the course. It is kept because it is an operation of the table.
+- This machine's wheels hold one count (rule 4). Reading B for the whole
+  series (an outer count of n Numbers around the inner count n − 2) would
+  need two counts at once, which this machine cannot hold. It is not
+  attempted here.
