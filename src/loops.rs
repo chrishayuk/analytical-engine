@@ -377,35 +377,31 @@ pub fn run(page: &Page) -> Run {
             None => {}
         }
     }
-    // The time for so many results: the cards run, counting only.
-    if let Some((k, hours, decks, line)) = &page.time {
+    // A count of cards for so many results: the cards run, counting only.
+    for (k, want, decks, op, line) in &page.counts {
         let r = fresh(page, true).and_then(|mut st| {
             let mut counted = 0usize;
             run_cards(
                 &mut st,
                 |_, results| results >= *k,
                 |_, done| {
-                    if decks.contains(&done.deck) {
+                    if decks.contains(&done.deck) && op.is_none_or(|o| o == done.op) {
                         counted += 1;
                     }
                 },
             )?;
-            let said: f64 = hours
-                .replace('·', ".")
-                .parse()
-                .map_err(|_| format!("`{hours}` hours"))?;
-            if (counted as f64 / 60.0 - said).abs() < 1e-9 {
+            if counted == *want {
                 Ok(())
             } else {
-                Err(format!(
-                    "{k} results take {counted} cards of {}: {} hours",
-                    decks.join(", "),
-                    counted as f64 / 60.0
-                ))
+                Err(format!("{k} results take {counted}"))
             }
         });
-        run.checks
-            .push(check(*line, format!("{k} results in {hours} hours"), r));
+        let what = format!(
+            "{k} results: {want} cards of {}{}",
+            decks.join(", "),
+            op.map(|o| format!(" {}", o.sign())).unwrap_or_default()
+        );
+        run.checks.push(check(*line, what, r));
     }
     // The results, in order, against the sheet's.
     for (k, (name, e, t, line)) in page.finds.iter().enumerate() {

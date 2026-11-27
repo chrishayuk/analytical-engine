@@ -96,6 +96,9 @@ pub struct Row {
     pub backing: Vec<(String, String, usize)>,
 }
 
+/// `Count 100 results = 5050 cards of formula ×` (BAB/L/023).
+pub type CardTally = (usize, usize, Vec<String>, Option<Op>, usize);
+
 /// A group of operation cards (BAB/L/023: "There are three groups of
 /// cards"), each card an operation and what it gives, in order.
 #[derive(Clone, Debug)]
@@ -195,10 +198,10 @@ pub struct Page {
     /// A name whose value, each time the given apparatus backs the cards,
     /// is the next result: `Result S at Z`.
     pub result_at: Option<(String, String)>,
-    /// The time the sheet gives for so many results: `Time 100 results =
-    /// 252.5 hours, a minute for each card of formula use`: the results,
-    /// the hours as written, the groups whose cards are counted, the line.
-    pub time: Option<(usize, String, Vec<String>, usize)>,
+    /// A count of cards for so many results, as the sheet's working gives
+    /// it: `Count 100 results = 5050 cards of formula ×`: the results, the
+    /// count, the groups counted, the operation (if only one), the line.
+    pub counts: Vec<CardTally>,
 }
 
 fn quoted(s: &str) -> (String, Option<String>) {
@@ -662,20 +665,24 @@ pub fn read_all(path: &str, text: &str) -> (Page, Vec<(usize, String)>) {
                         _ => return Err(err("Back Y after use to formula [unless v3 = 0]".into())),
                     }
                 }
-                "Time" => {
+                "Count" => {
                     let w: Vec<&str> = body.split_whitespace().collect();
+                    let bad = || err("Count 100 results = 5050 cards of formula ×".into());
                     match w.as_slice() {
-                        [k, "results", "=", h, "hours,", "a", "minute", "for", "each", "card", "of", decks @ ..]
-                            if !decks.is_empty() =>
-                        {
-                            let k = k.parse().map_err(|_| err("Time 100 results = ...".into()))?;
-                            p.time = Some((k, h.to_string(), decks.iter().map(|d| d.to_string()).collect(), n));
+                        [k, "results", "=", m, "cards", "of", rest @ ..] if !rest.is_empty() => {
+                            let k = k.parse().map_err(|_| bad())?;
+                            let m = m.parse().map_err(|_| bad())?;
+                            let (decks, op) = match rest.last().map(|x| op_of(x)) {
+                                Some(Ok(Some(o))) => (&rest[..rest.len() - 1], Some(o)),
+                                _ => (rest, None),
+                            };
+                            if decks.is_empty() {
+                                return Err(bad());
+                            }
+                            p.counts
+                                .push((k, m, decks.iter().map(|d| d.to_string()).collect(), op, n));
                         }
-                        _ => {
-                            return Err(err(
-                                "Time 100 results = 252.5 hours, a minute for each card of formula use".into(),
-                            ))
-                        }
+                        _ => return Err(bad()),
                     }
                 }
                 "Result" => {

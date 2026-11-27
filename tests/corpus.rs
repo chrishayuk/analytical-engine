@@ -339,7 +339,7 @@ fn strict_runs() {
             }
         }
     }
-    assert_eq!((all, ok), (2675, 2535));
+    assert_eq!((all, ok), (2676, 2536));
     // Run exactly as written, one page ends with a wrong answer: L/001's
     // back (−v3″−v5″ at operation 12). L/020's −e/∂ = z is the mill giving
     // out e/∂ with its sign changed (BAB/N/007, June 1840).
@@ -354,7 +354,7 @@ fn l023_the_cards_make_the_rows() {
     assert_eq!(failures(&page("L023")), Vec::<String>::new());
     let r = run(&read("", &page("L023")).unwrap());
     assert_eq!(r.steps.len(), 35);
-    assert_eq!(r.all_checks().count(), 123);
+    assert_eq!(r.all_checks().count(), 124);
     // The four results are the coefficients of the product of the series.
     let (great, small) = (["A", "B", "C", "D"], ["a", "b", "c", "d"]);
     for k in 0..4 {
@@ -383,7 +383,11 @@ fn l023_the_cards_make_the_rows() {
             "Z backs the cards",
         ),
         ("Op 26  ×", "Op 26  +", "operation +"),
-        ("= 252.5 hours", "= 254.2 hours", "100 results in 254.2 hours"),
+        (
+            "= 5050 cards of formula ×",
+            "= 5000 cards of formula ×",
+            "100 results: 5000 cards of formula ×",
+        ),
         (
             "Find c2 = Ac + Bb + C a ",
             "Find c2 = Ac + Bc + C a ",
@@ -482,19 +486,19 @@ fn competing_complement_models() {
             .map(|(n, t)| run_model(&read(n, t).unwrap(), m).all_checks().filter(|c| c.ok).count())
             .sum::<usize>()
     };
-    assert_eq!(total(Model::default()), 2623);
+    assert_eq!(total(Model::default()), 2624);
     assert_eq!(
         total(Model {
             complement_as_held: true,
             ..Model::default()
         }),
-        2623
+        2624
     );
     assert_eq!(
         total(Model {
             transfer_keeps: true,
             ..Model::default()
         }),
-        2579
+        2580
     );
 }

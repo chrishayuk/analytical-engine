@@ -131,7 +131,7 @@ L021     182 statements, 179 agree
          ✗ line 89: cards (v23 v24)(v14 v26)(v24 v23)(v26 v14)(0 v29): the run needs (v23 v24)(v14 0)(v24 v23)(0 v29)
          ✗ line 70: 48 cards in all: the count comes to 49
 L022      99 statements,  99 agree
-L023     123 statements, 123 agree
+L023     124 statements, 124 agree
 L024-1    59 statements,  56 agree
          ✗ line 63: where v1‴ comes from: v1‴ (W0 + 3ΔW0 + 3Δ²W) is not in a column this row leaves at zero
          ✗ line 63: v2 = W3: the operation of the row gives (W0 + 3ΔW0 + 3Δ²W)/(V0 + 3ΔV0 + 3Δ²V)
@@ -153,7 +153,7 @@ L026-1    27 statements,  27 agree
 L026-2    31 statements,  31 agree
 L027       0 statements,   0 agree
 
-35 pages; 2672 statements of the sheets checked, 2623 agree.
+35 pages; 2673 statements of the sheets checked, 2624 agree.
 14 page(s) with statements that do not agree.
 ```
 

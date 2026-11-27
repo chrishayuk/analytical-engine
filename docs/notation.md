@@ -120,7 +120,7 @@ Back Z after use to make
 Letter Great Γ = A B C D at v2 - v3 towards D
 Letter Small γ = a b c d at v3 - 1 towards a
 Result S at Z
-Time 100 results = 252.5 hours, a minute for each card of formula use
+Count 100 results = 5050 cards of formula ×
 
 Op 13  ×  | Ac          |            |
   Moves Great back 1, Small back 2
@@ -141,9 +141,10 @@ checked against how far the cards go between the letters they show.
 checked: the apparatus backs the cards at that row, and every backing the
 run makes must be written. Other words, such as gear and ungear, are shown
 but not run. `Result S at Z` makes S's value a result each time Z backs, and
-the `Find` lines are checked against those results in order. `Time` runs the
-cards, counting only, until there are so many results, and checks the hours
-at a minute for each card of the groups named.
+the `Find` lines are checked against those results in order. `Count` runs the
+cards, counting only, until there are so many results, and checks the number
+of cards of the groups named (of one operation, if one is given), as
+Babbage's working counts them.
 
 ## Checked statements
 

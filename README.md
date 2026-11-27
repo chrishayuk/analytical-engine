@@ -207,7 +207,10 @@ search made, so nothing here is claimed as new. See
   counter stepped by its difference. The page gives the cards and the
   engine runs them as a loop. All 123 of the sheet's statements agree with
   what the cards do: the 35 rows, every letter-card move, every backing of
-  Y and Z, the four results, and the NB's 252·5 hours for 100 terms.
+  Y and Z, the four results, and the counts in Babbage's working of the
+  NB's 252·5 hours (5050 multiplications, 15150 cards for 100 terms). The
+  scheme it carries out is in the Sketch Book of December 1837
+  (`sources/notes/codesign-L023.md`).
 - **Recurrences** (L/024). Laplace coefficients by Pₓ₊₁ = (Wₓ/Vₓ)Pₓ and a
   three-term recurrence: 113 of 123, four slips of the pen.
 - **One formula two ways** (L/026, undated). (ab + c∂)/(a + c) and
@@ -232,8 +235,7 @@ The order runs both ways:
 - Some capabilities are recorded before any program uses them. "Plan of
   Mult. by Table" is recorded on 12 March 1835, and "To repeat an Opn any
   variable No of times" on 7 March 1836.
-- Others appear in a program first. L/023's backing apparatus comes 8
-  months before the history's "Card backing App.". L/011's addition of many
+- Others appear in a program first. L/011's addition of many
   numbers comes 11 months before "Principles of Compound Addn". The
   complements of August 1837 come two years before the history records an
   apparatus for them.

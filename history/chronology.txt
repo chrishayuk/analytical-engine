@@ -48,9 +48,11 @@ loop | conceived | 1836-06 | BAB/N/003 | related | Cards first suggested
 loop | conceived | 1836-07-30 | BAB/N/003 | related | Two or three sets of cards one before the other. Vol 2 p 173 30
 loop | conceived | 1837-12-11 | BAB/N/004 | direct | Combinatorial Cards. 11 Vol 3 p 161
 loop | designed | 1838-06-18 | BAB/N/005 | related | Plans for Cards 18 64
-loop | designed | 1838-06-19 | BAB/A/064 (drawing 64) | related | Operation Card and Card Prism 19 June 1838
-loop | conceived | 1838-07-11 | BAB/S/1/03 p 228 (Sketch Book Vol 3) | related | A is backed by Combinatorial Card, B is backed by Combinatorial Counting Apparatus
+loop | conceived | 1837-12 | BAB/S/1/03 pp 161–162 (Sketch Book Vol 3; dated only by N/004) | direct | a card … which orders the backing of operation cards … but, this order becomes ineffective if the combinatorial wheels have run up. At the end of the second group another card must be inserted (b) which always orders the backing of operation cards
+loop | designed | 1838-06-18 | BAB/A/064 (drawing 64) | related | Operation Card and Card Prism 18 June 1838
+loop | conceived | 1838-07-11 | BAB/S/1/03 p 228 (Sketch Book Vol 3) | direct | Y is backed to 0 by Combinatorial Card. Z is backed by Combinatorial Counting Apparatus
 loop | conceived | 1839-02 | BAB/N/006 | direct | Card backing App. p 66 Vol IV
 
 letter-cards | conceived | 1837-03 | BAB/N/004 | related | Travelling Stop for Metal Cards [?to] save Multitude of Cards Vol 4 p 23
+letter-cards | conceived | 1837-11-18 | BAB/S/1/03 p 137 (Sketch Book Vol 3) | direct | two letter alphabets in reverse order, with combinatorial cards (read at full resolution; see sources/notes/codesign-L023.md)
 letter-cards | conceived | 1837-11-18 | BAB/N/004 | direct | Two sets of variable cards to save the necessity of a great number of Cards for Comb. Analys. Vol 3 p 137 [18]

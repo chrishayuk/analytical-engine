@@ -94,7 +94,7 @@ It is probably the same page.
 
 | Citation | Archive item | Online? | Evidence |
 |---|---|---|---|
-| Drawing 64 | **BAB/A/064** (`aa110000199`), catalogue title "Plan 18, arrangement", dated 17 Sep 1839, 61 × 97 cm | yes, 1 image (`214/419`, zoom 8084 × 11714) | **Confirmed (viewed).** The sheet is numbered "64" at the top left. Its left half is headed "Operation Card and Card Prism 19 June 1838". It shows a form of operation card, the "Form of Operation Card adopted", and the octagonal operation card prism. It also has the note "All the sectors of the Barrels are to be put back by a Backing plate …" (cf. Feb 1839, "Card backing App."). The right half shows Plans 18 (17 Sep 1839), 19 (18 Sep 1839) and 20 (31 Oct 1839), which matches N/006's "Grouping for plan 18 / 19 / 20 … 64". There is also "Table Axes 17 Sep 1839, See Sketch Book Vol 4 page 24". The catalogue title describes only the later work on the sheet. |
+| Drawing 64 | **BAB/A/064** (`aa110000199`), catalogue title "Plan 18, arrangement", dated 17 Sep 1839, 61 × 97 cm | yes, 1 image (`214/419`, zoom 8084 × 11714) | **Confirmed (viewed).** The sheet is numbered "64" at the top left. Its left half is headed "Operation Card and Card Prism 18 June 1838" (read at full resolution; an earlier preview reading gave 19). It shows a form of operation card, the "Form of Operation Card adopted", and the octagonal operation card prism. It also has the note "All the sectors of the Barrels are to be put back by a Backing plate …" (cf. Feb 1839, "Card backing App."). The right half shows Plans 18 (17 Sep 1839), 19 (18 Sep 1839) and 20 (31 Oct 1839), which matches N/006's "Grouping for plan 18 / 19 / 20 … 64". There is also "Table Axes 17 Sep 1839, See Sketch Book Vol 4 page 211" (full resolution; the preview gave 24). The catalogue title describes only the later work on the sheet. |
 
 Sketch Book Vol III p 229 (viewed, image 123) cites the same drawing: "2.45 inches moved by op[eratio]n card see Dr 64".
 
@@ -114,7 +114,7 @@ Sketch Book Vol III p 229 (viewed, image 123) cites the same drawing: "2.45 inch
 
 | Citation | Archive item | Online? | Page |
 |---|---|---|---|
-| Vol 3 p 228, fig. 1 | BAB/S/1/03 (`aa110001324`) | yes | **Viewed.** Image `bab_s3_0123` (position 123; `225/335`), left page, numbered 228, headed "10 July" [1838]. It shows a "Prism for Card" between axes A and B. A note dated "11 July" reads "A is backed by Combinatorial Card, B is backed by Combinatorial Counting Apparatus", with "fig" beside it. Facing p 229: card timings and "see Dr 64". The page is dated after the sheet (7 June 1838), so the reference was probably added to L/023 later. |
+| Vol 3 p 228, fig. 1 | BAB/S/1/03 (`aa110001324`) | yes | **Viewed.** Image `bab_s3_0123` (position 123; `225/335`), left page, numbered 228, headed "10 July" [1838]. It shows a "Prism for Card" between axes A and B. A note dated "11 July" reads "Y is backed to 0 by Combinatorial Card. Z is backed by Combinatorial Counting Apparatus" (full resolution; the preview reading "A … B" was wrong), with "fig" beside it. Facing p 229: card timings and "see Dr 64". The page is dated after the sheet (7 June 1838), so the reference was probably added to L/023 later. |
 | Vol 3 p 200 | BAB/S/1/03 | yes | **Predicted:** image `bab_s3_0109` (position 109; `225/321`), pp 200/201. |
 
 ## Babbage's drawing numbers = BAB/A numbers

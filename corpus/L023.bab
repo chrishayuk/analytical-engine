@@ -138,10 +138,16 @@ Find c3 = Ad + Bc + C b + Da   "Ad + Bc + Cb + Da Coeff. of x³"
 Remark "NB. The ungearing and gearing again of y is only necessary if in passing to its own Zero it gives any orders"
 Remark "Opn Cards in this Notn denote the sum of the Cards"   % the first word read uncertainly
 % "NB. 252·5 hours reqd to obtain 100 terms of the Product see p 200 Vol 3
-% Sketch book": 100 terms take 5050 products, and 3 × 5050 = 15150 cards of
-% the formula and of the use of the combinatorial numbers, which at a minute
-% each is 252·5 hours. The 100 cards that make the combinatorial numbers
-% would add 1⅔ hours; the sheet's figure leaves them out.
-Time 100 results = 252.5 hours, a minute for each card of formula use   "NB. 252·5 hours reqd to obtain 100 terms of the Product see p 200 Vol 3 Sketch book"
+% Sketch book". Sketch Book Vol 3 p 200 (headed 6 [?] June 1838, the day
+% before this sheet) works it out: "5050 Mult." at 2 minutes, 10100 min;
+% "15150 add", × 6 turns ÷ 20 turns a minute, 4545 min; and a 505 not read
+% with confidence: 15150 minutes, 252·5 hours. The run checks the counts in
+% that working: 100 terms take 5050 multiplication cards, and 15150 cards of
+% the formula and of the use of the combinatorial numbers (× + −). Whether
+% Babbage's "15150 add" counts the same cards is not certain; the minutes
+% are his and are not checked. See sources/notes/codesign-L023.md.
+Count 100 results = 5050 cards of formula ×      "5050 Mult."
+Count 100 results = 15150 cards of formula use   "15150 add"
+Remark "NB. 252·5 hours reqd to obtain 100 terms of the Product see p 200 Vol 3 Sketch book"
 Unrun "cover, top right, in pencil, inside a pencil loop: '23' and faint words, perhaps 'To be drawn'; a small ink mark like 'M'"
 Unrun "cover, top: two pairs of brackets showing through from the table's heading on the other side"

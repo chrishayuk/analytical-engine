@@ -64,16 +64,16 @@ against each other.
 | Repetition | "To repeat an Opn any variable No of times" 7 Mar 1836 | L/023, 7 Jun 1838 | record first |
 | Two sets of cards (letter cards) | "Two sets of variable cards … for Comb. Analys." 18 Nov 1837 | L/023, 7 Jun 1838 | record first |
 | Combinatorial cards | "Combinatorial Cards" 11 Dec 1837 | L/023, 7 Jun 1838 | record first |
-| Cards designed | "Plans for Cards 18 [drawing] 64" 18 Jun 1838 | L/023, 7 Jun 1838 | program first, by 11 days |
-| Card backing | "Card backing App." Feb 1839 | L/023's Y and Z, 7 Jun 1838 | program first, by 8 months |
+| Card backing | Sketch Book Vol 3 pp 161–162 (Dec 1837): one backing card "ineffective if the combinatorial wheels have run up", another that "always orders the backing" | L/023's Y and Z, 7 Jun 1838 | record first, by six months. The history sheets name a "Card backing App." only in Feb 1839. |
 | Many numbers added at once | "Principles of Compound Addn" Jul 1838 | L/011, 28 Aug 1837 | program first, by 11 months |
 | Complement apparatus | "Selecting App. for number and Comp." Dec 1839 | L/001 No. 2, 5 Aug 1837 | program first, by over 2 years |
 | Sign changed | "Order to Mill to give out the Result of any opern with its sign changed" Jun 1840 | L/020, 31 Jul 1840 | record first, by a month |
 
 - **The order runs both ways.** Some capabilities were written down long
   before any program used them: repetition by more than two years,
-  multiplication by table by more than two. Others appear in a program
-  first: backing apparatus, compound addition, complements.
+  multiplication by table by more than two, the backing of L/023 by six
+  months (in the Sketch Book). Others appear in a program first: compound
+  addition and complements, as far as the record read so far goes.
   So the first surviving evidence of a capability is not its date of
   invention, in either direction.
 - **A slip that was not.** L/020's last operation, "−e/∂ = z", had been
@@ -88,10 +88,19 @@ against each other.
   Formulæ" (August 1836). None of the 27 Series L programs of August 1837
   to 1841 is recorded. The history follows the machine's design. It does
   not follow its programs.
-- **L/023 and its cards are close in time.** The looped program is dated 7
-  June 1838. The history's "Plans for Cards", with drawing 64, is dated 18
-  June 1838. The sheet's cover describes the backing apparatus Y and Z;
-  the history first names a "Card backing App." in February 1839.
+- **L/023 was written to a scheme already worked out.** The history
+  sheets alone made it look as if L/023's backing came eight months before
+  it was recorded. That was wrong. The Sketch Book, which the history
+  sheets cite, has the scheme in December 1837 (pp 161–162). There the
+  combinatorial wheels sit "on the counting carriage axis", not in the
+  store. One card backs the operation cards unless the wheels "have run
+  up" (L/023's Y), and another "always orders the backing" (Z). The
+  numbers have "their first difference constant" (L/023's Tab and Δ′). L/023
+  (7 June 1838) carries out that scheme, and its table already says "Gear Z
+  with prism". See `sources/notes/codesign-L023.md`. The lesson for the
+  method: the history sheets are an index, not the record, and a "used
+  before recorded" result holds only once the pages they point to have
+  been read.
 
 ## Not settled
 
