@@ -105,6 +105,12 @@ pub enum Ending {
     /// given off and the deck halts by passing its last card (`deck43` in
     /// `formal/Babbage/Note43.lean`).
     Cond1843,
+    /// Reading B of Note G (`1843-B`): each flag is a forward course chosen
+    /// by a result (F := 0; ahead if c_r is zero; F := 1), and the loop is an
+    /// unconditional backing (Vol 3 p 162) passed over, by a forward course,
+    /// once W − 1 = 1 − [halted] is zero; then the counters are given off and
+    /// the deck halts by passing its last card (`deckB` in `Note43.lean`).
+    ForwardB,
 }
 
 /// The deck, as text for `sketch::read`. The machine starts in state 0 with
@@ -123,6 +129,13 @@ pub fn compile_with(name: &str, prog: &[Ins], regs: &[i64], ending: Ending) -> S
     let (was, cnt, t, w) = (Layout::WAS, Layout::CNT, Layout::T, Layout::W);
     let mut cards: Vec<String> = vec!["step:".into()];
     for r in 0..l.k {
+        if ending == Ending::ForwardB {
+            cards.push(format!("+ 0 0 > v{}", l.f(r)));
+            cards.push(format!("ahead flagdone{r} if v{} zero", l.c(r)));
+            cards.push(format!("+ 0 1 > v{}", l.f(r)));
+            cards.push(format!("flagdone{r}:"));
+            continue;
+        }
         if ending == Ending::Cond1843 {
             cards.push(format!("+ 0 0 > v{was}"));
             cards.push(format!("flag{r}:"));
@@ -178,6 +191,14 @@ pub fn compile_with(name: &str, prog: &[Ins], regs: &[i64], ending: Ending) -> S
     if ending == Ending::CountInLoop {
         cards.push(format!("set v{w}"));
         cards.push("back step counted".into());
+        for r in 0..l.k {
+            cards.push(format!("result v{}", l.c(r)));
+        }
+    } else if ending == Ending::ForwardB {
+        cards.push(format!("− v{w} 1 > v{w}"));
+        cards.push(format!("ahead done if v{w} zero"));
+        cards.push("back step always".into());
+        cards.push("done:".into());
         for r in 0..l.k {
             cards.push(format!("result v{}", l.c(r)));
         }

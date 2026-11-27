@@ -87,6 +87,13 @@ pub enum Card {
     /// two courses the succeeding processes are to follow". Only the
     /// configuration of the published accounts, 1842–1843, has it.
     BackIf { to: usize, label: String, col: usize },
+    /// Reading B of Note G: a result of the mill chooses a forward course.
+    /// When the number in column `col` is zero the cards go on from `to`, a
+    /// later card; otherwise from the next card. Note G, p. 728: "a result
+    /// equal to zero … or a result greater than zero … and the engine follows
+    /// the one or the other of the two courses". Only the configuration
+    /// `1843-B` has it.
+    AheadIf { to: usize, label: String, col: usize },
     /// A result: the number in the column, given off and retained, or
     /// given off and the column left at zero (`off`).
     Result { col: usize, off: bool },
@@ -157,6 +164,8 @@ pub struct Config {
     pub set_in_group: bool,
     /// A backing made effective or not by a result of the mill (`BackIf`).
     pub cond_back: bool,
+    /// A forward course chosen by a result of the mill (`AheadIf`).
+    pub cond_skip: bool,
     /// Beyond the pages read.
     pub found: bool,
 }
@@ -170,6 +179,7 @@ pub const CONFIGS: &[Config] = &[
         any_target: false,
         set_in_group: false,
         cond_back: false,
+        cond_skip: false,
         found: true,
     },
     Config {
@@ -180,6 +190,7 @@ pub const CONFIGS: &[Config] = &[
         any_target: false,
         set_in_group: false,
         cond_back: false,
+        cond_skip: false,
         found: true,
     },
     Config {
@@ -190,6 +201,7 @@ pub const CONFIGS: &[Config] = &[
         any_target: true,
         set_in_group: false,
         cond_back: false,
+        cond_skip: false,
         found: true,
     },
     Config {
@@ -200,6 +212,18 @@ pub const CONFIGS: &[Config] = &[
         any_target: true,
         set_in_group: false,
         cond_back: true,
+        cond_skip: false,
+        found: true,
+    },
+    Config {
+        key: "1843-B",
+        date: "1842–1843, published (Reading B)",
+        source: "Menabrea (1842) and Lovelace's Note G (1843), read (Reading B) as a counted repetition, with a result of the mill choosing a forward course when it is zero; as 30 May 1838 otherwise; the mechanism is not described",
+        backing: true,
+        any_target: true,
+        set_in_group: false,
+        cond_back: false,
+        cond_skip: true,
         found: true,
     },
     Config {
@@ -210,6 +234,7 @@ pub const CONFIGS: &[Config] = &[
         any_target: true,
         set_in_group: true,
         cond_back: false,
+        cond_skip: false,
         found: false,
     },
 ];
@@ -297,6 +322,7 @@ pub fn read(text: &str) -> Result<Deck, String> {
     let mut in_cards = false;
     let mut labels: BTreeMap<String, usize> = BTreeMap::new();
     let mut backs: Vec<(usize, String, usize)> = vec![];
+    let mut aheads: Vec<(usize, String, usize)> = vec![];
     for (i, raw) in text.lines().enumerate() {
         let line = match raw.find('%') {
             Some(p) => &raw[..p],
@@ -396,6 +422,14 @@ pub fn read(text: &str) -> Result<Deck, String> {
                     counted,
                 }
             }
+            ["ahead", l, "if", c, "zero"] => {
+                aheads.push((d.cards.len(), l.to_string(), ln));
+                Card::AheadIf {
+                    to: 0,
+                    label: l.to_string(),
+                    col: col(c).ok_or_else(|| err("ahead LABEL if vN zero"))?,
+                }
+            }
             ["back", l, "if", c] => {
                 backs.push((d.cards.len(), l.to_string(), ln));
                 Card::BackIf {
@@ -440,6 +474,15 @@ pub fn read(text: &str) -> Result<Deck, String> {
             *to = t;
         }
     }
+    for (i, l, ln) in aheads {
+        let t = *labels.get(&l).ok_or_else(|| format!("line {ln}: no label `{l}`"))?;
+        if t <= i {
+            return Err(format!("line {ln}: a forward course goes ahead, and `{l}` is not"));
+        }
+        if let Card::AheadIf { to, .. } = &mut d.cards[i] {
+            *to = t;
+        }
+    }
     if d.cards.is_empty() {
         return Err("no cards".into());
     }
@@ -456,6 +499,12 @@ pub fn accepts(c: &Config, d: &Deck) -> Result<(), String> {
         match card {
             Card::Set(_) if !c.backing => return Err(format!("card {}: a combinatorial card", i + 1)),
             Card::Back { .. } if !c.backing => return Err(format!("card {}: a backing card", i + 1)),
+            Card::AheadIf { .. } if !c.cond_skip => {
+                return Err(format!(
+                    "card {}: a forward course chosen by a result of the mill",
+                    i + 1
+                ))
+            }
             Card::BackIf { .. } if !c.cond_back => {
                 return Err(format!(
                     "card {}: a backing made effective by a result of the mill",
@@ -672,6 +721,11 @@ pub fn run_model(c: &Config, d: &Deck, trap: bool) -> Result<Outcome, String> {
                     pc += 1;
                 }
             }
+            Card::AheadIf { to, col, .. } => match as_rat(&get(&store, *col)) {
+                None => break Err(format!("{at}: v{col} is not a number")),
+                Some(r) if r.is_zero() => pc = *to,
+                Some(_) => pc += 1,
+            },
             Card::BackIf { to, col, .. } => match as_rat(&get(&store, *col)) {
                 None => break Err(format!("{at}: v{col} is not a number")),
                 Some(r) if r > Rat::ZERO => {

@@ -281,3 +281,51 @@ fn counter_machines_in_1843() {
         assert_eq!(got, want, "{name} {regs:?}");
     }
 }
+
+/// Reading B of Note G (`1843-B`): a result chooses a forward course. With the
+/// unconditional backing the pages give from December 1837, the counter
+/// machines translate, halting by passing the last card. No counted backing,
+/// combinatorial card or repetition card is used.
+#[test]
+fn counter_machines_in_1843_reading_b() {
+    use babbage::minsky::{compile_with, simulate, Ending, Ins};
+    let add = [Ins::Dec(1, 1, 2), Ins::Inc(0, 0), Ins::Halt];
+    let mul = [
+        Ins::Dec(0, 1, 6),
+        Ins::Dec(1, 2, 4),
+        Ins::Inc(2, 3),
+        Ins::Inc(3, 1),
+        Ins::Dec(3, 5, 0),
+        Ins::Inc(1, 4),
+        Ins::Halt,
+    ];
+    let cases: [(&str, &[Ins], Vec<i64>); 5] = [
+        ("add", &add, vec![3, 4]),
+        ("add", &add, vec![0, 0]),
+        ("mul", &mul, vec![3, 4, 0, 0]),
+        ("mul", &mul, vec![0, 7, 0, 0]),
+        ("mul", &mul, vec![6, 1, 0, 0]),
+    ];
+    for (name, prog, regs) in cases {
+        let want: Vec<String> = simulate(prog, &regs, 10_000)
+            .unwrap()
+            .iter()
+            .map(|v| v.to_string())
+            .collect();
+        let d = read(&compile_with(name, prog, &regs, Ending::ForwardB)).unwrap();
+        assert!(!d.cards.iter().any(|c| matches!(
+            c,
+            babbage::sketch::Card::Set(_)
+                | babbage::sketch::Card::Repeat { .. }
+                | babbage::sketch::Card::Back { counted: true, .. }
+                | babbage::sketch::Card::BackIf { .. }
+        )));
+        for k in ["1836-03", "1837-12", "1838-05", "1843", "not-found"] {
+            assert!(accepts(config(k), &d).is_err(), "{name} under {k}");
+        }
+        let o = run(config("1843-B"), &d).unwrap();
+        assert!(o.halted, "{name} {regs:?}");
+        let got: Vec<String> = o.results.iter().map(|v| v.to_string()).collect();
+        assert_eq!(got, want, "{name} {regs:?}");
+    }
+}

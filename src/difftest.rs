@@ -63,6 +63,7 @@ pub fn lean_form(d: &Deck, fuel: usize, trap: bool) -> Option<String> {
             Card::Set(s) => format!("set {}", src(s)?),
             Card::Back { to, counted, .. } => format!("back {to} {}", u8::from(*counted)),
             Card::BackIf { to, col, .. } => format!("backif {to} {col}"),
+            Card::AheadIf { to, col, .. } => format!("aheadif {to} {col}"),
             Card::Result { col, off: false } => format!("result {col}"),
             Card::Result { off: true, .. } => return None,
         });
@@ -224,6 +225,7 @@ pub fn cases(n: usize) -> Vec<(String, String, String)> {
         (Ending::Trap1838, "trap1838"),
         (Ending::Trap1837, "trap1837"),
         (Ending::Cond1843, "cond1843"),
+        (Ending::ForwardB, "forwardB"),
     ] {
         for regs in [[3, 4], [0, 2]] {
             let d = read(&compile_with("add", &add, &regs, e)).unwrap();

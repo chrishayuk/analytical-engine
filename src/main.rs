@@ -354,6 +354,7 @@ fn main() {
                 "trap1838" => Ending::Trap1838,
                 "trap1837" => Ending::Trap1837,
                 "cond1843" => Ending::Cond1843,
+                "forwardB" => Ending::ForwardB,
                 _ => Ending::CountInLoop,
             };
             print!("{}", compile_with(prog, p, &regs, e));
