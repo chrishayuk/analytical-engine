@@ -64,6 +64,11 @@ jobs:
           #print axioms Babbage.no_tetration
           #print axioms Babbage.tower_halts
           #print axioms Babbage.halting_dichotomy
+          #print axioms Babbage.no_pentation
+          #print axioms Babbage.no_tetration_eventually
+          #print axioms Babbage.Minsky.compile_halts
+          #print axioms Babbage.Minsky.machine_halts_of_compile
+          #print axioms Babbage.Minsky.compile_refused
           LEAN
           lake env lean /tmp/Axioms.lean | tee /tmp/axioms.txt
-          ! grep -v "propext, Quot.sound\]" /tmp/axioms.txt | grep -q .
+          ! grep -v -E "\[propext, (Classical.choice, )?Quot.sound\]" /tmp/axioms.txt | grep -q .

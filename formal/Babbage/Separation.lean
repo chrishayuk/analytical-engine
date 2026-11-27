@@ -245,6 +245,30 @@ theorem no_tetration {A : Arith V} (S : Sized A) {c : Config} {K K₀ : Nat} {d 
     exact tw_mono J _ _ (by omega)
   exact Nat.lt_of_le_of_lt this Nat.lt_two_pow_self
 
+/-- **The separation, for every large n.** As `no_tetration`, but from some N on,
+every halting run from input n gives off only numbers smaller than 2↑↑n. -/
+theorem no_tetration_eventually {A : Arith V} (S : Sized A) {c : Config} {K K₀ : Nat}
+    {d : Deck} (hacc : Accepts c d) (hsg : c.setInGroup = false) (hl : LitsLe A S K d)
+    (hc : ConstReps d) (init : Nat → State V) (h0 : ∀ n, (init n).pc = 0)
+    (hinit : ∀ n, Inv A S K (n + K₀) (init n)) :
+    ∃ N, ∀ n, N ≤ n → ∀ k (s' : State V), run A d k (init n) = .halt s' →
+      ∀ v ∈ s'.out, S.sz v < tet n := by
+  let J := 3 * (d.length + 1)
+  let C := K₀ + (d.length + 1) * E K d.length
+  refine ⟨2 * J + 2 + C, fun n hn k s' hrun v hv => ?_⟩
+  have h := out_le_tower S hacc hsg hl hc (hinit _) (h0 _) hrun v hv
+  obtain ⟨p, rfl⟩ : ∃ p, n = J + p + 1 := ⟨n - J - 1, by omega⟩
+  have hp : J + p + 1 + C ≤ tw p 1 :=
+    Nat.le_trans (by have := two_mul_le_two_pow p; omega) (pow_le_tw p)
+  have h3 : tw J (J + p + 1 + C) ≤ tw (J + p) 1 := by
+    rw [← tw_comp]; exact tw_mono J _ _ hp
+  rw [tet_eq_tw]
+  show S.sz v < 2 ^ tw (J + p) 1
+  have : S.sz v ≤ tw (J + p) 1 := by
+    refine Nat.le_trans h (Nat.le_trans ?_ h3)
+    exact tw_mono J _ _ (by omega)
+  exact Nat.lt_of_le_of_lt this Nat.lt_two_pow_self
+
 /-! ## Whole numbers satisfy the size condition -/
 
 def intSized : Sized intArith where

@@ -23,7 +23,7 @@ in `formal/`, and should be made here first.
 | 1 | Cards are taken one after another, from the first. | Page | Vol 3 pp 161–162, Dec 1837 |
 | 2 | An operation card takes two numbers to the mill and puts the result in a column. | Page | L series, passim |
 | 3 | One operation can be repeated a number of times put on an axis. Unity is subtracted before each operation, and the running up ends the repetition. | Page | Vol 2 p 84, 7 Mar 1836: "terminated after a given ⟨variable⟩ number of repetitions … the number of rep.ns be put on an axis" |
-| 3a | **Where the repetition count comes from.** `src/sketch.rs` reads it from a number card or from a store column. | **Reading** | The page says "given variable number" and does not say where it comes from. The alternative reading, a count from a number card only, is the hypothesis `ConstReps` of the Lean theorems. The two readings give different theorems (below). |
+| 3a | **Where the repetition count comes from.** `src/sketch.rs` reads it from a number card or from a store column. | **Reading** | The page says "given variable number" and does not say where it comes from. The alternative reading, a count from a number card only, is the hypothesis `ConstReps` of the Lean theorems. The two readings give different theorems (below). Read at full resolution on 27 Nov 2026 (`repetition-count-1836-1842.md`): "variable" is a clear interlineation, and the number is "put on an axis", but the page does not say from where. Counts are taken from the operands inside a multiplication (1836). In Turin, Aug 1840 (Vol IV p 412), indices are held "on one Store axis" and given off to the card counting apparatus; how they reach the store is not stated. So the store reading has support for 1840, but none for 1836. |
 | 4 | The combinatorial wheels hold one count, outside the store. A combinatorial card puts a number on them, from the card itself or from the store. | Page | Vol 3 p 161: "transferred from the combinatorial cards", "computed by the constant part of formula cards" |
 | 5 | A counted backing card subtracts unity from the wheels. It backs unless they have come to 0, when its order is ineffective. | Page | Vol 3 p 161: "ineffective if the combinatorial wheels have run up"; "run up by coming to 0" |
 | 5a | **When the wheels run up.** With n on the wheels, a counted group passes n times. | **Reading** | p 161 "by coming to 0". On 8 June 1838 (Vol 3 p 201) Babbage wrote "reduced to zero or to −1 (runs up)", so he had not settled it. The other reading gives n + 1 passes; no theorem below depends on the choice. |
@@ -34,11 +34,12 @@ in `formal/`, and should be made here first.
 | 10 | Nothing chooses between cards. No result of the mill acts on a card, on the backing, or on the wheels. | Page (by absence) | Read for this up to April 1842: Vol 2 pp 74–95, Vol 3 pp 137–166 and reverse 74–75, Vol IV pp 2–19, 64–67, 406–417, and F/227. The one exception is Vol IV p 12 (25 June 1839), a variant Babbage does not adopt, which concerns complementing within one long addition (`vol4-control-1839-1840.md`). |
 | 11 | Numbers are exact fractions of unbounded size. | Idealisation | The engine's numbers had a fixed number of figures: 40 on Vol IV p 11 (25 June 1839), with numbers of more figures added in parts. |
 | 12 | The store is unbounded. | Idealisation | The store had a fixed number of columns. |
-| 13 | A count of 0 or less, or a counted backing with no number on the wheels, is an error. | Idealisation | The pages do not say what happens. |
+| 13 | A combinatorial count of 0 or less, a count of 0 or less on the wheels before the first card, or a counted backing with no number on the wheels, is an error. A repetition count of 0 performs no operation. | Idealisation | The pages do not say what happens. |
+| 14a | **A halt is passing the last card.** An operation that fails is an error, not a halt, and nothing given off before it is an output. | Idealisation | The 1843 Sketch says the engine stops at "the passage through zero or infinity". A stop of that kind, counted as a halt, would be a different model (`expressiveness.md` §4 F). |
 | 14 | An operation that is undefined, such as division by 0, is an error that ends the run. | Idealisation | The pages do not say. |
 | 15 | An input is a number placed in the store or on the wheels before the first card. | Idealisation | Babbage's numbers came in on number cards. That is the same as a deck that sets its inputs first. |
 
-**Not modelled:** the letters and rows of letter cards of `src/sketch.rs`,
+**Not modelled:** a result card that leaves its column at zero (`result … off`, which the L/023 decks use); the letters and rows of letter cards of `src/sketch.rs`,
 which are used only by the L/023 decks; and operation cards that write
 several columns at once. Neither changes what can be computed with numbers.
 
@@ -55,11 +56,12 @@ checked by CI with no `sorry`), except where marked **argued**.
 | Statement | Rules used | Lean |
 |---|---|---|
 | A deck with an unconditional backing card never halts from its first card. | 1, 6, and backing goes back | `never_halts_from_start` |
-| Under rule 8, a deck whose backing cards are all counted always ends: it halts or an operation fails. | 1, 4–8, 13 | `ends_of_counted`, `halting_dichotomy` |
+| Under rule 8, a deck whose backing cards are all counted always ends: it halts, or an operation fails (an error, which `Ends` counts as ending). | 1, 4–8, 13 | `ends_of_counted`, `halting_dichotomy` |
 | Under rule 8, **with repetition counts from number cards only**, a halting deck gives off nothing larger than a fixed tower of exponentials on its input, and so does not give 2↑↑n for every n. | all, with `ConstReps` | `out_le_tower`, `no_tetration` |
 | Under rule 8, **with repetition counts from the store** (rule 3a as coded), a deck of Dec 1837 halts with 2↑↑n for every n ≥ 1. | all | `tower_halts` |
 | Under rule 8, with repetition counts from the store, a halting deck gives off nothing larger than a fixed number of tetrations on its input, and so does not give 2↑↑↑n for every n. | all | `out_le_ptw`, `no_pentation`; applied to `tower-halting` in `tower_below_pentation` |
-| Without rule 8 (`not-found`), counter machines can be translated into decks. | 1–7 | **tested** on two machines (`src/minsky.rs`); not proved |
+| Without rule 8 (`not-found`), a counter machine translates into a deck that halts exactly when the machine does, and gives off its counters; every configuration with rule 8 refuses that deck. | 1–7 | `compile_accepted`, `compile_refused`, `compile_halts`, `machine_halts_of_compile` |
+| With counts from number cards, for every n from some point on, a halting deck gives off nothing as large as 2↑↑n. | all, with `ConstReps` | `no_tetration_eventually` |
 
 Both whole numbers (`intSized`) and exact fractions satisfy the size
 condition of the growth theorems. For fractions, size is the larger of

@@ -22,11 +22,27 @@ the theorems mean for Babbage's mechanisms is in `docs/expressiveness.md`
 | `Babbage/Tower.lean` | `tower_halts`: `control/tower-halting.txt` is accepted by the configuration of Dec 1837 and halts with 2↑↑n for every n ≥ 1, its repetition count read from the store. |
 | `Babbage/GrowthStore.lean` | C3, with repetition counts from the store: one card's growth (`step_invS`), `out_le_ptw` (at most 2(L + 1) tetrations on the input plus a constant) and `no_pentation`: no deck of the pages halts with 2↑↑↑n for every n. `tower_below_pentation` applies it to the deck of `tower_halts`. |
 | `Babbage/RatSize.lean` | `ratSized`: exact fractions (core `Rat`, size the larger of the absolute numerator and the denominator) satisfy the size condition; `no_tetration_rat`, `no_pentation_rat`. |
-| `Babbage/Separation.lean` | `out_le_tower` and `no_tetration` (C1): with repetition counts from number cards, no deck of the pages halts with 2↑↑n for every n. `intSized`: whole numbers satisfy the size condition. `towerDeck_not_constReps`: the deck of `tower_halts` differs only in where its count comes from. |
+| `Babbage/Separation.lean` | `out_le_tower` and `no_tetration` (C1): with repetition counts from number cards, no deck of the pages halts with 2↑↑n for every n. `intSized`: whole numbers satisfy the size condition. `towerDeck_not_constReps`: the deck of `tower_halts` differs only in where its count comes from. `no_tetration_eventually`: the same, for every n from some point on. |
+| `Babbage/Minsky.lean` | Counter machines translated into decks (`compile`, as `src/minsky.rs`): `compile_accepted` by `not-found`, `compile_refused` by every configuration with rule 8, `compile_halts` and `machine_halts_of_compile`, so the deck halts exactly when the machine does and gives off its counters. |
 
 **Not proved here:**
 - that `src/sketch.rs` implements this model; the Rust tests and decks
   exercise the same rules, but nothing checks the correspondence;
 - where the classes sit among the subrecursive hierarchies
   (`docs/growth-classes.md`, argued only);
-- that the counter-machine translation (`src/minsky.rs`) is correct.
+- that `src/minsky.rs` makes the same deck as `compile`; it uses the same
+  layout and is tested against direct simulation;
+- Minsky's theorem that two counters suffice; it is cited.
+
+**What the theorems take as given** (from an independent review of
+`formal/`, 27 Nov 2026):
+- `Ends` counts an error as an ending; "halts" means passing the last card,
+  and an error is not a halt (`docs/semantics.md`, rule 14a).
+- The separations cover runs that halt. A table that runs on, or results
+  given off before an error, are outside them.
+- `result … off`, operations with several destinations, and letters are not
+  modelled. They can be simulated, so the theorems are unaffected.
+
+**Axioms.** The generic theorems use only `propext` and `Quot.sound`. The
+whole-number and fraction instances, and the two Minsky halting theorems,
+also use `Classical.choice`, through core Lean lemmas and case analysis.

@@ -227,22 +227,56 @@ The pages do not decide between the two readings (`semantics.md`, rule 3a).
 endless. What a table computes and what a halting deck computes are
 different questions.
 
-**E. What `not-found` adds.** It adds a count set inside the group it
-counts, so a loop can end on a number it has computed.
-`src/minsky.rs` uses this to translate a counter machine into a deck:
-- the state is a number, and [q = i] is a polynomial in it;
-- [r > 0] is the flag of section 3;
-- each pass of one counted group is one step of the machine;
-- the count of that group is set, inside the group, to 2 − [q = halt].
+**E. What `not-found` adds** (`formal/Babbage/Minsky.lean`). It adds a
+count set inside the group it counts, so a loop can end on a number it has
+computed. `compile` translates a counter machine (Minsky) into a deck, and
+`src/minsky.rs` makes the same deck as text:
+- the state is held one-hot: column S_j is 1 in state j and 0 otherwise;
+- [c_r > 0] is the flag of section 3;
+- each instruction adds its effect, times its S_i, into the counters and
+  the new state, using only + − × on whole numbers;
+- one pass of the outer group is one step of the machine;
+- the outer group's count is set inside it, to 2 − [halted].
 
-Counter machines with two counters compute every computable function
-(Minsky). So, if the translation is correct for every machine, `not-found`
-with unbounded numbers and store is general. It has been tested on
-addition and multiplication (`counter_machines_under_not_found`). It is not
-proved. **No claim of Turing completeness is made.** Nor is any claim made
-about the Analytical Engine as Babbage went on to design it. This is a
-reconstruction of the mechanisms of 1836–1838 only, and a subset not being
-universal says nothing about the engine.
+Proved:
+- `compile_accepted`: `not-found` accepts the deck.
+- `compile_refused`: every configuration with rule 8 refuses it.
+- `compile_halts`: if the machine halts, the deck halts and gives off the
+  halted machine's counters.
+- `machine_halts_of_compile`: if the deck halts, the machine halts.
+
+Assumptions: whole numbers of unbounded size; 5 + 2k + 2n store columns
+for k counters and n states, a number fixed by the machine; and a well
+formed machine (`WF`). Machines with two counters compute every partial
+computable function, with inputs coded as 2^x and outputs read the same way
+(Minsky 1967). That result is cited, not formalised here.
+
+So, granted Minsky's theorem, `not-found` with unbounded numbers is
+universal in the sense of computing every partial computable function.
+**This is a theorem about a configuration no page read gives.** It says
+nothing about whether Babbage's engine, as he went on to design it, was
+universal. Nor does it say that the dated configurations are not universal
+in some other sense (see F).
+
+**F. What "halts" means, and a stop by failure.** In all of A–E an
+operation that fails, such as division by 0, is an error. An error is not a
+halt, and what was given off before it is not counted as an output
+(`Res.err` carries no state). This choice matters:
+- Rojas (1998) made the Z3 universal by ending an endless loop with a
+  deliberate undefined operation.
+- The 1843 Sketch of Menabrea says the engine stops at "the passage through
+  zero or infinity".
+
+If such a stop counted as a halt, with the last number given off as the
+result, then the dated configurations could do more:
+- an endless loop can set its counts before its counted groups;
+- a pass could divide by a flag that is 0 only when it is done.
+
+That would be a while loop, and so probably general, though this has not
+been checked. The theorems A–C are therefore about halting by passing the
+last card, as rule 1 gives it. A stop on an undefined operation is a fourth
+model, not formalised here. No page of 1836–1838 read so far describes such
+a stop.
 
 **Not shown:** that `maximum` or `gcd` cannot be done in the dated
 configurations. No deck was found for either, and no proof that none exists
@@ -280,12 +314,46 @@ the store (two-figure indices), which bears on rule 3a. They do not add a
 count set inside its own group, or a result of the mill acting on a
 backing.
 
-## 7. Leads
+## 7. Leads, and what has been read since
 
-- **Sketch Book Vol V p 74**, cited in F/227's title (April 1842): not read.
-- **Drawing 25**, the Turin plan itself: not read for control.
-- **Turin p 412**, two-figure indices on the card counting apparatus: read
-  closely, this may settle rule 3a for 1840, though not for 1836–1838.
-- **13 March 1838:** an addition that "goes on as long as variables are
+Read on 27 November 2026 (`sources/notes/repetition-count-1836-1842.md`):
+- **Sketch Book Vol V p 74**, 12 March 1842, cited by F/227: "Operation of
+  Reversing sign". It has no zero test and no sign test, and nothing orders
+  a card.
+- **Drawing 25** (BAB/A/089 and the lithograph A/089/1): a counting
+  apparatus beside the Store rack ("Give off from Store to I or ″F"), and
+  running-up levers drawn on their own. Neither connects a result of the
+  mill to a card.
+- **Turin p 412:** two-figure indices held "on one Store axis" and given
+  off to the card counting apparatus (`semantics.md`, rule 3a).
+
+Still open:
+- Vol III pp 347 and 349, cited on Plan 25.
+- Vol XIII images 1–85.
+- The Menabrea/Lovelace Sketch of 1843, read as evidence for the control
+  of 1842–43: a registering apparatus set to n − 1 after n "introduced into
+  the machine" (a count from the store), and Note G's V10, which "decides
+  which of two courses" the cards take. That is a result choosing cards,
+  later than every page read here.
+- 13 March 1838: an addition that "goes on as long as variables are
   supplied". Its count is the number of variable cards, fixed in advance.
-  It adds nothing to the configurations above.
+
+## 8. The literature
+
+`docs/literature-expressiveness.md` reviews prior work, searched on 27
+November 2026, by web only.
+- **Known:** the mathematics of A, B and C. A count fixed at entry gives
+  elementary bounds (Meyer and Ritchie 1967; Grzegorczyk). Counts from the
+  store are the next level. A count re-set inside the loop gives WHILE
+  loops and counter machines (Minsky). Rojas replaced branches with
+  arithmetic in the same way for the Z3 (1998) and the Analytical Engine
+  (2024).
+- **Prior analyses of the Analytical Engine's power:** Rojas 1996 and 2024,
+  and Bromley. They ask whether it is universal, assuming a backing that
+  depends on data.
+- **Not found** in what was searched:
+  - any classification of the control of 1836–1838 by subrecursive class;
+  - any result that the class depends on how the documents are read;
+  - machine-checked proofs of either.
+- **Not read:** five key items were paywalled or blocked, including Rojas
+  2021 and Bromley 2000. So no claim of priority is made.

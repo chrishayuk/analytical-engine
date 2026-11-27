@@ -486,6 +486,11 @@ fn whole(v: &Value) -> Result<i64, String> {
 pub fn run(c: &Config, d: &Deck) -> Result<Outcome, String> {
     accepts(c, d)?;
     let mut store: BTreeMap<usize, Value> = d.store.iter().cloned().collect();
+    // A count on the wheels is a whole number ≥ 1, as a combinatorial card
+    // gives it; the Lean model holds the wheels as a natural number.
+    if let Some(w) = d.wheels.filter(|&w| w < 1) {
+        return Err(format!("a count of {w} on the wheels before the first card"));
+    }
     let mut wheels: Option<i64> = d.wheels;
     let mut o = Outcome::default();
     let mut pc = 0;

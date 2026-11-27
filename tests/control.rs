@@ -90,6 +90,9 @@ fn control_mutations() {
     // A count of 0 is an error, not a pass.
     let zero = read(&text.replace("Wheels 1", "Wheels 0")).unwrap();
     assert!(run(config("1837-12"), &zero).is_err());
+    // A negative count on the wheels is refused, not run on (found by review).
+    let neg = read("Store v1 = 0\nWheels -1\nCards\na:\n+ v1 1 > v1\nback a counted\nresult v1\n").unwrap();
+    assert!(run(config("1837-12"), &neg).is_err());
     let set0 = read(&text.replace("set v2", "set 0")).unwrap();
     assert!(run(config("1837-12"), &set0).is_err());
     // No number on the wheels when a counted backing is reached.

@@ -57,7 +57,7 @@ different object (`expressiveness.md`, D).
 | Model B does not compute 2↑↑↑n, so it does not compute every primitive recursive function. | **Proved** | `no_pentation` |
 | Every function model B computes is in E⁴ = L₃. | **Argued**, below | — |
 | Model B computes every function in E⁴. | **Open** | — |
-| Model C computes every partial computable function, with unbounded numbers and store. | **Open**. A translation from counter machines is tested on two machines (`src/minsky.rs`) and is not proved. | — |
+| Model C computes every partial computable function, with unbounded numbers. | **Proved, given Minsky's theorem**: counter machines translate into decks that halt exactly when the machine does and give off its counters (`compile_halts`, `machine_halts_of_compile`). Minsky's universality of two-counter machines is cited, not formalised. | `Minsky.lean` |
 
 The hierarchy, then:
 - **Proved:** A ⊊ B as classes of growth. B computes a function that A
