@@ -688,3 +688,77 @@ pub fn expected(d: &Deck, o: &Outcome) -> Vec<String> {
     }
     bad
 }
+
+/// What every configuration does with a deck, as JSON for the notebook's
+/// explorer (`babbage control run -`): whether it accepts the deck, and if
+/// so how the run ends, its results and the store. `trap` overrides the
+/// deck's own `Trap halts`.
+pub fn report_json(d: &Deck, trap: Option<bool>) -> crate::json::Json {
+    use crate::json::{obj, Json};
+    let trap = trap.unwrap_or(d.trap);
+    let runs = CONFIGS
+        .iter()
+        .map(|c| {
+            let refusal = accepts(c, d).err();
+            let mut fields = vec![
+                ("config".to_string(), Json::from(c.key)),
+                ("date".to_string(), Json::from(c.date)),
+                ("found".to_string(), Json::from(c.found)),
+                ("accepted".to_string(), Json::from(refusal.is_none())),
+            ];
+            if let Some(r) = refusal {
+                fields.push(("refusal".into(), r.into()));
+                return Json::Obj(fields);
+            }
+            match run_model(c, d, trap) {
+                Err(e) => {
+                    fields.push(("status".into(), "error".into()));
+                    fields.push(("error".into(), e.into()));
+                }
+                Ok(o) => {
+                    let status = if o.halted {
+                        "halts"
+                    } else if o.trapped.is_some() {
+                        "trap"
+                    } else {
+                        "runs on"
+                    };
+                    fields.push(("status".into(), status.into()));
+                    if let Some(t) = &o.trapped {
+                        fields.push(("trap".into(), t.clone().into()));
+                    }
+                    if let Some(s) = &o.stopped {
+                        fields.push(("stopped".into(), s.clone().into()));
+                    }
+                    fields.push((
+                        "results".into(),
+                        o.results
+                            .iter()
+                            .map(|v| Json::from(v.to_string()))
+                            .collect::<Vec<_>>()
+                            .into(),
+                    ));
+                    let store = o
+                        .store
+                        .iter()
+                        .filter(|(_, v)| !v.is_zero())
+                        .map(|(c, v)| (format!("v{c}"), Json::from(v.to_string())))
+                        .collect();
+                    fields.push(("store".into(), Json::Obj(store)));
+                    fields.push(("cards".into(), o.cards.into()));
+                    fields.push(("backings".into(), o.backings.into()));
+                    fields.push(("wheelSteps".into(), o.wheel_steps.into()));
+                    let bad = expected(d, &o);
+                    fields.push(("expected".into(), bad.is_empty().into()));
+                }
+            }
+            Json::Obj(fields)
+        })
+        .collect::<Vec<_>>();
+    obj([
+        ("deck", d.name.clone().into()),
+        ("title", d.title.clone().into()),
+        ("trap", trap.into()),
+        ("runs", runs.into()),
+    ])
+}

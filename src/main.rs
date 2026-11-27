@@ -311,6 +311,52 @@ fn main() {
             println!("\nFigures and words are Babbage's; the checks compare his figures with his words. Nothing simulates the mechanism, and no mark");
             println!("is given a meaning no source gives it (docs/f-cycles.md, docs/f-concordance.md). babbage mechanical [F001|F013|F018] [band]");
         }
+        ["control", "run", "-", rest @ ..] => {
+            // Every configuration on the deck from standard input, as JSON
+            // (the notebook's explorer). --trap / --no-trap: Model D or not.
+            let mut text = String::new();
+            std::io::Read::read_to_string(&mut std::io::stdin(), &mut text).unwrap();
+            let trap = match rest {
+                ["--trap"] => Some(true),
+                ["--no-trap"] => Some(false),
+                _ => None,
+            };
+            match babbage::sketch::read(&text) {
+                Err(e) => {
+                    let mut out = String::new();
+                    babbage::json::obj([("error", e.into())]).write(&mut out);
+                    println!("{out}");
+                }
+                Ok(d) => {
+                    let mut out = String::new();
+                    babbage::sketch::report_json(&d, trap).write(&mut out);
+                    println!("{out}");
+                }
+            }
+        }
+        ["control", "minsky", prog, regs, ending] => {
+            // A counter machine translated into a deck: add or mul, the
+            // counters as 3,4, and loop | trap1838 | trap1837.
+            use babbage::minsky::{compile_with, Ending, Ins};
+            let add = [Ins::Dec(1, 1, 2), Ins::Inc(0, 0), Ins::Halt];
+            let mul = [
+                Ins::Dec(0, 1, 6),
+                Ins::Dec(1, 2, 4),
+                Ins::Inc(2, 3),
+                Ins::Inc(3, 1),
+                Ins::Dec(3, 5, 0),
+                Ins::Inc(1, 4),
+                Ins::Halt,
+            ];
+            let p: &[Ins] = if *prog == "mul" { &mul } else { &add };
+            let regs: Vec<i64> = regs.split(',').map(|r| r.parse().unwrap()).collect();
+            let e = match *ending {
+                "trap1838" => Ending::Trap1838,
+                "trap1837" => Ending::Trap1837,
+                _ => Ending::CountInLoop,
+            };
+            print!("{}", compile_with(prog, p, &regs, e));
+        }
         ["control", "lean-cases", dir, n] => {
             // The cases of the differential test against the Lean model
             // (scripts/lean-diff.sh): DIR/NAME.deck for Lean, DIR/NAME.rust.

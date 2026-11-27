@@ -221,3 +221,17 @@ fn counter_machines_with_a_trap() {
         assert!(o.trapped.is_none() && !o.halted && o.stopped.is_some());
     }
 }
+
+/// The JSON the notebook's explorer reads (`babbage control run -`).
+#[test]
+fn report_json_for_the_notebook() {
+    use babbage::sketch::report_json;
+    let d = read(include_str!("../control/tower-halting.txt")).unwrap();
+    let mut out = String::new();
+    report_json(&d, None).write(&mut out);
+    assert!(
+        out.contains(r#""config":"1836-03","date":"March 1836","found":true,"accepted":false"#),
+        "{out}"
+    );
+    assert!(out.contains(r#""config":"1837-12","date":"December 1837","found":true,"accepted":true,"status":"halts","results":["65536"]"#), "{out}");
+}
