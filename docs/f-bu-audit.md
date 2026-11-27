@@ -200,6 +200,28 @@ verb is lock; F/014 and F/020 say "plates", and Babbage also had "locking
 plates"; the figureless "B" and "B′", the B's never unbolted and F/020's
 repeated U's are not explained; and the transcriptions are unchecked.
 
+## A prediction tested: return timing (`scripts/bu_timing.py`)
+
+Written and committed before the test (`docs/predictions/platform-timing.md`,
+commit 1b0eb79): F/013's heads group platforms 1–2 and 11–12 as "Long time"
+and 3–10 as "Short time"; if parts move with their platforms, a part bolted to
+platform 1 or 2 on F/018–019 should return later in its cycle than one bolted
+to 3–6.
+
+| Cycle (sheet of the B) | Long-time parts | Short-time parts | Result |
+|---|---|---|---|
+| F/018 cycle 1 | B1 e21: returns row 14 of the next band | 8, all return row 11 of the next band (3 from the top rows: row 11 of the same band) | as predicted |
+| F/018 cycle 3 | B2 e24: row 14 of the next band | 5, all row 11 of the next band | as predicted |
+| cycles 2, 4, 5 | none | 3, 5, 4, all row 11 of the next band | untestable |
+| cycle 6 | none | 2, no return transcribed | untestable |
+
+**Two cycles testable, none against.** Weak evidence: two long-time parts in
+all, on sheets whose lifts (not timing) had been seen before the prediction was
+written. It could have failed and did not. Every short-time part on F/018–019
+returns at row 11, so the short-time group is uniform there; F/013's
+short-time platform columns close at row 12 and its long-time ones at row 15,
+so the two sheets agree in order, not in row.
+
 ## What would settle it
 
 A page that describes bolting plates or platforms in the mill of 1835–1836,
