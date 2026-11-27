@@ -1,11 +1,31 @@
-"""Predictions for held-out test 2, from the inputs only.
+"""Predictions for held-out test 2, VERSION 2: an implementation revision.
 
-Rules: docs/predictions/held-out-2-rules.md (dc3bf1d) and
-docs/predictions/held-out-2-protocol.md (1833752). Inputs:
-sources/notes/F021-F033-inputs.md (labels, heads and platform motions; no part
-arrows). Output: docs/predictions/held-out-2-predictions.md, with a coverage
-report; the script exits non-zero if any label cell yields nothing it can
-classify.
+Version 1 (scripts/predict_f_v1.py, output docs/predictions/held-out-2-
+predictions.md, frozen at 64ca93e) is kept unchanged and is scored too. This
+version changes the implementation only, not the rules
+(docs/predictions/held-out-2-rules.md, dc3bf1d) or the protocol
+(held-out-2-protocol.md, 1833752). It was written before any part arrow of
+these sheets had been seen by anyone preparing the predictions. Changes:
+
+  1. coverage: a label cell that yields no token fails the run, as does an
+     unparsed token;
+  2. a bare "B" (no figure) attaches the part to an unknown platform: it ends
+     any earlier attachment and predicts no motion (no figure, no lift);
+  3. a bare "U" detaches (as in v1), and R3 applies to it (no motion), which
+     is what the protocol says; v1's prose said bare U had no prediction;
+  4. conflicts (a B while already attached, with no U between) are written in
+     the coverage report;
+  5. persistence (M1) applies to an attached part with no B and no U of its
+     own in that band, whatever else its cell holds (v1 required no label at
+     all);
+  6. every negative prediction is enumerated: for each labelled column and
+     band, the state (attached k, attached ?, detached, unknown) and what R4
+     as written, R4u, M0 and M1 predict;
+  7. F/033's mid-band labels ("U-mid", "L-mid", at about row 11) are a
+     separate category: they predict a motion in the row after the label, not
+     in the band's first motion row, and are scored apart.
+
+Output: docs/predictions/held-out-2-predictions-v2.md.
 
   python3 scripts/predict_f.py
 """
@@ -16,20 +36,16 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 INPUTS = ROOT / "sources/notes/F021-F033-inputs.md"
-OUT = ROOT / "docs/predictions/held-out-2-predictions.md"
+OUT = ROOT / "docs/predictions/held-out-2-predictions-v2.md"
 
-# None of these sheets writes platform lifts, so every lift is F/013's
-# (the protocol's fallback), reported as such.
 LIFT = {1: 1.1, 2: .6, 3: 1.1, 4: .6, 5: .4, 6: .2, 7: -.2, 8: -.4, 9: -.6, 10: -1.1, 11: -.6, 12: -1.1}
-LONG = {1, 2, 11, 12}          # F/013's "Long time" platforms (exploratory E2 only)
-
+LONG = {1, 2, 11, 12}
 DESIGN = {"F/021": "division without table", "F/022": "division without table", "F/023": "division without table",
           "F/024": "division without table", "F/026": "square root", "F/027": "square root",
           "F/028": "square root", "F/029": "square root", "F/032": "ordinary cycle", "F/033": "carriage"}
 
 
 def tables(text):
-    """(sheet, [(band, column, cell)]) for every label table, in order."""
     out, sheet = [], None
     lines = text.splitlines()
     for i, ln in enumerate(lines):
@@ -49,7 +65,6 @@ def tables(text):
 
 
 def tokens(cell):
-    """The labels in a cell, in order (top first for stacked labels)."""
     toks, notes = [], []
     for q in re.findall(r'"([^"]*)"', cell):
         if "~~" in q:
@@ -60,7 +75,7 @@ def tokens(cell):
         q = q.replace("[?", "").replace("]", "")
         q = re.sub(r"N\.[ºo]\s*", "", q)
         t = q.strip().rstrip(".")
-        if re.fullmatch(r"(?:B&U|U&B)", t):
+        if t in ("B&U", "U&B"):
             toks.append(("UB", None))
             continue
         found = re.findall(r"([BUL])\s*\.?\s*(\d+)?", t)
@@ -73,103 +88,104 @@ def tokens(cell):
 
 
 def main():
-    text = INPUTS.read_text()
-    report, preds, bad = [], [], 0
-    for sheet, rows in tables(text):
-        state = {}              # column -> platform k (attached), "detached", or absent (unknown)
+    report, rows_out, bad = [], [], 0
+    for sheet, rows in tables(INPUTS.read_text()):
+        state = {}                 # col -> int k | "?" (attached, platform unknown) | "detached"
+        cols = []
+        for _, c, _ in rows:
+            if c not in cols and not c.lower().startswith("lock"):
+                cols.append(c)
         order = []
-        for band, col, cell in rows:
-            if band not in order:
-                order.append(band)
-        bands = {b: [r for r in rows if r[0] == b] for b in order}
+        for b, _, _ in rows:
+            if b not in order:
+                order.append(b)
         report.append(f"\n### {sheet} ({DESIGN.get(sheet, '?')})\n")
         report.append("| Band | Column | Cell | Tokens | Notes |\n|---|---|---|---|---|")
         for band in order:
-            fresh = {}
-            lone_u = set()
-            for _, col, cell in bands[band]:
+            mid = "mid" in band
+            cells = {c: cell for b, c, cell in rows if b == band}
+            fresh, touched = {}, set()
+            for col, cell in cells.items():
                 toks, notes = tokens(cell)
-                lock_col = col.lower().startswith("lock")
-                shown = " ".join(f"{k}{'' if f is None else f}" for k, f in toks)
+                lock = col.lower().startswith("lock")
+                if not toks:
+                    bad += 1
+                    notes.append("FAILS: no token")
                 if any(k == "?" for k, _ in toks):
                     bad += 1
-                    notes.append("UNPARSED")
-                if lock_col:
-                    notes.append("Lock column: set aside (U/L of the locks)")
+                    notes.append("FAILS: unparsed")
+                if not lock:
+                    for kind, fig in toks:
+                        if kind == "U":
+                            state[col] = "detached"
+                            fresh.pop(col, None)
+                            touched.add(col)
+                        elif kind == "B":
+                            if isinstance(state.get(col), int) or state.get(col) == "?":
+                                notes.append("conflict: B while attached, no U between")
+                            state[col] = fig if fig is not None else "?"
+                            touched.add(col)
+                            if fig is not None:
+                                fresh[col] = (fig, list(notes))
+                            else:
+                                fresh.pop(col, None)
+                        elif kind == "L" and fig is not None:
+                            rows_out.append((sheet, band, col, "E1 L as B (exploratory)", fig, "", ""))
+                else:
+                    notes.append("Lock column: set aside")
+                shown = " ".join(f"{k}{'' if f is None else f}" for k, f in toks)
                 report.append(f"| {band} | {col} | {cell} | {shown} | {'; '.join(notes)} |")
-                if lock_col:
-                    continue
-                for kind, fig in toks:
-                    if kind == "U":
-                        state[col] = "detached"
-                        fresh.pop(col, None)
-                    elif kind == "B" and fig is not None:
-                        if isinstance(state.get(col), int):
-                            notes.append("conflict: second B with no U")
-                        state[col] = fig
-                        fresh[col] = (fig, notes[:])
-                    elif kind == "L" and fig is not None:
-                        preds.append((sheet, band, col, "E1 (L as B)", fig))
-                if toks and all(k == "U" for k, _ in toks):
-                    lone_u.add(col)
-            for col, (k, notes) in fresh.items():
-                preds.append((sheet, band, col, "R1/M0/M1 fresh B", k, "; ".join(notes)))
-            for col in lone_u:
-                preds.append((sheet, band, col, "R3 lone U: no motion", None, ""))
-            # Persistence: attached, no fresh label in this band.
-            labelled = {c for _, c, _ in bands[band]}
-            for col, k in state.items():
-                if isinstance(k, int) and col not in labelled:
-                    preds.append((sheet, band, col, "M1 persistent, no fresh B", k, ""))
-    lines = ["# Held-out test 2: the predictions, frozen before the part arrows are read\n",
-             "Generated by `scripts/predict_f.py` from `sources/notes/F021-F033-inputs.md`, under",
-             "`held-out-2-rules.md` (dc3bf1d) and `held-out-2-protocol.md` (1833752). Committed",
-             "before any part arrow of these sheets is transcribed. Every lift is F/013's",
-             "table (none of these sheets writes platform lifts): the protocol's fallback.\n",
-             "## Standing predictions\n",
-             "- **R1 / M0 / M1, fresh B.** Each row below marked \"fresh B\": the part moves in the",
-             "  band's first motion row, in the direction of F/013's lift for k, by that lift.",
-             "- **M1, persistent.** Each row marked \"persistent\": the part has no label in the band",
-             "  but is attached to k from an earlier B with no U since; M1 predicts the motion of",
-             "  k, M0 predicts no motion. These are the cases that separate the models.",
-             "- **R3.** Each row marked \"lone U\": no motion in the first motion row.",
-             "- **R4 as written.** Every column of the sheet with no fresh B in a band and not",
-             "  attached (unknown or detached): no motion. **R4u**: the same, but a column in the",
-             "  unknown state (no B or U so far on its sheet) makes no prediction.",
-             "- **R2 / M2.** Untestable on every sheet: F/021–024, F/028–029 and F/033 have no",
-             "  platform columns, and F/026, F/027 and F/032 do not number theirs.",
-             "- Bare \"B\"/\"U\" (no figure), \"B&U\"/\"U&B\" and the Lock columns' U/L: no prediction.\n",
-             "## Exploratory, scored apart from the rules\n",
-             "- **E1, \"L k\" read as \"B k\".** F/032 writes \"L 4\", \"L N.º 3\", \"L 3\" where B",
-             "  labels stand on the other sheets (Vol II p 42, Dec 1835: \"Lock … to Pl. 4\"). E1",
-             "  predicts the motion of platform k for those parts. Not a rule; reported separately.",
-             "- **E2, F/032's timing by F/013's grouping.** A part on platform k returns in the row",
-             "  of F/032's \"Long time\" platforms (row 15, into the 1/3 row) if k is 1, 2, 11 or 12,",
-             "  and of its \"Short time\" platforms (row 12) if k is 3–10; in bands 1–2 only",
-             "  (band 3 has no platform return). Not a rule; reported separately.\n",
-             "## The predictions\n",
-             "| Sheet | Design | Band | Column | Prediction | k | Direction | Lift | E2 return | Notes |",
-             "|---|---|---|---|---|---|---|---|---|---|"]
-    for p in preds:
-        sheet, band, col, kind, k = p[:5]
-        note = p[5] if len(p) > 5 else ""
-        if k is None:
-            d = l = e2 = "—"
-        else:
+            if mid:
+                for col, (k, notes) in fresh.items():
+                    rows_out.append((sheet, band, col, "MID-BAND B: motion in the row after the label", k, "attached", "; ".join(notes)))
+                continue
+            for col in cols:
+                st = state.get(col)
+                sname = ("unknown" if st is None else "detached" if st == "detached"
+                         else "attached ?" if st == "?" else f"attached {st}")
+                if col in fresh:
+                    k, notes = fresh[col]
+                    rows_out.append((sheet, band, col, "FRESH B: R1, M0, M1 motion", k, sname, "; ".join(notes)))
+                elif col in touched:
+                    kinds = cells.get(col, "")
+                    if st == "detached":
+                        rows_out.append((sheet, band, col, "U this band: R3/R4/R4u/M0/M1 no motion", None, sname, ""))
+                    else:
+                        rows_out.append((sheet, band, col, "bare B this band: no motion predicted (no figure)", None, sname, ""))
+                elif isinstance(st, int):
+                    rows_out.append((sheet, band, col, "PERSISTENT: M1 motion; M0, R4 and R4u no motion", st, sname, ""))
+                elif st == "?":
+                    rows_out.append((sheet, band, col, "attached to unknown platform: M1 motion of unknown lift (direction/lift untestable); M0/R4 no motion", None, sname, ""))
+                elif st == "detached":
+                    rows_out.append((sheet, band, col, "detached, no label: R4/R4u/M0/M1 no motion", None, sname, ""))
+                else:
+                    rows_out.append((sheet, band, col, "unknown, no label: R4/M0 no motion; R4u and M1 abstain", None, sname, ""))
+    lines = [
+        "# Held-out test 2: predictions, VERSION 2 (implementation revision)\n",
+        "Generated by `scripts/predict_f.py` (v2). Version 1 (`held-out-2-predictions.md`,",
+        "64ca93e, from `scripts/predict_f_v1.py`) is kept unchanged and is scored too;",
+        "every case where the two disagree is reported. The rules (dc3bf1d) and the",
+        "protocol (1833752) are unchanged. Written before any part arrow of these sheets",
+        "had been seen by anyone preparing predictions. What v2 changes is listed in the",
+        "script's docstring. Lifts are F/013's (fallback). R2/M2 untestable as frozen.\n",
+        "**Columns not in this table** (never labelled on their sheet) are in the unknown",
+        "state throughout: R4 as written and M0 predict no motion; R4u and M1 abstain.\n",
+        "| Sheet | Design | Band | Column | Prediction | k | Direction | Lift | State before | Notes |",
+        "|---|---|---|---|---|---|---|---|---|---|"]
+    counts = {}
+    for sheet, band, col, kind, k, sname, note in rows_out:
+        d = l = "—"
+        if isinstance(k, int):
             d = "up" if LIFT[k] > 0 else "down"
             l = f"{abs(LIFT[k]):g}"
-            e2 = ("row 15 / 1/3" if k in LONG else "row 12") if sheet == "F/032" and band in ("1", "2") else "—"
-        lines.append(f"| {sheet} | {DESIGN.get(sheet, '?')} | {band} | {col} | {kind} | {k if k else '—'} | {d} | {l} | {e2} | {note} |")
-    counts = {}
-    for p in preds:
-        counts[p[3]] = counts.get(p[3], 0) + 1
+        key = kind.split(":")[0]
+        counts[key] = counts.get(key, 0) + 1
+        lines.append(f"| {sheet} | {DESIGN.get(sheet, '?')} | {band} | {col} | {kind} | {k if isinstance(k, int) else '—'} | {d} | {l} | {sname} | {note} |")
     lines.append("\n**Counts:** " + "; ".join(f"{k}: {v}" for k, v in counts.items()))
-    lines.append("\n## Coverage report\n")
-    lines.append("Every label cell read from the inputs, and the tokens taken from it. Any cell")
-    lines.append("marked UNPARSED fails the run.")
+    lines.append("\n## Coverage report\n\nA cell with no token or an unparsed token fails the run.")
     lines.extend(report)
     OUT.write_text("\n".join(lines) + "\n")
-    print(f"{len(preds)} predictions; counts {counts}; unparsed cells: {bad}")
+    print(f"{len(rows_out)} rows; {counts}; failing cells: {bad}")
     sys.exit(1 if bad else 0)
 
 
