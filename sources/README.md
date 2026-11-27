@@ -79,3 +79,9 @@ zoom paths. Two drafts (N 1834 [a], N 1837 [a]) and one more (N 1839 [a])
 are transcribed beside their fair copies. Some regions were read below full
 resolution after the zoom server refused requests for a time; the notes say
 which.
+
+### BAB/F/001 and BAB/F/002
+
+"Multiply a, b, c, d by 1021", about 1835, in the mechanical notation:
+documents `aa110000050` and `aa110000051`. See `notes/F001.md`,
+`notes/F002.md`, the data in `../mechanical/` and `../docs/f-concordance.md`.

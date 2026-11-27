@@ -502,3 +502,12 @@ fn competing_complement_models() {
         2580
     );
 }
+
+/// The whole multiplication, F/001 and F/002: six cycles read, and the
+/// multiplier's figures as written count down to 0000.
+#[test]
+fn f001_f002_six_cycles() {
+    use babbage::mechanical::{multiplier, read, CYCLES};
+    let seq: Vec<String> = CYCLES.iter().map(|(_, _, t)| multiplier(&read(t).unwrap())).collect();
+    assert_eq!(seq, ["1021", "0021", "0021", "0011", "0001", "0000"]);
+}

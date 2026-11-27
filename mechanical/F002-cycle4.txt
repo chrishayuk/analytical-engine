@@ -1,0 +1,68 @@
+% BAB/F/002, 216/304 and 216/305: the first band of the sheet, pencil "4"
+% in the right margin (continuing F/001's 1-3), rows 1-13, as transcribed
+% in sources/notes/F002.md. No person has checked the transcription.
+% F/002 has no column heads. Its columns d01-d56 are identified with F/001's
+% c01-c56 by the ruling (same dashed and heavy rules, same widths), not by
+% any head; the bracketed name after each id is F/001's head, for reading
+% only. row | column | mark | note
+1 | d04 [=c04] | up arrow, head top | just below rule
+1 | d05 [=c05 F Cir.Mo.] | up arrow, head top | just below rule
+1-10 | d02 [=c02 A Cir.Mo.] | long arrow down, head row 5 | ends at row 10/11 boundary
+1-9 | d15 [=c15 Upper Central wheels] | stepped shaft down, head row 5 | from the rule to the row 9/10 boundary
+1-9 | d16 [=c16 Upper multiplying Pinions] | stepped shaft down, head row 5 | 
+1-9 | d19 [=c19 LMP n. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d21 [=c21 LMP n-1. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d23 [=c23 LMP n-2. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d25 [=c25 LMP n-3. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d28 [=c28 Lower Central wheels n-2.] | stepped shaft down, head row 5 | 
+1-9 | d29 [=c29 Lower Central wheels n-3.] | stepped shaft down, head row 5 | 
+1-9 | d30 [=c30 Lower Central wheels n-4.] | stepped shaft down, head row 5 | 
+1-9 | d31 [=c31 Lower Central wheels n-5.] | stepped shaft down, head row 5 | shaft ends in a dot
+1-9 | d33 [=c33 Figure wheels for Product] | stepped shaft down, head row 5 | 
+2 | d45 [=c45 P Cir.Mo.] | down arrow | 305
+2 | d46 [=c46 multiplier n.] | digit 0 | 305
+2 | d47 [=c47 multiplier n-1.] | digit 0 | 305
+2 | d48 [=c48 multiplier n-2.] | down arrow | 305; left of the digit
+2 | d48 [=c48 multiplier n-2.] | digit 1 | 305
+2 | d49 [=c49 multiplier n-3.] | digit 1 | 305
+2 | d50 [=c50 Y.] | words "Rest out." | 305; no arrow
+2 | d53 [=c53 complement n.] | digit 0 | 305
+2 | d54 [=c54 complement n-1.] | digit 0 | 305
+2 | d55 [=c55 complement n-2.] | down arrow | 305; left of the digit
+2 | d55 [=c55 complement n-2.] | digit 9 | 305
+2 | d56 [=c56 complement n-3.] | digit 9 | 305
+4 | d36 [=c36 Single tooth for raising feeder Cir.Mo.] | down arrow, dashed shaft | 304 and 305; head at lower end
+4 | d37 [=c37 Cam for lowering the Feeder Ver.Mo.] | word "Inactive." | 305; no arrow
+4 | d40 [=c40 Feeder. Cir.Mo.] | word "Rest." | 305; no arrow
+4 | d41 [=c41 Starting tooth (lowering mult. pinions) Ver.Mo.] | words "Rest out." | 305; no arrow
+4 | d43 [=c43 Starting tooth (lowering registering tooth and feeder) Ver.Mo.] | words "Rest out." | 305; no arrow
+4 | d51 [=c51 U Starting tooth (registering) Ver.Mo.] | words "Rest in." | 305; no arrow
+5 | d07 [=c07 S Cir.M.] | word "Rest." | no arrow; [?row 5-6]
+5 | d09 [=c09 Feeder of 2 figs.] | up arrow, short | one arrow
+5 | d12 [=c12 Gathering up tooth] | Y mark | one mark
+5 | d12 [=c12 Gathering up tooth] | words "last but 1." | 
+5 | d17 [=c17 Starting tooth (mult. pinions)] | words "Rem.d out." | [?Rem.d]; no mark
+7 | d14 [=c14 X.] | words "Rem.d out." | [?Rem.d]; on row 7/8 boundary; no mark
+9-10 | d38 [=c38 Cam ... Cir.Mo.] | down arrow, dashed shaft | 305; head at the row 10/11 boundary
+9 | d40 [=c40 Feeder. Cir.Mo.] | word "Rest." | 305; no arrow
+10 | d50 [=c50 Y.] | word "Rest." | 305; no arrow
+10 | d51 [=c51 U Starting tooth (registering) Ver.Mo.] | word "Rest." | 305; no arrow
+11 | d04 [=c04] | hatched x3 | struck-through up arrow
+11 | d06 [=c06 C1 Ver.Mo.] | up arrow | 
+11 | d06 [=c06 C1 Ver.Mo.] | word "Out." | 
+11 | d52 [=c52 C1. Ver.Mo.] | up arrow, double head | 305
+11 | d52 [=c52 C1. Ver.Mo.] | number ".5" | 305
+12 | d03 [=c03] | hatched x2 | struck-through up arrow
+12 | d04 [=c04] | hatched x3 | struck-through down arrow; spans 12-13
+12 | d05 [=c05 F Cir.Mo.] | down arrow, head mid | 
+12 | d05 [=c05 F Cir.Mo.] | word "Carry." | 
+12 | d33 [=c33 Figure wheels for Product] | down arrow, head mid | 
+12 | d41 [=c41 Starting tooth (lowering mult. pinions) Ver.Mo.] | words "Rest out." | 305; no arrow
+13 | d03 [=c03] | hatched x2 | struck-through down arrow; on rule
+13 | d04 [=c04] | down arrow | shaft to rule
+13 | d05 [=c05 F Cir.Mo.] | up arrow, small | on rule
+13 | d06 [=c06 C1 Ver.Mo.] | down arrow, head mid | shaft to rule
+13 | d06 [=c06 C1 Ver.Mo.] | word "In." | 
+13 | d52 [=c52 C1. Ver.Mo.] | down arrow, short | 305; head at rule
+13 | d52 [=c52 C1. Ver.Mo.] | number ".5" | 305
+~6 | margin right of d56 | pencil figure "4" | 305; outside the table

@@ -24,7 +24,7 @@ babbage history              each capability: conceived, designed, used, revised
 babbage history pages        each page's capabilities against the record before its date
 babbage history pages --as-of 1837-08-04
                              each page against the machine as evidenced by that date: what it needs that is not yet
-babbage mechanical           BAB/F/001's first cycle in the mechanical notation: the marks and their timing
+babbage mechanical [N]       BAB/F/001-002, the multiplication in the mechanical notation: six cycles, and cycle N's timing
 babbage uses [FILE]          the machine's capabilities each page needs, and the rows that need them
 babbage decisions            the rules of the machine, and what each rests on
 babbage json FILE [--at …]   the run as JSON, for the playground
@@ -247,37 +247,49 @@ fn main() {
                 }
             }
         }
-        ["mechanical"] => {
-            use babbage::mechanical::{chart, in_motion, read, Kind, F001};
-            let marks = read(F001).unwrap_or_else(|e| {
-                eprintln!("{e}");
-                exit(2)
-            });
-            println!("BAB/F/001, \"Multiply a, b, c, d by 1021\": the first complete cycle, 13 time units.\n");
-            print!("{}", chart(&marks));
-            println!("\n↓ ↑ arrow (a motion), | its continuation, · rest, w words, ? a mark no source explains, figures as written.\n");
-            let m = in_motion(&marks);
-            println!(
-                "Columns with a motion under way, by time unit: {}",
-                m.iter().map(|x| x.to_string()).collect::<Vec<_>>().join(" ")
-            );
-            println!(
-                "\nThe marks ({} in all), by what is known of their meaning:",
-                marks.len()
-            );
-            for k in [
-                Kind::Arrow,
-                Kind::Rest,
-                Kind::Words,
-                Kind::Figure,
-                Kind::Unknown,
-                Kind::Stray,
-            ] {
-                let n = marks.iter().filter(|x| x.kind == k).count();
-                println!("  {n:>3}  {:?}: {}", k, k.meaning());
+        ["mechanical"] | ["mechanical", _] => {
+            use babbage::mechanical::{chart, in_motion, multiplier, read, Kind, CYCLES};
+            let want: Option<u8> = rest.get(1).and_then(|c| c.parse().ok());
+            let all: Vec<_> = CYCLES
+                .iter()
+                .map(|(sheet, n, text)| {
+                    let marks = read(text).unwrap_or_else(|e| {
+                        eprintln!("{sheet} cycle {n}: {e}");
+                        exit(2)
+                    });
+                    (sheet, *n, marks)
+                })
+                .collect();
+            println!("\"Multiply a, b, c, d by 1021\": BAB/F/001 and F/002, six cycles of 13 time units.\n");
+            println!("cycle  sheet       marks  unknown  multiplier  most columns in motion");
+            for (sheet, n, marks) in &all {
+                let unknown = marks.iter().filter(|m| m.kind == Kind::Unknown).count();
+                let peak = in_motion(marks).into_iter().max().unwrap_or(0);
+                let mult = multiplier(marks);
+                println!(
+                    "{n:>5}  {sheet}  {:>5}  {unknown:>7}  {:>10}  {peak:>3}",
+                    marks.len(),
+                    if mult.is_empty() { "-".into() } else { mult }
+                );
             }
-            println!("\nLayers built: the notation, the timing. Not built: the mechanical state and the arithmetic;");
-            println!("see src/mechanical.rs and sources/notes/F001.md for what they need.");
+            let n = want.unwrap_or(1);
+            if let Some((sheet, _, marks)) = all.iter().find(|c| c.1 == n) {
+                println!("\nCycle {n} ({sheet}):\n");
+                print!("{}", chart(marks));
+                println!("\n↓ ↑ arrow (a motion), | its continuation, · rest, w words, ? a mark no source explains, figures as written.");
+                println!(
+                    "Columns with a motion under way, by time unit: {}",
+                    in_motion(marks)
+                        .iter()
+                        .map(|x| x.to_string())
+                        .collect::<Vec<_>>()
+                        .join(" ")
+                );
+            }
+            println!(
+                "\nThe multiplier's figures are as written; nothing here gives a mark a meaning no source gives it."
+            );
+            println!("Layers built: the notation, the timing. Not built: the mechanical state and the arithmetic (docs/f001-pilot.md).");
         }
         ["uses"] => {
             let names: Vec<&str> = babbage::history::CAPABILITIES.iter().map(|c| c.0).collect();

@@ -19,6 +19,33 @@
 
 pub const F001: &str = include_str!("../mechanical/F001-cycle1.txt");
 
+/// Every cycle of the multiplication: F/001 cycles 1-3 and F/002 cycles
+/// 4-6, numbered as the pencil figures in the right margin number them.
+/// F/002 has no column heads; its d01-d56 are identified with F/001's
+/// c01-c56 by the ruling (an inference: see sources/notes/F002.md).
+pub const CYCLES: &[(&str, u8, &str)] = &[
+    ("BAB/F/001", 1, include_str!("../mechanical/F001-cycle1.txt")),
+    ("BAB/F/001", 2, include_str!("../mechanical/F001-cycle2.txt")),
+    ("BAB/F/001", 3, include_str!("../mechanical/F001-cycle3.txt")),
+    ("BAB/F/002", 4, include_str!("../mechanical/F002-cycle4.txt")),
+    ("BAB/F/002", 5, include_str!("../mechanical/F002-cycle5.txt")),
+    ("BAB/F/002", 6, include_str!("../mechanical/F002-cycle6.txt")),
+];
+
+/// The figures written on the multiplier's wheels (n to n-3) in a cycle,
+/// as written, in order of the columns; "" where a wheel has none.
+pub fn multiplier(marks: &[Mark]) -> String {
+    let mut ds: Vec<(u32, char)> = marks
+        .iter()
+        .filter(|m| m.kind == Kind::Figure && m.mark.starts_with("digit"))
+        .filter(|m| (46..=49).contains(&col_no(&m.column)))
+        .filter_map(|m| m.mark.chars().last().map(|c| (col_no(&m.column), c)))
+        .collect();
+    ds.sort();
+    ds.dedup_by_key(|d| d.0);
+    ds.iter().map(|d| d.1).collect()
+}
+
 #[derive(Clone, Copy, Debug, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Kind {
     /// An arrow: a motion, downward or upward on the page.
@@ -119,7 +146,7 @@ pub fn read(text: &str) -> Result<Vec<Mark>, String> {
 
 /// The column's number on the sheet, `c18` → 18, for ordering.
 fn col_no(c: &str) -> u32 {
-    c.trim_start_matches('c')
+    c.trim_start_matches(['c', 'd'])
         .chars()
         .take_while(|c| c.is_ascii_digit())
         .collect::<String>()

@@ -1,0 +1,93 @@
+% BAB/F/002, 216/304 and 216/305: the third and last complete band,
+% pencil "6" in the right margin, rows 1-13, as transcribed in
+% sources/notes/F002.md. No person has checked the transcription.
+% Columns d01-d56 = F/001's c01-c56 by the ruling (no heads on F/002).
+% row | column | mark | note
+% Below this band the ruling runs on for one partial row (row 1 of a
+% seventh band). Its only mark is commented out here because the parser
+% has no prefix for a partial row after the last band:
+% after-1 | d05 [=c05 F Cir.Mo.] | up arrow, head top | 304; just below the last rule
+1 | d04 [=c04] | up arrow, head top | just below rule
+1 | d05 [=c05 F Cir.Mo.] | up arrow, head top | just below rule
+1-10 | d02 [=c02 A Cir.Mo.] | long arrow down, head row 6 | ends at row 10/11 boundary
+1-9 | d15 [=c15 Upper Central wheels] | stepped shaft down, head row 5 | from the rule to the row 9/10 boundary
+1-9 | d16 [=c16 Upper multiplying Pinions] | stepped shaft down, head row 5 | 
+1-9 | d19 [=c19 LMP n. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d21 [=c21 LMP n-1. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d23 [=c23 LMP n-2. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d25 [=c25 LMP n-3. Cir.M.] | stepped shaft down, head row 5 | 
+1-9 | d29 [=c29 Lower Central wheels n-3.] | stepped shaft down, head row 5 | 
+1-9 | d30 [=c30 Lower Central wheels n-4.] | stepped shaft down, head row 5 | 
+1-9 | d31 [=c31 Lower Central wheels n-5.] | stepped shaft down, head row 5 | 
+1-9 | d32 [=c32 Lower Central wheels n-6.] | stepped shaft down, head row 5 | 
+1-9 | d33 [=c33 Figure wheels for Product] | stepped shaft down, head row 5 | 
+2 | d40 [=c40 Feeder. Cir.Mo.] | up arrow | 305
+2 | d45 [=c45 P Cir.Mo.] | down arrow | 305
+2 | d46 [=c46 multiplier n.] | digit 0 | 305
+2 | d47 [=c47 multiplier n-1.] | digit 0 | 305
+2 | d48 [=c48 multiplier n-2.] | digit 0 | 305
+2 | d49 [=c49 multiplier n-3.] | down arrow | 305; left of the digit
+2 | d49 [=c49 multiplier n-3.] | digit 0 | 305
+2 | d50 [=c50 Y.] | down arrow | 305
+2 | d50 [=c50 Y.] | words "Put in." | 305
+2 | d53 [=c53 complement n.] | digit 0 | 305
+2 | d54 [=c54 complement n-1.] | digit 0 | 305
+2 | d55 [=c55 complement n-2.] | digit 0 | 305
+2 | d56 [=c56 complement n-3.] | down arrow | 305; left of the digit
+2 | d56 [=c56 complement n-3.] | digit 0 | 305
+4 | d36 [=c36 Single tooth for raising feeder Cir.Mo.] | down arrow, solid, short | 304 and 305
+4 | d37 [=c37 Cam for lowering the Feeder Ver.Mo.] | down arrow, solid, short | 305
+4 | d37 [=c37 Cam for lowering the Feeder Ver.Mo.] | word "Active." | 305
+4 | d40 [=c40 Feeder. Cir.Mo.] | up arrow | 305
+4 | d41 [=c41 Starting tooth (lowering mult. pinions) Ver.Mo.] | down arrow | 305
+4 | d41 [=c41 Starting tooth (lowering mult. pinions) Ver.Mo.] | words "Put in." | 305
+4 | d43 [=c43 Starting tooth (lowering registering tooth and feeder) Ver.Mo.] | down arrow | 305
+4 | d43 [=c43 Starting tooth (lowering registering tooth and feeder) Ver.Mo.] | words "Put in." | 305
+4 | d51 [=c51 U Starting tooth (registering) Ver.Mo.] | up arrow | 305
+4 | d51 [=c51 U Starting tooth (registering) Ver.Mo.] | words "Put out." | 305
+5 | d08 [=c08 Feeder of units fig.] | two staggered up arrows, head mid | 
+5 | d12 [=c12 Gathering up tooth] | two staggered Y marks | 
+5 | d12 [=c12 Gathering up tooth] | word "Last." | beside the upper mark
+5 | d12 [=c12 Gathering up tooth] | word "Single." | beside the lower mark; [?Single.]
+5 | d14 [=c14 X.] | Y mark | 
+5 | d14 [=c14 X.] | words "Put in." | 
+5 | d17 [=c17 Starting tooth (mult. pinions)] | Y mark | 
+5 | d17 [=c17 Starting tooth (mult. pinions)] | words "Put in." | 
+5-8 | d39 [=c39 Feeder. Ver.Mo.] | long arrow down, head at end | 305; head at the row 8/9 boundary
+5-8 | d39 [=c39 Feeder. Ver.Mo.] | words "Moved to the inactive position" | 305
+5-8 | d44 [=c44 P Ver.Mo.] | long arrow down, head at end | 305
+5-8 | d44 [=c44 P Ver.Mo.] | words "Put out of gear." | 305
+6 | d07 [=c07 S Cir.M.] | down arrow, head mid | 
+6 | d07 [=c07 S Cir.M.] | IF. | 
+7 | d14 [=c14 X.] | up arrow, short | 
+7 | d14 [=c14 X.] | IF. | 
+7 | d43 [=c43 Starting tooth (lowering registering tooth and feeder) Ver.Mo.] | up arrow | 305
+7 | d43 [=c43 Starting tooth (lowering registering tooth and feeder) Ver.Mo.] | words "Put out." | 305
+7-11 | d13 [=c13 Cam for lowering the feeder] | long arrow down, head row 9 | ends at row 11/12 boundary
+9-10 | d38 [=c38 Cam ... Cir.Mo.] | long arrow down, head at end | 305; solid
+10-13 | d18 [=c18 LMP n. Ver.M.] | long arrow down, head row 11 | to rule
+10-13 | d18 [=c18] | words "Put out of gear." | 
+10-13 | d20 [=c20 LMP n-1. Ver.Mo.] | long arrow down, head row 11 | to rule
+10-13 | d20 [=c20] | words "Put out of gear." | 
+10-13 | d22 [=c22 LMP n-2. Ver.Mo.] | long arrow down, head row 11 | to rule
+10-13 | d22 [=c22] | words "Put out of gear." | 
+10-13 | d24 [=c24 LMP n-3. Ver.M.] | long arrow down, head row 11 | to rule
+10-13 | d24 [=c24] | words "Put out of gear." | 
+11 | d01 [=c01 A Ver.] | up arrow, short | 
+11 | d06 [=c06 C1 Ver.Mo.] | up arrow | 
+11 | d06 [=c06 C1 Ver.Mo.] | word "Out." | 
+11 | d52 [=c52 C1. Ver.Mo.] | up arrow, double head | 305
+11 | d52 [=c52 C1. Ver.Mo.] | number ".5" | 305
+12 | d05 [=c05 F Cir.Mo.] | down arrow, head mid | 
+12 | d05 [=c05 F Cir.Mo.] | word "Carry" | no full stop seen
+12 | d17 [=c17 Starting tooth (mult. pinions)] | up arrow | 
+12 | d17 [=c17 Starting tooth (mult. pinions)] | words "Put out." | 
+12 | d33 [=c33 Figure wheels for Product] | down arrow, head mid | [?12-13]
+12 | d37 [=c37 Cam for lowering the Feeder Ver.Mo.] | up arrow | 305
+12 | d37 [=c37 Cam for lowering the Feeder Ver.Mo.] | word "In-active." | 305
+12 | d41 [=c41 Starting tooth (lowering mult. pinions) Ver.Mo.] | up arrow | 305
+12 | d41 [=c41 Starting tooth (lowering mult. pinions) Ver.Mo.] | words "Put out." | 305
+13 | d05 [=c05 F Cir.Mo.] | up arrow, small | on rule
+13 | d06 [=c06 C1 Ver.Mo.] | double arrow converging | 
+13 | d06 [=c06 C1 Ver.Mo.] | IF | 
+~7 | margin right of d56 | pencil figure "6" | 305; outside the table
