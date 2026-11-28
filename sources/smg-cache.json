@@ -50,6 +50,142 @@
       "height": 6929,
       "tiles": 168,
       "complete": true
+    },
+    {
+      "image": "216/271",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F271%2FBabbage_Papers__Multiplication_without_Table_1836_Jan_11.ptif",
+      "width": 9387,
+      "height": 6438,
+      "tiles": 247,
+      "complete": true
+    },
+    {
+      "image": "216/273",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F273%2FBabbage_Papers__Multiplication_without_Table_1836_Jan_11.ptif",
+      "width": 9387,
+      "height": 6402,
+      "tiles": 247,
+      "complete": true
+    },
+    {
+      "image": "216/278",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F278%2FBabbage_Papers.ptif",
+      "width": 5498,
+      "height": 6359,
+      "tiles": 143,
+      "complete": true
+    },
+    {
+      "image": "216/280",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F280%2FBabbage_Papers__Division_without_Table_1836_Jan_13.ptif",
+      "width": 9315,
+      "height": 6446,
+      "tiles": 247,
+      "complete": true
+    },
+    {
+      "image": "216/282",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F282%2FBabbage_Papers__Division_without_Table_1836_Jan_13.ptif",
+      "width": 9315,
+      "height": 6446,
+      "tiles": 247,
+      "complete": true
+    },
+    {
+      "image": "216/286",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F286%2FBabbage_Papers__Division_without_Table_1836_Jan_13.ptif",
+      "width": 9315,
+      "height": 6446,
+      "tiles": 247,
+      "complete": true
+    },
+    {
+      "image": "216/288",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F288%2FBabbage_Papers__Division_without_Table_1836_Jan_13.ptif",
+      "width": 9342,
+      "height": 6405,
+      "tiles": 247,
+      "complete": true
+    },
+    {
+      "image": "216/292",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F292%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 5994,
+      "height": 6369,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/293",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F293%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 5994,
+      "height": 6369,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/295",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F295%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 6016,
+      "height": 6369,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/296",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F296%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 6016,
+      "height": 6369,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/298",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F298%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 6004,
+      "height": 6393,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/299",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F299%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 6004,
+      "height": 6393,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/301",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F301%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 5587,
+      "height": 6369,
+      "tiles": 143,
+      "complete": true
+    },
+    {
+      "image": "216/302",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F302%2FBabbage_Papers__Square_Root_1836_Jan_15.ptif",
+      "width": 5587,
+      "height": 6369,
+      "tiles": 143,
+      "complete": true
+    },
+    {
+      "image": "216/311",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F311%2FBabbage_Papers__Ordinary_Cycle_of_16_1836_Jan_18.ptif",
+      "width": 5257,
+      "height": 6369,
+      "tiles": 143,
+      "complete": true
+    },
+    {
+      "image": "216/316",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F316%2FBabbage_Papers__Notation_of_Carriage_1836_Jan_25.ptif",
+      "width": 5498,
+      "height": 6959,
+      "tiles": 154,
+      "complete": true
     }
   ]
 }
