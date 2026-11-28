@@ -148,14 +148,16 @@ def engagements(b, mill, variant):
     return pairs, source, notes
 
 
-def run(variant="W", step=1, retain=True, carriage=True):
-    """step, retain, carriage: set to 0/False to take that rule away (an ablation)."""
+def run(variant="W", step=1, retain=True, carriage=True, engage=None):
+    """step, retain, carriage: set to 0/False to take that rule away (an ablation).
+    engage: a function (band, mill, variant) -> (pairs, source, notes) used in place of
+    reading the engagements from the marks (scripts/f_engage.py)."""
     mill = Mill()
     bands = []
     for sheet, n in BANDS:
         b = read_band(sheet, n)
         before = deepcopy(mill.w)
-        pairs, source, notes = engagements(b, mill, variant)
+        pairs, source, notes = (engage or engagements)(b, mill, variant)
         pairs = [(g, r, step if off == "step" else off) for g, r, off in pairs
                  if retain or g[0] != r[0] or off == "step"]
         checks = []
