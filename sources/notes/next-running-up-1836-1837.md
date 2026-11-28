@@ -153,10 +153,59 @@ then four bracketed cases, each "Not.n 71" against "Method described below":
   chooses the direction of stepping. No running up is named on these two
   pages.
 
-p 147's three-way order ("If it runs up order Stepping down … if it now
-runs up order no stepping but if it does not run up order Stepping up") is
-still known only from the earlier preview reading. pp 146–155 not yet read
-at full resolution.
+### (a) p 146 (225/293, left page; 0.45 reduction of the full-resolution image, legible)
+
+> Set Barrels for Division — — *[margin, N.o of Turns:]* 1
+> Bring P into Mill and set spiral axes of ″R and counting app.s N.os 1, 2 & 3
+> (by acting on their units wheels) to p Bring in Q on N.o 2 of ″A
+> (signs on N.o 1) and ′Q on N.o 1 of ′A *[margin:]* 5
+> Disconnect carr. from spiral axes and bring it to −0 (N.B. by a little
+> alteration it may be at −0 ⟨at the end of the turn in which⟩ ~~when~~ it has
+> finished setting the spiral axes. See Note A on Notation 74 Sheet 2)
+> *[margin:]* Table commences
+> Transfer Q from 2 to 1 on ″A and by means of an axis (not shewn in drawing 52)
+> gearing with Y subtract q from counting apparatus N.os 1, 2 & 3 (by acting
+> on their units wheels) <u>after</u> their signs have been changed and 1
+> subtracted from them *[margin:]* 5
+
+### (a) p 147 (same image, right page; same depth, every word legible)
+
+> Lift wires of counting app.s N.o 1.
+> If it runs up order Stepping <u>down</u>. If it does <u>not</u> run up
+> subtract 1 from it and lift the wires <u>again</u> if it now runs up
+> order no stepping but if it does not run up order Stepping <u>up</u>
+> *[margin, N.o of Turns:]* 1
+> Subtract d from Counting app N.os 2 and 3. If neither count.g app. N.o 1
+> have run up in the <u>last</u> turn nor N.os 2 & 3 in <u>this</u> turn there
+> are no figures in the quotient; but if running up has occurred in either
+> turn proceed with the operation
+> *[margin:]* Stepping commences / In common Division p−q−d−1 is now ready /
+> If there are no figures in the quot.t it is known
+
+### (b) pp 146–147
+
+- **A three-way order on a computed count, by two tests for running up.**
+  The counting apparatus holds a number computed from the operands' digit
+  counts (p 146: set to p, then q subtracted after a change of sign and 1
+  subtracted). Its wires are lifted: if it runs up (negative), stepping
+  down; if not, 1 is subtracted and the wires lifted again: if it now runs
+  up (it was zero), no stepping; if not (positive), stepping up. **Zero is
+  a case of its own**, found by a second test after subtracting 1.
+- **The test is named**: "lift wires of counting app.s". This is the first
+  page found here that says how a running up is looked for (wires lifted
+  from a counting apparatus), though not what the wires then move.
+- **Whether to go on at all**: "If neither … have run up … there are no
+  figures in the quotient; but if running up has occurred in either turn
+  proceed with the operation." The operation continues or not on the
+  running up of counts computed from the data.
+- All of this is **inside the mill**, within one operation (division), in
+  November 1837 — the same months as the card-level backing card of
+  December 1837 (Vol III pp 161–162), which is ineffective "if the
+  combinatorial wheels have run up".
+- "Notation 74 Sheet 2": BAB/F/074 is in the range Bromley (1982, p 217)
+  gives for the 1838 design, "BAB.[F]74-107" (`docs/priority-register.md`).
+
+pp 148–155 not yet read at full resolution.
 
 ## 3. Q3: the early Vol II images (1–8, 14–19, 23–26, 31–32, 36) — pending
 

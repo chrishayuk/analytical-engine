@@ -136,6 +136,7 @@ From `control-flow.md`, `sources/notes/sketchbooks-control.md`,
 | Capability | In the mill | On the cards |
 |---|---|---|
 | Counted repetition | 1 Mar 1836 (stop, p 76); 7 Mar 1836 (running up of a count, p 84) | 30–31 Jul 1836: sets of cards passing a counted number of times (Vol II pp 178–179) |
+| A three-way order in the mill, zero a case of its own, by two tests ("lift wires of counting app.s"); the operation goes on only if a computed count runs up | 13 Nov 1837 (Vol III pp 146–147, `next-running-up-1836-1837.md`) | — |
 | Repetition ended by a counter running up | 7 Mar 1836 (p 84) | Dec 1837: a backing card "ineffective if the combinatorial wheels have run up" (Vol III pp 161–162); 30 May [1838]: "if running up in Combin.l Axis occur this order is destroyed" |
 | A choice on the sign of a result computed in the mill | 22 Mar 1836: Neg. or Pos. cycle on q − p (p 94) — a choice between mechanical cycles inside one operation | **not found in the pages read, 1836–1840.** Nearest: 25 June 1839, a running up of F in long addition throws in a cam inside the mill, and "the running up or non running up must turn a card over before it acts" in a variant not adopted (Vol IV p 12). April 1842, BAB/F/227: zero and sign tests, outcome not governing cards. First stated for the cards in print: Menabrea 1842 ("the mill will order other cards"), Note G 1843 (two courses, "contingently on" Operation 7's result) |
 
