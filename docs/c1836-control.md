@@ -32,17 +32,31 @@ The Vol XIII history records the same date: "7 March Running up applied to
 ## 2. Three of them, executable as behaviour
 
 `scripts/c1836.py` runs three designs as **abstract models of what the page
-states**, quoted at each transition. Where a page names an effect but not
-the part that produces it, the model reaches an explicit `Interface` and
-stops unless the run supplies that outcome by name; the trace says it was
-supplied. No linkage is invented. Counters are wheels turned one tooth at a
-time, a running up being the top wheel passing from 0 to 9.
+states**, quoted at each transition. What the pages leave out is of two
+kinds, kept apart:
+
+- a **gap**: a physical mechanism not shown (how an arm reaches a barrel,
+  how a running up turns an axis). The page states the behaviour; the model
+  follows the text and records the gap, which is never given a value;
+- an **event**: something that decides the course and that the page does
+  not derive (when the positive cycle ends, when "the next running up"
+  comes, which way q = p goes). A run must supply it by name, or the model
+  refuses. A model whose course depends on a supplied event is not shown to
+  end by itself, and its outcome says so.
+
+Inputs outside a design's domain or capacity are refused (counts are whole
+numbers ≥ 0 that fit the wheels; q ≤ 30 for the 1 March counting wheels,
+after p 82's "30 / p−30"; d ≤ q). The negative and positive cycles have no
+internal schedule in the model: the page gives none. `scripts/test_c1836.py`
+(14 tests) checks the stated behaviour, every refusal, and that gaps are
+never valued. Counters are wheels turned one tooth at a time, a running up
+being the top wheel passing from 0 to 9.
 
 | Model | Behaviour stated | Unresolved interfaces |
 |---|---|---|
 | **D-0301** (1 Mar, p 76) | q steppings down, counted on wheel q; its stop throws an arm in, which moves the gathering to q−d and puts the stepping-up cycle in gear; q−d steppings up; then Mult.n thrown out | how q and q−d are set (the spiral axis of pp 72–75); how the arm reaches teeth and barrel (no drawing); how q−d "throws out Mult.n" |
 | **D-0307** (7 Mar, p 84) | a count n on an axis; unity subtracted before each operation; n operations, then a running up and the operation suspended | where n comes from; what the running up acts on (nothing named) |
-| **D-0322** (22 Mar, pp 94–95) | A in gear at step 4; at step 5, q − p on the wheels: if it runs up, A moved, Neg. cycle; its first vertical puts A out and C in; C, on the next running up, ends Neg.; if it does not run up, A out and B in, Pos. cycle; the end of either, with the end of table making, puts in the division cycle | how q − p is on the wheels at step 5; how the running up turns the axis (no link drawn); what moves B when there is no running up; **which quantity runs up next** to end Neg.; what ends Pos.; table making; which cases have carriage prevented |
+| **D-0322** (22 Mar, pp 94–95) | A in gear at step 4; at step 5, q − p on the wheels: if it runs up, A moved, Neg. cycle; its first vertical puts A out and C in; C, on the next running up, ends Neg.; if it does not run up, A out and B in, Pos. cycle; the end of either, with the end of table making, puts in the division cycle | how q − p is on the wheels at step 5; how the running up turns the axis (no link drawn); what moves B when there is no running up; **which quantity runs up next** to end Neg.; what ends Pos.; table making; which cases have carriage prevented; **q = p** (the text's "if it do not run up" sends it to Pos., but the drawing labels Pos. "q−p > 0" and Neg. "q−p < 0"; the model refuses unless the reading is supplied) |
 
 ## 3. What each can express
 
@@ -50,7 +64,8 @@ Modern categories, applied to the behaviour stated; not Babbage's words.
 
 | | D-0301 stop | D-0307 running up | D-0322 sign choice |
 |---|---|---|---|
-| Repetition | yes: q, then q−d times | yes: n times | the Neg. cycle repeats until "the next running up" |
+| Repetition | yes: q, then q−d times | yes: n times | the Neg. cycle runs until "the next running up"; how it runs inside is not given |
+| Ends by itself, in the model | yes | yes | **no**: its end is a supplied event |
 | When the number of repetitions is fixed | before the loop (the counts are set from the digit counts, then the table is made) | before the loop (n is put on the axis) | **not fixed by the page**: it depends on the unresolved "next running up" |
 | What the trigger reads | the position of a counting wheel | a counter passing through zero | **the sign of a difference computed in the mill** |
 | Chooses between alternatives | no: one fixed sequence (down, then up) | no: continue or suspend | **yes: Neg. or Pos.** |

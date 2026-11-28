@@ -78,14 +78,31 @@ would need something not found (N).
   choice of 22 March 1836 is between mechanical cycles inside one
   operation, not between groups of operation cards.
 - **General computation.** See `docs/expressiveness.md`, which runs these
-  primitives as a machine and argues the bounds. A deck that halts in the
-  arrangements found has every number bounded by a tower of exponentials of
-  fixed height. So it cannot compute 2↑↑n for every n, and the arrangements
-  found do not compute every primitive recursive function. (An earlier
-  version of this page said they did; that is withdrawn.) Going further
-  needs a count set inside the group it counts, which no page read gives.
-  That is N, and it is the point at which a claim of full generality for
-  1836–1838 would go beyond the record.
+  primitives as a machine and proves the bounds in Lean. What a halting deck
+  can compute depends on where a repetition count comes from, which the
+  pages do not settle (`semantics.md`, rule 3a):
+  - **counts from number cards only** (hypothesis `ConstReps`): every number
+    is bounded by a tower of exponentials of fixed height, so 2↑↑n is not
+    computed for every n (`no_tetration`), and these decks do not compute
+    every primitive recursive function;
+  - **counts read from the store**, as `src/sketch.rs` reads 7 March 1836:
+    `tower-halting` computes 2↑↑n for every n in the December 1837
+    configuration (`tower_halts`), and 2↑↑↑n is not computed
+    (`no_pentation`).
+
+  Either way the dated configurations fall short of general computation.
+  Going further needs a count set inside the group it counts, so that a loop
+  can end on a number it has computed (argument E, `Minsky.lean`). No page
+  read gives it. That is N, and it is the point at which a claim of full
+  generality for 1836–1838 would go beyond the record. *(Corrected 28
+  November 2026: this paragraph first gave only the number-card bound, as if
+  it held generally.)*
+
+  The mill's own control is a separate matter: on 22 March 1836 a running
+  up of q − p chooses between two barrel cycles inside one operation
+  (`docs/c1836-control.md`). Whether that cycle's end depends on a number it
+  computes is not settled by the page, and nothing read connects it to the
+  cards.
 
 These are modern categories applied to his specification. They describe
 what the primitives allow, not what Babbage said about them.
