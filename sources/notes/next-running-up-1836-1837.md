@@ -101,9 +101,61 @@ interlined:
 > If it runs up reduce it to + zero and use the other one No 2. but if not,
 > subtract the numb.r left from the counting app. No 2 and then use it for q
 
+### (a) p 144, 13 November 1837 (225/292, left page; read on a 0.45 reduction of the full-resolution image, every word legible)
+
+> Reduce the counting App.s N.o 1 to +0 — — 1 *[right margin, under "N.o of Turns": 1]*
+> Each time ~~that~~ 1 is counted off N.o 2 add 1 to the count.g App.s N.o 1 and when
+> N.o 2 is reduced to 0 change the sign of N.o 1 subtract d from it, and proceed
+> as in Nov.r 68
+> Make Table with Ax. ″A
+> Mult.r upon ″A after table is made
+> Product upon A and ′A
+> d upon the axis which has complement in Division and when
+> it is given off it is transferred from one wheel to the other on that axis
+> The highest figure of the Mult.r is used first. The multiplier is stepped up and
+> the Table is stepped down
+> 13 Nov. 1837
+
+### (a) p 145 (same image, right page; same depth)
+
+> Division with one set of picking up sectors
+> such as those on Drawing N.o 52
+> q = N.o of digits in dividend p = ditto in divisor d = N.o of decimals
+
+then four bracketed cases, each "Not.n 71" against "Method described below":
+"q+1−p / 9+1−14 = −4 expressed by 996" and "p−q−1 / 14−9−1 = +4 expressed by
+4" → "Step <u>up</u> 4 times"; "q+1−p+d / 9+1−14+8 = +4 expressed by 4" and
+"p−q−d−1 / 14−9−8−1 = −4 expressed by 996" → "4 figures in quotient";
+"q+1−p / 8+1−5 = +4 exp.d by 4" and "p−q−1 / 5−8−1 = −4 exp.d by 996" →
+"Step <u>down</u> 4 times"; "q+1−p+d / 8+1−5+3 = +7 exp.d by 7" and "p−q−d−1
+/ 5−8−3−1 = −7 exp.d by 993" → "7 figures in quotient"; and
+
+> In the method described below (or rather in next page) when p−q−d−1 = 0
+> or +1 or +2 &c there are no figures in quotient
+
+### (b) pp 144–145
+
+- p 144 counts by transferring: each unit counted off counting apparatus
+  No 2 is added to No 1, and when No 2 reaches 0, No 1's sign is changed
+  and d subtracted. A count is turned into a signed number on wheels.
+- "The highest figure of the Mult.r is used first. The multiplier is stepped
+  up and the Table is stepped down": the order of multiplication, highest
+  figure first, the multiplier stepped up. This is multiplication **by
+  table**, 13 Nov 1837; it is the order the provisional controller of
+  `docs/f-control-result.md` uses for multiplication without table
+  (January 1836), but it is not evidence for that earlier design.
+- p 145: digit counts of dividend and divisor are combined into signed
+  counts written in complement on three wheels (−4 as 996, −7 as 993), and
+  the **sign** of the count decides "Step <u>up</u>" or "Step <u>down</u>",
+  and how many figures the quotient has; when p−q−d−1 is 0 or positive,
+  "there are no figures in quotient". So in November 1837, in the mill, a
+  count computed from the operands is held as a signed number and its sign
+  chooses the direction of stepping. No running up is named on these two
+  pages.
+
 p 147's three-way order ("If it runs up order Stepping down … if it now
 runs up order no stepping but if it does not run up order Stepping up") is
-still known only from the earlier preview reading. pp 144–155 not yet read
+still known only from the earlier preview reading. pp 146–155 not yet read
 at full resolution.
 
 ## 3. Q3: the early Vol II images (1–8, 14–19, 23–26, 31–32, 36) — pending
