@@ -77,7 +77,7 @@ The 6 that did not move:
 
 | Sheet, band | Column |
 |---|---|
-| F/023 band 3 | Axis B Ver |
+| F/023 bands 3 and 4 | Axis B Ver (band 4: row 1 read as empty; the table ends after it) |
 | F/029 band 3 | Axis C Ver, ″p″p and cp |
 | F/033 U2 | Change fig Add→Sub — a Ver |
 
@@ -87,7 +87,18 @@ The reader found labels on F/029 that the inputs note had missed: "U 6", "U" and
 
 There are 17 more attached parts whose platform is unknown (an earlier bare "B"). M1 predicts motion, M0 none: **14 moved** and 3 didn't. All 3 are at the end of an F/033 table.
 
-**Persistence holds.** 37 of 43 parts with no fresh label moved, each in the direction and by the lift of the platform that an earlier B had attached them to. A stateless reading of B, in which only a fresh label moves a part, fails on them.
+**Persistence holds.** 37 of 43 parts with no fresh label moved. All 37 moved in the direction of the platform an earlier B had attached them to; of the 29 with a figure, 28 moved by its lift (1 has the point missing), and 8 have no figure. A stateless reading of B, in which only a fresh label moves a part, fails on them.
+
+**The persistence denominators, reconciled.** v1 enumerated 78 persistence cases and v2 64:
+
+| | v1 | v2 |
+|---|---|---|
+| Moved | 37 | 37 |
+| Did not move | 6 | 6 |
+| Cropped | 4 | 4 |
+| F/033 mid-band rows (v1 only; scored apart, section 5) | 14 | — |
+| F/033 band-closing label rows (not scored) | 17 | 17 |
+| **Total** | **78** | **64** |
 
 ## 3. No-motion predictions
 
@@ -126,9 +137,11 @@ One case is one part in one band. "Identical cases" are those all four models ma
 
 On the cases they share, the models can't be told apart. They differ only where one predicts and another abstains:
 
-- **M1 adds 51 motions, 42 of them right.** Its 9 false movements are the 6 persistence misses above plus the 3 F/033 unknown-platform cases.
+- **M1 predicts 60 motions beyond the fresh B's (43 persistent, 17 unknown platform): 51 right, 9 false.** The 9 are the 6 persistence misses above and the 3 F/033 unknown-platform cases.
 - **M0 and R4 predict no motion everywhere else and miss 194 and 106 motions.** These are bare B, persistent and unlabelled parts.
 - **R4u is never wrong, but it predicts only 371 of 1,999 cases.**
+
+**M0 against M1, pairwise.** M0 predicts everywhere, so their common coverage is M1's: 431 cases. They agree on 371 (both right on all 371) and disagree on 60: the 43 persistence cases and the 17 attached to an unknown platform. On those 60, M1 is right 51 times and M0 9 times; on the 43 persistence cases alone, M1 37 and M0 6.
 
 Per design, the same pattern holds on every sheet type: `held-out-2-scores.md`, end.
 
