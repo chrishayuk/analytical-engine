@@ -9,6 +9,35 @@ The sources are readings by coding agents from the Science Museum Group's
 images; no person has verified them. Coverage is incomplete and is stated
 where it matters.
 
+## 0. Prior work, and a conflict to resolve first
+
+From `priority-register.md` (28 November 2026). **This page's chronology
+is provisional until these are reconciled:**
+
+- **Bromley (1990, p 76)** dates loops and "alternate sequences dependent
+  on arithmetic results" in the barrels, with looping and branching super
+  barrels, to **late 1834**. That is earlier than anything found here, where
+  nothing before 7 March 1836 was found to use a result passing through
+  zero. The two may differ in sources (Bromley read papers this project has
+  not, from 1834–1835) or in what counts as a branch (a barrel's stops and
+  reducing apparatus against a running up). Not yet resolved; the 1834–1835
+  pages he relies on should be identified and read.
+- **Bromley (1982, pp 206–207, 212)** already describes running up as a
+  sign change used for control, "multiway branches", and division as the
+  origin of "conditional processes conditioned by events occurring during
+  the calculation".
+- **Swade (Plan 28 blog, 16 November 2017)** already draws the distinction
+  between "multi-way conditional branching at the 'microcode' level" and
+  user-level conditional control, and dates the first user-level
+  conditional to an entry of **19 March 1842** ("minor operations"), which
+  this project has not read; set it against F/227 (April 1842) here.
+
+So the mill-against-cards distinction, and running up as a control signal,
+are prior work. What may remain distinct is narrower: the dated sequence of
+1, 7 and 22 March 1836 read page by page, the executable behavioural models
+with their unresolved interfaces, and the same counting device appearing on
+the cards in December 1837. None of that is claimed as new.
+
 ## 1. The dated designs in the mill (Vol II, December 1835 – March 1836)
 
 From `sources/notes/running-up-designs-1836.md` (pages read at full
@@ -82,8 +111,9 @@ So the three are different kinds of control:
   count an arithmetic event on a figure-wheel number, of any size, for
   "any op.".
 - **D-0322 is a choice on a computed result**: the course taken depends on
-  the sign of q − p, formed in the mill during the operation. That is new
-  on 22 March in the pages read.
+  the sign of q − p, formed in the mill during the operation. In the pages
+  read here it first appears on 22 March; Bromley (1990) dates branching on
+  arithmetic results to late 1834 (section 0).
 - **Whether D-0322 also ends a loop on a result computed inside it** turns
   on the unresolved interface: if the "next running up" is of a quantity
   the Neg. cycle itself changes, the Neg. cycle repeats until the data say
@@ -104,7 +134,8 @@ From `control-flow.md`, `sources/notes/sketchbooks-control.md`,
 
 **What this shows, within the pages read:**
 
-1. **Yes, in this order.** A choice made on the sign of a result computed in
+1. **In this order, in the pages read** (and the order itself is Swade's
+   2017 distinction, with an earlier mill date in Bromley 1990; section 0). A choice made on the sign of a result computed in
    the mill is specified inside the mill on 22 March 1836. The first
    statement found that a mill result governs the cards is the published
    account of 1842–1843; in the manuscripts read, the nearest is a variant
