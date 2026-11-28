@@ -1,0 +1,1921 @@
+{
+ "W": {
+  "variant": "W",
+  "ablation": {
+   "step": 1,
+   "retain": true,
+   "carriage": true
+  },
+  "turns": 159,
+  "bands": [
+   {
+    "sheet": "F/018",
+    "band": 1,
+    "source": "marks",
+    "words": {
+     "C": "Step up from one to two"
+    },
+    "engagements": [
+     {
+      "gives": "C N.o 1",
+      "receives": "C N.o 2",
+      "cage_offset": 1
+     }
+    ],
+    "carry_marked": false,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": false,
+    "multiplier_figure_out": 2,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "000000",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "010000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "000000"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "000000"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "C N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "C N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/018",
+    "band": 2,
+    "source": "marks",
+    "words": {
+     "A": "Give off and retain",
+     "B": "Add to N.os one"
+    },
+    "engagements": [
+     {
+      "gives": "A N.o 1",
+      "receives": "A N.o 2",
+      "cage_offset": 0
+     },
+     {
+      "gives": "A N.o 1",
+      "receives": "B N.o 1",
+      "cage_offset": 0
+     }
+    ],
+    "carry_marked": true,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": true,
+    "multiplier_figure_out": null,
+    "wheels": {
+     "A N.o 1": "000000",
+     "A N.o 2": "001028",
+     "B N.o 1": "001028",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "010000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "001028"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "001028"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "A N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "A N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "\"Add to N.os one\" finds the product on B N.o 1",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/018",
+    "band": 3,
+    "source": "marks",
+    "words": {
+     "A": "Give off and retain",
+     "B": "Add to N.os one"
+    },
+    "engagements": [
+     {
+      "gives": "A N.o 2",
+      "receives": "A N.o 1",
+      "cage_offset": 0
+     },
+     {
+      "gives": "A N.o 2",
+      "receives": "B N.o 1",
+      "cage_offset": 0
+     }
+    ],
+    "carry_marked": true,
+    "carried_from_cages": [
+     0
+    ],
+    "carry_steps": 1,
+    "carriage_zeros_marked": true,
+    "multiplier_figure_out": null,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "002056",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "010000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "002056"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "002056"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "A N.o 2 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "A N.o 1 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "\"Add to N.os one\" finds the product on B N.o 1",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/019",
+    "band": 4,
+    "source": "marks",
+    "words": {
+     "B": "Step up from one to two",
+     "C": "Step up from two to one"
+    },
+    "engagements": [
+     {
+      "gives": "B N.o 1",
+      "receives": "B N.o 2",
+      "cage_offset": 1
+     },
+     {
+      "gives": "C N.o 2",
+      "receives": "C N.o 1",
+      "cage_offset": 1
+     }
+    ],
+    "carry_marked": false,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": false,
+    "multiplier_figure_out": 0,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "000000",
+     "B N.o 2": "020560",
+     "C N.o 1": "100000",
+     "C N.o 2": "000000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "020560"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "020560"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "B N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "B N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+      "holds": true
+     },
+     {
+      "check": "C N.o 2 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "C N.o 1 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/019",
+    "band": 5,
+    "source": "marks",
+    "words": {
+     "B": "Step up from two to one",
+     "C": "Step up from one to two"
+    },
+    "engagements": [
+     {
+      "gives": "B N.o 2",
+      "receives": "B N.o 1",
+      "cage_offset": 1
+     },
+     {
+      "gives": "C N.o 1",
+      "receives": "C N.o 2",
+      "cage_offset": 1
+     }
+    ],
+    "carry_marked": false,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": false,
+    "multiplier_figure_out": 1,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "205600",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "000000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "205600"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "205600"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "B N.o 2 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "B N.o 1 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+      "holds": true
+     },
+     {
+      "check": "C N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "C N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+      "holds": true
+     }
+    ],
+    "notes": [
+     "row 14-15, Figures upon Axis B: number \"1028\" (smaller, under the last four figures of 205600)"
+    ]
+   },
+   {
+    "sheet": "F/019",
+    "band": 6,
+    "source": "words (T7): giver chosen by state",
+    "words": {
+     "A": "Give off and retain",
+     "B": "Add to N.os one."
+    },
+    "engagements": [
+     {
+      "gives": "A N.o 1",
+      "receives": "A N.o 2",
+      "cage_offset": 0
+     },
+     {
+      "gives": "A N.o 1",
+      "receives": "B N.o 1",
+      "cage_offset": 0
+     }
+    ],
+    "carry_marked": true,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": true,
+    "multiplier_figure_out": null,
+    "wheels": {
+     "A N.o 1": "000000",
+     "A N.o 2": "001028",
+     "B N.o 1": "206628",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "000000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "206628"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "206628"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "\"Add to N.os one\" finds the product on B N.o 1",
+      "holds": true
+     }
+    ],
+    "notes": [
+     "no marks; executed from the words, A N.o 1 gives off because it alone is not at zero"
+    ]
+   }
+  ]
+ },
+ "M": {
+  "variant": "M",
+  "ablation": {
+   "step": 1,
+   "retain": true,
+   "carriage": true
+  },
+  "turns": 126,
+  "bands": [
+   {
+    "sheet": "F/018",
+    "band": 1,
+    "source": "marks",
+    "words": {
+     "C": "Step up from one to two"
+    },
+    "engagements": [
+     {
+      "gives": "C N.o 1",
+      "receives": "C N.o 2",
+      "cage_offset": 1
+     }
+    ],
+    "carry_marked": false,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": false,
+    "multiplier_figure_out": 2,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "000000",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "010000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "000000"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "000000"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "C N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "C N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/018",
+    "band": 2,
+    "source": "marks",
+    "words": {
+     "A": "Give off and retain",
+     "B": "Add to N.os one"
+    },
+    "engagements": [
+     {
+      "gives": "A N.o 1",
+      "receives": "A N.o 2",
+      "cage_offset": 0
+     },
+     {
+      "gives": "A N.o 1",
+      "receives": "B N.o 1",
+      "cage_offset": 0
+     }
+    ],
+    "carry_marked": true,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": true,
+    "multiplier_figure_out": null,
+    "wheels": {
+     "A N.o 1": "000000",
+     "A N.o 2": "001028",
+     "B N.o 1": "001028",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "010000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "001028"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "001028"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "A N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "A N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "\"Add to N.os one\" finds the product on B N.o 1",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/018",
+    "band": 3,
+    "source": "marks",
+    "words": {
+     "A": "Give off and retain",
+     "B": "Add to N.os one"
+    },
+    "engagements": [
+     {
+      "gives": "A N.o 2",
+      "receives": "A N.o 1",
+      "cage_offset": 0
+     },
+     {
+      "gives": "A N.o 2",
+      "receives": "B N.o 1",
+      "cage_offset": 0
+     }
+    ],
+    "carry_marked": true,
+    "carried_from_cages": [
+     0
+    ],
+    "carry_steps": 1,
+    "carriage_zeros_marked": true,
+    "multiplier_figure_out": null,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "002056",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "010000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "002056"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "002056"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "A N.o 2 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "A N.o 1 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "\"Add to N.os one\" finds the product on B N.o 1",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/019",
+    "band": 4,
+    "source": "marks",
+    "words": {
+     "B": "Step up from one to two",
+     "C": "Step up from two to one"
+    },
+    "engagements": [
+     {
+      "gives": "B N.o 1",
+      "receives": "B N.o 2",
+      "cage_offset": 1
+     },
+     {
+      "gives": "C N.o 2",
+      "receives": "C N.o 1",
+      "cage_offset": 1
+     }
+    ],
+    "carry_marked": false,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": false,
+    "multiplier_figure_out": 0,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "000000",
+     "B N.o 2": "020560",
+     "C N.o 1": "100000",
+     "C N.o 2": "000000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "020560"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "020560"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "B N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "B N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+      "holds": true
+     },
+     {
+      "check": "C N.o 2 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "C N.o 1 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+      "holds": true
+     }
+    ],
+    "notes": []
+   },
+   {
+    "sheet": "F/019",
+    "band": 5,
+    "source": "marks",
+    "words": {
+     "B": "Step up from two to one",
+     "C": "Step up from one to two"
+    },
+    "engagements": [
+     {
+      "gives": "B N.o 2",
+      "receives": "B N.o 1",
+      "cage_offset": 1
+     },
+     {
+      "gives": "C N.o 1",
+      "receives": "C N.o 2",
+      "cage_offset": 1
+     }
+    ],
+    "carry_marked": false,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": false,
+    "multiplier_figure_out": 1,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "205600",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "000000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "205600"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "205600"
+    },
+    "match": {
+     "A": true,
+     "B": true
+    },
+    "checks": [
+     {
+      "check": "B N.o 2 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "B N.o 1 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+      "holds": true
+     },
+     {
+      "check": "C N.o 1 gives off and holds the axis's number",
+      "holds": true
+     },
+     {
+      "check": "C N.o 2 stands at zero before it receives",
+      "holds": true
+     },
+     {
+      "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+      "holds": true
+     }
+    ],
+    "notes": [
+     "row 14-15, Figures upon Axis B: number \"1028\" (smaller, under the last four figures of 205600)"
+    ]
+   },
+   {
+    "sheet": "F/019",
+    "band": 6,
+    "source": "marks",
+    "words": {
+     "A": "Give off and retain",
+     "B": "Add to N.os one."
+    },
+    "engagements": [],
+    "carry_marked": true,
+    "carried_from_cages": [],
+    "carry_steps": 0,
+    "carriage_zeros_marked": true,
+    "multiplier_figure_out": null,
+    "wheels": {
+     "A N.o 1": "001028",
+     "A N.o 2": "000000",
+     "B N.o 1": "205600",
+     "B N.o 2": "000000",
+     "C N.o 1": "000000",
+     "C N.o 2": "000000"
+    },
+    "upon": {
+     "A": "001028",
+     "B": "205600"
+    },
+    "recorded": {
+     "A": "1028",
+     "B": "206628"
+    },
+    "match": {
+     "A": true,
+     "B": false
+    },
+    "checks": [
+     {
+      "check": "\"Add to N.os one\" finds the product on B N.o 1",
+      "holds": true
+     }
+    ],
+    "notes": []
+   }
+  ]
+ },
+ "ablations": {
+  "T3, the cage higher on a step (a step gives to the same cage)": {
+   "variant": "W",
+   "ablation": {
+    "step": 0,
+    "retain": true,
+    "carriage": true
+   },
+   "turns": 171,
+   "bands": [
+    {
+     "sheet": "F/018",
+     "band": 1,
+     "source": "marks",
+     "words": {
+      "C": "Step up from one to two"
+     },
+     "engagements": [
+      {
+       "gives": "C N.o 1",
+       "receives": "C N.o 2",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "000000",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "201000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "000000"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "000000"
+     },
+     "match": {
+      "A": true,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "C N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/018",
+     "band": 2,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one"
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 1",
+       "receives": "A N.o 2",
+       "cage_offset": 0
+      },
+      {
+       "gives": "A N.o 1",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "001028",
+      "B N.o 1": "001028",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "201000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "001028"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "001028"
+     },
+     "match": {
+      "A": true,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "A N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "A N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/018",
+     "band": 3,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one"
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 2",
+       "receives": "A N.o 1",
+       "cage_offset": 0
+      },
+      {
+       "gives": "A N.o 2",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [
+      0
+     ],
+     "carry_steps": 1,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "002056",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "201000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "002056"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "002056"
+     },
+     "match": {
+      "A": true,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "A N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "A N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/019",
+     "band": 4,
+     "source": "marks",
+     "words": {
+      "B": "Step up from one to two",
+      "C": "Step up from two to one"
+     },
+     "engagements": [
+      {
+       "gives": "B N.o 1",
+       "receives": "B N.o 2",
+       "cage_offset": 0
+      },
+      {
+       "gives": "C N.o 2",
+       "receives": "C N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "000000",
+      "B N.o 2": "002056",
+      "C N.o 1": "201000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "002056"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "020560"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "B N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "B N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/019",
+     "band": 5,
+     "source": "marks",
+     "words": {
+      "B": "Step up from two to one",
+      "C": "Step up from one to two"
+     },
+     "engagements": [
+      {
+       "gives": "B N.o 2",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      },
+      {
+       "gives": "C N.o 1",
+       "receives": "C N.o 2",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "002056",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "201000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "002056"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "205600"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "B N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "B N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+       "holds": true
+      },
+      {
+       "check": "C N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "row 14-15, Figures upon Axis B: number \"1028\" (smaller, under the last four figures of 205600)"
+     ]
+    },
+    {
+     "sheet": "F/019",
+     "band": 6,
+     "source": "words (T7): giver chosen by state",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one."
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 1",
+       "receives": "A N.o 2",
+       "cage_offset": 0
+      },
+      {
+       "gives": "A N.o 1",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [
+      0
+     ],
+     "carry_steps": 1,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "001028",
+      "B N.o 1": "003084",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "201000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "003084"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "206628"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "no marks; executed from the words, A N.o 1 gives off because it alone is not at zero"
+     ]
+    }
+   ]
+  },
+  "T2 on the same axis (nothing is retained)": {
+   "variant": "W",
+   "ablation": {
+    "step": 1,
+    "retain": false,
+    "carriage": true
+   },
+   "turns": 73,
+   "bands": [
+    {
+     "sheet": "F/018",
+     "band": 1,
+     "source": "marks",
+     "words": {
+      "C": "Step up from one to two"
+     },
+     "engagements": [
+      {
+       "gives": "C N.o 1",
+       "receives": "C N.o 2",
+       "cage_offset": 1
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": 2,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "000000",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "010000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "000000"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "000000"
+     },
+     "match": {
+      "A": true,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "C N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/018",
+     "band": 2,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one"
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 1",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "000000",
+      "B N.o 1": "001028",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "010000"
+     },
+     "upon": {
+      "A": "000000",
+      "B": "001028"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "001028"
+     },
+     "match": {
+      "A": false,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/018",
+     "band": 3,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one"
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 2",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "000000",
+      "B N.o 1": "001028",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "010000"
+     },
+     "upon": {
+      "A": "000000",
+      "B": "001028"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "002056"
+     },
+     "match": {
+      "A": false,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/019",
+     "band": 4,
+     "source": "marks",
+     "words": {
+      "B": "Step up from one to two",
+      "C": "Step up from two to one"
+     },
+     "engagements": [
+      {
+       "gives": "B N.o 1",
+       "receives": "B N.o 2",
+       "cage_offset": 1
+      },
+      {
+       "gives": "C N.o 2",
+       "receives": "C N.o 1",
+       "cage_offset": 1
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": 0,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "000000",
+      "B N.o 1": "000000",
+      "B N.o 2": "010280",
+      "C N.o 1": "100000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "000000",
+      "B": "010280"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "020560"
+     },
+     "match": {
+      "A": false,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "B N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "B N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/019",
+     "band": 5,
+     "source": "marks",
+     "words": {
+      "B": "Step up from two to one",
+      "C": "Step up from one to two"
+     },
+     "engagements": [
+      {
+       "gives": "B N.o 2",
+       "receives": "B N.o 1",
+       "cage_offset": 1
+      },
+      {
+       "gives": "C N.o 1",
+       "receives": "C N.o 2",
+       "cage_offset": 1
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": 1,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "000000",
+      "B N.o 1": "102800",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "000000",
+      "B": "102800"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "205600"
+     },
+     "match": {
+      "A": false,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "B N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "B N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+       "holds": true
+      },
+      {
+       "check": "C N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "row 14-15, Figures upon Axis B: number \"1028\" (smaller, under the last four figures of 205600)"
+     ]
+    },
+    {
+     "sheet": "F/019",
+     "band": 6,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one."
+     },
+     "engagements": [],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "000000",
+      "B N.o 1": "102800",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "000000",
+      "B": "102800"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "206628"
+     },
+     "match": {
+      "A": false,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": []
+    }
+   ]
+  },
+  "T6, carriage": {
+   "variant": "W",
+   "ablation": {
+    "step": 1,
+    "retain": true,
+    "carriage": false
+   },
+   "turns": 154,
+   "bands": [
+    {
+     "sheet": "F/018",
+     "band": 1,
+     "source": "marks",
+     "words": {
+      "C": "Step up from one to two"
+     },
+     "engagements": [
+      {
+       "gives": "C N.o 1",
+       "receives": "C N.o 2",
+       "cage_offset": 1
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": 2,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "000000",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "010000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "000000"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "000000"
+     },
+     "match": {
+      "A": true,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "C N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/018",
+     "band": 2,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one"
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 1",
+       "receives": "A N.o 2",
+       "cage_offset": 0
+      },
+      {
+       "gives": "A N.o 1",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "001028",
+      "B N.o 1": "001028",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "010000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "001028"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "001028"
+     },
+     "match": {
+      "A": true,
+      "B": true
+     },
+     "checks": [
+      {
+       "check": "A N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "A N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": []
+    },
+    {
+     "sheet": "F/018",
+     "band": 3,
+     "source": "marks",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one"
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 2",
+       "receives": "A N.o 1",
+       "cage_offset": 0
+      },
+      {
+       "gives": "A N.o 2",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "002046",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "010000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "002046"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "002056"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "A N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "A N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "warnings set on cages [0] with no Carry in this band"
+     ]
+    },
+    {
+     "sheet": "F/019",
+     "band": 4,
+     "source": "marks",
+     "words": {
+      "B": "Step up from one to two",
+      "C": "Step up from two to one"
+     },
+     "engagements": [
+      {
+       "gives": "B N.o 1",
+       "receives": "B N.o 2",
+       "cage_offset": 1
+      },
+      {
+       "gives": "C N.o 2",
+       "receives": "C N.o 1",
+       "cage_offset": 1
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": 0,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "000000",
+      "B N.o 2": "020460",
+      "C N.o 1": "100000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "020460"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "020560"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "B N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "B N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "warnings set on cages [0] with no Carry in this band"
+     ]
+    },
+    {
+     "sheet": "F/019",
+     "band": 5,
+     "source": "marks",
+     "words": {
+      "B": "Step up from two to one",
+      "C": "Step up from one to two"
+     },
+     "engagements": [
+      {
+       "gives": "B N.o 2",
+       "receives": "B N.o 1",
+       "cage_offset": 1
+      },
+      {
+       "gives": "C N.o 1",
+       "receives": "C N.o 2",
+       "cage_offset": 1
+      }
+     ],
+     "carry_marked": false,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": false,
+     "multiplier_figure_out": 1,
+     "wheels": {
+      "A N.o 1": "001028",
+      "A N.o 2": "000000",
+      "B N.o 1": "204600",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "204600"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "205600"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "B N.o 2 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "B N.o 1 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from two to one\" name the same giver and receiver as the marks",
+       "holds": true
+      },
+      {
+       "check": "C N.o 1 gives off and holds the axis's number",
+       "holds": true
+      },
+      {
+       "check": "C N.o 2 stands at zero before it receives",
+       "holds": true
+      },
+      {
+       "check": "the words \"Step up from one to two\" name the same giver and receiver as the marks",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "warnings set on cages [0] with no Carry in this band",
+      "row 14-15, Figures upon Axis B: number \"1028\" (smaller, under the last four figures of 205600)"
+     ]
+    },
+    {
+     "sheet": "F/019",
+     "band": 6,
+     "source": "words (T7): giver chosen by state",
+     "words": {
+      "A": "Give off and retain",
+      "B": "Add to N.os one."
+     },
+     "engagements": [
+      {
+       "gives": "A N.o 1",
+       "receives": "A N.o 2",
+       "cage_offset": 0
+      },
+      {
+       "gives": "A N.o 1",
+       "receives": "B N.o 1",
+       "cage_offset": 0
+      }
+     ],
+     "carry_marked": true,
+     "carried_from_cages": [],
+     "carry_steps": 0,
+     "carriage_zeros_marked": true,
+     "multiplier_figure_out": null,
+     "wheels": {
+      "A N.o 1": "000000",
+      "A N.o 2": "001028",
+      "B N.o 1": "205628",
+      "B N.o 2": "000000",
+      "C N.o 1": "000000",
+      "C N.o 2": "000000"
+     },
+     "upon": {
+      "A": "001028",
+      "B": "205628"
+     },
+     "recorded": {
+      "A": "1028",
+      "B": "206628"
+     },
+     "match": {
+      "A": true,
+      "B": false
+     },
+     "checks": [
+      {
+       "check": "\"Add to N.os one\" finds the product on B N.o 1",
+       "holds": true
+      }
+     ],
+     "notes": [
+      "no marks; executed from the words, A N.o 1 gives off because it alone is not at zero",
+      "warnings set on cages [0] with no Carry in this band"
+     ]
+    }
+   ]
+  }
+ }
+}
