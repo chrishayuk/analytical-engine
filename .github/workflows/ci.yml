@@ -97,6 +97,15 @@ jobs:
           #print axioms Babbage.no_tet_exp_1837
           #print axioms Babbage.triple_halts_1838
           #print axioms Babbage.tet_exp_halts_1838
+          #print axioms Babbage.Mill.give_off_retain
+          #print axioms Babbage.Mill.add_band
+          #print axioms Babbage.Mill.step_band
+          #print axioms Babbage.Mill.step_multiplier
+          #print axioms Babbage.Mill.countDown_spec
+          #print axioms Babbage.Mill.add_loop
+          #print axioms Babbage.Mill.multiply_correct
+          #print axioms Babbage.Mill.multiply_invariant
+          #print axioms Babbage.Mill.multiply_lists
           LEAN
           lake env lean /tmp/Axioms.lean | tee /tmp/axioms.txt
           # every theorem printed, and each depends only on standard axioms

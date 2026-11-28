@@ -80,6 +80,12 @@ Checked afterwards, outside the execution path, by host-language multiplication.
 
 **16 of 16 correct** (the historical pair, 1028 × 201, and 15 new pairs), the multiplicand retained on its axis and the other product wheel at zero in each. This shows the mechanism is general for multiplication without a table; it is not evidence about Babbage's engine.
 
+## 5a. Proved, for every operand
+
+`formal/Babbage/Mill.lean` (Lean 4, no Mathlib, no `sorry`, only the standard axioms propext, Classical.choice, Quot.sound) proves the controller's arithmetic at the level of tooth turns, for all operands within capacity: `give_off_retain` (nine rows leave the giver at zero and the retaining wheel holding its figures), `add_band` (give-off plus carriage adds exactly, if the sum fits the cages), `step_band` and `step_multiplier` (one cage higher is ×10, the top figure goes onto K), `countDown_spec` and `add_loop` (K set to d gives exactly d additions, then runs up), and `multiply_correct` / `multiply_lists` (the controller ends, the product wheel holds A × M, the multiplicand is retained, and the bands number p + ΣM), with `multiply_invariant` (after i figures the product is A × the first i figures).
+
+**What the proof does not cover.** Rows and carriage rounds are defined cage by cage, not in `execute`'s loop order; the equivalence is argued in the module's docstring, not proved. The bolting and the rules E0–E3 are not modelled: the proof names the giving and receiving wheels directly. No run compares the Lean definitions with the Python on the same operands. It proves the controller correct, not that it is Babbage's.
+
 ## 6. R2
 
 R2 heads a column of the multiplier group. On F/018–019 it is bolted (B3, B4, B3, with lifts 1.1, .6, 1.1) for exactly the three bands in which the multiplier steps, and unbolted in every addition band. That fits a part concerned with the stepping of the multiplier, for instance with receiving its top figure. It does not fit a part that counts the additions by moving: R2 shows no motion in any addition band, and a counter on these sheets would have to be turned back once in each. Nothing here identifies the counter with R2 or with any column.
