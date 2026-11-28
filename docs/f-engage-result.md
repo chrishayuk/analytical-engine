@@ -84,11 +84,30 @@ Cropped bands and untranscribed columns are not scorable. "No prediction": the V
 
 **Read after scoring (not part of the score):**
 
-- **E1 holds wherever it predicts and a give-off is marked: 6 of 6 unseen, 5 of 5 seen.** Platform 5 with the lower-numbered wheel giving off, 6 with the higher, on division, square root and the ordinary cycle, axes A, A₂ and D-C.
+- **Coverage of E1.** Of 60 unseen cases, 44 are scorable; E1 is scored only where it predicts a giving wheel and the marks show one, which is **6 cases**, all right: F/023 bands 1 and 3 and F/024 bands 1 and 2 (division, Axis A), F/027 band 3 and F/028 band 3 (square root, D-C). Platform 5 went with the lower-numbered wheel giving off, 6 with the higher, in each. No A₂, QA or ordinary-cycle case is among them. The 5 seen cases are division, Axis A.
 - **E0 fails on square root's D-C axis (6 of the 8 misses).** Its wheels carry "Figs" and "Zeros" in bands where its Ver is detached or never labelled. The reader wrote both words in one cell ("Figs" "Zeros"), as if across the two columns, so these are scored "irregular" and which wheel gives is not read. Something other than a Ver bolted to 5 or 6 can drive a give-off.
-- **F/032 band 2** (scored a miss): no "Zeros"/"Figs", but "Give off" is written on N.<sup>o</sup> 2 and "Receive" on N.<sup>o</sup> 1, which is what E1 predicted from Ver on 6. Under the frozen target it stays a miss. **F/032 band 3**: Ver on 5 and no give-off marked; a real miss.
+- **F/032 band 2** (scored an E0 miss, and not an E1 case): no "Zeros"/"Figs", but "Give off" is written on N.<sup>o</sup> 2 and "Receive" on N.<sup>o</sup> 1, which is what E1 would predict from Ver on 6. This is corroboration outside the frozen target, not a passing case. **F/032 band 3**: Ver on 5 and no give-off marked; a real miss.
 - **Platforms 7 and 8** (no prediction under the rules): with A₂ and QA a give-off is marked every time, the lower-numbered wheel on 7 (3 cases) and the higher on 8 (2 cases), the pattern of 5 and 6; with Axis A on 7 or 8 nothing is marked (3 cases). Exploratory, seen after scoring.
 - **E2 (S1/SS) is not tested**: in no scorable held-out band is an S1 or SS attached while its axis's Ver is on 5 or 6. On the held-out sheets S1 goes with platforms 7–9, outside E1.
+
+
+## 1a. Supplementary: giving off and receiving, apart
+
+Not the frozen score, which counted either word as a give-off. Here "gives off" is a "Zeros" (or the words "Give off") on one of the axis's wheels, and "receives" a "Figs" (or "Receive"); E0 is scored against giving off alone, on every case where E0 predicts, seen and unseen together.
+
+**E0 against giving off: 28 / 34.** The cases where E0 misses, or where an axis receives without giving or gives without receiving:
+
+| Sheet | Band | Axis | Exposure | E0 | Gives off | Receives | |
+|---|---|---|---|---|---|---|---|
+| F/026 | 2 | D-C | unseen | does not give | no | yes | ✓ |
+| F/028 | 1 | D-C | unseen | does not give | yes | yes (one cell holds both words) | ✗ |
+| F/028 | 2 | D-C | unseen | does not give | yes | yes (one cell holds both words) | ✗ |
+| F/029 | 1 | D-C | unseen | does not give | yes | yes (one cell holds both words) | ✗ |
+| F/029 | 2 | D-C | unseen | does not give | yes | yes (one cell holds both words) | ✗ |
+| F/029 | 3 | D-C | unseen | does not give | yes | yes (one cell holds both words) | ✗ |
+| F/032 | 3 | A | unseen | gives | no | no | ✗ |
+
+Where the reader wrote "Figs" and "Zeros" in one cell, which wheel each belongs to is not read, and the cell counts as both giving and receiving. Re-reading those cells at full resolution would settle them.
 
 ## 2. The link on F/018–019 (fitted)
 
