@@ -186,6 +186,30 @@
       "height": 6959,
       "tiles": 154,
       "complete": true
+    },
+    {
+      "image": "229/48",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/229%2F48%2FBabbage_Papers_S19__Scribbling_Book_Volume_XIII.ptif",
+      "width": 4969,
+      "height": 3126,
+      "tiles": 0,
+      "complete": false
+    },
+    {
+      "image": "322/995",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F995%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4889,
+      "height": 2958,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/996",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F996%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4889,
+      "height": 2957,
+      "tiles": 1,
+      "complete": false
     }
   ]
 }
