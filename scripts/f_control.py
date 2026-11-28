@@ -396,7 +396,7 @@ def report():
           "Block 3's step was re-read on the photograph (216/278) and is written as transcribed. Either F/020 "
           "is a schedule of patterns rather than one run, or its block 3 repeats block 2 in error; the sheet "
           "does not say.", "",
-          "## 5. Operands it was not built on", "",
+          "## 5. The historical pair and fifteen new operand pairs", "",
           "Checked afterwards, outside the execution path, by host-language multiplication.", "",
           "| Multiplicand | Multiplier | Why | Bands | Tooth turns | Longest carry chain | Product | Checker |",
           "|---|---|---|---|---|---|---|---|"]
@@ -407,7 +407,7 @@ def report():
         allok += c["ok"]
         L.append(f"| {a} | {b} | {why} | {len(rr['bands'])} | {rr['turns']} | {rr['longest_chain']} | "
                  f"{rr['product']} | {'✓' if c['ok'] else '✗ ' + str(c['expected'])} |")
-    L += ["", f"**{allok} of {len(TESTS)} correct**, the multiplicand retained on its axis and the other product "
+    L += ["", f"**{allok} of {len(TESTS)} correct** (the historical pair, 1028 × 201, and {len(TESTS) - 1} new pairs), the multiplicand retained on its axis and the other product "
           "wheel at zero in each. This shows the mechanism is general for multiplication without a table; it is "
           "not evidence about Babbage's engine.", "",
           "## 6. R2", "",

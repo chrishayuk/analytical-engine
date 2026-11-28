@@ -55,7 +55,7 @@ F/020 has no operands. The controller was run on 1028 × 631, a multiplier chose
 
 **11 of 13 operations agree.** The divergence is block 3: F/020 writes its second step exactly as its first ("Step up from one to two" for the product, "two to one" for the multiplier, the product's Ver bolted to 5 again), and then adds to N.<sup>os</sup> two again. In a continuous run the product would be on N.<sup>o</sup> 2 after the first step, so the second step would go from two to one and the next addition to N.<sup>os</sup> one, as F/019 bands 4–6 do. Block 3's step was re-read on the photograph (216/278) and is written as transcribed. Either F/020 is a schedule of patterns rather than one run, or its block 3 repeats block 2 in error; the sheet does not say.
 
-## 5. Operands it was not built on
+## 5. The historical pair and fifteen new operand pairs
 
 Checked afterwards, outside the execution path, by host-language multiplication.
 
@@ -78,7 +78,7 @@ Checked afterwards, outside the execution path, by host-language multiplication.
 | 99999999 | 99999999 | eight nines each | 80 | 17873 | 8 | 09999999800000001 | ✓ |
 | 1 | 1 | one by one | 2 | 10 | 0 | 001 | ✓ |
 
-**16 of 16 correct**, the multiplicand retained on its axis and the other product wheel at zero in each. This shows the mechanism is general for multiplication without a table; it is not evidence about Babbage's engine.
+**16 of 16 correct** (the historical pair, 1028 × 201, and 15 new pairs), the multiplicand retained on its axis and the other product wheel at zero in each. This shows the mechanism is general for multiplication without a table; it is not evidence about Babbage's engine.
 
 ## 6. R2
 
