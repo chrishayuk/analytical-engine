@@ -91,7 +91,7 @@ There are 17 more attached parts whose platform is unknown (an earlier bare "B")
 
 **With the band-4 cells read as empty** (the paper ends inside row 1), four more persistence cases are scored, F/029 band 4's Axis C Ver, ″p″p, cp and D-″p″p, and none of them moved; the first three also did not move in band 3. Persistence is then **37 of 47**, and M0 is right on 10.
 
-**Persistence holds.** 37 of 43 parts with no fresh label moved (37 of 47 with the band-4 cells read as empty). All 37 moved in the direction of the platform an earlier B had attached them to; of the 29 with a figure, 28 moved by its lift (the other, F/027 band 2, J1, has a doubtful point, read at low magnification only), and 8 have no figure. A stateless reading of B, in which only a fresh label moves a part, fails on them.
+**Persistence holds.** 37 of 43 parts with no fresh label moved (37 of 47 with the band-4 cells read as empty). All 37 moved in the direction of the platform an earlier B had attached them to; of the 29 with a figure, 28 moved by its lift (the other, F/022 band 4, ′g3, reads "6" with no point), and 8 have no figure. A stateless reading of B, in which only a fresh label moves a part, fails on them.
 
 **The persistence denominators, reconciled.** v1 enumerated 78 persistence cases and v2 64:
 

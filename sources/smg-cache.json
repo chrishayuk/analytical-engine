@@ -42,6 +42,14 @@
       "height": 6929,
       "tiles": 168,
       "complete": true
+    },
+    {
+      "image": "216/267",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F267%2FBabbage_Papers__Table_Division_1836_Jan_8.ptif",
+      "width": 5997,
+      "height": 6929,
+      "tiles": 168,
+      "complete": true
     }
   ]
 }
