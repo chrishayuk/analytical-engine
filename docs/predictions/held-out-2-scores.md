@@ -10,9 +10,9 @@ Observations read: 2306 (sheet, band, column) cells.
 - ordinary cycle: direction right 4; lift right 4; motion seen 4
 - carriage: direction WRONG (down) 1; direction WRONG (up) 1; direction right 14; lift WRONG (.3) 2; lift right 14; motion seen 16
 
-**FRESH B: returns** (all sheets): no return transcribed 8; return cropped 41; return direction NOT opposite (up) 1; return direction opposite 123; return figure: lift WRONG (.2) 1; return figure: lift right 104; return figure: lift right (uncertain) 1; return figure: point missing 3; return without figure 15
+**FRESH B: returns** (all sheets): no return transcribed 8; return cropped 41; return direction NOT opposite (up) 1; return direction opposite 123; return figure: lift WRONG (.2) 1; return figure: lift right 104; return figure: lift right (uncertain) 1; return figure: point missing 2; return figure: point missing (uncertain) 1; return without figure 15
 - division without table: no return transcribed 1; return cropped 15; return direction NOT opposite (up) 1; return direction opposite 51; return figure: lift right 46; return figure: point missing 1; return without figure 5
-- square root: no return transcribed 1; return cropped 26; return direction opposite 58; return figure: lift WRONG (.2) 1; return figure: lift right 46; return figure: lift right (uncertain) 1; return figure: point missing 2; return without figure 8
+- square root: no return transcribed 1; return cropped 26; return direction opposite 58; return figure: lift WRONG (.2) 1; return figure: lift right 46; return figure: lift right (uncertain) 1; return figure: point missing 1; return figure: point missing (uncertain) 1; return without figure 8
 - ordinary cycle: no return transcribed 3; return direction opposite 1; return figure: lift right 1
 - carriage: no return transcribed 3; return direction opposite 13; return figure: lift right 11; return without figure 2
 
@@ -38,9 +38,9 @@ Observations read: 2306 (sheet, band, column) cells.
 - square root: cropped 4; did not move (M0 right, M1 wrong) 3; moved (M1 right, M0 wrong) 21; … direction right 21; … lift right 13; … no figure 8
 - carriage: did not move (M0 right, M1 wrong) 1; moved (M1 right, M0 wrong) 2; … direction right 2; … lift right 2
 
-**PERSISTENT: returns** (all sheets): no return transcribed 2; return cropped 12; return direction opposite 23; return figure: lift right 15; return figure: point missing 1; return without figure 7
+**PERSISTENT: returns** (all sheets): no return transcribed 2; return cropped 12; return direction opposite 23; return figure: lift right 15; return figure: point missing (uncertain) 1; return without figure 7
 - division without table: return cropped 6; return direction opposite 8; return figure: lift right 4; return without figure 4
-- square root: return cropped 6; return direction opposite 15; return figure: lift right 11; return figure: point missing 1; return without figure 3
+- square root: return cropped 6; return direction opposite 15; return figure: lift right 11; return figure: point missing (uncertain) 1; return without figure 3
 - carriage: no return transcribed 2
 
 **attached to unknown platform** (all sheets): MOTION (false for a no-motion prediction) 14; cropped 2; no motion, as predicted 3
@@ -59,8 +59,8 @@ Observations read: 2306 (sheet, band, column) cells.
 **E1 L as B: returns** (all sheets): return direction opposite 5; return figure: lift right 5
 - ordinary cycle: return direction opposite 5; return figure: lift right 5
 
-**MID-BAND motion: direction and lift** (all sheets): direction WRONG 3; direction right 1; lift WRONG (.3) 1; lift right 2; point missing 1
-- carriage: direction WRONG 3; direction right 1; lift WRONG (.3) 1; lift right 2; point missing 1
+**MID-BAND motion: direction and lift** (all sheets): direction WRONG 3; direction right 1; lift WRONG (.3) 1; lift right 2; point missing (uncertain) 1
+- carriage: direction WRONG 3; direction right 1; lift WRONG (.3) 1; lift right 2; point missing (uncertain) 1
 
 **MID-BAND motion** (all sheets): motion in row 12–13 seen 4; no motion in row 12–13 transcribed 1
 - carriage: motion in row 12–13 seen 4; no motion in row 12–13 transcribed 1
@@ -68,10 +68,12 @@ Observations read: 2306 (sheet, band, column) cells.
 **label row closing a band (F/033): not scored** (all sheets): predictions 65
 - carriage: predictions 65
 
-Misses, FRESH B: returns (5):
+**MID-BAND variant: a double-headed row-12 arrow counted as motion** (all sheets): "y" a 10 Ver: row 12, **up**, double head, .3 (written under "B 4", row 11) 1
+- carriage: "y" a 10 Ver: row 12, **up**, double head, .3 (written under "B 4", row 11) 1
+
+Misses, FRESH B: returns (4):
 - F/021 b3 Axis A Ver B5: return figure 'row 12, down, double head, **4** (no point seen at 0.55)' (point missing)
 - F/022 b1 Axis A Ver B6: return 'row 12, **up**, double head, .2 (×1.5)'
-- F/026 b2 J1 B4: return figure 'row 12, down, double head, "6" with a faint mark low at its left [?.6] (×1.6)' (point missing)
 - F/027 b3 ″g3 B2: return figure 'rows 15–1/3, down, double head, **6** (no point seen, 0.8)' (point missing)
 - F/028 b3 QA Ver B8: return figure 'row 12, **up**, double head, .2' (lift WRONG (.2))
 
@@ -113,9 +115,6 @@ Misses, bare B this band (37):
 - F/033 bL1 Prep. to Addition — a 10 Ver: up arrow, double head + ".3", and beside it a down arrow, double head, no figure .3 (with the up arrow)
 - F/033 bL1 Prep. to Subtraction — a 10 Ver: up arrow, double head + ".3", and beside it a down arrow, double head, no figure .3 (with the up arrow)
 - F/033 bL1 Red. Zero after Sub prep. Add — a 10 Ver: short down arrow .6
-
-Misses, PERSISTENT: returns (1):
-- F/027 b2 J1 B4: return figure 'row 12, down, double head, "6" [?point] (0.3 only)' (point missing)
 
 Misses, attached to unknown platform (14):
 - F/021 b2 T2: short up arrow .45
@@ -197,9 +196,9 @@ Predictions whose column/band is not in the transcription: 0
 - ordinary cycle: direction right 4; lift right 4; motion seen 4
 - carriage: direction WRONG (down) 1; direction WRONG (up) 1; direction right 14; lift WRONG (.3) 2; lift right 14; motion seen 16
 
-**R1/M0/M1 fresh B: returns** (all sheets): no return transcribed 8; return cropped 41; return direction NOT opposite (up) 1; return direction opposite 123; return figure: lift WRONG (.2) 1; return figure: lift right 104; return figure: lift right (uncertain) 1; return figure: point missing 3; return without figure 15
+**R1/M0/M1 fresh B: returns** (all sheets): no return transcribed 8; return cropped 41; return direction NOT opposite (up) 1; return direction opposite 123; return figure: lift WRONG (.2) 1; return figure: lift right 104; return figure: lift right (uncertain) 1; return figure: point missing 2; return figure: point missing (uncertain) 1; return without figure 15
 - division without table: no return transcribed 1; return cropped 15; return direction NOT opposite (up) 1; return direction opposite 51; return figure: lift right 46; return figure: point missing 1; return without figure 5
-- square root: no return transcribed 1; return cropped 26; return direction opposite 58; return figure: lift WRONG (.2) 1; return figure: lift right 46; return figure: lift right (uncertain) 1; return figure: point missing 2; return without figure 8
+- square root: no return transcribed 1; return cropped 26; return direction opposite 58; return figure: lift WRONG (.2) 1; return figure: lift right 46; return figure: lift right (uncertain) 1; return figure: point missing 1; return figure: point missing (uncertain) 1; return without figure 8
 - ordinary cycle: no return transcribed 3; return direction opposite 1; return figure: lift right 1
 - carriage: no return transcribed 3; return direction opposite 13; return figure: lift right 11; return without figure 2
 
@@ -214,9 +213,9 @@ Predictions whose column/band is not in the transcription: 0
 - square root: cropped 4; did not move (M0 right, M1 wrong) 3; moved (M1 right, M0 wrong) 21; … direction right 21; … lift right 13; … no figure 8
 - carriage: did not move (M0 right, M1 wrong) 1; moved (M1 right, M0 wrong) 2; … direction right 2; … lift right 2
 
-**M1 persistent, no fresh B: returns** (all sheets): no return transcribed 2; return cropped 12; return direction opposite 23; return figure: lift right 15; return figure: point missing 1; return without figure 7
+**M1 persistent, no fresh B: returns** (all sheets): no return transcribed 2; return cropped 12; return direction opposite 23; return figure: lift right 15; return figure: point missing (uncertain) 1; return without figure 7
 - division without table: return cropped 6; return direction opposite 8; return figure: lift right 4; return without figure 4
-- square root: return cropped 6; return direction opposite 15; return figure: lift right 11; return figure: point missing 1; return without figure 3
+- square root: return cropped 6; return direction opposite 15; return figure: lift right 11; return figure: point missing (uncertain) 1; return without figure 3
 - carriage: no return transcribed 2
 
 **E1** (all sheets): direction right 5; lift right 5; motion seen 5
@@ -225,11 +224,14 @@ Predictions whose column/band is not in the transcription: 0
 **E1: returns** (all sheets): return direction opposite 5; return figure: lift right 5
 - ordinary cycle: return direction opposite 5; return figure: lift right 5
 
-**MID-BAND motion: direction and lift** (all sheets): direction WRONG 4; direction right 1; lift WRONG (.3) 1; lift right 3; point missing 1
-- carriage: direction WRONG 4; direction right 1; lift WRONG (.3) 1; lift right 3; point missing 1
+**MID-BAND motion: direction and lift** (all sheets): direction WRONG 4; direction right 1; lift WRONG (.3) 1; lift right 3; point missing (uncertain) 1
+- carriage: direction WRONG 4; direction right 1; lift WRONG (.3) 1; lift right 3; point missing (uncertain) 1
 
 **MID-BAND motion** (all sheets): motion in row 12–13 seen 4; no motion in row 12–13 transcribed 1
 - carriage: motion in row 12–13 seen 4; no motion in row 12–13 transcribed 1
+
+**MID-BAND variant: a double-headed row-12 arrow counted as motion** (all sheets): "y" a 10 Ver: row 12, **up**, double head, .3 (written under "B 4", row 11) 1; Prep. to Addition — a Ver: sub-table row 12, **up**, double head, **no figure** (0.55) 1; Prep. to Subtraction — a Ver: sub-table row 12, **up**, double head, **no figure** (0.55) 1; Rec. figs lower — ap Ver: row 12, **up**, double head, .6 1; Rec. figs upper — ap Ver: row 12, down, double head, .6 (×0.9) 1; Red. Zero after Add prep. Add — a Ver: row 12, **up**, double head, .2 1; Red. Zero after Add prep. Sub — a Ver: row 12, **up**, double head, .4 1; Red. Zero after Sub prep. Sub — a Ver: row 12, **up**, double head, .4 1; Red. Zero prep. Add — a Ver: row 12, **up**, double head, .2 1; Red. Zero prep. Sub — a Ver: row 12, **up**, double head, .4 1
+- carriage: "y" a 10 Ver: row 12, **up**, double head, .3 (written under "B 4", row 11) 1; Prep. to Addition — a Ver: sub-table row 12, **up**, double head, **no figure** (0.55) 1; Prep. to Subtraction — a Ver: sub-table row 12, **up**, double head, **no figure** (0.55) 1; Rec. figs lower — ap Ver: row 12, **up**, double head, .6 1; Rec. figs upper — ap Ver: row 12, down, double head, .6 (×0.9) 1; Red. Zero after Add prep. Add — a Ver: row 12, **up**, double head, .2 1; Red. Zero after Add prep. Sub — a Ver: row 12, **up**, double head, .4 1; Red. Zero after Sub prep. Sub — a Ver: row 12, **up**, double head, .4 1; Red. Zero prep. Add — a Ver: row 12, **up**, double head, .2 1; Red. Zero prep. Sub — a Ver: row 12, **up**, double head, .4 1
 
 **MID-BAND motion (v1 persistent)** (all sheets): motion in row 12–13 seen 1; no motion in row 12–13 transcribed 13
 - carriage: motion in row 12–13 seen 1; no motion in row 12–13 transcribed 13
@@ -237,15 +239,11 @@ Predictions whose column/band is not in the transcription: 0
 **label row closing a band (F/033): not scored** (all sheets): predictions 28
 - carriage: predictions 28
 
-Misses, R1/M0/M1 fresh B: returns (5):
+Misses, R1/M0/M1 fresh B: returns (4):
 - F/021 b3 Axis A Ver B5: return figure 'row 12, down, double head, **4** (no point seen at 0.55)' (point missing)
 - F/022 b1 Axis A Ver B6: return 'row 12, **up**, double head, .2 (×1.5)'
-- F/026 b2 J1 B4: return figure 'row 12, down, double head, "6" with a faint mark low at its left [?.6] (×1.6)' (point missing)
 - F/027 b3 ″g3 B2: return figure 'rows 15–1/3, down, double head, **6** (no point seen, 0.8)' (point missing)
 - F/028 b3 QA Ver B8: return figure 'row 12, **up**, double head, .2' (lift WRONG (.2))
-
-Misses, M1 persistent, no fresh B: returns (1):
-- F/027 b2 J1 B4: return figure 'row 12, down, double head, "6" [?point] (0.3 only)' (point missing)
 
 Misses, R1/M0/M1 fresh B (10):
 - F/021 b3 g B4: figure '**6** (no point; ×1.2)' (point missing)
@@ -282,10 +280,10 @@ Misses, MID-BAND motion (1):
 
 Predictions whose column/band is not in the transcription: 0
 
-## Columns never labelled on their sheet (unknown state)
+## Part columns never labelled on their sheet (unknown state)
 
-R4 as written and M0 predict no motion; R4u and M1 abstain. cropped 215; motion 87; nothing 1315
-Motions in never-labelled columns (87), false for R4 as written and M0:
+R4 as written and M0 predict no motion; R4u and M1 abstain. cropped 123; motion 70; nothing 578
+Motions in never-labelled columns (70), false for R4 as written and M0:
 - F/022 b1 ap: short up arrow .6
 - F/022 b1 T2: short up arrow .45
 - F/022 b1 T3: short up arrow .45
@@ -356,23 +354,6 @@ Motions in never-labelled columns (87), false for R4 as written and M0:
 - F/029 b4 D-″g: short up arrow cropped
 - F/029 b4 T2 cs: short up arrow cropped [?.45]
 - F/029 b4 T3 ′cs: short up arrow cropped [?.45]
-- F/032 b1 Lock Cent.: short up arrow + "U" —
-- F/032 b1 Lock Fig wh.: short up arrow + "U" —
-- F/032 b1 Lock Carr.: short up arrow + "U" —
-- F/032 b1 Platforms Long time: an up arrow and a down arrow side by side no figures
-- F/032 b1 Platforms Short time: an up arrow and a down arrow side by side no figures
-- F/032 b2 Lock Cent.: short up arrow + "U" —
-- F/032 b2 Lock Fig wh.: short up arrow + "U" —
-- F/032 b2 Lock Carr.: short up arrow + "U" —
-- F/032 b2 Platforms Long time: an up arrow and a down arrow side by side no figures
-- F/032 b2 Platforms Short time: an up arrow and a down arrow side by side no figures
-- F/032 b3 Lock Cent.: short up arrow + "U" —
-- F/032 b3 Lock Fig wh.: short up arrow + "U" —
-- F/032 b3 Lock Carr.: short up arrow + "U" —
-- F/032 b3 Platforms Long time: an up arrow and a down arrow side by side no figures
-- F/032 b3 Platforms Short time: an up arrow and a down arrow side by side no figures
-- F/033 bL1 Carry — Axis G Cir: a long down arrow from the head, its head in row 1 no figure
-- F/033 bL2 Carry — Axis G Cir: long down arrow continued from L1 15–1/3, head in this row no figure
 
 ## E2 (exploratory): F/032 return row by F/013's Long/Short grouping
 
@@ -383,40 +364,102 @@ Motions in never-labelled columns (87), false for R4 as written and M0:
 - band 2 Carr. pin. g1 (E1 (L as B), k 3): predicted row 12; transcribed 'row 12, down, double head, 1.1': right
 - band 2 Axis A Ver (R1/M0/M1 fresh B, k 6): predicted row 12; transcribed 'row 12, down, double head, .2': right
 
-## Models on movement detection (v2 categories)
+## Models on movement detection
 
-A case is one part in one band. Cropped and unreadable cases are left out of every model alike. TP motion predicted and seen; FP motion predicted, none seen (a false movement); FN no motion predicted, motion seen (a missed movement); TN neither.
+A case is one part in one band. TP motion predicted and seen; FP motion predicted, none seen (a false movement); FN no motion predicted, motion seen (a missed movement); TN neither. Cropped and unreadable cases are left out of every model alike. Never-labelled columns are parts only (not unheaded, Cir, figure-wheel, carry, Lock, platform or bolting columns).
 
-Cases: 2267; cropped or unreadable 268; predicted by all four models 371.
+
+### as frozen in v2; visible-empty band-4 cells as cropped
+
+Scorable cases 1275; predicted by all four models 468.
 
 | Model | Population | Predicts | TP | FP (false movement) | FN (missed movement) | TN | Accuracy |
 |---|---|---|---|---|---|---|---|
-| M0 | identical cases | 371 of 371 | 173 | 0 | 0 | 198 | 1.000 |
-| M1 | identical cases | 371 of 371 | 173 | 0 | 0 | 198 | 1.000 |
-| R4 | identical cases | 371 of 371 | 173 | 0 | 0 | 198 | 1.000 |
-| R4u | identical cases | 371 of 371 | 173 | 0 | 0 | 198 | 1.000 |
-| M0 | own coverage | 1999 of 1999 | 173 | 0 | 194 | 1632 | 0.903 |
-| M1 | own coverage | 431 of 1999 | 224 | 9 | 0 | 198 | 0.979 |
-| R4 | own coverage | 1902 of 1999 | 173 | 0 | 106 | 1623 | 0.944 |
-| R4u | own coverage | 371 of 1999 | 173 | 0 | 0 | 198 | 1.000 |
+| M0 | identical cases | 468 of 468 | 173 | 0 | 88 | 207 | 0.812 |
+| M1 | identical cases | 468 of 468 | 224 | 9 | 37 | 198 | 0.902 |
+| R4 | identical cases | 468 of 468 | 173 | 0 | 88 | 207 | 0.812 |
+| R4u | identical cases | 468 of 468 | 173 | 0 | 88 | 207 | 0.812 |
+| M0 | own coverage | 1275 of 1275 | 173 | 0 | 190 | 912 | 0.851 |
+| M1 | own coverage | 468 of 1275 | 224 | 9 | 37 | 198 | 0.902 |
+| R4 | own coverage | 1275 of 1275 | 173 | 0 | 190 | 912 | 0.851 |
+| R4u | own coverage | 468 of 1275 | 173 | 0 | 88 | 207 | 0.812 |
 
-By category (the same for every model; the models differ in what they predict for each):
+M0 against M1 where both predict and disagree: 60 cases; M1 right 51, M0 right 9.
 
-| Category | Motion seen | No motion seen | M0 | M1 | R4 | R4u |
-|---|---|---|---|---|---|---|
-| FRESH B | 173 | 0 | motion | motion | motion | motion |
-| bare B this band | 37 | 0 | none | abstains | abstains | abstains |
-| unknown, no label | 34 | 128 | none | abstains | none | abstains |
-| never labelled | 72 | 1297 | none | abstains | none | abstains |
-| U this band | 0 | 123 | none | none | none | none |
-| PERSISTENT | 37 | 6 | none | motion | abstains | abstains |
-| attached to unknown platform | 14 | 3 | none | motion | abstains | abstains |
-| detached, no label | 0 | 75 | none | none | none | none |
+| Category | Motion seen | No motion seen |
+|---|---|---|
+| FRESH B | 173 | 0 |
+| bare B this band | 37 | 0 |
+| unknown, no label | 32 | 127 |
+| never labelled | 70 | 578 |
+| U this band | 0 | 123 |
+| PERSISTENT | 37 | 6 |
+| attached to unknown platform | 14 | 3 |
+| detached, no label | 0 | 75 |
 
-carriage: M0 FN 21, TN 63, TP 16; M1 FP 4, TN 26, TP 19, abstains 51; R4 FN 2, TN 59, TP 16, abstains 23; R4u TN 26, TP 16, abstains 58
+### protocol M1 on bare B; visible-empty band-4 cells as cropped
 
-division without table: M0 FN 66, TN 714, TP 68; M1 FP 2, TN 74, TP 88, abstains 684; R4 FN 44, TN 712, TP 68, abstains 24; R4u TN 74, TP 68, abstains 706
+Scorable cases 1275; predicted by all four models 468.
 
-ordinary cycle: M0 FN 15, TN 44, TP 4; M1 TN 4, TP 4, abstains 55; R4 FN 15, TN 44, TP 4; R4u TN 4, TP 4, abstains 55
+| Model | Population | Predicts | TP | FP (false movement) | FN (missed movement) | TN | Accuracy |
+|---|---|---|---|---|---|---|---|
+| M0 | identical cases | 468 of 468 | 173 | 0 | 88 | 207 | 0.812 |
+| M1 | identical cases | 468 of 468 | 261 | 9 | 0 | 198 | 0.981 |
+| R4 | identical cases | 468 of 468 | 173 | 0 | 88 | 207 | 0.812 |
+| R4u | identical cases | 468 of 468 | 173 | 0 | 88 | 207 | 0.812 |
+| M0 | own coverage | 1275 of 1275 | 173 | 0 | 190 | 912 | 0.851 |
+| M1 | own coverage | 468 of 1275 | 261 | 9 | 0 | 198 | 0.981 |
+| R4 | own coverage | 1275 of 1275 | 173 | 0 | 190 | 912 | 0.851 |
+| R4u | own coverage | 468 of 1275 | 173 | 0 | 88 | 207 | 0.812 |
 
-square root: M0 FN 92, TN 811, TP 85; M1 FP 3, TN 94, TP 113, abstains 778; R4 FN 45, TN 808, TP 85, abstains 50; R4u TN 94, TP 85, abstains 809
+M0 against M1 where both predict and disagree: 97 cases; M1 right 88, M0 right 9.
+
+### as frozen in v2; visible-empty band-4 cells as nothing
+
+Scorable cases 1457; predicted by all four models 527.
+
+| Model | Population | Predicts | TP | FP (false movement) | FN (missed movement) | TN | Accuracy |
+|---|---|---|---|---|---|---|---|
+| M0 | identical cases | 527 of 527 | 173 | 0 | 88 | 266 | 0.833 |
+| M1 | identical cases | 527 of 527 | 224 | 15 | 37 | 251 | 0.901 |
+| R4 | identical cases | 527 of 527 | 173 | 0 | 88 | 266 | 0.833 |
+| R4u | identical cases | 527 of 527 | 173 | 0 | 88 | 266 | 0.833 |
+| M0 | own coverage | 1457 of 1457 | 173 | 0 | 190 | 1094 | 0.870 |
+| M1 | own coverage | 527 of 1457 | 224 | 15 | 37 | 251 | 0.901 |
+| R4 | own coverage | 1457 of 1457 | 173 | 0 | 190 | 1094 | 0.870 |
+| R4u | own coverage | 527 of 1457 | 173 | 0 | 88 | 266 | 0.833 |
+
+M0 against M1 where both predict and disagree: 66 cases; M1 right 51, M0 right 15.
+
+| Category | Motion seen | No motion seen |
+|---|---|---|
+| FRESH B | 173 | 0 |
+| bare B this band | 37 | 0 |
+| unknown, no label | 32 | 127 |
+| never labelled | 70 | 701 |
+| U this band | 0 | 151 |
+| PERSISTENT | 37 | 10 |
+| attached to unknown platform | 14 | 5 |
+| detached, no label | 0 | 100 |
+
+### protocol M1 on bare B; visible-empty band-4 cells as nothing
+
+Scorable cases 1457; predicted by all four models 527.
+
+| Model | Population | Predicts | TP | FP (false movement) | FN (missed movement) | TN | Accuracy |
+|---|---|---|---|---|---|---|---|
+| M0 | identical cases | 527 of 527 | 173 | 0 | 88 | 266 | 0.833 |
+| M1 | identical cases | 527 of 527 | 261 | 15 | 0 | 251 | 0.972 |
+| R4 | identical cases | 527 of 527 | 173 | 0 | 88 | 266 | 0.833 |
+| R4u | identical cases | 527 of 527 | 173 | 0 | 88 | 266 | 0.833 |
+| M0 | own coverage | 1457 of 1457 | 173 | 0 | 190 | 1094 | 0.870 |
+| M1 | own coverage | 527 of 1457 | 261 | 15 | 0 | 251 | 0.972 |
+| R4 | own coverage | 1457 of 1457 | 173 | 0 | 190 | 1094 | 0.870 |
+| R4u | own coverage | 527 of 1457 | 173 | 0 | 88 | 266 | 0.833 |
+
+M0 against M1 where both predict and disagree: 103 cases; M1 right 88, M0 right 15.
+
+## Persistence under each cropping convention
+
+- visible-empty cells as cropped: moved 37, did not move 6, cropped 4
+- visible-empty cells as nothing: moved 37, did not move 10, cropped 0

@@ -28,7 +28,9 @@ The reader recorded 2,306 cells, each one column in one band. Cropped and unread
   - **Two column names** are matched to the reader's spelling: "cs (T2)" is the reader's "T2 cs", and "′g3 [? ″g3]" is the reader's "″g3".
   - **F/033's mid-band labels** (about row 11) are scored on the single-headed arrows the reader put under "Other" in rows 11–13.
   - **F/033's band-closing label rows are not scored.** The inputs note lists them as rows of their own ("L12", "L2 (one row lower)", "U2 (one row lower)"); they are 65 v2 predictions and 28 v1. Both extractors treated each as a band, but such a row has no motion row of its own.
-  - **The Lock, platform and bolting columns** are not counted as parts.
+  - **The Lock, platform and bolting columns** are not counted as parts anywhere; among never-labelled columns, nor are the unheaded, circular-motion (Cir), figure-wheel and carry columns, which take no B/U label on any sheet.
+  - **Cells read "nothing (in the visible part)"** (F/026–029 band 4, where the paper ends inside row 1) are scored both ways: dropped as cropped, and counted as empty, as the arrows seen in the same row are counted. Both results are given.
+- **Corrected after an independent review of the scorer (28 November 2026).** A reviewer, shown the code and the frozen documents but not this write-up, reproduced every count with code of their own. It found that the model comparison in the first version of this document (cdb7aac, 4747440) did not score what the frozen v2 file says: it made R4 and R4u abstain on persistent and unknown-platform parts, and made M1, R4 and R4u abstain on bare B's, where v2 says no motion. Those cases were left out of the "identical cases", which were therefore identical by construction. Section 4 is now scored as frozen; the first version's figures are in the history. The review also found the asymmetric cropping above, bolting columns counted in one category and not another, non-part columns among the never-labelled, a mid-band arrow left out, and doubtful points scored as missing; each is corrected or reported both ways below.
 
 ## 1. Fresh "B k" (R1; M0, M1, R4 and R4u all predict this motion)
 
@@ -59,7 +61,7 @@ The reader recorded 2,306 cells, each one column in one band. Cropped and unread
 | Not scored | 41 cropped, 8 with no return transcribed, 15 without a figure |
 
 - **Direction miss (1):** F/022 band 1, Axis A Ver, B6: the motion is up and the return is also up.
-- **Figure misses (4):** 3 points missing and 1 wrong figure (F/028 band 3, QA Ver, ".2").
+- **Figure misses (4):** 2 points missing, 1 doubtful point (F/026 band 2, J1, read "6" with a faint mark [?.6]), and 1 wrong figure (F/028 band 3, QA Ver, ".2").
 
 ## 2. Persistence: the comparison that matters (M1 against M0)
 
@@ -87,7 +89,9 @@ The reader found labels on F/029 that the inputs note had missed: "U 6", "U" and
 
 There are 17 more attached parts whose platform is unknown (an earlier bare "B"). M1 predicts motion, M0 none: **14 moved** and 3 didn't. All 3 are at the end of an F/033 table.
 
-**Persistence holds.** 37 of 43 parts with no fresh label moved. All 37 moved in the direction of the platform an earlier B had attached them to; of the 29 with a figure, 28 moved by its lift (1 has the point missing), and 8 have no figure. A stateless reading of B, in which only a fresh label moves a part, fails on them.
+**With the band-4 cells read as empty** (the paper ends inside row 1), four more persistence cases are scored, F/029 band 4's Axis C Ver, ″p″p, cp and D-″p″p, and none of them moved; the first three also did not move in band 3. Persistence is then **37 of 47**, and M0 is right on 10.
+
+**Persistence holds.** 37 of 43 parts with no fresh label moved (37 of 47 with the band-4 cells read as empty). All 37 moved in the direction of the platform an earlier B had attached them to; of the 29 with a figure, 28 moved by its lift (the other, F/027 band 2, J1, has a doubtful point, read at low magnification only), and 8 have no figure. A stateless reading of B, in which only a fresh label moves a part, fails on them.
 
 **The persistence denominators, reconciled.** v1 enumerated 78 persistence cases and v2 64:
 
@@ -107,12 +111,12 @@ There are 17 more attached parts whose platform is unknown (an earlier bare "B")
 | U in this band (R3, lone U) | **0** | **123** | 28 |
 | Detached, no label | **0** | **75** | 25 |
 | Bare "B" in this band (v2: no motion) | **37** | 0 | — |
-| Unknown state, column labelled later on the sheet | 34 | 128 | — |
-| Never labelled on its sheet | 72 | 1,297 | — |
+| Unknown state, column labelled later on the sheet | 32 | 127 | — |
+| Never labelled on its sheet (part columns only) | 70 | 578 | — |
 
-- **U holds without exception.** No part moved in a band where it carried a U or had been detached: 198 of 198.
+- **U holds without exception.** No part moved in a band where it carried a U or had been detached: 198 of 198 (251 of 251 with the band-4 cells read as empty).
 - **v2's bare-B prediction fails, 0 / 37.** I added "a bare B predicts no motion" as an implementation choice before the outcomes were seen; the rules as written make no prediction for a bare B. Every bare-B part moved, mostly by lifts that aren't in F/013's twelve-platform table: ".45" (the T and O columns), ".3" (the a10 columns), and once "1.1". A reading, not tested: a bare B attaches to a platform outside F/013's numbering.
-- **R4 as written fails on unlabelled parts: 106 missed movements.** It says a part with no attachment and no B doesn't move. But parts move with no label anywhere on their sheet:
+- **R4 as written fails on unlabelled parts: 102 missed movements** (32 in the unknown state, 70 never labelled). It says a part with no attachment and no B doesn't move. But parts move with no label anywhere on their sheet:
   - ap, T2 and T3 in every band of F/022–024 (on F/021 they carry labels);
   - D-″P and D-″g on F/027;
   - ′g on F/022 and F/024;
@@ -122,37 +126,49 @@ There are 17 more attached parts whose platform is unknown (an earlier bare "B")
 
 ## 4. Movement detection, model by model
 
-One case is one part in one band. "Identical cases" are those all four models make a prediction for (fresh B, U this band, detached): 371.
+Scored as the frozen v2 file says. One case is one part in one band.
+
+| Category | M0 | M1 | R4 as written | R4u |
+|---|---|---|---|---|
+| Fresh B | motion | motion | motion | motion |
+| Bare B | none | none | none | none |
+| Persistent; attached to an unknown platform | none | motion | none | none |
+| Unknown state; never labelled | none | abstains | none | abstains |
+| U in the band; detached | none | none | none | none |
+
+On these sheets R4 as written predicts exactly what M0 does: it moves an attached part only "in any later band in which platform k moves", and v2 wrote that as no motion, since no sheet numbers its platforms. "Identical cases" are those all four models predict: 468.
+
+**With the band-4 cells dropped as cropped:**
 
 | Model | Population | Predicts | Motion predicted and seen | **False movements** | **Missed movements** | Neither | Accuracy |
 |---|---|---|---|---|---|---|---|
-| M0 stateless | identical | 371 | 173 | 0 | 0 | 198 | 1.000 |
-| M1 persistent | identical | 371 | 173 | 0 | 0 | 198 | 1.000 |
-| R4 as written | identical | 371 | 173 | 0 | 0 | 198 | 1.000 |
-| R4u | identical | 371 | 173 | 0 | 0 | 198 | 1.000 |
-| M0 | own coverage | 1,999 | 173 | 0 | **194** | 1,632 | 0.903 |
-| M1 | own coverage | 431 | 224 | **9** | 0 | 198 | 0.979 |
-| R4 | own coverage | 1,902 | 173 | 0 | **106** | 1,623 | 0.944 |
-| R4u | own coverage | 371 | 173 | 0 | 0 | 198 | 1.000 |
+| M0 stateless | identical | 468 | 173 | 0 | **88** | 207 | 0.812 |
+| M1 persistent | identical | 468 | 224 | **9** | **37** | 198 | 0.902 |
+| R4 as written | identical | 468 | 173 | 0 | 88 | 207 | 0.812 |
+| R4u | identical | 468 | 173 | 0 | 88 | 207 | 0.812 |
+| M0 | own coverage | 1,275 | 173 | 0 | **190** | 912 | 0.851 |
+| M1 | own coverage | 468 | 224 | 9 | 37 | 198 | 0.902 |
+| R4 as written | own coverage | 1,275 | 173 | 0 | 190 | 912 | 0.851 |
+| R4u | own coverage | 468 | 173 | 0 | 88 | 207 | 0.812 |
 
-On the cases they share, the models can't be told apart. They differ only where one predicts and another abstains:
+**With the band-4 cells read as empty:** M1 has 15 false movements and 37 missed on 527 identical cases (0.901); M0, R4 and R4u have 88 missed (0.833).
 
-- **M1 predicts 60 motions beyond the fresh B's (43 persistent, 17 unknown platform): 51 right, 9 false.** The 9 are the 6 persistence misses above and the 3 F/033 unknown-platform cases.
-- **M0 and R4 predict no motion everywhere else and miss 194 and 106 motions.** These are bare B, persistent and unlabelled parts.
-- **R4u is never wrong, but it predicts only 371 of 1,999 cases.**
+- **M1's 37 missed movements are the 37 bare B's**, which v2 said would not move. The protocol's M1 ("moves if it has a fresh B") would predict them: read that way, M1 misses none and has 9 false movements (0.981), or 15 (0.972) with the band-4 cells read as empty.
+- **M1's false movements** are the persistence misses of section 2 (6, or 10) and the F/033 unknown-platform parts that did not move (3, or 5).
+- **M0, R4 and R4u's 88 missed movements** are the 37 bare B's, the 37 persistent parts and the 14 unknown-platform parts that moved. On their own coverage M0 and R4 also miss the 102 unlabelled parts that moved.
 
-**M0 against M1, pairwise.** M0 predicts everywhere, so their common coverage is M1's: 431 cases. They agree on 371 (both right on all 371) and disagree on 60: the 43 persistence cases and the 17 attached to an unknown platform. On those 60, M1 is right 51 times and M0 9 times; on the 43 persistence cases alone, M1 37 and M0 6.
+**M0 against M1, pairwise.** Where both predict and they disagree, the persistent and unknown-platform parts: **60 cases, M1 right 51, M0 right 9** (66 cases, 51 to 15, with the band-4 cells read as empty). On the 43 persistence cases alone, 37 to 6 (47 cases: 37 to 10).
 
-Per design, the same pattern holds on every sheet type: `held-out-2-scores.md`, end.
+Every table, under each convention, is in `held-out-2-scores.md`.
 
 Direction, lift and returns are reported separately above (sections 1 and 2).
 
 ## 5. F/033's mid-band labels (v2 change 7), and v1 against v2
 
 - **The five mid-band "B k" labels** (about row 11) predict a motion just after the label:
-  - **Motion seen:** 4 of 5 have a single-headed arrow in rows 11–12. "y" a10 ("B 4") has only a return.
-  - **Direction:** 1 of 4 by F/013's table. Three "B 7"s go up by ".2", where the table's platform 7 goes down by ".2".
-  - **Lift:** 2 right, 1 point missing, 1 wrong ("x" "B 9": ".3").
+  - **Motion seen:** 4 of 5 have a single-headed arrow in rows 11–12. "y" a10 ("B 4") has a double-headed up arrow ".3" in row 12; counted as motion, as double-headed arrows in row 1 are, it is 5 of 5.
+  - **Direction:** 1 of 4 by F/013's table (2 of 5 with "y"). Three "B 7"s go up by ".2", where the table's platform 7 goes down by ".2".
+  - **Lift:** 2 right, 1 doubtful point ("[?.]2"), 1 wrong ("x" "B 9": ".3"); with "y", one more wrong (".3" for ".6").
   - On this sheet F/013's table fails for these mid-band labels. In F/033's first motion row, "B 7" goes down, as the table says.
 - **v1's extra 14 persistence cases** came from treating the mid-band rows as bands of their own. 13 of the 14 show no fresh motion there: those parts' rows 11–12 hold their returns. v2 removed them before the outcomes were seen.
 - **Otherwise v1 and v2 score the same:**
