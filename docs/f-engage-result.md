@@ -107,7 +107,13 @@ Not the frozen score, which counted either word as a give-off. Here "gives off" 
 | F/029 | 3 | D-C | unseen | does not give | yes | yes (one cell holds both words) | ✗ |
 | F/032 | 3 | A | unseen | gives | no | no | ✗ |
 
-Where the reader wrote "Figs" and "Zeros" in one cell, which wheel each belongs to is not read, and the cell counts as both giving and receiving. Re-reading those cells at full resolution would settle them.
+Where the reader wrote "Figs" and "Zeros" in one cell, which wheel each belongs to is not read, and the cell counts as both giving and receiving.
+
+## 1b. Those cells re-read (after scoring)
+
+`sources/notes/F027-F029-dc-wheels.md` re-read the D-C cells of F/026–029 at full resolution (one of them, F/028 band 1, checked again on the image). The two words always stand in separate columns, one per wheel. In bands 1–3 of F/026, F/028 and F/029, and bands 1–2 of F/027, **only one D wheel has a shaft**, under "Figs"; the other carries "Zeros" (or "0") with no shaft, and D-C Cir has no arrow. That is an axis receiving figures, with no wheel giving off. Only F/027 band 3 and F/028 band 3 have a shaft on both wheels and a Cir arrow, and there the Ver is bolted to 5 and 6 and the giving wheel is the one E1 names (both already scored above).
+
+Read so, "gives off" meaning a "Zeros" wheel with its own shaft, the five D-C misses of E0 become hits: **E0 against giving off, re-read: 33 / 34**, the remaining miss F/032 band 3. This is a re-reading and a redefinition made after scoring; the frozen 21 / 29 and the 28 / 34 above stand. What D-C receives from is not shown.
 
 ## 2. The link on F/018–019 (fitted)
 
