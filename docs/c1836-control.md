@@ -115,10 +115,17 @@ So the three are different kinds of control:
   read here it first appears on 22 March; Bromley (1990) dates branching on
   arithmetic results to late 1834 (section 0).
 - **Whether D-0322 also ends a loop on a result computed inside it** turns
-  on the unresolved interface: if the "next running up" is of a quantity
-  the Neg. cycle itself changes, the Neg. cycle repeats until the data say
-  stop, which neither counted design can do. The page does not say which
-  quantity it is. Left open.
+  on the unresolved event: if the "next running up" is of a quantity the
+  Neg. cycle itself changes, the Neg. cycle repeats until the data say stop,
+  which neither counted design can do. p 94 does not say which quantity it
+  is. Read with p 95, p 78 and p 102 (`sources/notes/next-running-up-1836-1837.md`),
+  the favoured interpretation is a count fixed before the loop, set from the
+  computed difference q − p: the negative cycle steps the dividend |q − p|
+  times before division proper (p 102, 3 April 1836: stepping ends when "q−p
+  is gath.d up", by a rack and tooth N). On that reading D-0322 adds a
+  branch on a computed sign, not data-dependent termination. No support was
+  found for a quantity computed inside the cycle; another mechanical state
+  is not excluded. The model keeps the end as a supplied event.
 
 ## 4. Against the cards, 1836–1843
 
