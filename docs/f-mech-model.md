@@ -62,3 +62,31 @@ Choices in this run, not in the source:
   other than the arrows being predicted.
 - Locking plates on the January 1836 charts: F/013's Lock columns (U and L)
   may be the locking plates; untested.
+
+## The chart-driven simulator (`scripts/f_sim.py`)
+
+Added on 28 November 2026, after held-out test 2 (`predictions/held-out-2-result.md`).
+`mech_sim.py` executes a sequence of transitions written by hand; `f_sim.py`
+reads the B/U labels of the held-out charts (`sources/notes/F021-F033-inputs.md`)
+and executes them band by band. It is kept apart from the frozen predictor and
+the scorer, and uses only the predictor's label parsing.
+
+| Represented | How | Status |
+|---|---|---|
+| Components (parts) | one per labelled column; attachment, height | — |
+| Numbered platforms | resource `Pk` | supported |
+| Unknown motion resources | a bare "B" attaches to its own resource `?sheet:band:part` | unresolved |
+| Persistent attachment | lasts until a U | supported (37/43 held out) |
+| Explicit detachment | U | supported (0 motions in 198) |
+| Unknown initial configuration | every part on a sheet starts unknown; no prediction | unresolved |
+| Platform displacement | from a configuration per design: F/013's table as the fallback; none adopted on the carriage sheet | supported where adopted |
+| Timed motion events | row 1 of a band; F/033's mid-band changes in the row after the label | supported; mid-band unresolved |
+| Returns | rows 12 to 1/3, timing not modelled | unverified |
+| "L k" (F/032) | attaches as "B k" | unverified (E1, exploratory) |
+| Locking mechanisms | the Lock columns' U/L recorded as lock state; no effect on motion | unresolved |
+
+An unresolved motion leaves the part's height unknown; nothing is filled in.
+`python3 scripts/f_sim.py --json docs/data/f-sim.json` writes every event, with
+the blind transcription's row-1 mark beside each simulated motion. That
+comparison is after the fact; the held-out result is the test. No arithmetic is
+modelled.
