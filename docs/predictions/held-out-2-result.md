@@ -8,7 +8,7 @@ with every miss listed, is `held-out-2-scores.md`. The inputs are:
 - the predictions, v1 (64ca93e) and v2 (1732e2f, an implementation revision made before any part arrow was seen);
 - the blind transcription, `sources/notes/F021-F033-arrows.md`.
 
-The transcription was made by one reader who was not shown the predictions, rules or labels. No person has checked it.
+The transcription was made by one reader who was not shown the predictions or rules. It was given the list of labels (`F021-F033-inputs.md`) to find the columns, and repeats them in its Notes column; for a fresh "B k" the label is in effect the prediction of motion, so that part of the test is not blind to the label. No person has checked it. *(Corrected after the publication fact-check: this line first said the reader was not shown the labels.)*
 
 Ten sheets were read:
 
@@ -115,7 +115,7 @@ There are 17 more attached parts whose platform is unknown (an earlier bare "B")
 | Never labelled on its sheet (part columns only) | 70 | 578 | — |
 
 - **U holds without exception.** No part moved in a band where it carried a U or had been detached: 198 of 198 (251 of 251 with the band-4 cells read as empty).
-- **v2's bare-B prediction fails, 0 / 37.** I added "a bare B predicts no motion" as an implementation choice before the outcomes were seen; the rules as written make no prediction for a bare B. Every bare-B part moved, mostly by lifts that aren't in F/013's twelve-platform table: ".45" (the T and O columns), ".3" (the a10 columns), and once "1.1". A reading, not tested: a bare B attaches to a platform outside F/013's numbering.
+- **v2's bare-B prediction fails, 0 / 37.** I added "a bare B predicts no motion" as an implementation choice before the outcomes were seen; the rules as written make no prediction for a bare B. Every bare-B part moved, mostly by lifts that aren't in F/013's twelve-platform table: ".45" (the T and O columns), ".3" (the a10 columns), and twice ".6" (F/033's lower half). A reading, not tested: a bare B attaches to a platform outside F/013's numbering.
 - **R4 as written fails on unlabelled parts: 102 missed movements** (32 in the unknown state, 70 never labelled). It says a part with no attachment and no B doesn't move. But parts move with no label anywhere on their sheet:
   - ap, T2 and T3 in every band of F/022–024 (on F/021 they carry labels);
   - D-″P and D-″g on F/027;
