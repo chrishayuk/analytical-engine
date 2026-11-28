@@ -8,8 +8,40 @@
       "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F259%2FBabbage_Papers__Table_Multiplication_1836_Jan_5.ptif",
       "width": 9581,
       "height": 6933,
-      "tiles": 1,
-      "complete": false
+      "tiles": 266,
+      "complete": true
+    },
+    {
+      "image": "216/261",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F261%2FBabbage_Papers__Bolting_Plates_for_Multiplication_by_Table.ptif",
+      "width": 5748,
+      "height": 6405,
+      "tiles": 156,
+      "complete": true
+    },
+    {
+      "image": "216/263",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F263%2FBabbage_Papers__Table_Division_1836_Jan_8.ptif",
+      "width": 6141,
+      "height": 6955,
+      "tiles": 168,
+      "complete": true
+    },
+    {
+      "image": "216/264",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F264%2FBabbage_Papers__Table_Division_1836_Jan_8.ptif",
+      "width": 6141,
+      "height": 6955,
+      "tiles": 168,
+      "complete": true
+    },
+    {
+      "image": "216/266",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/216%2F266%2FBabbage_Papers__Table_Division_1836_Jan_8.ptif",
+      "width": 5997,
+      "height": 6929,
+      "tiles": 168,
+      "complete": true
     }
   ]
 }
