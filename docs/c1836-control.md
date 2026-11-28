@@ -45,10 +45,13 @@ kinds, kept apart:
   end by itself, and its outcome says so.
 
 Inputs outside a design's domain or capacity are refused (counts are whole
-numbers ≥ 0 that fit the wheels; q ≤ 30 for the 1 March counting wheels,
-after p 82's "30 / p−30"; d ≤ q). The negative and positive cycles have no
+numbers ≥ 0 that fit the wheels, on at least one wheel; d ≤ q; and q ≤ 30
+for the 1 March counting wheels, a **modelling restriction** taken from
+nearby pages (p 82, 4 March, "30 / p−30"; p 91, 12 March, a rack of 30
+feelers), not stated on p 76). Supplied events are checked by type as well
+as value: a yes/no event takes True or False, not 1 or 0. The negative and positive cycles have no
 internal schedule in the model: the page gives none. `scripts/test_c1836.py`
-(14 tests) checks the stated behaviour, every refusal, and that gaps are
+(16 tests) checks the stated behaviour, every refusal, and that gaps are
 never valued. Counters are wheels turned one tooth at a time, a running up
 being the top wheel passing from 0 to 9.
 

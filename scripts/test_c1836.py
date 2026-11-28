@@ -84,6 +84,18 @@ class D0322(unittest.TestCase):
         with self.assertRaises(c.OutOfDomain):
             c.d0322(4, 6, events={c.NEXT_0322.name: "soon", c.TABLE_0322.name: True})
 
+    def test_booleans_are_not_integers(self):
+        for v in (1, 0):
+            with self.assertRaises(c.OutOfDomain):
+                c.d0322(4, 6, events={c.NEXT_0322.name: v, c.TABLE_0322.name: True})
+
+    def test_cages(self):
+        for k in (0, -1, 1.5, True):
+            with self.assertRaises(c.OutOfDomain):
+                c.d0322(1, 2, cages=k)
+            with self.assertRaises(c.OutOfDomain):
+                c.d0307(1, cages=k)
+
     def test_domain(self):
         for q, p in ((100, 1), (-1, 2), (1.5, 1)):
             with self.assertRaises(c.OutOfDomain):

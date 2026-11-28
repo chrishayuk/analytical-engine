@@ -60,7 +60,7 @@ class Event:
         if self.name not in run.events:
             raise NotSpecified(f"{self.name} ({self.page}): {self.says}")
         v = run.events[self.name]
-        if v not in self.allowed:
+        if not any(type(v) is type(a) and v == a for a in self.allowed):   # True is not 1, 0 is not False
             raise OutOfDomain(f"{self.name}: {v!r} is not one of {self.allowed}")
         run.log("supplied", f"{self.name} = {v!r} (supplied, not derived)", self.page)
         run.supplied.append(self.name)
@@ -79,7 +79,13 @@ class Run:
 
 # ---------------------------------------------------------------- counters as wheels
 
+def check_cages(cages):
+    if not isinstance(cages, int) or isinstance(cages, bool) or cages < 1:
+        raise OutOfDomain(f"cages must be a whole number ≥ 1, not {cages!r}")
+
+
 def wheels(n, cages, what):
+    check_cages(cages)
     if not isinstance(n, int) or isinstance(n, bool) or n < 0:
         raise OutOfDomain(f"{what} must be a whole number ≥ 0, not {n!r}")
     if n >= 10 ** cages:
@@ -118,7 +124,9 @@ def value(w):
 
 # ---------------------------------------------------------------- 1 March 1836, p 76
 
-COUNTING_LIMIT = 30   # p 82 (4 March) sets its counting wheels from 30: "30 / p−30" (sketchbooks-control.md)
+# A MODELLING RESTRICTION, not stated on p 76: the nearby p 82 (4 March) sets its counting wheels from 30
+# ("30 / p−30") and p 91 (12 March) counts with "a rack a with 30 feelers". p 76 gives no capacity.
+COUNTING_LIMIT = 30
 
 SET_0301 = Gap("q and q−d set", "Vol II pp 75–76", "how the digit counts reach the counting wheels (the spiral axis of pp 72–75)")
 ARM_0301 = Gap("the arm thrown in by the stop of q", "Vol II p 76", "no drawing: how the arm reaches the gathering-up teeth and the barrel")
@@ -131,7 +139,8 @@ def d0301(q, d):
         if not isinstance(v, int) or isinstance(v, bool) or v < 0:
             raise OutOfDomain(f"{nm} must be a whole number ≥ 0, not {v!r}")
     if q > COUNTING_LIMIT:
-        raise OutOfDomain(f"q = {q}: the counting wheels of these pages count digits, at most {COUNTING_LIMIT}")
+        raise OutOfDomain(f"q = {q}: above the model's limit of {COUNTING_LIMIT} (a restriction taken from pp 82 and 91, "
+                          "not stated on p 76)")
     if d > q:
         raise OutOfDomain(f"d = {d} > q = {q}: q−d would be negative, which p 76 does not provide for")
     r = Run("D-0301 (1 March 1836, p 76)")

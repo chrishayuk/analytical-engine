@@ -86,14 +86,23 @@ would need something not found (N).
     computed for every n (`no_tetration`), and these decks do not compute
     every primitive recursive function;
   - **counts read from the store**, as `src/sketch.rs` reads 7 March 1836:
-    `tower-halting` computes 2↑↑n for every n in the December 1837
+    `tower-halting` computes 2↑↑n for every n ≥ 1 in the December 1837
     configuration (`tower_halts`), and 2↑↑↑n is not computed
     (`no_pentation`).
 
-  Either way the dated configurations fall short of general computation.
-  Going further needs a count set inside the group it counts, so that a loop
-  can end on a number it has computed (argument E, `Minsky.lean`). No page
-  read gives it. That is N, and it is the point at which a claim of full
+  Both bounds are about decks that halt normally (passing the last card,
+  `semantics.md` rule 14a), under the machine's rules for setting the count
+  (rule 3a and the rules it depends on); they are not statements about
+  every conceivable arrangement. Either way the dated configurations fall
+  short of general computation. One extension shown to suffice is a count
+  set inside the group it counts, so that a loop can end on a number it has
+  computed (argument E, `Minsky.lean`); it is not the only route. The trap
+  model (Model D, `Trap.lean`) reaches general computation with the cards of
+  30 May 1838 by reading a stop at an operation the mill cannot do as the
+  end of a run (rule 14a reversed), which no text read supports; the 1843
+  configuration (`published-control-1843.md`) reaches it with a backing
+  made effective by a result, the card Note G needs. No page read before
+  1842 gives a count set inside its group or a result-dependent backing. That is N, and it is the point at which a claim of full
   generality for 1836–1838 would go beyond the record. *(Corrected 28
   November 2026: this paragraph first gave only the number-card bound, as if
   it held generally.)*
