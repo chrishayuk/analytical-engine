@@ -135,7 +135,7 @@ class Sheet:
         d = self.displacement(r)
         if d is None:
             c.height = None
-            why = "bare B: unknown resource" if r.kind == "unknown" else f"no displacement adopted ({self.config})"
+            why = "bare B: unknown resource" if r.kind == "unknown" else f"no displacement table adopted for {self.design}"
             self.ev(band, row, "motion", col, f"moves with {r.id}; displacement unknown ({why})", "unresolved")
             return
         if c.height is not None:
@@ -249,8 +249,9 @@ def observed(e):
     o = _OBS.get((e.sheet[:5], band, e.component))
     if o is None:
         return None
-    other = o[3] if e.row.startswith("after") else ""
-    return {"row1": o[0], "figure": o[1], "returns": o[2], "other": other}
+    if e.row.startswith("after"):  # a mid-band change: what the reader saw in rows 11-13
+        return {"row1": None, "figure": None, "returns": o[2], "other": o[3]}
+    return {"row1": o[0], "figure": o[1], "returns": o[2], "other": ""}
 
 
 def summary(s):

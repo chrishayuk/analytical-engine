@@ -13551,7 +13551,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Red. Zero prep. Add — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13583,7 +13583,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Red. Zero prep. Sub — a Ver",
-    "detail": "moves with P8; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P8; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13615,7 +13615,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Rec. figs upper — ap Ver",
-    "detail": "moves with P4; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P4; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13647,7 +13647,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Rec. figs lower — ap Ver",
-    "detail": "moves with P9; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P9; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13695,7 +13695,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Rec. Add upper — ap Ver",
-    "detail": "moves with P2; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P2; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13727,7 +13727,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Rec. Add lower — ap Ver",
-    "detail": "moves with P11; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P11; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13759,7 +13759,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Suff. Sub up — ap Ver",
-    "detail": "moves with P2; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P2; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13791,7 +13791,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Suff. Sub low — ap Ver",
-    "detail": "moves with P11; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P11; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -13882,12 +13882,12 @@
     "row": "after ≈11",
     "kind": "motion",
     "component": "Change fig Add→Sub — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
-     "row1": "nothing",
-     "figure": "—",
+     "row1": null,
+     "figure": null,
      "returns": "none",
      "other": "rows 11–12: \"B 7\" + short up arrow + \".2\" (single head); rows 15–1/3: short down arrow + \".2\", head on the rule above \"U 7\", head [?double] (×1.0)"
     }
@@ -14332,7 +14332,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Change fig Add→Sub — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14583,7 +14583,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Red. Zero after Add prep. Add — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14599,7 +14599,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Red. Zero after Sub prep. Sub — a Ver",
-    "detail": "moves with P8; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P8; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14615,7 +14615,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Red. Zero after Add prep. Sub — a Ver",
-    "detail": "moves with P8; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P8; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14647,7 +14647,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Prep. to Addition — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14679,7 +14679,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Prep. to Subtraction — a Ver",
-    "detail": "moves with P8; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P8; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14711,7 +14711,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Red. Zero after Sub prep. Add — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -14851,12 +14851,12 @@
     "row": "after ≈11",
     "kind": "motion",
     "component": "Ch. fig Sub→Add — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
-     "row1": "nothing",
-     "figure": "—",
+     "row1": null,
+     "figure": null,
      "returns": "none",
      "other": "memorandum rows 3–8 across the x group: \"Mem.ᵐ 26 March 1836. The 10s axis <u>must</u> be neutral while changing fig. wh. of carriage\"; rows 11–12 \"B 7\" + short up arrow + \".2\" (single head)"
     }
@@ -14867,12 +14867,12 @@
     "row": "after ≈11",
     "kind": "motion",
     "component": "\"x\" a 10 Ver",
-    "detail": "moves with P9; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P9; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
-     "row1": "nothing",
-     "figure": "—",
+     "row1": null,
+     "figure": null,
      "returns": "none",
      "other": "rows 2–10 \"moved / by a / lever / a10 at / one end / plat.ᵐ / at other / fulc.ᵐ / between\"; rows 11–12 \"B 9\" + short down arrow + \".3\" (single head)"
     }
@@ -14883,12 +14883,12 @@
     "row": "after ≈11",
     "kind": "motion",
     "component": "\"y\" a 10 Ver",
-    "detail": "moves with P4; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P4; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
-     "row1": "nothing",
-     "figure": "—",
+     "row1": null,
+     "figure": null,
      "returns": "row 12, **up**, double head, .3 (written under \"B 4\", row 11)",
      "other": ""
     }
@@ -14899,12 +14899,12 @@
     "row": "after ≈11",
     "kind": "motion",
     "component": "Ch. fig Add→Sub — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
-     "row1": "nothing",
-     "figure": "—",
+     "row1": null,
+     "figure": null,
      "returns": "none",
      "other": "rows 3–9 \"If fig wheel stands at 0 a 10 must be moved <u>before</u> cir. motion of a if at 9 <u>after</u>\"; rows 11–12 \"B 7\" + short up arrow + \"[?.]2\" (single head)"
     }
@@ -15260,7 +15260,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Ch. fig Sub→Add — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -15276,7 +15276,7 @@
     "row": "1",
     "kind": "motion",
     "component": "\"x\" a 10 Ver",
-    "detail": "moves with P4; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P4; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -15292,7 +15292,7 @@
     "row": "1",
     "kind": "motion",
     "component": "\"y\" a 10 Ver",
-    "detail": "moves with P9; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P9; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
@@ -15308,7 +15308,7 @@
     "row": "1",
     "kind": "motion",
     "component": "Ch. fig Add→Sub — a Ver",
-    "detail": "moves with P7; displacement unknown (no displacement adopted (none adopted))",
+    "detail": "moves with P7; displacement unknown (no displacement table adopted for carriage)",
     "status": "unresolved",
     "height": null,
     "observed": {
