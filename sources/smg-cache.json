@@ -188,12 +188,164 @@
       "complete": true
     },
     {
+      "image": "229/47",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/229%2F47%2FBabbage_Papers_S19__Scribbling_Book_Volume_XIII.ptif",
+      "width": 4969,
+      "height": 3126,
+      "tiles": 24,
+      "complete": false
+    },
+    {
       "image": "229/48",
       "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/229%2F48%2FBabbage_Papers_S19__Scribbling_Book_Volume_XIII.ptif",
       "width": 4969,
       "height": 3126,
-      "tiles": 0,
+      "tiles": 35,
       "complete": false
+    },
+    {
+      "image": "322/965",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F965%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4903,
+      "height": 2984,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/966",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F966%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4897,
+      "height": 2983,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/967",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F967%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4895,
+      "height": 2959,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/968",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F968%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4895,
+      "height": 2957,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/969",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F969%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4877,
+      "height": 2949,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/976",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F976%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4883,
+      "height": 2954,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/977",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F977%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4893,
+      "height": 2958,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/978",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F978%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4891,
+      "height": 2958,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/983",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F983%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4877,
+      "height": 2950,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/984",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F984%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4875,
+      "height": 2950,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/985",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F985%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4875,
+      "height": 2950,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/986",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F986%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4877,
+      "height": 2950,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/989",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F989%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4879,
+      "height": 2951,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/990",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F990%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4877,
+      "height": 2952,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/991",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F991%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4891,
+      "height": 2958,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/992",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F992%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4877,
+      "height": 2950,
+      "tiles": 36,
+      "complete": false
+    },
+    {
+      "image": "322/993",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F993%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4889,
+      "height": 2956,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/994",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F994%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4879,
+      "height": 2951,
+      "tiles": 60,
+      "complete": true
     },
     {
       "image": "322/995",
@@ -208,8 +360,88 @@
       "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F996%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
       "width": 4889,
       "height": 2957,
-      "tiles": 1,
-      "complete": false
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/997",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F997%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4889,
+      "height": 2957,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/998",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F998%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4887,
+      "height": 2957,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "322/999",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/322%2F999%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4873,
+      "height": 2925,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/0",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F0%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4872,
+      "height": 2925,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/1",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F1%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4871,
+      "height": 2925,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/2",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F2%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4871,
+      "height": 2925,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/3",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F3%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4870,
+      "height": 2923,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/4",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F4%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4869,
+      "height": 2923,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/5",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F5%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4869,
+      "height": 2923,
+      "tiles": 60,
+      "complete": true
+    },
+    {
+      "image": "323/6",
+      "source": "https://zoom.sciencemuseumgroup.org.uk/iiif/3/323%2F6%2FScribbling_Book_Volume_II__1835_November_1837_February.ptif",
+      "width": 4869,
+      "height": 2923,
+      "tiles": 60,
+      "complete": true
     }
   ]
 }

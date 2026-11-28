@@ -179,6 +179,8 @@ the middle "Counting App. p 74" [i.e. the sketch on p 74]; at the foot six
 counting wheels labelled "30 / p−30", "0 / q−p", "0 / p−d", "0 / q−d",
 "d+1 / q−p+d+1", "0 / p−q".
 
+*Correction (28 Nov 2026, `running-up-designs-1836.md`):* re-read at full resolution, the p 82 wheels read "−d / p−d" and "−d / q−d", not "0 / p−d" and "0 / q−d".
+
 p 83 (no date; "March" in a sketch): sums "a+b, a+b+c …" for S(a,b);
 "v′₁ = f(v₁, v₂, v₃ … v₁₀₀)" …; sketches; "superposition of six different
 movements under certain conditions". At the foot, in a later hand: "Very
@@ -317,6 +319,8 @@ p 93 (full resolution):
 Below, in pencil: sketches of two cycles labelled "Neg. Cyc. q−p<" and
 "Pos. Cyc. q−p>" [cf. p 94]; "Comp. P. = √(−P²) = P^½ √−1" [?; "Comp."
 here may be "complex", not "complement"]; "a + b√−1".
+
+*Correction (28 Nov 2026, `running-up-designs-1836.md`):* these pencil marks on p 93 are p 94 showing through the leaf; mirrored, they are p 94's drawing and text in p 94's positions. p 93 has no cycle sketches of its own.
 
 ### pp 94–95, image 50 (`323/6`), full resolution (crops 250,60,2200,2740 and 2530,60,2230,2740)
 

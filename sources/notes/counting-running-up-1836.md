@@ -286,6 +286,8 @@ p 82: six counting wheels labelled (top / bottom) "30 / p−30", "0 / q−p",
 "0 / p−d", "0 / q−d", "d+1 / q−p+d+1", "0 / p−q", under "Counting App.
 p 74". No text.
 
+*Correction (28 Nov 2026, `running-up-designs-1836.md`):* re-read at full resolution, "0 / p−d" and "0 / q−d" read "−d / p−d" and "−d / q−d".
+
 ### p 84, image 45 (`323/1`), 7 March (full resolution in `repetition-count-1836-1842.md` §1)
 
 > When any operation is to be terminated ~~or at~~ after a given ⟨variable⟩
